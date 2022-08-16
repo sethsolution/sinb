@@ -2,7 +2,7 @@
 //=========================================================================
 //= Configuración de Template para el modulo
 //=========================================================================
-$templateDir = "../../module/".$module;
+$templateDir = "./module/".$module;
 
 $smarty->assign("templateDirModule",$templateDir);
 

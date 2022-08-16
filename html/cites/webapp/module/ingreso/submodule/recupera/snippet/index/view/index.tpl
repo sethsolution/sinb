@@ -42,8 +42,9 @@
         <button class="login100-form-btn " id="bt_ingresar">Restablecer Contraseña</button>
     </div>
 
+
     <div class="container-login100-form-btn p-t-30 ">
-    <a href="/ingreso" class="login100-form-btn ">Ingresar al sistema</a>
+    <a href="/ingreso" class="login100-form-btn " style="padding: 7px; color: #FFFFFF !important;">Volver</a>
     </div>
 
 </form>

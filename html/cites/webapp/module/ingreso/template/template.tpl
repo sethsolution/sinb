@@ -41,12 +41,15 @@
     <div class="container-login100">
         <div class="wrap-login100">
             {include file="$subpage"}
-            <div  style="text-align: center;font-size: 10px; color: #7c7c7c; ">
+            <div  style="text-align: center;font-size: 10px; color: #7c7c7c; padding-top: 10px; ">
                 <img src="/images/logo/otca.png" width="350"><br>
                 El presente sistema ha sido desarrollado en colaboración entre el MMAyA y el Proyecto Bioamazonía,<br>
                 proyecto de desarrollo de la Organización del Tratado de Cooperación Amazónica (OTCA),<br>
                 cofinanciado por la República Federal de Alemania a través de KfW.
-                <br><br>
+            </div>
+            <div  style="text-align: center;font-size: 11px; color: #7c7c7c; padding-top: 2px; padding-bottom: 5px;">
+                2022-2023 <a href="https://www.mmaya.gob.bo" target="_blank" style="font-size: 11px;  ">© MMAyA</a> - <a href="http://www.seth.com.bo" target="_blank" style="font-size: 11px;  ">SETH Solution</a> | Uyuni v.0.0.1
+                <br>
             </div>
         </div>
     </div>
