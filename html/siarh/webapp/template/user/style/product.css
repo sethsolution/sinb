@@ -1,0 +1,52 @@
+a,a:link{
+	color: #3b5998;
+	text-decoration: none;
+}
+
+.itemTitle{
+	color: #8342ab; font-size: 15px; font-weight: bolder;
+}
+
+.itemPuntos{
+	color: #006400; font-size: 15px; font-weight: bolder;
+}
+
+.itemDateClose{	color: #228b22;}
+
+.itemFoto{
+	border: 1px solid #dfdfdf; padding: 5px; margin-bottom: 10px;
+}
+
+.itemFotoT,.itemFotoT:link{
+	border: 1px solid #dfdfdf; padding: 2px; margin: 2px; width: 50px; height: 50px;
+	float: right; vertical-align: middle;
+}
+
+.itemPuntosBox{
+	padding: 5px;background: #edffe7; border: 1px solid #53ba33;
+}
+
+.msgVerify,
+.msgRight,
+.msgFailed{
+    width:250px;
+    text-align: left;
+    padding:2px; margin:4px 2px;
+}
+
+.msgVerify{
+    background-color:#fffbe7;border:1px solid #fff372; 
+}
+
+.msgRight{
+    background-color:#e2ffdb;border:1px solid #51de31; 
+}
+
+.msgFailed{
+    background-color:#ffccbc;border:1px solid #ff0000; 
+}
+
+.buttonSis{
+	font-weight: bolder; font-family: tahoma; font-size: 11px; padding: 3px 15px;
+	border: 1px solid #9cbd00; background: #aacc06; color: #ffffff;
+}

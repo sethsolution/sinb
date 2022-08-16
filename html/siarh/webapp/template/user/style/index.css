@@ -1,0 +1,103 @@
+body{
+	color: #2d2d2d;
+	background: #ebebeb url(../images/bg/tiny_grid.png);
+	font: normal 11px Arial;
+	margin: 0;
+	padding: 0;	
+}
+#errormsg{	 
+	display: block; position: absolute;
+	background: #fee1e1 url(../images/icon/warning.png) no-repeat left;
+	background-position: 5px 3px;
+	border: 1px solid #ff7575;
+	width: 220px;
+	margin-top: 190px; 
+	margin-right: auto; 
+	margin-bottom: 0px; 
+	margin-left: 35px; 
+	padding: 5px;
+	filter:alpha(opacity=80);-moz-opacity:.80;opacity:.80;
+	z-index: 999999px;
+	text-align: center; color: #b22222;
+
+}
+
+form {  padding: 0;  margin: 0;}
+body,td,th {font-family: Tahoma;font-size: 11px; color: #676767;}
+div#IEM_HTML_Body{
+	margin: 0;
+	padding: 10px 30px 30px 30px;
+}
+#loginPage{ 
+	width: 500px;
+	height: 500px;
+	border: 1px solid #0a65ad;
+	/*background: transparent url(../images/login/bg.png);*/
+	margin-top: 70px; 
+	margin-right: auto; 
+	margin-bottom: 0px; 
+	margin-left: auto;
+	
+}
+.portada{
+	border:solid 0px #dddddd; 
+	background: transparent url(../images/proyectos.png);
+	width: 300px; height: 250px;
+	margin-top: 50px; 
+	margin-right: auto; 
+	margin-bottom: 0px; 
+	margin-left: auto; 
+}
+#pie{ padding: 5px; color: #2E568B;
+	text-align: center;
+	width: 400px;
+	margin-top: 0px; 
+	margin-right: auto; 
+	margin-bottom: 0px; 
+	margin-left: auto; 
+}
+
+#pie a,#pie a:link{
+	color: #2E568B;
+}
+#pie a:hover{
+	color: #2A7AD1;
+}
+
+#menusys{
+	display: block;
+	background: white;
+	border: 1px solid #ffffff;
+	width: 220px;
+	margin-top: 0px; 
+	margin-right: auto; 
+	margin-bottom: 0px; 
+	margin-left: auto; 
+	padding: 5px 5px 5px 5px;
+	filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+	z-index: 999999px;
+}
+
+.inputText{
+	border: 1px solid #c2c2c2; width: 100px;font-family: tahoma; padding-left: 3px;
+}
+.boton{ font-size: 11px; 
+height: 24px; 
+font-family: Arial; 
+background: url(../images/bg/formboton.png);
+ border: 1px solid #c2c2c2; 
+ height: auto !important; 
+ padding: 1px 10px;
+}
+/**
+SIRH
+**/
+.sirh_portada{
+	border:solid 0px #dddddd; 
+	
+	width: 300px; height: 250px;
+	margin-top: 50px; 
+	margin-right: auto; 
+	margin-bottom: 0px; 
+	margin-left: auto; 
+}

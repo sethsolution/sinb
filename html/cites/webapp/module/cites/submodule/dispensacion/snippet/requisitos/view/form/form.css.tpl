@@ -1,0 +1,5 @@
+{literal}
+<style>
+
+</style>
+{/literal}

@@ -1,0 +1,22 @@
+# Configuración de apache y php para el uso de recursos
+#AddDefaultCharset ISO-8859-1
+#AddDefaultCharset UTF8
+#<IfModule mod_php5.c>
+#    php_value upload_max_filesize 150M
+#    php_value post_max_size 150M
+#    php_value memory_limit 228M
+#    php_flag zlib.output_compression On
+#    php_value zlib.output_compression_level 5
+#    php_value date.timezone 'America/La_Paz'
+#</IfModule>
+#<Files *.css>
+#SetOutputFilter DEFLATE
+#</Files>
+#<Files *.js>
+#SetOutputFilter DEFLATE
+#</Files>
+#AddOutputFilterByType DEFLATE text/html
+
+#RewriteEngine On 
+#RewriteCond %{SERVER_PORT} 80 
+#RewriteRule ^(.*)$ https://sys.sirh.gob.bo/$1 [R,L]

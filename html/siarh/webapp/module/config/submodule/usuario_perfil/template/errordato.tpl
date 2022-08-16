@@ -1,0 +1,1 @@
+<div class="alerta" ><p>Modulo no permitido.<br />Debe de registrarse Primeramente para ingresar a este modulo.</p></div>

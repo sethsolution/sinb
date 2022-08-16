@@ -1,0 +1,76 @@
+<? 
+// Manera 1
+        //$templateModule = $templateformdatosSistem;
+        // Manera 2
+        //$templateModule = $templateModuleAjax;
+        //$templateModule = $templateModuleForm;
+        //$templateModule = $templateModuleOtroJSP;
+        //$templateModule = $templateModuleMOBILE;
+        //$smarty->assign("subpage",$templateformdatosSistem);
+        //$listSecre = $objCatalog->formularioSistema();
+        //echo $listSecre;
+        //exit;
+switch($accion){      
+    case 'getdatosSistema': 
+        //print_r($_SESSION);
+        $templateModule = $templateModuleAjax;
+        $temTipUser=$objCatalog->getTipoUsuario();
+        $temSecre=(($_SESSION["userv"]["secretariaId"]!="" and $_SESSION["userv"]["secretariaId"]!="0")?$objCatalog->getSecretariaDatos($_SESSION["userv"]["secretariaId"]):null);
+        $temUnid=(($_SESSION["userv"]["entidadId"]!="" and $_SESSION["userv"]["entidadId"]!="0")?$objCatalog->getSecretariaDatos($_SESSION["userv"]["entidadId"]):null);
+        //print_r($objCatalog->getSecretariaDatos($_SESSION["userv"]["secretariaId"]));
+        $smarty->assign("subpage",$templateformdatosSistem);
+        $smarty->assign("usaurio",$_SESSION["userv"]["usuario"]);
+        $smarty->assign("contras",$_SESSION["userv"]["password"]);
+        $smarty->assign("tipuser",$temTipUser[$_SESSION["userv"]["tipoUsuario"]]);
+        $smarty->assign("nomb",$_SESSION["userv"]["nombre"]);
+        $smarty->assign("apelli",$_SESSION["userv"]["apellido"]);
+        $smarty->assign("estado","Activo");
+        $smarty->assign("secretaria",($temSecre!=null ?$temSecre["nombre"]:"Dato sin asignar."));
+        $smarty->assign("unidad",($temUnid!=null ?$temUnid["nombre"]:"Dato sin asignar."));
+    break;
+    case 'getdatosPersonales': 
+        //print_r($_SESSION);
+        $id=rand(10,100);
+        $templateModule = $templateModuleAjax;
+        $tenfoto=($_SESSION["userv"]["portada"]!="0"?'<img src="data/config/listaUsuarios/Portada/small/'.$_SESSION["userv"]["itemId"].'.jpg?'.$id.'" />':"");
+        $smarty->assign("subpage",$templateformdatosPersonal);
+        $smarty->assign("telefono",$_SESSION["userv"]["telefono"]);
+        $smarty->assign("celular",$_SESSION["userv"]["celular"]);
+        $smarty->assign("email",$_SESSION["userv"]["email"]);
+        $smarty->assign("direccion",$_SESSION["userv"]["direccion"]);
+        $smarty->assign("foto",$tenfoto);
+    break;
+    case 'guardarDatosUser': 
+        $estUpdateUser=$objCatalog->setUpdateDatoUser($pass,$nombre,$apell);
+        echo json_encode($estUpdateUser);
+        exit;
+    break;
+    case 'guardarDatosUserDos': 
+        $estUpdateUser=$objCatalog->setDatoUserPersonales($telefono,$celular,$email,$direccion);
+        echo json_encode($estUpdateUser);
+        exit;
+    break;
+    case 'cargarImagen': 
+        if($_SESSION["userv"]["itemId"]!="0" and $_SESSION["userv"]["itemId"]!=""){ 
+            $estImagen=$objCatalog->itemSaveImagen($_SESSION["userv"]["itemId"]);  
+            echo json_encode($estImagen);      
+            exit;            
+        }else{
+            $templateModule = $templateError;
+        }
+        exit;
+    break;
+    case 'listaAsigUser': 
+        $listUsuarios = $objCatalog->getModulosSubModulo($_GET);
+        echo json_encode($listUsuarios);
+        //print_r($objCatalog->verModuloAndSubModulos(1));
+        exit;
+    break;    
+    /**
+     * Página por defecto
+     */
+    default:
+        $smarty->assign("subpage",$templateIndex);          
+    break;
+}
+?>

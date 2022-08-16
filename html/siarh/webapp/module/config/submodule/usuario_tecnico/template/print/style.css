@@ -1,0 +1,349 @@
+{literal}<style type="text/css">
+
+@page {margin: 0.7cm;}
+
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    margin-top: 35px;
+
+    margin-bottom: 35px;
+
+    font-size:10px;
+
+}
+
+#header,
+
+#footer {
+
+	position: fixed;
+
+	left: 0;
+
+	right: 0;
+
+	color: black;
+
+	font-size: 10px;
+
+}
+
+#header table,
+
+#footer table {
+
+	width: 100%;
+
+	border-collapse: collapse;
+
+	border: none;
+
+}
+
+#header {
+
+    top: 0;
+
+    margin-top: -20px;
+
+    border-bottom: 0.3px solid #000000;
+
+}
+
+#header table td{ 
+
+    padding:0px;
+
+}
+
+
+
+#footer {
+
+  position: fixed;
+
+  bottom: -5px;
+
+  left: 0px;
+
+  right: 0px;
+
+  height: 20px;
+
+  text-align: center;
+
+  border-top: 0.5px solid #000000;
+
+  display:inline-block;
+
+  font-size: 9px;
+
+}
+
+/** Estilos header **/
+
+td.escudo{
+
+    width: 135px;
+
+    text-align: left;
+
+    /*border: 0.4px solid black;*/
+
+}
+
+td.logo02{
+
+    width: 125px;
+
+    text-align: right;
+
+    /*border: 0.4px solid black;*/
+
+}
+
+/** Fin Estilo Header **/
+
+.titulo01{
+
+	font-size: 15px;
+
+	font-weight: bolder;
+
+	text-align: center;
+
+}
+
+.row_normal{
+
+    font-size: 10px;
+
+    padding-left: 5px;
+
+    padding-right: 5px;
+
+    padding-top: 3px;
+
+    padding-bottom: 3px;
+
+}
+
+.txtRight{text-align: right;}
+
+.txtLeft{text-align: left;}
+
+.txtCenter{text-align: center;}
+
+
+
+.header_title{
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    color: #01578f;
+
+    padding: 10px 2px 2px 2px;
+
+    margin: 0px 0px 5px 0px;
+
+    border-bottom: 2px solid #01568e;
+
+}
+
+
+
+.header_title2{
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    color: #01578f;
+
+    padding: 10px 2px 2px 2px;
+
+    margin: 0px 0px 5px 0px;
+
+    border-bottom: 2px solid #31920a;    
+
+}
+
+
+
+.header_title3{
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    color: #01578f;
+
+    padding: 10px 2px 2px 2px;
+
+    margin: 0px 0px 5px 0px;
+
+}
+
+
+
+.pregunta{
+
+	font-size: 9px;
+
+	font-weight: bold;
+
+	padding: 2px 5px 2px 2px;
+
+	border: 0.5px solid #9d9d9d;
+
+	text-align: right;
+
+	background: #f2f2f2;
+
+}
+
+.pregunta2{
+
+	font-size: 9px;
+
+	font-weight: bold;
+
+	padding: 2px 5px 2px 2px;
+
+	border: 0.5px solid #9d9d9d;
+
+	text-align: center;
+
+	background: #f2f2f2;
+
+}
+
+.pregunta3{
+
+	font-size: 9px;
+
+	font-weight: bold;
+
+	padding: 2px 5px 2px 5px;
+
+	border: 0.5px solid #9d9d9d;
+
+	text-align: left;
+
+	background: #f2f2f2;
+
+}
+
+
+
+.respuesta{
+
+	font-size: 9px;
+
+	padding: 2px 2px 2px 5px;
+
+	border: 0.5px solid #9d9d9d;
+
+	text-align: left;
+
+}
+
+.respuesta2{
+
+	font-size: 9px;
+
+	padding: 2px 2px 2px 5px;
+
+	border: 0.5px solid #9d9d9d;
+
+	text-align: center;
+
+}
+
+.respuesta3{
+
+	font-size: 9px;
+
+	padding: 2px 2px 2px 5px;
+
+	border: 0.5px solid #9d9d9d;
+
+	text-align: right;
+
+}
+
+
+
+.celdab{
+
+	border: 0.5px solid #9d9d9d;
+
+}
+
+
+
+
+
+.break_line{
+
+    border:0px solid #fff956;
+
+    height: 8px;    
+
+}
+
+
+
+
+
+td.tituloHeader{
+
+    text-align: center;
+
+    font-size: 11px;
+
+}
+
+/*
+
+.bordesTabla tr td,.bordesTabla tr th{
+
+    border: 0.5px solid #9d9d9d;
+
+}
+
+*/
+
+
+
+
+
+
+
+table {
+
+	width: 100%;
+
+	border-collapse: collapse;
+
+	border: none;
+
+}
+
+
+
+.page-number:before {
+
+  content: "P·gina " counter(page);
+
+}
+
+
+
+</style>{/literal}
