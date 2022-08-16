@@ -15,21 +15,21 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="/themes/login/images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/themes/login/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/themes/login/js/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/themes/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/themes/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/themes/login/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="/themes/login/js/animate/animate.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/themes/login/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="/themes/login/js/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/themes/login/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="/themes/login/js/animsition/css/animsition.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/themes/login/vendor/select2/select2.min.css">
+    {*<link rel="stylesheet" type="text/css" href="/themes/login/js/select2/select2.min.css">*}
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/themes/login/vendor/daterangepicker/daterangepicker.css">
+    {*<link rel="stylesheet" type="text/css" href="/themes/login/js/daterangepicker/daterangepicker.css">*}
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/themes/login/css/util.css">
     <link rel="stylesheet" type="text/css" href="/themes/login/css/main.css">
@@ -56,19 +56,21 @@
 </div>
 
 <!--===============================================================================================-->
-<script src="/themes/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/themes/login/js/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-<script src="/themes/login/vendor/animsition/js/animsition.min.js"></script>
+<script src="/themes/login/js/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-<script src="/themes/login/vendor/bootstrap/js/popper.js"></script>
-<script src="/themes/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/themes/login/js/bootstrap/js/popper.js"></script>
+<script src="/themes/login/js/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-<script src="/themes/login/vendor/select2/select2.min.js"></script>
+{*<script src="/themes/login/vendor/select2/select2.min.js"></script>*}
 <!--===============================================================================================-->
+{*
 <script src="/themes/login/vendor/daterangepicker/moment.min.js"></script>
 <script src="/themes/login/vendor/daterangepicker/daterangepicker.js"></script>
+*}
 <!--===============================================================================================-->
-<script src="/themes/login/vendor/countdowntime/countdowntime.js"></script>
+<script src="/themes/login/js/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 <!--script src="/themes/login/js/main.js"></script-->
 
