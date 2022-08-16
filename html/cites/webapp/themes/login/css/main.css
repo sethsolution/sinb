@@ -248,7 +248,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 43px 88px 93px 190px;
+  padding: 13px 88px 0px 190px;
 }
 
 
@@ -266,7 +266,7 @@ iframe {
   font-size: 15px;
   color: #808080;
   line-height: 1.2;
-  text-align: right;
+  text-align: left;
 
   position: absolute;
   top: 14px;
@@ -385,27 +385,33 @@ input.input100 {
 [ Button ]*/
 .container-login100-form-btn {
   width: 100%;
+  /*
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
+
+   */
 }
 
 .login100-form-btn {
+  /*
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+
+   */
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
-  min-width: 160px;
-  height: 50px;
-  background-color: #57b846;
-  border-radius: 25px;
+  padding: 0 10px;
+  min-width: 140px;
+  height: 40px;
+  background-color: #1bc5bd;
+  border-radius: 5px;
 
   font-family: Poppins-Regular;
   font-size: 16px;
@@ -419,7 +425,7 @@ input.input100 {
 }
 
 .login100-form-btn:hover {
-  background-color: #333333;
+  background-color: #0bb7af;
 }
 
 
@@ -438,7 +444,7 @@ input.input100 {
   }
 
   .label-input100 {
-    text-align: left;
+    text-align: left!important;
     position: unset;
     top: unset;
     left: unset;
@@ -456,13 +462,14 @@ input.input100 {
 }
 
 .alert-validate::before {
+
   content: attr(data-validate);
   position: absolute;
   max-width: 70%;
-  background-color: #fff;
-  border: 1px solid #c80000;
+  background-color: #fef4f5;
+  border: 1px dotted #f64e60;
   border-radius: 2px;
-  padding: 4px 25px 4px 10px;
+  padding: 4px 35px 4px 10px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -473,7 +480,7 @@ input.input100 {
   pointer-events: none;
 
   font-family: Poppins-Medium;
-  color: #c80000;
+  color: #f64e60;
   font-size: 13px;
   line-height: 1.4;
   text-align: left;
@@ -488,12 +495,12 @@ input.input100 {
 }
 
 .alert-validate::after {
-  content: "\f06a";
+  content: "\f071";
   font-family: FontAwesome;
   display: block;
   position: absolute;
-  color: #c80000;
-  font-size: 15px;
+  color: #f64e60;
+  font-size: 22px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);

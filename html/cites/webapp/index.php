@@ -60,12 +60,4 @@ if ($action == "login"){
  */
 }else{
     include_once($CFG->homeSis."sisweb.php");
-    /*
-    if($CFG->snir == true){
-        $loginpage = "login.tpl";
-    }else{
-        $loginpage = "siarh-metro/login.tpl";
-    }
-    $smarty->display($loginpage);
-    */
 }

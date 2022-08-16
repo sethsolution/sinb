@@ -1,5 +1,5 @@
 <?php
-$CFG->telegram["activo"] = true;
+$CFG->telegram["activo"] = false;
 /**
  * Token del bot en telegram
  */

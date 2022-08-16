@@ -81,7 +81,7 @@ class configuration{
         
         $this->smarty_compiler = $this->data."template/".$this->template."/";
         $this->smarty_cache = $this->data."cache/";
-        $this->smarty_template =  "./template/".$this->template."/";
+
 
         /**
          * Conexión a la base de datos y prefijo de conexión

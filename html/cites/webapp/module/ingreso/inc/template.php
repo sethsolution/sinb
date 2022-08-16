@@ -4,7 +4,7 @@
 //=========================================================================
 use function GuzzleHttp\Psr7\str;
 
-$templateDir = "../../module/".$module;
+$templateDir = "./module/".$module;
 
 $smarty->assign("templateDirModule",$templateDir);
 

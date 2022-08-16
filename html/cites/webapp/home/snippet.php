@@ -201,11 +201,12 @@ switch($countOpt){
  * Generamos los lugares de los templates de sistema
  */
 $smarty_template = array();
-$smarty_template[] = $CFG->smarty_template;
+//$smarty_template[] = $CFG->smarty_template;
 $smarty_template[] = "./module/core/template/frontend_core/";
 $smarty_template[] = "./module/core/template/email_core/";
 $smarty_template[] = $path_sbm."snippet/".$subcontrol."/view/";
 $smarty_template[] = $pathmodule."template/frontend/";
+
 $smarty->setTemplateDir($smarty_template);
 
 /* /
