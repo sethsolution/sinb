@@ -1,5 +1,5 @@
 <?php
-$CFG->telegram["activo"] = true;
+$CFG->telegram["activo"] = false;
 $CFG->telegram["token"] = "944234158:AAHJsciLmWeCDsfc90c-Hjlcn3bG5NfvJ2g";
 $CFG->telegram["chat_id"] = "-1001341357940"; // SIARH Monitor
 // https://api.telegram.org/bot944234158:AAHJsciLmWeCDsfc90c-Hjlcn3bG5NfvJ2g/getUpdates
