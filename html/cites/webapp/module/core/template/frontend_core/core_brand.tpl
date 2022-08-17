@@ -1,6 +1,10 @@
 <div class="m-stack__item m-brand  m-brand--skin-dark ">
     <div class="m-stack m-stack--ver m-stack--general">
-
+        <div class="m-stack__item m-stack__item--middle m-brand__logo">
+            <a href="index.php?accion=2" class="m-brand__logo-wrapper">
+                <img alt="MMAyA" src="/images/logo/logo_mmaya_white.png" width="160"/>
+            </a>
+        </div>
         <div class="m-stack__item m-stack__item--middle m-brand__tools">
             <!-- BEGIN: Left Aside Minimize Toggle -->
             <a href="javascript:;" id="m_aside_left_minimize_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block">

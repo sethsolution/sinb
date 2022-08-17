@@ -12,14 +12,10 @@
      m-menu-scrollable="1"
      m-menu-dropdown-timeout="500"
      style="position: relative; overflow: hidden;">
-    {*
-    <div class="m-stack__item m-stack__item--middle m-brand__logo text-center">
-        <a href="/" class="m-brand__logo-wrapper">
-            <img alt="MMAyA" src="/images/logo/logo_bolivia_blanco.png" width="160"/>
-        </a>
-    </div>
-    *}
+
     <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow" style="padding: 0px;">
+
+        {*
         <li class="m-menu__item text-center" aria-haspopup="true"  style=" border-bottom: 1px dotted #525780;">
             <a  href="/cites" class="m-menu__link ">
 
@@ -30,7 +26,6 @@
                 </span>
             </a>
         </li>
-        {*
         <li class="m-menu__item " aria-haspopup="true" style=" border-bottom: 1px dotted #525780;">
             <a  href="/" class="m-menu__link ">
                 <i class="m-menu__link-icon fa fa-chevron-left"></i>
@@ -43,6 +38,7 @@
             </a>
         </li>
         *}
+
         <li class="m-menu__item " aria-haspopup="true"  style=" border-bottom: 1px dotted #525780;">
             <a  href="/{$miga.modulo.carpeta}" class="m-menu__link ">
                 <i class="m-menu__link-icon fa fa-home"></i>
