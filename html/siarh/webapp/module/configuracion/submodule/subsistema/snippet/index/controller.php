@@ -12,7 +12,7 @@ switch($accion) {
      */
     default:
 
-        $cataobj["activo"} = $catalogo=$objCatalog->get_activo_option();
+        $cataobj["activo"] = $catalogo=$objCatalog->get_activo_option();
         $smarty->assign("cataobj", $cataobj);
 
         $grill_list = $objItem->get_grilla_list_sbm("item");
