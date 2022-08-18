@@ -1,5 +1,16 @@
 <?PHP
 $starttime = time();
+/**
+ *
+ */
+function print_struc($obj) {
+    echo("<pre>");
+    print_r($obj);
+    echo("</pre>");
+}
+/**
+ *
+ */
 $_ENV['APP_BASE_PATH'] = dirname(__DIR__);
 define('BASE_PATH',realpath('.'));
 const HOME_PATH = BASE_PATH . "/core/home/";
