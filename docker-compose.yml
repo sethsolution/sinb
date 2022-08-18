@@ -18,6 +18,17 @@ services:
         volumes:
             - "./data/mysql:/var/lib/mysql"
             - "./apps/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+    postgresdb:
+        image: pgrouting/pgrouting:${PG_VERSION}
+        container_name: ${PG_NAME}
+        env_file:
+            - ".env"
+        environment:
+            POSTGRES_PASSWORD: ${PG_PASSWORD}
+        ports:
+            - '15432:5432'
+        volumes:
+            - "./data/postgresql/data:/var/lib/postgresql/data"
     web:
         image: nginx:alpine
         container_name: ${NGINX_NAME}
