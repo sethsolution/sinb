@@ -33,7 +33,7 @@ $_SESSION["start"] = $starttime;
 /**
  * Cargamos clases necesarias
  */
-require_once("./core/core.php");
+require_once("./core/Core.php");
 include_once("./core/CoreResources.php");
 /**
  * Configuración de base de datos para ORM Elocuence
