@@ -1,0 +1,32 @@
+# Configuración de apache y php para el uso de recursos
+#AddDefaultCharset ISO-8859-1
+#php_value upload_max_filesize 150M
+#php_value post_max_size 150M
+#php_value memory_limit 228M
+php_flag zlib.output_compression On
+php_value zlib.output_compression_level 9
+
+#RewriteEngine On
+#RewriteCond %{SERVER_PORT} 80 
+#RewriteRule ^(.*)$ https://www.seth.com.bo/$1 [R,L]
+
+# Turn on URL rewriting
+RewriteEngine On
+# Installation directory
+RewriteBase /
+# Protect hidden files from being viewed
+<Files .*>
+	Order Deny,Allow
+	Deny From All
+</Files>
+
+# Protect application and system files from being viewed
+RewriteRule ^(?:application|modules|system)\b.* index.php/$0 [L]
+
+# Allow any files or directories that exist to be displayed directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other URLs to index.php/URL
+RewriteRule .* index.php/$0 [PT]
+# RewriteRule ^(.*)$ index.php
