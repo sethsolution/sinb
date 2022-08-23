@@ -109,6 +109,17 @@ unset($db_prefix);
 /**
  * Otras base de datos
  */
+
+$dbname = $CFG->prefix."cites_core"; // otra base de datos que no es la principal
+$db_prefix= "";
+$db_datos[] = $core->get_alias_campo($db_prefix."usuario",$db_prefix,"");
+
+
+$CFGm->tabla = array_merge($CFGm->tabla,$core->get_tablas_from_array($db_datos,"core_cites",$dbname));
+unset($db_datos);
+unset($dbname);
+unset($db_prefix);
+
 /*
 $dbname = $CFG->prefix."mmaya_catalogo"; // otra base de datos que no es la principal
 $db_prefix= "";

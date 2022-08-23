@@ -51,7 +51,7 @@ table.dataTable tbody td.focus,table.dataTable tbody th.focus {
 }
 
 .estado-base{
-    border-radius:4px;
+    border-radius:5px; font-size: 11px; padding: 0px 4px 0px 4px;
 }
 .estado-registrado-oficial{
     background-color: #d8fdc8;
@@ -69,6 +69,11 @@ table.dataTable tbody td.focus,table.dataTable tbody th.focus {
     border: 1px solid #e0a581;
 }
 .estado-observado{
+    background-color: #d05656;
+    color:#fef8f8;
+    border: 1px solid #c4a1a1;
+}
+.estado-sustituido{
     background-color: #e8c8fd;
     color:#3a0563;
     border: 1px solid #c081e0;

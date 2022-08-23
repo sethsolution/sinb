@@ -128,50 +128,42 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+                        {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
-                        width: "130px",
+                        targets: -1,
+                        width: "90px",
                         className: 'noExport',
                         orderable: false,
                         searchable: false,
                         render: function(data, type, full, meta) {
-                            var boton = '';
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-
-
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-
+                            var boton = '<div role="group" aria-label="Accion" class="btn-group m-btn-group btn-group-sm">';
+                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Ver Datos">Ver Datos</a>';
                             boton += '<div>';
                             return boton;
+
                         },
                     },
                     {
                         targets: [1],
-                        visible: false,
-                        searchable: false
-                    },
-                    {
-                        targets: [11,12,13],
-                        //visible: false,
-                        searchable: false
-                    },
-
-                    {
-                        targets: [2],
                         render: function(data, type, full, meta) {
-                            var boton = '<a href="index.php?module=cites&smodule=empresa&accion=itemUpdate&type=update&id='+full.empresa_id_num+'" title="Ver Empresa" >';
+                            if ( data == null) {
+                                return data;
+                            }
+                            var boton = '<a href="index.php?module=cites&smodule=empresa&accion=itemUpdate&type=update&id='+full.empresa_id+'" title="Ver Empresa" >';
                             boton += data;
                             boton += '</a>';
                             return boton;
                         },
                     },
-
+                    {
+                        targets: [2],
+                        visible: false,
+                        searchable: false
+                    },
                     {
                         targets: [6],
                         className:"text-center",
@@ -182,18 +174,27 @@
                                 'Registrado': {'estilo': 'estado-registrado'},
                                 'En Proceso de Validación': {'estilo': 'estado-validacion'},
                                 'Observado': {'estilo': 'estado-observado'},
-
                             };
                             if (typeof status[data] === 'undefined') {
                                 return data;
                             }
 
-                            return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +data+'</span>';
+                            return '<div class="estado-base '+ status[data].estilo+' " >' +data+'</div>';
+                        },
+                    },
+                    {
+                        targets: [11,12,13],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
 
                     {
                         targets: [7],
+                        searchable: false,
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -206,16 +207,13 @@
                             if (typeof status[data] === 'undefined') {
                                 return data;
                             }
-
-                            /* return '<span class="m-badge m-badge--' + status[data].state + ' info m-badge--wide"></span>&nbsp;' +
-                                 '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
- */
                             return '<i class="fa fa-check-circle text-' + status[data].state + '"></i>&nbsp;' +
                                 '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
                         },
                     },
                     {
                         targets: [8],
+                        searchable: false,
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -234,6 +232,7 @@
                     },
                     {
                         targets: [9],
+                        searchable: false,
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -249,17 +248,12 @@
 
                             return '<i class="fa fa-exclamation text-' + status[data].state + '"></i>&nbsp;' +
                                 '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
-
-                          /*  dato = '<a href="javascript:item_update(\''+data+'\');" title="Ver Observación">'+
-                                '<i class="fa fa-exclamation text-' + status[data].state + '"></i> <span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>' +
-                                '</a>';
-                            return dato;*/
                         },
                     },
-
                     {
                         targets: [10],
                         className:"text-center",
+                        searchable: false,
                         render: function(data, type, full, meta) {
                             var status = {
                                 '1': {'estilo': 'tipo-sustituido','title': 'Sustitución'},
@@ -268,14 +262,21 @@
                             if (typeof status[data] === 'undefined') {
                                 return data;
                             }
-
                             return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +status[data].title+'</span>';
                         },
                     },
 
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
                 ],
             });
-            //new $.fn.dataTable.FixedHeader( table_list );
         };
 
 
