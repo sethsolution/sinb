@@ -16,6 +16,7 @@
     <!--begin::Base Styles -->
     <link href="themes/metro/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="themes/metro/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="module/cites/template/css/core.css" rel="stylesheet" type="text/css" />
     {*<link href="module/cites/template/css/style.bundle.css" rel="stylesheet" type="text/css" />*}
     <!--end::Base Styles -->
     <!--begin::Fonts Styles -->

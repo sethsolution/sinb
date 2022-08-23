@@ -23,162 +23,81 @@ $grilla_tablas_adicionales = array();
  */
 
 /**
- * Item de las lista que se tiene desplegar
+ * Configuración de tablas relacionales, (JOIN)
  */
 
-//-------------------------------------------------------------
-
-$field_name = "estado_id";
-$field_alias = "estado";
-$field_activo = 1;
-$grilla_items[]=array(
-    "campo" => "nombre" // nombre del campo pero de la tabla que relaciona
-,   "field"=> $field_name
-,   "label"=>"Estado"
-,   "as" => $field_name
-,   "tabla_alias"=> $field_alias
-,   "activo"=> $field_activo
-);
-        $grilla_tablas[] = array(
-            "tabla" => $CFGm->tabla["c_empresa_estado"]
-        ,    "alias"=> $field_alias
-        ,   "campo_id"=>"itemId"
-        ,   "relacion_id"=>$field_name
-        ,   "activo"=> $field_activo
-        );
-//-------------------------------------------------------------
-$field_name = "nombre";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Nombre (Institución)"
+$grilla_tablas[] = array(
+    "tabla" => $CFGm->tabla["c_empresa_estado"]
+,    "alias"=> "e"
+,   "campo_id"=>"itemId"
+,   "relacion_id"=>"estado_id"
 ,   "activo"=> 1
 );
 
-
-//-------------------------------------------------------------
-$field_name = "representante_legal_nombre";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Nombre (Persona)"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "representante_legal_paterno";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Apellido Paterno"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "representante_legal_materno";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Apellido Materno"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "representante_legal_telefono";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Teléfono"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "representante_legal_ci";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"C.I."
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-
-$field_name = "representante_legal_ci_exp";
-$field_alias = "Expedido";
-$field_activo = 1;
-$grilla_items[]=array(
-    "campo" => "nombre" // nombre del campo pero de la tabla que relaciona
-,   "field"=> $field_name
-,   "label"=>"Expedido"
-,   "as" => $field_name
-,   "tabla_alias"=> $field_alias
-,   "activo"=> $field_activo
-);
 $grilla_tablas[] = array(
     "tabla" => $CFGm->tabla["c_departamento"]
-,    "alias"=> $field_alias
+,    "alias"=> "d"
 ,   "campo_id"=>"itemId"
-,   "relacion_id"=>$field_name
-,   "activo"=> $field_activo
-);
-//-------------------------------------------------------------
-/*$field_name = "telefono";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Teléfono"
-,   "activo"=> 1
-);
-*/
-
-//-------------------------------------------------------------
-$field_name = "email";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Email"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "direccion";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Dirección"
+,   "relacion_id"=>"representante_legal_ci_exp"
 ,   "activo"=> 1
 );
 
-//-------------------------------------------------------------
-$field_name = "nit";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"NIT"
+$grilla_tablas[] = array(
+    "tabla" => $CFGm->tabla["core_cites_usuario"]
+,    "alias"=> "u"
+,   "campo_id"=>"itemId"
+,   "relacion_id"=>"usuario_id"
 ,   "activo"=> 1
 );
-//-------------------------------------------------------------
-$field_name = "dateCreate";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Fecha de creación"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "enviado_fecha";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Fecha de Envio"
-,   "activo"=> 1
-);
-
-//-------------------------------------------------------------
-$field_name = "aprobado_fecha";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Fecha de Aprobación"
-,   "activo"=> 1
-);
+/**
+ * Item de las lista que se tiene desplegar
+ */
+$grilla_items[]=array("campo" => "usuario", "label"=>"Usuario", "activo"=> 1
+,   "tabla_alias"=> "u", "as" => "usuario");
+$grilla_items[]=array("campo" => "activo", "label"=>"Usuario Activo", "activo"=> 1
+,   "tabla_alias"=> "u", "as" => "usuario_activo");
+$grilla_items[]=array("campo" => "dateCreate", "label"=>"Usuario Fecha de Creación", "activo"=> 1
+,   "tabla_alias"=> "u", "as" => "usuario_datecreate");
+$grilla_items[]=array("campo" => "verifica_email", "label"=>"Email Verificado", "activo"=> 1
+,   "tabla_alias"=> "u", "as" => "usuario_verificaemail");
+$grilla_items[]=array("campo" => "verifica_fecha", "label"=>"Email Verificado Fecha", "activo"=> 1
+,   "tabla_alias"=> "u", "as" => "usuario_verificafecha");
 
 
-//-------------------------------------------------------------
+$grilla_items[]=array("campo" => "nombre", "label"=>"Estado", "activo"=> 1
+,   "tabla_alias"=> "e", "as" => "estado_id");
+
+
+$grilla_items[]=array("field"=> "nombre","campo" => "nombre"
+,   "label"=>"Nombre (Institución)",   "activo"=> 1);
+
+$grilla_items[]=array("field"=> "representante_legal_nombre",  "campo" => "representante_legal_nombre"
+,   "label"=>"Nombre (Persona)",   "activo"=> 1);
+$grilla_items[]=array("field"=> "representante_legal_paterno", "campo" => "representante_legal_paterno"
+,   "label"=>"Apellido Paterno",   "activo"=> 1);
+$grilla_items[]=array("field"=> "representante_legal_materno","campo" => "representante_legal_materno"
+,   "label"=>"Apellido Materno",   "activo"=> 1);
+
+
+$grilla_items[]=array("field"=> "representante_legal_ci",  "campo" => "representante_legal_ci"
+,   "label"=>"C.I.",   "activo"=> 1);
+$grilla_items[]=array("campo" => "nombre", "label"=>"Expedido", "activo"=> 1
+,   "tabla_alias"=> "d", "as" => "representante_legal_ci_exp");
+
+
+$grilla_items[]=array("field"=> "representante_legal_telefono","campo" => "representante_legal_telefono"
+,   "label"=>"Teléfono",   "activo"=> 1);
+$grilla_items[]=array("field"=> "email","campo" => "email"
+,   "label"=>"Email",   "activo"=> 1);
+
+
+$grilla_items[]=array("field"=> "direccion","campo" => "direccion",   "label"=>"Dirección",   "activo"=> 1);
+$grilla_items[]=array("field"=> "nit", "campo" => "nit",   "label"=>"NIT",   "activo"=> 1);
+$grilla_items[]=array("field"=> "enviado_fecha", "campo" => "enviado_fecha",   "label"=>"Fecha de Envio",   "activo"=> 1);
+$grilla_items[]=array("field"=> "aprobado_fecha", "campo" => "aprobado_fecha",   "label"=>"Fecha de Aprobación",   "activo"=> 1);
+
+$grilla_items[]=array("field"=> "dateCreate", "campo" => "dateCreate",   "label"=>"Fecha de creación",   "activo"=> 1);
+$grilla_items[]=array("field"=> "dateUpdate", "campo" => "dateUpdate",   "label"=>"Fecha Actualización",   "activo"=> 1);
 
 /**
  * Se añade el arreglo de grilla configurada a grilla

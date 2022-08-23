@@ -103,7 +103,7 @@
                 language: {"url": "language/datatable.spanish.json"},
                 lengthMenu: [[10, 25, 50,-1], [10, 25, 50, "Todos"]],
                 pageLength: 25,
-                order: [[ 12, "desc" ]], // Por que campo ordenara al momento de desplegar
+                order: [[ 2, "desc" ]], // Por que campo ordenara al momento de desplegar
                 searchDelay: 500,
                 processing: true,
                 serverSide: true,
@@ -115,30 +115,56 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+                        {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
-                        width: "130px",
+                        targets: -1,
+                        width: "90px",
                         className: 'noExport',
                         orderable: false,
                         searchable: false,
                         render: function(data, type, full, meta) {
-                            var boton = '';
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-
-
+                            var boton = '<div role="group" aria-label="Accion" class="btn-group m-btn-group btn-group-sm">';
+                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Ver Datos">Ver Datos</a>';
                             boton += '<div>';
                             return boton;
-
                         },
                     },
                     {
                         targets: [1],
+                        width: '60px',
+                        className: 'text-center',
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                '0': { 'state': 'metal','icon':'far fa-user'},
+                                '1': { 'state': 'success','icon':'fas fa-user-astronaut'}
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<i class="' + status[data].icon + ' m--font-' + status[data].state + '"></i>';
+                        },
+                    },
+                    {
+                        targets: [3],
+                        width: '60px',
+                        className: 'text-center',
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                '0': { 'state': 'metal','icon':'far fa-paper-plane'},
+                                '1': { 'state': 'success','icon':'fas fa-paper-plane'}
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<i class="' + status[data].icon + ' m--font-' + status[data].state + '"></i>';
+                        },
+                    },
+                    {
+                        targets: [5],
                         className:"text-center",
                         render: function(data, type, full, meta) {
                             var status = {
@@ -151,6 +177,45 @@
                             if (typeof status[data] === 'undefined') {
                                 return data;
                             }
+                            return '<div class=" estado-base '+ status[data].estilo+' " >' +data+'</div>';
+                        },
+                    },
+                    {
+                        targets: [10,11,12,13,14,15],
+                        className: "none"
+                    },
+                    {
+                        targets: [2,4,16,17],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
+                    /*
+                    {
+                        targets: [1],
+                        className:"text-center",
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                'Registrado Oficialmente': {'estilo': 'estado-registrado-oficial'},
+                                'Registrado': {'estilo': 'estado-registrado'},
+                                'En Proceso de Validación': {'estilo': 'estado-validacion'},
+                                'Observado': {'estilo': 'estado-observado'},
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
 
                             return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +data+'</span>';
                         },
@@ -158,9 +223,10 @@
 
                     {
                         targets: [12,13,14],
-                        //visible: false,
                         searchable: false
                     },
+
+                     */
 
 
                 ],
