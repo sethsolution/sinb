@@ -1,7 +1,7 @@
 
 <div class="portlet__body m--margin-5">
-    <div class=" row m--padding-bottom-5 busqueda_panel cuadro-verde" >
-        <div class="col-lg-12 titulo m--margin-bottom-5 m--padding-left-5"><strong>Criterios de búsqueda para certificados y permisos CITES</strong></div>
+    <div class=" row m--padding-bottom-5  busqueda-panel" >
+        <div class="col-lg-12 m--margin-bottom-5 m--padding-left-5 busqueda-titulo"><strong>Criterios de búsqueda para certificados y permisos CITES</strong></div>
         <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
             <label>Empresa:</label>
             <input type="text" class="filtro-buscar-text form-control m-input" placeholder="Buscar por nro" data-col-index="1">

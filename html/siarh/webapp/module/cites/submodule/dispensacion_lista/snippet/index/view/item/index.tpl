@@ -33,7 +33,7 @@
                                    class="btn btn-primary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                     <span><i class="fa fa-print"></i><span>Ver Resumen</span></span>
                                 </a>
-                                <a href="/{$miga.modulo.carpeta}/{$miga.smodulo.carpeta}/" id="btn_imprime"
+                                <a href="/{$miga.modulo.carpeta}p/{$miga.smodulo.carpeta}/" id="btn_imprime"
                                    class="btn btn-primary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                     <span><i class="fa fa-print"></i><span>Imprimir</span></span>
                                 </a>

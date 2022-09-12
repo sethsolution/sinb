@@ -20,26 +20,26 @@
         color:#387ec9;
     }
 
-    .estado-sustituido{
-        background-color: #7608cb;
-        color: #ffffff;
-    }
-    .estado-registrado-oficial{
-        background-color: #64cb08;
-        color: #ffffff;
-    }
-    .estado-registrado{
-        background-color: #cbc908;
-        color: #ffffff;
-    }
-    .estado-validacion{
-        background-color: #e59016;
-        color: #ffffff;
-    }
-    .estado-observado{
-        background-color: #a80614;
-        color: #ffffff;
-    }
+    /*.estado-sustituido{*/
+    /*    background-color: #7608cb;*/
+    /*    color: #ffffff;*/
+    /*}*/
+    /*.estado-registrado-oficial{*/
+    /*    background-color: #64cb08;*/
+    /*    color: #ffffff;*/
+    /*}*/
+    /*.estado-registrado{*/
+    /*    background-color: #cbc908;*/
+    /*    color: #ffffff;*/
+    /*}*/
+    /*.estado-validacion{*/
+    /*    background-color: #e59016;*/
+    /*    color: #ffffff;*/
+    /*}*/
+    /*.estado-observado{*/
+    /*    background-color: #a80614;*/
+    /*    color: #ffffff;*/
+    /*}*/
     .tipo-original{
         background-color: #008aff;
         color: #ffffff;

@@ -24,8 +24,8 @@
     function item_print(idficha){
         randomnumber=Math.floor(Math.random()*11);
         url = "{/literal}{$getModule}{literal}&accion=print&rand="+randomnumber+"&idficha="+idficha;
-        window.open(url,'Impresion_ficha_fiv');      
-      
+        window.open(url,'Impresion_ficha_fiv');
+
     }
 
     function itemDeleteAction(id){
@@ -102,7 +102,7 @@
                         ,exportOptions: {columns: exporta_columnas}
                         , title: exporta_titulo
                         , download: 'open'
-                        //, orientation: 'landscape'
+                        , orientation: 'landscape'
                         , pageSize: 'LETTER'
                         ,customize: function(doc) {
                             doc.styles.tableHeader.fontSize = 7;
@@ -128,27 +128,23 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
                         targets: 0,
-                        width: "130px",
+                        width: "90px",
                         className: 'noExport',
                         orderable: false,
                         searchable: false,
                         render: function(data, type, full, meta) {
-                            var boton = '';
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-
-
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-
+                            var boton = '<div role="group" aria-label="Accion" class="btn-group m-btn-group btn-group-sm">';
+                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Ver Datos">Ver Datos</a>';
                             boton += '<div>';
                             return boton;
+
                         },
                     },
 
@@ -178,13 +174,12 @@
                                 'Registrado': {'estilo': 'estado-registrado'},
                                 'En Proceso de Validación': {'estilo': 'estado-validacion'},
                                 'Observado': {'estilo': 'estado-observado'},
-
                             };
                             if (typeof status[data] === 'undefined') {
                                 return data;
                             }
 
-                            return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +data+'</span>';
+                            return '<div class="estado-base '+ status[data].estilo+' " >' +data+'</div>';
                         },
                     },
 
@@ -264,18 +259,28 @@
                             if (typeof status[data] === 'undefined') {
                                 return data;
                             }
-
                             return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +status[data].title+'</span>';
                         },
                     },
 
                     {
                         targets: [11,12,13],
-                        //visible: false,
-                        searchable: false
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
                     },
-
-
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
                 ],
             });
             //new $.fn.dataTable.FixedHeader( table_list );
