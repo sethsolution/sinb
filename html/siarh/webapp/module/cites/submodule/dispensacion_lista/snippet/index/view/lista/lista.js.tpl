@@ -134,7 +134,7 @@
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "90px",
                         className: 'noExport',
                         orderable: false,
@@ -149,13 +149,7 @@
                     },
 
                     {
-                        targets: [1],
-                        visible: false,
-                        searchable: false
-                    },
-
-                    {
-                        targets: [2],
+                        targets: [0],
                         render: function(data, type, full, meta) {
                             var boton = '<a href="index.php?module=cites&smodule=empresa&accion=itemUpdate&type=update&id='+full.empresa_id_num+'" title="Ver Empresa" >';
                             boton += data;
@@ -163,115 +157,130 @@
                             return boton;
                         },
                     },
-
                     {
-                        targets: [6],
-                        className:"text-center",
-                        render: function(data, type, full, meta) {
-                            var status = {
-                                'Sustituido': {'estilo': 'estado-sustituido'},
-                                'Registrado Oficialmente': {'estilo': 'estado-registrado-oficial'},
-                                'Registrado': {'estilo': 'estado-registrado'},
-                                'En Proceso de Validación': {'estilo': 'estado-validacion'},
-                                'Observado': {'estilo': 'estado-observado'},
-                            };
-                            if (typeof status[data] === 'undefined') {
-                                return data;
-                            }
-
-                            return '<div class="estado-base '+ status[data].estilo+' " >' +data+'</div>';
-                        },
+                        targets: [1],
+                        visible: false,
+                        searchable: false
                     },
 
-                    {
-                        targets: [7],
-                        render: function(data, type, full, meta) {
-                            var status = {
-                                1: {'title': '', 'state': 'secondary'},
-                                3: {'title': 'SI', 'state': 'success'},
-                                4: {'title': 'SI', 'state': 'success'},
-                                5: {'title': '', 'state': 'secondary'},
-                                2: {'title': 'SI', 'state': 'success'},
-                                7: {'title': 'SI', 'state': 'success'}
-                            };
-                            if (typeof status[data] === 'undefined') {
-                                return data;
-                            }
 
-                            /* return '<span class="m-badge m-badge--' + status[data].state + ' info m-badge--wide"></span>&nbsp;' +
-                                 '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
- */
-                            return '<i class="fa fa-check-circle text-' + status[data].state + '"></i>&nbsp;' +
-                                '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
-                        },
-                    },
-                    {
-                        targets: [8],
-                        render: function(data, type, full, meta) {
-                            var status = {
-                                1: {'title': '', 'state': 'secondary'},
-                                2: {'title': '', 'state': 'secondary'},
-                                3: {'title': '', 'state': 'secondary'},
-                                5: {'title': '', 'state': 'secondary'},
-                                4: {'title': 'SI', 'state': 'success'},
-                                7: {'title': 'SI', 'state': 'success'}
-                            };
-                            if (typeof status[data] === 'undefined') {
-                                return data;
-                            }
-                            return '<i class="fa fa-check-circle text-' + status[data].state + '"></i>&nbsp;' +
-                                '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
-                        },
-                    },
-                    {
-                        targets: [9],
-                        render: function(data, type, full, meta) {
-                            var status = {
-                                1: {'title': '', 'state': 'secondary'},
-                                2: {'title': '', 'state': 'secondary'},
-                                4: {'title': '', 'state': 'secondary'},
-                                5: {'title': '', 'state': 'secondary'},
-                                3: {'title': 'SI', 'state': 'danger'},
-                                7: {'title': '', 'state': 'secondary'}
-                            };
-                            if (typeof status[data] === 'undefined') {
-                                return data;
-                            }
+                    /*
 
-                            return '<i class="fa fa-exclamation text-' + status[data].state + '"></i>&nbsp;' +
-                                '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
 
-                            /*  dato = '<a href="javascript:item_update(\''+data+'\');" title="Ver Observación">'+
-                                  '<i class="fa fa-exclamation text-' + status[data].state + '"></i> <span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>' +
-                                  '</a>';
-                              return dato;*/
-                        },
-                    },
 
-                    {
-                        targets: [10],
-                        className:"text-center",
-                        render: function(data, type, full, meta) {
-                            var status = {
-                                '1': {'estilo': 'tipo-sustituido','title': 'Sustitución'},
-                                '0': {'estilo': 'tipo-original','title': 'Original'},
-                            };
-                            if (typeof status[data] === 'undefined') {
-                                return data;
-                            }
-                            return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +status[data].title+'</span>';
-                        },
-                    },
+                                        {
+                                            targets: [6],
+                                            className:"text-center",
+                                            render: function(data, type, full, meta) {
+                                                var status = {
+                                                    'Sustituido': {'estilo': 'estado-sustituido'},
+                                                    'Registrado Oficialmente': {'estilo': 'estado-registrado-oficial'},
+                                                    'Registrado': {'estilo': 'estado-registrado'},
+                                                    'En Proceso de Validación': {'estilo': 'estado-validacion'},
+                                                    'Observado': {'estilo': 'estado-observado'},
+                                                };
+                                                if (typeof status[data] === 'undefined') {
+                                                    return data;
+                                                }
 
-                    {
-                        targets: [11,12,13],
-                        searchable: false,
-                        className: "none",
-                        render: function(data,type,full,meta){
-                            if (data == null){ data = "";}
-                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
-                        },
-                    },
+                                                return '<div class="estado-base '+ status[data].estilo+' " >' +data+'</div>';
+                                            },
+                                        },
+
+                                        {
+                                            targets: [7],
+                                            render: function(data, type, full, meta) {
+                                                var status = {
+                                                    1: {'title': '', 'state': 'secondary'},
+                                                    3: {'title': 'SI', 'state': 'success'},
+                                                    4: {'title': 'SI', 'state': 'success'},
+                                                    5: {'title': '', 'state': 'secondary'},
+                                                    2: {'title': 'SI', 'state': 'success'},
+                                                    7: {'title': 'SI', 'state': 'success'}
+                                                };
+                                                if (typeof status[data] === 'undefined') {
+                                                    return data;
+                                                }
+
+
+                                                return '<i class="fa fa-check-circle text-' + status[data].state + '"></i>&nbsp;' +
+                                                    '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
+                                            },
+                                        },
+                                        {
+                                            targets: [8],
+                                            render: function(data, type, full, meta) {
+                                                var status = {
+                                                    1: {'title': '', 'state': 'secondary'},
+                                                    2: {'title': '', 'state': 'secondary'},
+                                                    3: {'title': '', 'state': 'secondary'},
+                                                    5: {'title': '', 'state': 'secondary'},
+                                                    4: {'title': 'SI', 'state': 'success'},
+                                                    7: {'title': 'SI', 'state': 'success'}
+                                                };
+                                                if (typeof status[data] === 'undefined') {
+                                                    return data;
+                                                }
+                                                return '<i class="fa fa-check-circle text-' + status[data].state + '"></i>&nbsp;' +
+                                                    '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
+                                            },
+                                        },
+                                        {
+                                            targets: [9],
+                                            render: function(data, type, full, meta) {
+                                                var status = {
+                                                    1: {'title': '', 'state': 'secondary'},
+                                                    2: {'title': '', 'state': 'secondary'},
+                                                    4: {'title': '', 'state': 'secondary'},
+                                                    5: {'title': '', 'state': 'secondary'},
+                                                    3: {'title': 'SI', 'state': 'danger'},
+                                                    7: {'title': '', 'state': 'secondary'}
+                                                };
+                                                if (typeof status[data] === 'undefined') {
+                                                    return data;
+                                                }
+
+                                                return '<i class="fa fa-exclamation text-' + status[data].state + '"></i>&nbsp;' +
+                                                    '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
+
+                                            },
+                                        },
+
+                                        {
+                                            targets: [10],
+                                            className:"text-center",
+                                            render: function(data, type, full, meta) {
+                                                var status = {
+                                                    '1': {'estilo': 'tipo-sustituido','title': 'Sustitución'},
+                                                    '0': {'estilo': 'tipo-original','title': 'Original'},
+                                                };
+                                                if (typeof status[data] === 'undefined') {
+                                                    return data;
+                                                }
+                                                return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +status[data].title+'</span>';
+                                            },
+                                        },
+
+                                        {
+                                            targets: [11,12,13],
+                                            searchable: false,
+                                            className: "none",
+                                            render: function(data,type,full,meta){
+                                                if (data == null){ data = "";}
+                                                return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                                            },
+                                        },
+                                        {
+                                            targets: [-2,-3],
+                                            searchable: false,
+                                            className: "none",
+                                            render: function(data,type,full,meta){
+                                                if (data == null){ data = "";}
+                                                return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                                            },
+                                        },
+
+                                        */
                     {
                         targets: [-2,-3],
                         searchable: false,

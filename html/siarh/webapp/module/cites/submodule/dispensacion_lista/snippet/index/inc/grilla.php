@@ -27,15 +27,7 @@ $grilla_tablas_adicionales = array();
  */
 
 //index.php?module=cites&smodule=empresa&accion=itemUpdate&id=2&type=update
-//-------------------------------------------------------------
-$field_name = "empresa_id";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Empresa ID"
-,   "as"=>"empresa_id_num" //
-,   "activo"=> 1
-);
+
 //-------------------------------------------------------------
 
 $field_name = "empresa_id";
@@ -56,6 +48,17 @@ $grilla_tablas[] = array(
 ,   "relacion_id"=>$field_name
 ,   "activo"=> $field_activo
 );
+//-------------------------------------------------------------
+
+$field_name = "empresa_id";
+$grilla_items[]=array(
+    "campo" => $field_name
+,   "field"=> $field_name
+,   "label"=>"Empresa ID"
+,   "as"=>"empresa_id_num" //
+,   "activo"=> 1
+);
+
 //-------------------------------------------------------------
 $field_name = "tipo_documento_id";
 $field_alias = "tipodocumento";
@@ -172,15 +175,7 @@ $grilla_items[]=array(
 //,   "as"=>"estado_id_observado" //
 ,   "activo"=> 1
 );
-//-------------------------------------------------------------
-$field_name = "dateCreate";
-$grilla_items[]=array(
-    "campo" => $field_name // el campo de la base de datos que recupera
-,   "field" => "$field_name" // se da formato o se configura el nombre del campo resultado
-,   "label"=>"Fecha de Creación" //
-//,   "as"=>"estado_id_observado" //
-,   "activo"=> 1
-);
+
 //-------------------------------------------------------------
 $field_name = "emitido_fecha";
 $grilla_items[]=array(
@@ -198,7 +193,8 @@ $grilla_items[]=array(
 ,   "activo"=> 1
 );
 
-
+$grilla_items[]=array("field"=> "dateCreate", "campo" => "dateCreate",   "label"=>"Fecha de creación",   "activo"=> 1);
+$grilla_items[]=array("field"=> "dateUpdate", "campo" => "dateUpdate",   "label"=>"Fecha Actualización",   "activo"=> 1);
 /**
  * Se añade el arreglo de grilla configurada a grilla
  */
