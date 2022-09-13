@@ -154,13 +154,13 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{$row.field}{literal}'} ,{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "120px",
                         className: 'noExport',
                         //title: 'Accion',
@@ -181,7 +181,7 @@
                         },
                     },
                     {
-                        targets: 1,
+                        targets: 2,
                         width: "220px",
                     },
 

@@ -17,7 +17,7 @@ switch($accion) {
         $objCatalog->conf_catalog_datos_general();
         $cataobj = $objCatalog->getCatalogList();
         $smarty->assign("cataobj", $cataobj);
-        $grill_list = $objItem->get_grilla_list_sbm("index");
+        $grill_list = $objItem->get_grilla_list_sbm("index", "right");
         $smarty->assign("grill_list", $grill_list);
         //$dbm->debug = true;
         /**

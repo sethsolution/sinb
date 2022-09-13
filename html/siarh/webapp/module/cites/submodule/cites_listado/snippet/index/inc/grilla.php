@@ -76,6 +76,7 @@ $grilla_items[]=array("campo" => "nombre", "label"=>"Tipo de Documentación", "a
 
 $grilla_items[]=array("field"=> "importador_nombre",  "campo" => "importador_nombre"
 ,   "label"=>"Nombre del Importador",   "activo"=> 1);
+
 $grilla_items[]=array("field"=> "exportador_nombre",  "campo" => "exportador_nombre"
 ,   "label"=>"Nombre del  Exportador",   "activo"=> 1);
 

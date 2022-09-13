@@ -129,36 +129,27 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "130px",
                         className: 'noExport',
                         orderable: false,
                         searchable: false,
                         render: function(data, type, full, meta) {
-                            var boton = '';
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-
-
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-
+                            var boton = '<div role="group" aria-label="Accion" class="btn-group m-btn-group btn-group-sm">';
+                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Ver Datos">Ver Datos</a>';
                             boton += '<div>';
                             return boton;
+
                         },
                     },
                     {
-                        targets: [7,8],
-                        //visible: false,
-                        searchable: false
-                    },
-                    {
-                        targets: [3],
+                        targets: [2],
                         className:"text-center",
                         render: function(data, type, full, meta) {
                             var status = {
@@ -172,11 +163,11 @@
                                 return data;
                             }
 
-                            return '<span class="m-badge  m-badge--wide '+ status[data].estilo+' " >' +data+'</span>';
+                            return '<div class="estado-base '+ status[data].estilo+' " >' +data+'</span>';
                         },
                     },
                     {
-                        targets: [4],
+                        targets: [3],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -197,7 +188,7 @@
                         },
                     },
                     {
-                        targets: [5],
+                        targets: [4],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -213,8 +204,9 @@
                                 '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
                         },
                     },
+
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -236,8 +228,21 @@
                             return dato;
                         },
                     },
-
-                ],
+                    {
+                        targets: [6,7],
+                        //visible: false,
+                        searchable: false
+                    },
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
+                 ],
             });
             //new $.fn.dataTable.FixedHeader( table_list );
         };

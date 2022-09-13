@@ -6,7 +6,7 @@
 *}
     {include file="index.titulo.tpl"}
     <div class="m-portlet__body">
-        <table class="table table-striped- table-bordered table-hover table-checkable table-sm m-table m-table--head-bg-success m--hide"  id="tabla_{$subcontrol}">
+        <table class="table table-striped table-bordered table-hover table-checkable table-sm m-table m-table--head-bg-brand {*display responsive nowrap*}  m--hide"   id="tabla_{$subcontrol}">
             <thead>
             <tr>
                 {foreach from=$grill_list item=row key=idx}

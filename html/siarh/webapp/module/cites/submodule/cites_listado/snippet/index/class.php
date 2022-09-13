@@ -570,7 +570,7 @@ class Index extends Table {
 
         $item = $objItem->get_item2($item_id);
 
-        $especie = $objItem->get_especie_list2($item_id);
+        $especie = $objItem->get_especie_list($item_id);
         /*-
          print_struc($especie);
          print_struc($item);
@@ -896,7 +896,7 @@ class Index extends Table {
     /**
      * Get especies para la previsualizacion
      */
-    function get_especie_list2($item_id){
+    function get_especie_list($item_id){
         //$this->dbm->debug = true;
         $sql = "select CONCAT(e.nombre_comun,' - ',e.nombre) as nombre_especie, e.nombre_comun, e.nombre,
         p.descripcion, a.nombre as apendice, CONCAT(p.cantidad,'  ',u.unidad) as unidad, p1.nombre AS pais

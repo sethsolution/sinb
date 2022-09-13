@@ -66,8 +66,23 @@ class Index extends Table {
         foreach ($resultado['data'] as $itemId => $valor) {
             $resultado['data'][$itemId]['fecha'] = date_format(date_create($valor['fecha']),"d/m/Y");
         }
-        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having);
+        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having, "right");
         $resultado["recordsTotal"]=$resultado["recordsFiltered"];
+
+
+        foreach ($resultado['data'] as $itemId => $valor) {
+            $field = "dateCreate";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+            $field = "dateUpdate";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+
+            $field = "enviado_fecha";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+            $field = "emitido_fecha";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+            $field = "fecha_expiracion";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+        }
 
         return $resultado;
 

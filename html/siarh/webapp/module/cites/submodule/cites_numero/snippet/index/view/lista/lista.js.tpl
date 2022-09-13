@@ -117,7 +117,7 @@
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "60px",
                         className: 'noExport',
                         orderable: false,

@@ -128,7 +128,7 @@
                         ,exportOptions: {columns: exporta_columnas}
                         , title: exporta_titulo
                         , download: 'open'
-                        //, orientation: 'landscape'
+                        , orientation: 'landscape'
                         , pageSize: 'LETTER'
                         ,customize: function(doc) {
                             doc.styles.tableHeader.fontSize = 7;
@@ -154,13 +154,13 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{$row.field}{literal}'} ,{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "120px",
                         className: 'noExport',
                         //title: 'Accion',
@@ -181,7 +181,7 @@
                         },
                     },
                     {
-                        targets: [2],
+                        targets: [1],
                         render: function(data, type, full, meta) {
                             var status = {
                                 0: {'title': 'Inactivo', 'state': 'danger'},
@@ -190,7 +190,7 @@
                             if (typeof status[data] === 'undefined') {
                                 return data;
                             }
-                            return '<span class="m-badge m-badge--' + status[data].state + ' info m-badge--wide"></span>&nbsp;' +
+                            return '<i class="fa fa-check-circle text-' + status[data].state + '"></i>&nbsp;' +
                                 '<span class="m--font-bold m--font-' + status[data].state + '">' + status[data].title + '</span>';
                         },
                     },

@@ -163,6 +163,15 @@
                         targets: [2],
                         visible: false,
                         searchable: false
+                        // render: function(data, type, full, meta) {
+                        //     if ( data == null) {
+                        //         return data;
+                        //     }
+                        //     var boton = '<a href="index.php?module=cites&smodule=empresa&accion=itemUpdate&type=update&id='+full.empresa_id+'" title="Ver Empresa" >';
+                        //     boton += data;
+                        //     boton += '</a>';
+                        //     return boton;
+                        // },
                     },
                     {
                         targets: [6],

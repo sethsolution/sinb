@@ -46,16 +46,24 @@ class Index extends Table {
         /**
          * Resultado de la consulta enviada
          */
-        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having);
+        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having, "right");
         $resultado["recordsTotal"]=$resultado["recordsFiltered"];
         /**
          * apartir de aca podemos transformar datos, de acuerdo a requerimiento
          */
 
         foreach ($resultado['data'] as $itemId => $valor) {
-            $resultado['data'][$itemId]['dateCreate'] = date_format(date_create($valor['dateCreate']),"d/m/Y H:i:s");
-            if($valor['enviado_fecha'] !="")$resultado['data'][$itemId]['enviado_fecha'] = date_format(date_create($valor['enviado_fecha']),"d/m/Y");
-            if($valor['emitido_fecha'] !="")$resultado['data'][$itemId]['emitido_fecha'] = date_format(date_create($valor['emitido_fecha']),"d/m/Y");
+            $field = "dateCreate";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+            $field = "dateUpdate";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+
+            $field = "enviado_fecha";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+            $field = "emitido_fecha";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
+            $field = "fecha_expiracion";
+            if(isset($result['data'][$itemId][$field]) && $result['data'][$itemId][$field]!="" ) $result['data'][$itemId][$field] = $this->changeDataFormat($result['data'][$itemId][$field],"d/m/Y H:i:s");
         }
         return $resultado;
     }
