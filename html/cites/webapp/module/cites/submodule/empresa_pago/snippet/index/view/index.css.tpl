@@ -19,15 +19,6 @@
             padding-right: 7px!important;
         }
 
-        .m-tabs__item .active{
-            background: #172c5b !important;
-            background: linear-gradient(0deg, #002880 0%, #172c5b 100%) !important;
-            color: #f7fff6 !important;
-            border-bottom-color: #36a3f7!important;
-        }
-        .m-tabs__item .active i{
-            color: #36a3f7 !important;
-        }
 
 
         .ayuda{

@@ -5,7 +5,7 @@
         }
 
         .tab-fuente a{
-            font-size: 17px !important;
+            /*font-size: 17px !important;*/
             padding-left: 7px!important;
             padding-right: 7px!important;
         }
@@ -17,62 +17,10 @@
             border-top: 0px;
         }
 
-        .cuadro{
-            padding:5px!important;
-            border:1px solid #e1e1e1;
-            /*height: 100%;*/
-            border-radius: 5px 5px 5px 5px;
-            -moz-border-radius: 5px 5px 5px 5px;
-            -webkit-border-radius: 5px 5px 5px 5px;
-        }
-        .cuadro-verde{
-            border:1px solid #34bfa3;
-            height: 100%;
-            border-radius: 5px 5px 5px 5px;
-            -moz-border-radius: 5px 5px 5px 5px;
-            -webkit-border-radius: 5px 5px 5px 5px;
-        }
-        .cuadro-padding-0{
-            padding: 0px !important;
-        }
-        .cuadro-margin-0{
-            margin: 0px !important;
-        }
-        .titulo{
-            border-bottom: 1.8px solid #0C967A;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            color: #0C0C0C;
-            font-size: 17px;
-            background: #ededf2;
-        }
 
 
-        .titulo-estado{
-            border-bottom: 1px solid #8c49c4;
-            padding-bottom: 2px;
-            font-size: 15px;
-            font-weight: bolder;
-            color: #8c49c4;
-        }
-        .cuadro-estado{
-            background-color: #faf9fc;
-            border:1px solid #8c49c4;
-            height: 100%;
-            border-radius: 5px 5px 5px 5px;
-            -moz-border-radius: 5px 5px 5px 5px;
-            -webkit-border-radius: 5px 5px 5px 5px;
-        }
 
-        .m-tabs__item .active{
-            background: #172c5b !important;
-            background: linear-gradient(0deg, #002880 0%, #172c5b 100%) !important;
-            color: #f7fff6 !important;
-            border-bottom-color: #36a3f7!important;
-        }
-        .m-tabs__item .active i{
-            color: #36a3f7 !important;
-        }
+
 
 
         .ayuda{

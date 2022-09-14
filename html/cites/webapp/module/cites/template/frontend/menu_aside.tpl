@@ -1,10 +1,3 @@
-<literal>
-    <style>
-        .text-menu li a .m-menu__link-text{
-            font-size: 15px !important;
-        }
-    </style>
-</literal>
 <div id="m_ver_menu"
      class="m-aside-menu m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark m-scroller ps ps--active-y"
 
@@ -45,7 +38,7 @@
                 <span class="m-menu__link-title">
                     <span class="m-menu__link-wrap">
                         <span class="m-menu__link-text">{$module_conf.btn_inicio}</span>
-                        <span class="m-menu__link-badge"><span class="m-badge m-badge--info">&nbsp;</span></span>
+                        {*<span class="m-menu__link-badge"><span class="m-badge badge m-badge--info">&nbsp;</span></span>*}
                     </span>
                 </span>
             </a>

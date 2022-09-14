@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>
-        {$module_conf.dashboard_titulo}
+        {$module_conf.dashboard_titulo} ----
     </title>
     <meta name="description" content="UYUNI - {$module_conf.dashboard_titulo}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,8 @@
     <link href="/themes/fonts.css?id=323d" rel="stylesheet" type="text/css" />
     <!--end::Fonts Styles -->
 
+    <link href="/module/cites/template/css/main.css?id=323d" rel="stylesheet" type="text/css" />
+
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16">
@@ -29,114 +31,6 @@
 
     {literal}
     <style>
-        {/literal}{if $module_conf.menu_bgcolor != ''}{literal}
-        .m-aside-left--skin-dark{background-color:{/literal}{$module_conf.menu_bgcolor}{literal} !important;}
-        .m-brand--skin-dark{background-color:{/literal}{$module_conf.menu_bgcolor_logo}{literal} !important;}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.menu_bgcolor_active != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open{
-            background-color:{/literal}{$module_conf.menu_bgcolor_active}{literal};
-        }
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.menu_bgcolor_over != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover{
-            background-color:{/literal}{$module_conf.menu_bgcolor_over}{literal};
-        }
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.menu_link_ico_active != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--expanded>.m-menu__heading .m-menu__link-icon,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--expanded>.m-menu__link .m-menu__link-icon{color:{/literal}{$module_conf.menu_link_ico_active}{literal};}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--expanded>.m-menu__heading .m-menu__link-text,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--expanded>.m-menu__link .m-menu__link-text{color:{/literal}{$module_conf.menu_link_ico_active}{literal};}
-        {/literal}{/if}{literal}
-
-
-        {/literal}{if $module_conf.menu_link_text != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__heading .m-menu__link-text,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__link .m-menu__link-text{color:{/literal}{$module_conf.menu_link_text}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.menu_link_ico != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__heading .m-menu__link-icon,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__link .m-menu__link-icon{color:{/literal}{$module_conf.menu_link_ico}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.menu_link_arrow != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__heading .m-menu__ver-arrow,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__link .m-menu__ver-arrow{color:{/literal}{$module_conf.menu_link_arrow}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.menu_link_ico_over != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__heading .m-menu__link-icon,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__link .m-menu__link-icon{color:{/literal}{$module_conf.menu_link_ico_over}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.menu_link_text_over != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__heading .m-menu__link-text,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__link .m-menu__link-text{color:{/literal}{$module_conf.menu_link_text_over}{literal};}
-        {/literal}{/if}{literal}
-
-
-        {/literal}{if $module_conf.menu_link_ico_active != ""}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__heading .m-menu__link-icon,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__link .m-menu__link-icon{color:{/literal}{$module_conf.menu_link_ico_active}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.menu_link_text_active != ""}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__heading .m-menu__link-text,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__link .m-menu__link-text{color:{/literal}{$module_conf.menu_link_text_active}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.menu_link_arrow_active != ""}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__heading .m-menu__ver-arrow,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__link .m-menu__ver-arrow{color:{/literal}{$module_conf.menu_link_arrow_active}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.submenu_link_ico != ""}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__heading .m-menu__link-text,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__link .m-menu__link-text{color:{/literal}{$module_conf.submenu_link_ico}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.submenu_link_text != ""}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__heading .m-menu__link-icon,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__link .m-menu__link-icon{color:{/literal}{$module_conf.submenu_link_text}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.submenu_link_arrow != ""}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__heading .m-menu__ver-arrow,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item>.m-menu__link .m-menu__ver-arrow{color:{/literal}{$module_conf.submenu_link_arrow}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.submenu_link_ico_over != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__heading .m-menu__link-text,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__link .m-menu__link-text{color:{/literal}{$module_conf.submenu_link_ico_over}{literal};}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__heading .m-menu__link-icon,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover>.m-menu__link .m-menu__link-icon{color:{/literal}{$module_conf.submenu_link_ico_over}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.submenu_link_ico_over_active != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__heading .m-menu__link-text,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__link .m-menu__link-text{color:{/literal}{$module_conf.submenu_link_ico_over_active}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.submenu_link_text_over_active != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__heading .m-menu__link-icon,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__link .m-menu__link-icon{color:{/literal}{$module_conf.submenu_link_text_over_active}{literal};}
-        {/literal}{/if}{literal}
-        {/literal}{if $module_conf.submenu_link_arrow_over_active != ''}{literal}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__heading .m-menu__ver-arrow,.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__link .m-menu__ver-arrow{color:{/literal}{$module_conf.submenu_link_arrow_over_active}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.menu_link_ico != ''}{literal}
-        .m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item{background:0 0}.m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__link>.m-menu__link-icon{color:{/literal}{$module_conf.menu_link_ico}{literal};}
-        .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__icon>i{color:{/literal}{$module_conf.menu_link_ico}{literal};}
-        .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler span{background:{/literal}{$module_conf.menu_link_ico}{literal};}
-        .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler span::after,.m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler span::before{background:{/literal}{$module_conf.menu_link_ico}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.submenu_link_ico_over != ''}{literal}
-        .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler:hover span{background:{/literal}{$module_conf.submenu_link_ico_over}{literal}}
-        .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler:hover span::after,.m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler:hover span::before{background:{/literal}{$module_conf.submenu_link_ico_over}{literal}}
-        .m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item:hover{background:0 0}.m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item:hover>.m-menu__link>.m-menu__link-icon{color:{/literal}{$module_conf.submenu_link_ico_over}{literal} !important;}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.submenu_link_ico_over_active != ''}{literal}
-        .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler.m-brand__toggler--active span{background:{/literal}{$module_conf.submenu_link_ico_over_active}{literal}}
-        .m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler.m-brand__toggler--active span::after,.m-brand.m-brand--skin-dark .m-brand__tools .m-brand__toggler.m-brand__toggler--active span::before{background:{/literal}{$module_conf.submenu_link_ico_over_active}{literal}}
-        {/literal}{/if}{literal}
-
-        .m-aside-left-close.m-aside-left-close--skin-dark{background-color:{/literal}{$module_conf.menu_bgcolor}{literal};}
-
-        {/literal}{if $module_conf.menu_link_ico != ''}{literal}
-        .m-aside-left-close.m-aside-left-close--skin-dark>i{color:{/literal}{$module_conf.menu_link_ico}{literal};}
-        .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__section .m-menu__section-text{color:{/literal}{$module_conf.menu_link_ico}{literal};}
-        {/literal}{/if}{literal}
-
-        {/literal}{if $module_conf.submenu_link_ico_over_active != ''}{literal}
-        .m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--hover>.m-menu__link>.m-menu__link-icon,.m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__link>.m-menu__link-icon{color:{/literal}{$module_conf.submenu_link_ico_over_active}{literal};}
-        .m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--active>.m-menu__link>.m-menu__link-icon,.m-aside-left--minimize .m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--expanded>.m-menu__link>.m-menu__link-icon{color:{/literal}{$module_conf.submenu_link_ico_over_active}{literal};}
-        {/literal}{/if}{literal}
-
-
         .loader {
             border: 16px solid #f3f3f3; /* Light grey */
             border-top: 16px solid #3498db; /* Blue */

@@ -1,0 +1,61 @@
+.m-tabs__item .active{
+    background: rgb(240,255,248) !important;
+    background: linear-gradient(0deg, rgba(240,255,248,1) 0%, rgba(251,254,255,1) 100%) !important;
+    color: #34bfa3 !important;
+    border-bottom-color: #34bfa3!important;
+}
+.m-tabs__item .active i{
+    color: #34bfa3 !important;
+}
+
+.titulo-estado{
+    border-bottom: 1px solid #8c49c4;
+    padding-bottom: 2px;
+    /*font-size: 15px;*/
+    font-weight: bolder;
+
+}
+.cuadro-estado{
+    color: #8c49c4;
+    background: rgb(242,236,255);
+    background: linear-gradient(0deg, rgba(242,236,255,1) 0%, rgba(249,245,255,1) 100%);
+    border:1px solid #caa1ec;
+    height: 100%;
+    padding: 5px !important;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+
+.cuadro{
+    padding:5px!important;
+    border:1px solid #e1e1e1;
+    /*height: 100%;*/
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+.cuadro-verde{
+    background: rgb(241,255,236);
+    background: linear-gradient(0deg, rgba(241,255,236,1) 0%, rgba(255,255,255,1) 100%);
+
+    border:1px solid #c6d6c1;
+    height: 100%;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+.cuadro-padding-0{
+    padding: 0px !important;
+}
+.cuadro-margin-0{
+    margin: 0px !important;
+}
+
+.titulo{
+    text-transform: uppercase;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #676767 !important;
+    background: #ededf2;
+}

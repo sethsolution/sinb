@@ -49,10 +49,10 @@
         <!--end::Portlet-->
     </div>
     <div class="col-lg-9"  >
-        <div class="m-portlet m-portlet--tabs "  >
+        <div class="m-portlet m-portlet--tabs ">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-tools">
-                    <ul class="nav nav-tabs        m-tabs-line    m-tabs-line--left   m-tabs-line--success" role="tablist">
+                    <ul class="nav nav-tabs m-tabs-line m-tabs-line--left m-tabs-line--success" role="tablist">
                         {foreach from=$menu_tab item=row key=idx}
                             <li class="nav-item m-tabs__item tab-fuente">
                                 <a class="nav-link m-tabs__link {if $row.active == 1}active{/if}
@@ -78,14 +78,14 @@
             </div>
 
         </div>
-
     </div>
+
     <div class="col-lg-3">
         <div class="m-portlet m-portlet--full-height  ">
             <div class="m-portlet__body m--padding-10">
                 {include file="info.tpl"}
             </div>
-
         </div>
     </div>
+
 </div>

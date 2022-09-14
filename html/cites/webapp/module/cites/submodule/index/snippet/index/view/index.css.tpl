@@ -5,11 +5,6 @@
      text-shadow:  -1px 2px 6px #0A0A0A   !important;
 
  }
- /*
- .m-portlet.m-portlet--full-height {
-        border-bottom: 5px solid #00c0a3 !important;
-    }
-*/
 
  div[rel="color_0"]{
      border-bottom: 3px solid #FFB900!important;
@@ -77,7 +72,7 @@
  .titulo-estado{
      border-bottom: 1px solid #8c49c4;
      padding-bottom: 2px;
-     font-size: 15px;
+     font-size: 12px;
      font-weight: bolder;
      color: #8c49c4;
  }

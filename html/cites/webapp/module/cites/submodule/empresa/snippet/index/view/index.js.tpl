@@ -46,17 +46,8 @@
 
 
     var snippet_item = function () {
-        var print = function () {
-            randomnumber=Math.floor(Math.random()*11);
-            url = "{/literal}{$path_url}{literal}/"+idficha+"/print/?rand="+randomnumber;
-            window.open(url,'Impresion_empresa');
-        };
-
-
         var btn_enviar = $('#btn_enviar');
-
         var enviar = function (){
-
             swal({
                 title: '¿Esta seguro de Enviar la solicitud de Registro?',
                 html: 'Recuerde que una vez enviada la solicitud  <br>'+
@@ -118,22 +109,15 @@
             init: function() {
                 boton_enviar();
             },
-            print:function() {
-                print();
-            },
+
             enviar:function(){
                 enviar();
             }
         };
     }();
 
-
-
     jQuery(document).ready(function() {
         snippet_tab_item.init();
-
-        //$('#{/literal}{$menu_tab_disabled}{literal}_tab').trigger('click');
-       // $('#tabs_principal').addClass('m--hide');
         $('#{/literal}{$menu_tab_active}{literal}_tab').trigger('click');
         $('#tabs_principal').removeClass('m--hide');
 

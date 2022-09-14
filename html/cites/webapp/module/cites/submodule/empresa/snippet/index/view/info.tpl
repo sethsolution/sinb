@@ -1,7 +1,7 @@
 
 <div class="m-card-profile">
     <div class="cuadro-estado m--padding-10 m--margin-bottom-10" >
-        <div class="titulo-estado text-center">{$item.estado}</div>
+        <div class="text-center">{$item.estado}</div>
     </div>
 
     <div class="m-card-profile__details" id="div_perfil">
@@ -9,8 +9,9 @@
             Fecha y hora de registro:&nbsp;&nbsp;<br>{$item.dateCreate|date_format:"%d/%m/%Y %H:%M:%S"}
         </span>
     </div>
+
     <div class="cuadro-verde m--padding-10 m--margin-bottom-10" >
-        <div class="titulo m--margin-bottom-5 m--padding-left-5 m--font-bold">Tipo Empresa:</div>
+        <div class="titulo m--margin-bottom-5 m--padding-left-5 m--font-bold">Tipo Empresa</div>
         <div >
             {$item.empresa_tipo}
             <br><br>
