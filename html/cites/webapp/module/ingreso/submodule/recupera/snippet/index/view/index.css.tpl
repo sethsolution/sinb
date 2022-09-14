@@ -114,7 +114,7 @@
     }
 
     .container-login100{
-        background-image: url(/themes/login/images/gplaypattern.png);
+        background-image: url(/themes/login/images/diamond_upholstery.png);
     }
 </style>
 {/literal}
