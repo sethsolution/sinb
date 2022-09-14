@@ -111,13 +111,14 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+{*                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}*}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "60px",
                         className: 'noExport',
                         orderable: false,
@@ -125,9 +126,9 @@
 
                             var boton = '';
                             boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">{/literal}{if $privFace.editar == 1}Editar{else}Ver Datos{/if}{literal}</a>';
+                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-info" title="Modificar">{/literal}{if $privFace.editar == 1}Editar{else}Ver Datos{/if}{literal}</a>';
                             {/literal}{if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
-                            boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-outline-danger" title="Eliminar">Eliminar</a>';
+                            boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-danger" title="Eliminar">Eliminar</a>';
                             {/literal}{/if}{literal}
 
                             boton += '<div>';

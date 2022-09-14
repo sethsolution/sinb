@@ -23,18 +23,18 @@
         background-color: #7608cb;
         color: #ffffff;
     }
-    .estado-registrado-oficial{
-        background-color: #64cb08;
-        color: #ffffff;
-    }
-    .estado-registrado{
-        background-color: #cbc908;
-        color: #ffffff;
-    }
-    .estado-validacion{
-        background-color: #e59016;
-        color: #ffffff;
-    }
+    /*.estado-registrado-oficial{*/
+    /*    background-color: #64cb08;*/
+    /*    color: #ffffff;*/
+    /*}*/
+    /*.estado-registrado{*/
+    /*    background-color: #cbc908;*/
+    /*    color: #ffffff;*/
+    /*}*/
+    /*.estado-validacion{*/
+    /*    background-color: #e59016;*/
+    /*    color: #ffffff;*/
+    /*}*/
     .estado-observado{
         background-color: rgba(153, 14, 9, 0.86);
         color: #ffffff;

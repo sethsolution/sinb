@@ -12,7 +12,7 @@ switch($accion){
         /**
          * Sacamos los datos de la grilla
          */
-        $grill_list = $objItem->get_grilla_list_sbm("catalogo");
+        $grill_list = $objItem->get_grilla_list_sbm("catalogo", "right");
         //print_struc($grill_list); exit;
         $smarty->assign("grill_list", $grill_list);
         $smarty->assign("id",$id);

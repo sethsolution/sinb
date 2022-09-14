@@ -128,13 +128,14 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+{*                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}*}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.field == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "130px",
                         className: 'noExport',
                         orderable: false,
@@ -142,17 +143,13 @@
                         render: function(data, type, full, meta) {
                             var boton = '';
                             boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-
-
-                            boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-
+                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Ver Datos">Ver Datos</a>';
                             boton += '<div>';
                             return boton;
                         },
                     },
                     {
-                        targets: [5],
+                        targets: [4],
                         className:"text-center",
                         render: function(data, type, full, meta) {
                             var status = {
@@ -170,7 +167,7 @@
                         },
                     },
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -191,7 +188,7 @@
                         },
                     },
                     {
-                        targets: [7],
+                        targets: [6],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -208,7 +205,7 @@
                         },
                     },
                     {
-                        targets: [8],
+                        targets: [7],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
