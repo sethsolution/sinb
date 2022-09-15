@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: henrytaby
- * Date: 3/5/2018
- * Time: 15:23
- */
-use Dompdf\Dompdf;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 class Index extends Table {
 
     function __construct()
@@ -186,22 +181,31 @@ AND i.empresa_id = '" . $this->empresa_id. "'";
         @set_time_limit(0);
         ini_set('memory_limit','800M');
         /**
-         * Creamos el objeto dompdf
-         */
-        $dompdf = new DOMPDF();
-        $nombre_archivo = date("Ymd_His_").'- VICUNA ID-'.$item_id.'.pdf';
-        /**
          * -------------------------------------------------------------------------------------
          * Sacamos el path del directorio donde se realiza la llamada a los archivos
          */
         $path = dirname(__FILE__);
         $path_print = $path."/view/print";
-        /**
-         * Para plataformas windows, cambiamos la forma de ingresar al path
-         */
-        $path_print = str_replace("\\","/",$path_print);
-        //print_struc($path_print);
+        $path_print = str_replace("\\","/",$path_print); // Para windows
         $smarty->assign('path_print', $path_print);
+        /**
+         * Creamos el objeto dompdf
+         */
+        /**
+         * Creamos el objeto dompdf
+         */
+        $options = new Options();
+        $options->set('isRemoteEnabled', TRUE);
+        $options->set('isHtml5ParserEnabled', false);
+        //$options->set('debugLayout', TRUE);
+        $options->set('enable_debug', TRUE);
+        $options->set('defaultMediaType', 'all');
+        $options->set('isFontSubsettingEnabled', TRUE);
+        $options->setChroot("./../");
+        $log = $_SERVER['DOCUMENT_ROOT']."/log.html";
+
+        $pdf = new DOMPDF($options);
+        $nombre_archivo = date("Ymd_His_").'- VICUNA ID-'.$item_id.'.pdf';
 
         /**
          * Datos del usuario
@@ -210,19 +214,21 @@ AND i.empresa_id = '" . $this->empresa_id. "'";
         $dateprint =  date("d-m-Y H:i:s");
         $smarty->assign('dateprint', $dateprint);
         /**
+         * --------------------------------------------------------
+         */
+        /**
          * Sacamos los datos del template de impresión del pdf
          */
-        $html = $smarty->fetch($webm["item_print_index"]);
-        //print_struc($_SESSION);exit;
-        //echo $html;exit;
+        $webTemplate = $path_print."/index.tpl";
+        $html = $smarty->fetch($webTemplate);
         /**
          * Iniciamos el proceso de creación del PDF
          */
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper("letter","portrait");
-        $dompdf->render();
-        $options[Attachment]=0;
-        $dompdf->stream($nombre_archivo,$options);
+        $pdf->loadHtml($html);
+        $pdf->setPaper("letter","portrait");
+        $pdf->render();
+        $options = array('Attachment'=>false,'compress' => true);
+        $pdf->stream($nombre_archivo,$options);
         exit;
     }
 }
