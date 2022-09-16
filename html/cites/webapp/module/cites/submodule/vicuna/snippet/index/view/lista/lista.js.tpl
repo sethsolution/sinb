@@ -132,13 +132,13 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
-                    {/foreach}
+                        {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal} {if $row.responsive == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
+                {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "130px",
                         className: 'noExport',
                         orderable: false,
@@ -149,17 +149,17 @@
 
 
                             if( (full.estado_id == '1' || full.estado_id == '3') && full.id_estado != '4'){
-                                boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Editar</a>';
+                                boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-info" title="Modificar">Editar</a>';
                                     {/literal}{if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
-                                    boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-outline-danger" title="Eliminar">Eliminar</a>';
+                                    boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-danger" title="Eliminar">Eliminar</a>';
                                     {/literal}{/if}{literal}
                             }else{
                                 if(full.estado_id == '4'){
-                                    boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-                                    boton += '<a href="javascript:item_print(\''+data+'\');" class="btn btn-outline-accent" title="Imprimir">Imprimir</a>';
+                                    boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-info" title="Modificar">Ver Datos</a>';
+                                    boton += '<a href="javascript:item_print(\''+data+'\');" class="btn btn-accent" title="Imprimir">Imprimir</a>';
                                 }else{
-                                    boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-                                    boton += '<a href="javascript:item_print(\''+data+'\');" class="btn btn-outline-accent" title="Imprimir">Imprimir</a>';
+                                    boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-info" title="Modificar">Ver Datos</a>';
+                                    boton += '<a href="javascript:item_print(\''+data+'\');" class="btn btn-accent" title="Imprimir">Imprimir</a>';
                                 }
                             }
                             boton += '<div>';
@@ -167,7 +167,7 @@
                         },
                     },
                     {
-                        targets: [5],
+                        targets: [4],
                         className:"text-center",
                         render: function(data, type, full, meta) {
                             var status = {
@@ -187,7 +187,7 @@
                     },
 
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -208,7 +208,7 @@
                         },
                     },
                     {
-                        targets: [7],
+                        targets: [6],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -225,7 +225,7 @@
                         },
                     },
                     {
-                        targets: [8],
+                        targets: [7],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -248,15 +248,33 @@
                         },
                     },
                     {
-                        targets: [3],
+                        targets: [2],
                         render: function(data,type,full,meta){
                             return '<span class="m--font-bold " style="color: #27780f;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' Bs.</span>';
                         },
                     },
                     {
-                        targets: [4],
+                        targets: [3],
                         render: function(data,type,full,meta){
                             return '<span style="color:#0375df;" class="m--font-bold">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' Bs.</span>';
+                        },
+                    },
+                    {
+                        targets: [-4,-5],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
 
