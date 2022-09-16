@@ -1,7 +1,5 @@
 {literal}<style>
-    table.dataTable td.focus {
-        box-shadow: #4acb98 0px 0px 2px 2px inset !important;
-    }
+
     td.lista_programatica{
         color:blue; text-align: center;
     }
@@ -20,34 +18,8 @@
         /*font-weight: bolder;*/
         color:#323232;
     }
-    .estado-sustituido{
-        background-color: #7608cb;
-        color: #ffffff;
-    }
-    .estado-registrado-oficial{
-        background-color: #64cb08;
-        color: #ffffff;
-    }
-    .estado-registrado{
-        background-color: #cbc908;
-        color: #ffffff;
-    }
-    .estado-validacion{
-        background-color: #e59016;
-        color: #ffffff;
-    }
-    .estado-observado{
-        background-color: #990e09;
-        color: #ffffff;
-    }
-    .tipo-original{
-        background-color: #008aff;
-        color: #ffffff;
-    }
-    .tipo-sustituido{
-        background-color: #7608cb;
-        color: #ffffff;
-    }
+
+
     .cuadro-verde{
         border:1px solid #626262;
         /*height: 100%;*/
