@@ -197,13 +197,13 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal} {if $row.responsive == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "100px",
                         className: 'noExport',
                         "searchable": false,
@@ -216,10 +216,9 @@
                             boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
                             {/literal}{if $item_padre.estado_id == 1 or $item_padre.estado_id == 3}{literal}
 
-                            boton += '<a href="javascript:item_update_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-info" title="Modificar">{/literal}{if $privFace.editar == 1}Editar{else}Ver Datos{/if}{literal}</a>';
-
+                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Modificar">Editar</a>';
                             {/literal}{if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
-                            boton += '<a href="javascript:item_delete_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-danger" title="Eliminar">Eliminar</a>';
+                            boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-outline-danger m-btn m-btn--icon" title="Eliminar"><i class="flaticon-delete-1"></i></a>';
                             {/literal}{/if}{literal}
 
                             {/literal}{/if}{literal}
@@ -235,13 +234,13 @@
                      * Nombre de la especie
                      */
                     {
-                        targets: [1,2,3],
+                        targets: [1,2],
                         orderable: false,
                         visible: false,
                         //searchable: false
                     },
                     {
-                        targets: [4],
+                        targets: [3],
                         render: function(data, type, full, meta) {
                             var dato ="";
 
@@ -259,39 +258,41 @@
                      * Apéndice y Origen
                      */
                     {
-                        targets: [7,8],
-                        orderable: false,
-                        visible: false,
-                        //searchable: false
-                    },
-                    {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var dato ="";
                             dato += data+ " / "+ full.origen_id_sigla;
                             return dato;
                         },
                     },
-                    /**
-                     * Cantidad y Unidad
-                     */
                     {
-                        targets: [10],
+                        targets: [6,7],
                         orderable: false,
                         visible: false,
                         //searchable: false
                     },
+
+                    /**
+                     * Cantidad y Unidad
+                     */
                     {
-                        targets: [9],
+                        targets: [8],
                         render: function(data, type, full, meta) {
                             var dato ="";
                             dato += "<strong>"+data+ "</strong> ("+full.unidad_id+")";
                             return dato;
                         },
                     },
+                    {
+                        targets: [9],
+                        orderable: false,
+                        visible: false,
+                        //searchable: false
+                    },
+
 
                     {
-                        targets: [12],
+                        targets: [11],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
