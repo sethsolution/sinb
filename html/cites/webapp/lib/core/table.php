@@ -1738,12 +1738,13 @@ class Table
     public function get_grilla_list_sbm($grilla,$position="left",$id_name="itemId"){
         $grilla = $this->grilla[$grilla];
         $id_add[]=array(
-            "campo" => $id_name
-        ,    "field"=> "Actions"
+
+            "field"=> $id_name
         ,   "label"=> "Accion"
         ,   "type_field"=>"text"
         ,   "as" => "Actions"
         ,   "activo" => 1
+        ,   "responsive" => true
         );
         if($position=="left"){
             $grilla = array_merge($id_add,$grilla);
@@ -1759,7 +1760,7 @@ class Table
         $col = array();
         for($i=0 ; $i<count($campos);$i++){
             if($campos[$i]["activo"]){
-                $field = $campos[$i]["campo"];
+                $field = $campos[$i]["field"];
                 $col_extra = $campos[$i];
                 if(trim($campos[$i]["tabla_alias"])==""){
                     $col_extra["db"] = '`i`.`'.$field.'`';
