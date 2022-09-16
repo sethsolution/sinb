@@ -1,7 +1,5 @@
 {literal}<style>
-    table.dataTable td.focus {
-        box-shadow: #4acb98 0px 0px 2px 2px inset !important;
-    }
+
     td.lista_programatica{
         color:blue; text-align: center;
     }
@@ -18,26 +16,6 @@
     .busqueda_panel label{
         font-weight: bolder;
         color:#387ec9;
-    }
-    .estado-sustituido{
-        background-color: #7608cb;
-        color: #ffffff;
-    }
-    .estado-registrado-oficial{
-        background-color: #64cb08;
-        color: #ffffff;
-    }
-    .estado-registrado{
-        background-color: #cbc908;
-        color: #ffffff;
-    }
-    .estado-validacion{
-        background-color: #e59016;
-        color: #ffffff;
-    }
-    .estado-observado{
-        background-color: rgba(153, 14, 9, 0.86);
-        color: #ffffff;
     }
 
     .cuadro-verde{
