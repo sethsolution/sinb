@@ -151,7 +151,7 @@
                             if( (full.estado_id == '1' || full.estado_id == '3') && full.id_estado != '4'){
                                 boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-info" title="Modificar">Editar</a>';
                                     {/literal}{if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
-                                    boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-danger" title="Eliminar">Eliminar</a>';
+                                    boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-outline-danger m-btn m-btn--icon" title="Eliminar"><i class="flaticon-delete-1"></i></a>';
                                     {/literal}{/if}{literal}
                             }else{
                                 if(full.estado_id == '4'){
