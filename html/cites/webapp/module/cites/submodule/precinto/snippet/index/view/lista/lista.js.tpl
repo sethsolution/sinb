@@ -127,14 +127,14 @@
                 columns: [
                     {/literal}
                     {foreach from=$grill_list item=row key=idx}
-                        {literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'} ,{/literal}
+                    {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal} {if $row.responsive == 'Actions'}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}
                     {literal}
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
-                        width: "130px",
+                        targets: -1,
+                        width: "90px",
                         className: 'noExport',
                         orderable: false,
                         searchable: false,
@@ -142,22 +142,20 @@
                             var boton = '';
                             boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
 
-
                             if( (full.estado_id == '1' || full.estado_id == '3') && full.id_estado != '4'){
-                                boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Editar</a>';
-                                    {/literal}{if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
-                                    boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-outline-danger" title="Eliminar">Eliminar</a>';
-                                    {/literal}{/if}{literal}
+                                boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Modificar">Editar</a>';
+                                {/literal}{if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
+                                boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-outline-danger m-btn m-btn--icon" title="Eliminar"><i class="flaticon-delete-1"></i></a>';
+                                {/literal}{/if}{literal}
                             }else{
-                                boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-outline-info" title="Modificar">Ver Datos</a>';
-                                boton += '<a href="javascript:item_print(\''+data+'\');" class="btn btn-outline-accent" title="Imprimir">Imprimir</a>';
+                                boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Modificar">Ver Datos</a>';
                             }
                             boton += '<div>';
                             return boton;
                         },
                     },
                     {
-                        targets: [3],
+                        targets: [2],
                         className:"text-center",
                         render: function(data, type, full, meta) {
                             var status = {
@@ -176,7 +174,7 @@
                         },
                     },
                     {
-                        targets: [4],
+                        targets: [3],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -197,7 +195,7 @@
                         },
                     },
                     {
-                        targets: [5],
+                        targets: [4],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -214,7 +212,7 @@
                         },
                     },
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -236,6 +234,27 @@
                             return dato;
                         },
                     },
+
+                    {
+                        targets: [-4,-5],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
+
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
+
                 ],
             });
             //new $.fn.dataTable.FixedHeader( table_list );
