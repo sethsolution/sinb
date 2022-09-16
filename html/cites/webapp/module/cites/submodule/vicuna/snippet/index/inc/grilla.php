@@ -23,131 +23,33 @@ $grilla_tablas_adicionales = array();
  */
 
 /**
- * Item de las lista que se tiene desplegar
+ * Configuración de tablas relacionales, (JOIN)
  */
-//-------------------------------------------------------------
-$field_name = "empresa_nombre";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Nombre de la Empresa"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "representante_legal_nombre";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Nombre del Representante"
-,   "activo"=> 1
-);
-/*//-------------------------------------------------------------
-$field_name = "exportador_pais_id";
-$field_alias = "pais_exportador";
-$field_activo = 1;
-$grilla_items[]=array(
-    "campo" => "nombre" // nombre del campo pero de la tabla que relaciona
-,   "field"=> $field_name
-,   "label"=>"Exportador País"
-,   "as" => $field_name
-,   "tabla_alias"=> $field_alias
-,   "activo"=> $field_activo
-);
-        $grilla_tablas[] = array(
-            "tabla" => $CFGm->tabla["c_pais"]
-        ,    "alias"=> $field_alias
-        ,   "campo_id"=>"itemId"
-        ,   "relacion_id"=>$field_name
-        ,   "activo"=> $field_activo
-        );
-*/
-//-------------------------------------------------------------
-$field_name = "venta_monto";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Monto de Venta (Bs.)"
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
-$field_name = "venta_cantidad";
-$grilla_items[]=array(
-    "campo" => $field_name
-,   "field"=> $field_name
-,   "label"=>"Cantidad Venta"
-,   "activo"=> 1
-);
 
-//-------------------------------------------------------------
-/*$field_name = "unidad_id";
-$field_alias = "unidad";
-$field_activo = 1;
-$grilla_items[]=array(
-    "campo" => "unidad" // nombre del campo pero de la tabla que relaciona
-,   "field"=> $field_name
-,   "label"=>"Unidad"
-//,   "as" => $field_name
-,   "as"=>"estado_id_texto" //
-,   "tabla_alias"=> $field_alias
-,   "activo"=> $field_activo
-);
-        $grilla_tablas[] = array(
-            "tabla" => $CFGm->tabla["c_unidad"]
-        ,    "alias"=> $field_alias
-        ,   "campo_id"=>"itemId"
-        ,   "relacion_id"=>$field_name
-        ,   "activo"=> $field_activo
-        );
-  */
-
-//-------------------------------------------------------------
-$field_name = "estado_id";
-$field_alias = "estado";
-$field_activo = 1;
-$grilla_items[]=array(
-    "campo" => "nombre" // nombre del campo pero de la tabla que relaciona
-,   "field"=> $field_name
-,   "label"=>"Estado"
-//,   "as" => $field_name
-,   "as"=>"estado_id_texto" //
-,   "tabla_alias"=> $field_alias
-,   "activo"=> $field_activo
-);
 $grilla_tablas[] = array(
     "tabla" => $CFGm->tabla["c_estado"]
-,    "alias"=> $field_alias
-,   "campo_id"=>"itemId"
-,   "relacion_id"=>$field_name
-,   "activo"=> $field_activo
-);
-//-------------------------------------------------------------
-$field_name = "estado_id";
-$grilla_items[]=array(
-    "campo" => $field_name // el campo de la base de datos que recupera
-,   "field" => "$field_name" // se da formato o se configura el nombre del campo resultado
-,   "label"=>"Enviado" //
+,    "alias"=> "estado"
+,   "campo_id"=> "itemId"
+,   "relacion_id"=> "estado_id"
 ,   "activo"=> 1
 );
-//-------------------------------------------------------------
 
-$field_name = "estado_id";
-$grilla_items[]=array(
-    "campo" => $field_name // el campo de la base de datos que recupera
-,   "field" => "$field_name" // se da formato o se configura el nombre del campo resultado
-,   "label"=>"Verificado" //
-,   "as"=>"estado_id_verificado" //
-,   "activo"=> 1
-);
-//-------------------------------------------------------------
+/**
+ * Item de las lista que se tiene desplegar
+ */
+$grilla_items[]=array("field"=> "empresa_nombre",   "label"=>"Nombre de la Empresa",   "activo"=> 1);
+$grilla_items[]=array("field"=> "representante_legal_nombre",   "label"=>"Nombre del Representante",   "activo"=> 1);
+$grilla_items[]=array("field"=> "venta_monto",   "label"=>"Monto de Venta (Bs.)",   "activo"=> 1);
+$grilla_items[]=array("field"=> "venta_cantidad",   "label"=>"Cantidad Venta",   "activo"=> 1);
+$grilla_items[]=array("field"=> "nombre", "label"=>"Estado", "tabla_alias"=> "estado", "as"=>"estado_id_texto", "activo"=> 1);
+$grilla_items[]=array("field" => "estado_id","label"=>"Enviado", "activo"=> 1);
+$grilla_items[]=array("field" => "estado_id", "label"=>"Verificado", "as"=>"estado_id_verificado","activo"=> 1);
+$grilla_items[]=array("field" => "estado_id",   "label"=>"Observado",   "as"=>"estado_id_observado",   "activo"=> 1);
+$grilla_items[]=array("field"=> "fecha_emision",   "label"=>"Fecha de emisión", "activo"=> 1);
+$grilla_items[]=array("field"=> "fecha_caducidad", "label"=>"Fecha de Expiración","activo"=> 1);
+$grilla_items[]=array("field"=> "dateCreate", "label"=>"Fecha de creación",   "activo"=> 1);
+$grilla_items[]=array("field"=> "dateUpdate", "label"=>"Fecha Actualización",   "activo"=> 1);
 
-$field_name = "estado_id";
-$grilla_items[]=array(
-    "campo" => $field_name // el campo de la base de datos que recupera
-,   "field" => "$field_name" // se da formato o se configura el nombre del campo resultado
-,   "label"=>"Observado" //
-,   "as"=>"estado_id_observado" //
-,   "activo"=> 1
-);
 /**
  * Se añade el arreglo de grilla configurada a grilla
  */
