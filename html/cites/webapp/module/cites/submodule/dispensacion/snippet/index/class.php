@@ -74,7 +74,7 @@ class Index extends Table {
         /**
          * Resultado de la consulta enviada
          */
-        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having);
+        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having, "right");
         $resultado["recordsTotal"]=$resultado["recordsFiltered"];
         /**
          * apartir de aca podemos transformar datos, de acuerdo a requerimiento

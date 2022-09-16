@@ -19,7 +19,7 @@ switch($accion) {
         //$cataobj["activo"] = $objCatalog->get_activo_option();
         //print_struc($cataobj); exit;
 
-        $grill_list = $objItem->get_grilla_list_sbm("index");
+        $grill_list = $objItem->get_grilla_list_sbm("index", "right");
         $smarty->assign("grill_list", $grill_list);
         //print_struc($grill_list);exit;
         /**
