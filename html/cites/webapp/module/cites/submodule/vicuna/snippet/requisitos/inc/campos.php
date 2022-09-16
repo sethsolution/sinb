@@ -31,6 +31,10 @@ $campos_item["venta_monto"]=array(
     "tipo"=>"text"
 ,   "label"=>"venta_monto");
 
+$campos_item["venta_monto_usd"]=array(
+    "tipo"=>"text"
+,   "label"=>"venta_monto_usd");
+
 $campos_item["venta_cantidad"]=array(
     "tipo"=>"text"
 ,   "label"=>"venta_cantidad");
