@@ -37,6 +37,10 @@
         <td>Tipo de aprovechamiento:</td>
         <td>{if $item.tipo_aprovechamiento == 1} Silvestria {else} Zoocria {/if}</td>
     </tr>
+    <tr>
+        <td>Estado:</td>
+        <td>{$item.estado}</td>
+    </tr>
     </table>
 <br>
 
