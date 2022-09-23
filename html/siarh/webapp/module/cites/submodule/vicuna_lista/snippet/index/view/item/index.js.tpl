@@ -205,14 +205,13 @@
                     $("#form_modal_ver").modal("show");
                 });
             });
-            console.log(url);
         };
         var boton_imprime = function () {
             btn_imprime.click(function(e) {
                 e.preventDefault();
                 randomnumber=Math.floor(Math.random()*11);
                 url = "{/literal}{$getModule}&accion=imprime&rand="+randomnumber+"&item_id={$id}{literal}";
-                console.log (url);
+                // console.log (url);
                 window.open(url,'impresion_cites_fiv');
             });
         };

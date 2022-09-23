@@ -1,42 +1,5 @@
 {literal}
     <style type="text/css">
-
-        .cuadro{
-            border:1px solid #cbcbcb;
-            /*height: 100%;*/
-            border-radius: 5px 5px 5px 5px;
-            -moz-border-radius: 5px 5px 5px 5px;
-            -webkit-border-radius: 5px 5px 5px 5px;
-        }
-        .cuadro-verde{
-            border:1px solid #34bfa3;
-            height: 100%;
-            border-radius: 5px 5px 5px 5px;
-            -moz-border-radius: 5px 5px 5px 5px;
-            -webkit-border-radius: 5px 5px 5px 5px;
-        }
-        .cuadro-padding-0{
-            padding: 0px !important;
-        }
-        .cuadro-margin-0{
-            margin: 0px !important;
-        }
-        .cuadro-padding-5{
-            padding: 5px !important;
-        }
-        .cuadro-padding-10{
-            padding: 10px !important;
-        }
-        .cuadro-align-top{
-            vertical-align: top;
-        }
-        .titulo{
-            border-bottom: 1px solid #34bfa3;
-            padding-bottom: 5px;
-        }
-
-
-
         @page { margin: 70px 25px; }
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -194,7 +157,8 @@
             border-bottom: 2px solid #01568e;
         }
         .header_title2{
-            font-size: 10px;
+            text-align: center;
+            font-size: 15px;
             font-weight: bold;
             color: #01578f;
             padding: 10px 2px 2px 2px;
@@ -250,11 +214,10 @@
             font-size: 9px;
             font-weight: bold;
             padding: 2px 5px 2px 2px;
-            border: 0.5px solid #bcc5c2 ;
-            border-bottom: 0px solid #bcc5c2 ;
-            text-align: left;
-
-            color: #1b0000;
+            border: 0.5px solid #9d9d9d;
+            text-align: center;
+            background: #1b3c59;
+            color: #E6E6E6;
 
         }
 
@@ -264,7 +227,7 @@
             padding: 2px 5px 2px 5px;
             border: 0.5px solid #9d9d9d;
             text-align: left;
-
+            background: #f2f2f2;
         }
         .pregunta4{
             font-size: 9px;
@@ -278,16 +241,15 @@
         .respuesta{
             font-size: 9px;
             padding: 2px 2px 2px 5px;
-            text-align: center;
+            border: 0.5px solid #9d9d9d;
+            text-align: left;
         }
 
         .respuesta2{
             font-size: 9px;
             padding: 2px 2px 2px 5px;
             border: 0.5px solid #9d9d9d;
-            border-top: 0px;
             text-align: center;
-
         }
         .respuesta3{
             font-size: 9px;
@@ -311,8 +273,10 @@
         }
         td.tituloHeader{
             text-align: center;
-            font-size: 11px;
-
+            /* font-size: 11px; */
+            font-size: 15px;
+            font-weight: bolder;
+            text-align: center;
         }
 
         .componente{
@@ -372,6 +336,5 @@
         .page-number:before {
             content: "Página " counter(page);
         }
-
     </style>
 {/literal}

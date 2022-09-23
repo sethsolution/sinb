@@ -62,7 +62,7 @@ switch($accion) {
     case 'resumen':
         $res = $objItem->get_resumen($item_id);
         $core->print_json($res);
-//        print_struc($res);exit();
+        //print_struc($res);exit();
         break;
 
     case 'enviar':
@@ -71,16 +71,8 @@ switch($accion) {
         break;
 
     case 'imprime':
-        $objCatalog->conf_catalog_datos_general_print();
-        $cataobj = $objCatalog->getCatalogList();
-        $smarty->assign("cataobj" , $cataobj);
-
         $item = $objItem->get_item($item_id);
         $smarty->assign("item",$item);
-
-        $especie = $objItem->get_especie_list($item_id);
-        $smarty->assign("especie", $especie);
-
         $objItem->imprime($item_id);
         break;
 
