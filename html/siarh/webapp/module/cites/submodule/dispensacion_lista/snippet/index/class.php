@@ -584,7 +584,7 @@ class Index extends Table {
     }
 
     function enviar_obs($item_dato){
-        $item = $this->get_resumen($item_dato,1);
+        $item = $this->get_resumen($item_dato["item_id"],1);
         $item_id = $item_dato["item_id"];
 
         if(isset($item["itemId"]) and  $item["itemId"]!="" ){

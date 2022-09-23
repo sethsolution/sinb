@@ -65,13 +65,11 @@ $grilla_tablas[] = array(
 $grilla_items[]=array("campo" => "nombre", "label"=>"Empresa", "activo"=> 1
 ,   "tabla_alias"=> "e", "as" => "empresa");
 
-$grilla_items[]=array("campo" => "nombre", "label"=>"Tipo de Documentación", "activo"=> 1
-,   "tabla_alias"=> "td", "as" => "tipo_documento");
-
 $grilla_items[]=array("field"=> "empresa_id",  "campo" => "empresa_id"
 ,   "label"=>"Empresa ID",   "activo"=> 1);
 
-
+$grilla_items[]=array("campo" => "nombre", "label"=>"Tipo de Documentación", "activo"=> 1
+,   "tabla_alias"=> "td", "as" => "tipo_documento");
 
 $grilla_items[]=array("field"=> "importador_nombre",  "campo" => "importador_nombre"
 ,   "label"=>"Nombre del Importador",   "activo"=> 1);
