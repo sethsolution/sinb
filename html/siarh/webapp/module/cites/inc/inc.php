@@ -1,4 +1,4 @@
-<?PHP
+<?
 /**
  * reconfiguración
  */
@@ -26,6 +26,12 @@ print_struc($CFGm->tabla);
 print_struc($CFG->tabla);
 exit;
 */
+/**
+ * Configuración del PATH donde se encuentra el módulo para impresión
+ */
+$path_image = $pathmodule."template/images/";
+$smarty->assign("path_image",$path_image);
+
 /**
  * Configuraciones del módulo
  */
