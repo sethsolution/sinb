@@ -46,7 +46,7 @@ switch($accion){
 
     case 'ver':
         /**
-         * Sacamos los datos CITES
+         * Sacamos los datos marca vicuna
          */
         $item = $objItem->get_item($id);
         $smarty->assign("item",$item);
@@ -54,8 +54,8 @@ switch($accion){
         /**
          * Sacamos los datos de ESPECIES
          */
-        $especie = $objItem->get_especie_list($id);
-        $smarty->assign("especie", $especie);
+//        $especie = $objItem->get_especie_list($id);
+//        $smarty->assign("especie", $especie);
         /**
          * Sacamos los datos de los requisitos
          */

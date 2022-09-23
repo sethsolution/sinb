@@ -62,7 +62,7 @@ switch($accion) {
     case 'resumen':
         $res = $objItem->get_resumen($item_id);
         $core->print_json($res);
-        print_struc($res);exit();
+//        print_struc($res);exit();
         break;
 
     case 'enviar':

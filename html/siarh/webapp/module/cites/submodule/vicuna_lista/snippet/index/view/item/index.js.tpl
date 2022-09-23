@@ -205,6 +205,7 @@
                     $("#form_modal_ver").modal("show");
                 });
             });
+            console.log(url);
         };
         var boton_imprime = function () {
             btn_imprime.click(function(e) {

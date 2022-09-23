@@ -234,14 +234,14 @@ class Index extends Table {
                     , r.indice
                     FROM ".$this->tabla["c_vicuna_tipo_requisito"]." AS cr 
                     LEFT JOIN ".$this->tabla["c_requisito"]." AS r ON r.itemId = cr.requisito_id
-                    left  JOIN ".$this->tabla["archivo"]." AS a ON  a.tipo_requisito_id = cr.itemId and a.cites_id= '".$item_id."'
+                    left  JOIN ".$this->tabla["archivo"]." AS a ON  a.tipo_requisito_id = cr.itemId and a.vicuna_id= '".$item_id."'
                     
                     WHERE cr.vicuna_tipo_id = '".$item1['tipo_id']."'
                     AND r.categoria_id = 4 and a.adjunto_tamano > 0 ";
 
         $info = $this->dbm->execute($sql);
         $item = $info->getRows();
-
+//        print_struc($item);exit;
         return $item;
     }
 
@@ -515,6 +515,7 @@ class Index extends Table {
         $item_obs["obs_total"] = $total;
 
         $item = array_merge($item,$item_obs);
+        print_struc($item);exit();
         return $item;
 
     }
