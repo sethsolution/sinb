@@ -200,22 +200,6 @@ class Index extends Table {
     }
 
     /**
-     * Borrar un registro de la base de datos
-     */
-    function item_delete($id){
-        /**
-         * borramos a los hijos antes de borrar al principal
-         */
-
-        /**
-         * borramos  el dato principal
-         */
-        $campo_id="itemId";
-        $where =  "";
-        $res = $this->item_delete_sbm($id,$campo_id,$this->tabla["cites"], $where);
-        return $res;
-    }
-    /**
      * Get Resumen
      */
     function get_resumen($idItem,$all=0){
@@ -559,29 +543,38 @@ class Index extends Table {
     }
 
 
-    function imprime2($item_id){
+    function imprimeHoja($item_id){
         global $objCatalog,$objItem;
         /**
          * Datos de la cite
          */
-
         $objCatalog->conf_catalog_datos_general_print();
         $cataobj = $objCatalog->getCatalogList();
-
         $item = $objItem->get_item2($item_id);
-
         $especie = $objItem->get_especie_list($item_id);
-        /*-
-         print_struc($especie);
-         print_struc($item);
-         print_struc($cataobj);
-         exit;
-        */
+        /**
+         * si no se encuentra generado code en la tabla, se genera
+         */
+        if($item["code"]==""){
+            echo "Genero code!";
+            $codeSha = sha1(time());
+            $code = array(
+                "code" => $codeSha,
+                "id" =>25
+            );
+            $rec = array();
+            $rec["code"] = base64_encode(serialize($code));
+            $where = "itemId=".$item_id;
+            $this->dbm->debug =true;
+            $this->dbm->autoExecute($this->tabla["cites"],$rec,"UPDATE",$where);
+            $item["code"] = $rec["code"];
+        }
         /**
          * ------------------------------------------------------------------------------------------------------
          */
         // create new PDF document
         $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        //$pdf->SetAutoPageBreak(TRUE, 0);
         // set document information
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Cites Bolivia - NO OFICIAL');
@@ -604,6 +597,8 @@ class Index extends Table {
 
         // set auto page breaks
         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+
 
         // set image scale factor
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -817,7 +812,6 @@ class Index extends Table {
             $pdf->MultiCell(33, 0, $txt, $border, 'C', 0, 1, '42', 234, true, 0, false, true, 0);
         }
         //$txt = "17 de Octubre de 2012";
-
         /**
          * 15 Conocimiento de Embarque / Número de guía aéreo
          */
@@ -828,10 +822,29 @@ class Index extends Table {
         //$txt = "17 de Octubre de 2012";
         //$pdf->MultiCell(28, 0, $txt, $border, 'C', 0, 1, '93', 265, true, 0, false, true, 0);
 
-// ---------------------------------------------------------
-
-//Close and output PDF document
-        $pdf->Output('example_051.pdf', 'I');
+        // ---------------------------------------------------------
+        /**
+         * Generación de datos QR para el certificado
+         */
+        /*
+        print_struc($code);
+        $code = unserialize(base64_decode($code));
+        print_struc($code);
+        exit;
+        */
+        // new style
+        $style = array(
+            'border' => false,
+            'padding' => 0,
+            //'fgcolor' => array(128,0,0),
+            'bgcolor' => false
+        );
+        $urlweb = "https://cites.sib.soy/verifica?code=".$item["code"];
+        $pdf->write2DBarcode($urlweb, 'QRCODE,L', 170, 247, 20, 20, $style, 'N');
+        /**
+         * Creación del archivo cites
+         */
+        $pdf->Output('cites.pdf', 'I');
         exit;
     }
 

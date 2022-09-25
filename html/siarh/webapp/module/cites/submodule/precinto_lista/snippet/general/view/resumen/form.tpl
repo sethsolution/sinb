@@ -153,7 +153,7 @@
                         <div class="col-lg-12 titulo m--margin-bottom-5 m--padding-left-5">6. Nombre, Dirección, Sello/timbre nacional y país de la Autoridad Administrativa:</div>
 
                         <div class="text-center ">
-                            <img src="/module/cites/template/images/logo/logo_estado_pluri.png"  class="img-rounded" width="150" style="width: 150px:"><br>
+                            <img src="/module/cites/template/images/logo/escudo-bolivia.jpg"  class="img-rounded" width="100" style="width: 100px:"><br>
                             MINISTERIO DE MEDIO AMBIENTE Y AGUA<br>
                             VICEMINISTERIO DE MEDIO AMBIENTE, BIODIVERSIDAD, CAMBIOS CLIMÁTICOS Y DE GESTIÓN Y DESARROLLO FORESTAL<br>
                             Dirección General de Biodiversidad y Áreas Protegidas<br>

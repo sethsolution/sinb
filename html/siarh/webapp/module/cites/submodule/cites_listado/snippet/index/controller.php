@@ -74,11 +74,6 @@ switch($accion) {
         $core->print_json($res);
         break;
 
-    case 'borrar':
-        $res = $objItem->item_delete($id);
-        $core->print_json($res);
-        break;
-
     case 'resumen':
         $res = $objItem->get_resumen($item_id);
         $core->print_json($res);
@@ -104,7 +99,7 @@ switch($accion) {
         break;
     case 'imprime':
         //echo "test de impresión 2";
-        $objItem->imprime2($item_id);
+        $objItem->imprimeHoja($item_id);
         //exit;
         break;
     case 'imprime.excel':
@@ -120,10 +115,6 @@ switch($accion) {
         break;
 
     case 'enviar.aprobar':
-        /*
-        print_struc($_REQUEST);
-        exit;
-        */
         $smarty->assign("subpage", $webm["email_aprobar"]);
         $res = $objItem->enviar_aprobar($item);
         $core->print_json($res);
