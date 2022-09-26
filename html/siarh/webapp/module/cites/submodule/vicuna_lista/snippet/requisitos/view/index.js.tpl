@@ -25,7 +25,7 @@
     }
 
     function item_descarga_{/literal}{$subcontrol}{literal}(id){
-        url= "{/literal}{$path_url}/{$subcontrol}_/{$id}/{literal}"+id+"/descarga/";
+        url = '{/literal}{$getModule}&accion={$subcontrol}_descarga{literal}&id='+id+'&item_id={/literal}{$id}{literal}';
         window.open(url, '_blank');
     }
 
