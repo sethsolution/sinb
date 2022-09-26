@@ -34,7 +34,7 @@ class Catalogo extends Table{
      */
 
     public function conf_catalog_datos_general(){
-        //print_struc($this->tabla);
-        $this->addCatalogList($this->tabla["c_empresa_tipo"],"empresa_tipo","","","","","","1");
+        $where = "activo = 1";
+        $this->addCatalogList($this->tabla["c_empresa_tipo"],"empresa_tipo","","","","",$where,"1");
     }
 }

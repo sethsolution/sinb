@@ -391,17 +391,16 @@ class Table
         foreach($item as $dato){
             $con = $row;
             $con["where"] = "parent=".$dato[$row["id"]];
-
+            if($row["where"]!=""){
+                $con["where"].=" and ".$row["where"]." ";
+            }
             if($row["noutf8"]==1){
                 $dato_aux = utf8_encode($dato[$row["dato"]]);
             }else{
                 $dato_aux = $dato[$row["dato"]];
             }
-            //$opt[$dato[$row["dato"]]] = $this->getCatalogListSimple($con);
             $opt[$dato_aux] = $this->getCatalogListSimple($con);
-
         }
-                
         return $opt;
     }
     
