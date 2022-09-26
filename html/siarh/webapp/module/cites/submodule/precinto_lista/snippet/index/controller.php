@@ -16,10 +16,13 @@ switch($accion) {
          */
         $objCatalog->conf_catalog_datos_general();
         $cataobj = $objCatalog->getCatalogList();
+
         $smarty->assign("cataobj", $cataobj);
+
         $grill_list = $objItem->get_grilla_list_sbm("index", "right");
         $smarty->assign("grill_list", $grill_list);
         //$dbm->debug = true;
+
         /**
          * usamos el template para mootools
          */
@@ -62,7 +65,6 @@ switch($accion) {
     case 'resumen':
         $res = $objItem->get_resumen($item_id);
         $core->print_json($res);
-        //print_struc($res);exit();
         break;
 
     case 'enviar':

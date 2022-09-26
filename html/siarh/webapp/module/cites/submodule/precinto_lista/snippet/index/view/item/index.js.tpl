@@ -309,6 +309,7 @@
                     ,'item[item_id]':{/literal}{$id}{literal}
                 },
                 function(res){
+                    console.log(res.res)
                     btn_obs_enviar.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', false);
                     if(res.res == 1){
                         swal.close();

@@ -43,16 +43,11 @@ switch($accion){
 
     case 'ver':
         /**
-         * Sacamos los datos CITES
+         * Sacamos los datos marcas de seguridad
          */
         $item = $objItem->get_item($id);
         $smarty->assign("item",$item);
-
-        /**
-         * Sacamos los datos de ESPECIES
-         */
-        $especie = $objItem->get_especie_list($id);
-        $smarty->assign("especie", $especie);
+        //print_struc($item);exit();
         /**
          * Sacamos los datos de los requisitos
          */
@@ -60,7 +55,6 @@ switch($accion){
         $smarty->assign("requisito", $requisito);
 
         $smarty->assign("subpage",$webm["form"]);
-
         break;
 
     case 'guardar':
