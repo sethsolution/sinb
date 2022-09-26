@@ -216,10 +216,10 @@
                             boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
                             {/literal}{if $item_padre.estado_id == 1 or $item_padre.estado_id == 3}{literal}
 
-                            boton += '<a href="javascript:item_update(\''+data+'\');" class="btn btn-success" title="Modificar">Editar</a>';
+                            boton += '<a href="javascript:item_update_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-info" title="Modificar">{/literal}{if $privFace.editar == 1}Editar{else}Ver Datos{/if}{literal}</a>';
                             {/literal}{if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
-                            boton += '<a href="javascript:item_delete(\''+data+'\');" class="btn btn-outline-danger m-btn m-btn--icon" title="Eliminar"><i class="flaticon-delete-1"></i></a>';
-                            {/literal}{/if}{literal}
+                            boton += '<a href="javascript:item_delete_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-danger m-btn m-btn--icon" title="Eliminar"><i class="flaticon-delete-1"></i></a>';
+                        {/literal}{/if}{literal}
 
                             {/literal}{/if}{literal}
                             boton += '<div>';
