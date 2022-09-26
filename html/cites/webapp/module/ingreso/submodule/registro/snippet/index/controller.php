@@ -19,7 +19,7 @@ switch($accion) {
 
         $objCatalog->conf_catalog_datos_general();
         $cataobj = $objCatalog->getCatalogList();
-        print_struc($cataobj);exit;
+        //print_struc($cataobj);exit;
         $smarty->assign("cataobj" , $cataobj);
 
         if($_SESSION[auth]){
