@@ -23,13 +23,17 @@ include_once($inc_otro_archivo);
 /**
  * Verificamos y/o Creamos la carpeta padre
  */
+/*
 $CFGm->carpeta_padre = "rrhh";
 $CFGm->directory = $CFG->data.$CFGm->carpeta_padre."/";
 $core->directorio_crear($CFGm->directory);
+*/
 /**
  * Verificamos y/o Creamos la carpeta del módulo
  */
+/*
 $CFGm->carpeta_modulo = "empadronamiento";
 $CFGm->directory = $CFGm->directory.$CFGm->carpeta_modulo."/";
 $core->directorio_crear($CFGm->directory);
+*/
 //$dbm->debug = true;

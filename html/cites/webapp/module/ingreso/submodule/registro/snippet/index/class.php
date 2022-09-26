@@ -27,6 +27,8 @@ class Index extends Table {
         $sql = "SELECT * FROM ".$this->tabla_core["usuario"]." AS u WHERE u.usuario ='".$rec["usuario"]."'";
         $it = $this->dbm->Execute($sql);
         $item = $it->fields;
+        //print_struc($item);
+        //exit;
         /**
          * Debugs
          */
@@ -36,7 +38,8 @@ class Index extends Table {
          * Fin debugs
          */
 
-        if($item["itemId"]==""){
+        if($item["itemId"]=="" || $item["activo"]==0){
+
             if($rec["usuario"]!=""){
                 /**
                  * preprocesamos los datos
@@ -46,10 +49,14 @@ class Index extends Table {
                 /**
                  * Guardo los datos ya procesados
                  */
-                $campo_id="itemId";
+                if(isset($item["itemId"]) && $item["itemId"]!=""){
+                    $accion="update";
+                    $itemId = $item["itemId"];
+                }else{
+                    $itemId = "";
+                }
                 $where = "";
-                $itemId = "";
-
+                $campo_id="itemId";
                 $res = $this->item_update_sbm($itemId,$respuesta_procesa,$this->tabla_core["usuario"],$accion,$campo_id, $where);
                 $res["accion"] = $accion;
                 /**
@@ -85,6 +92,16 @@ class Index extends Table {
                     /**
                      * Una vez registrado el usuario, lo relacionamos a una empresa
                      */
+                    if($accion=="update"){
+                        //$this->dbm->debug = true;
+                        $sql = "SELECT * FROM ".$this->tabla["empresa"]." AS u WHERE u.usuario_id ='".$item["itemId"]."' limit 1";
+                        $emp = $this->dbm->Execute($sql);
+                        $empresa = $emp->fields;
+                        $itemId = $empresa["itemId"];
+                    }else{
+                        $itemId = "";
+                    }
+
                     $rec2 = array();
                     $rec2["tipo_id"] = $rec["tipo_id"];
                     $rec2["email"] = $rec["usuario"];
@@ -96,8 +113,10 @@ class Index extends Table {
 
                     $campo_id="itemId";
                     $where = "";
-                    $itemId = "";
+
+                    //$this->dbm->debug =true;
                     $res2 = $this->item_update_sbm($itemId,$rec2,$this->tabla["empresa"],$accion,$campo_id, $where);
+
                     /**
                      * Enviamos a la vista las variables para crear el correo
                      */
@@ -108,7 +127,6 @@ class Index extends Table {
                     $to["name"] = $respuesta_procesa["usuario"];
                     $asunto = "[CITES Bolivia] - Verificación de correo electrónico";
                     $envio = $this->send_email_system($to,$asunto);
-
                     /*
                     if($envio["res"]==2){
                         $resp["resp"] = 2;
@@ -127,7 +145,6 @@ class Index extends Table {
             $res["res"] = 2;
             $res["msg"] = "El usuario ya se encuentra registrado y Activo";
         }
-
         return $res;
     }
     /**
