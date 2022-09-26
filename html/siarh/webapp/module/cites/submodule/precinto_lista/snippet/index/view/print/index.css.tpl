@@ -32,7 +32,7 @@
         }
         .titulo{
             border-bottom: 1px solid #34bfa3;
-            padding-bottom: 5px;
+            padding-bottom: 15px;
         }
 
 
@@ -48,11 +48,6 @@
         footer { position: fixed; bottom: -30px; left: 0px; right: 0px; }
         p { page-break-after: always; }
 
-        .header{
-            border-bottom-color:#BCBCBC;
-            border-bottom-style:solid;
-            border-bottom-width:1px;
-        }
         .conclusiona{
             font-size: 14px;
             padding: 30px;
@@ -156,20 +151,9 @@
             border: 0.7px solid #c8c8c8;
             text-align:center;
         }
-        /** Estilos header **/
-        td.escudo{
-            width: 135px;
-            text-align: left;
-            /*border: 0.4px solid black;*/
-        }
-        td.logo02{
-            width: 125px;
-            text-align: right;
-            /*border: 0.4px solid black;*/
-        }
-        /** Fin Estilo Header **/
+
         .titulo01{
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bolder;
             text-align: center;
         }
@@ -186,55 +170,13 @@
         .txtCenter{text-align: center;}
 
         .header_title{
-            font-size: 10px;
+            font-size: 16px;
             font-weight: bold;
             color: #01578f;
             padding: 10px 2px 2px 2px;
             margin: 0px 0px 5px 0px;
             border-bottom: 2px solid #01568e;
-        }
-        .header_title2{
-            font-size: 10px;
-            font-weight: bold;
-            color: #01578f;
-            padding: 10px 2px 2px 2px;
-            margin: 0px 0px 5px 0px;
-            border-bottom: 2px solid #1F7BA0;
-        }
-
-        .header_title3{
-            font-size: 10px;
-            font-weight: bold;
-            color: #01578f;
-            padding: 10px 2px 2px 2px;
-            margin: 0px 0px 5px 0px;
-        }
-        .header_title4{
-            font-size: 10px;
-            font-weight: bold;
-            color: #01578f;
-            padding: 10px 2px 2px 2px;
-            margin: 0px 0px 5px 0px;
-            border-bottom: 2px solid #01568e;
-            text-align: left ;
-        }
-        .header_title5{
-            font-size: 10px;
-            font-weight: bold;
-            color: #01578f;
-            padding: 10px 2px 2px 2px;
-            margin: 0px 0px 5px 0px;
-            border-bottom: 2px solid #f07c00;
-            text-align: left ;
-        }
-        .header_title6{
-            font-size: 10px;
-            font-weight: bold;
-            color: #009191;
-            padding: 10px 2px 2px 2px;
-            margin: 0px 0px 5px 0px;
-            border-bottom: 2px solid #009191;
-            text-align: left ;
+            text-align: center;
         }
 
         .pregunta{
@@ -253,118 +195,28 @@
             border: 0.5px solid #bcc5c2 ;
             border-bottom: 0px solid #bcc5c2 ;
             text-align: left;
+            color: #1b0000;
 
+        }
+        .preguntaMedio{
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 5px 2px 2px;
+            border: 0.5px solid #bcc5c2 ;
+            border-bottom: 0px solid #bcc5c2 ;
+            border-top: 0px;
+            text-align: left;
             color: #1b0000;
 
         }
 
-        .pregunta3{
-            font-size: 9px;
-            font-weight: bold;
-            padding: 2px 5px 2px 5px;
-            border: 0.5px solid #9d9d9d;
-            text-align: left;
-
-        }
-        .pregunta4{
-            font-size: 9px;
-            font-weight: normal;
-            padding: 2px 5px 2px 5px;
-            border: 0.5px solid #9d9d9d;
-            text-align: left;
-
-        }
-
-        .respuesta{
-            font-size: 9px;
-            padding: 2px 2px 2px 5px;
-            text-align: center;
-        }
-
-        .respuesta2{
-            font-size: 9px;
-            padding: 2px 2px 2px 5px;
-            border: 0.5px solid #9d9d9d;
-            border-top: 0px;
-            text-align: center;
-
-        }
-        .respuesta3{
-            font-size: 9px;
-            padding: 2px 2px 2px 5px;
-            border: 0.5px solid #9d9d9d;
-            text-align: right;
-        }
-        .respuesta4{
-            font-size: 9px;
-            font-weight: bolder;
-            padding: 2px 2px 2px 5px;
-            border: 0.5px solid #9d9d9d;
-            text-align: center;
-        }
-        .celdab{
-            border: 0.5px solid #9d9d9d;
-        }
-        .break_line{
-            border:0px solid #fff956;
-            height: 5px;
-        }
-        td.tituloHeader{
-            text-align: center;
-            font-size: 11px;
-
-        }
-
-        .componente{
-            text-align: left;
-            font-size: 9px;
-            border: 0.5px solid #9d9d9d;
-            background: #DAE2E7;
-        }
-        .subcomponente{
-            text-align: left;
-            font-size: 7px;
-            border: 0.5px solid #9d9d9d;
-            background: #E0EEF3;
-        }
-        .sector{
-            text-align: left;
-            font-size: 10px;
-            border: 0.5px solid #9d9d9d;
-            background: #DAE2E7;
-        }
-        .subsector{
-            text-align: left;
-            font-size: 8px;
-            border: 0.5px solid #9d9d9d;
-
-        }
-        .datos{
-            text-align: right;
-            font-size: 7px;
-            border: 0.5px solid #9d9d9d;
-        }
-        .datos2{
-            text-align: right;
-            font-weight: bold;
-            font-size: 10px;
-            color: #1b3c59;
-            border: 0.5px solid #9d9d9d;
-        }
-        .totales{
-            text-align: right;
-            font-size: 7px;
-            font-weight: bolder;
-            border: 0.5px solid #9d9d9d;
-            background: #D6E4CD;
-        }
-        /*
-        .bordesTabla tr td,.bordesTabla tr th{
-            border: 0.5px solid #9d9d9d;
-        }
-        */
 
         table {
+            width: 70%;
+            border-collapse: collapse;
+            border: none;
+        }
+        .table-footer{
             width: 100%;
             border-collapse: collapse;
             border: none;

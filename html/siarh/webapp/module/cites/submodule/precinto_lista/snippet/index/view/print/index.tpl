@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>CITES Bolivia</title>
-{include file="$path_print/index.css.tpl"}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>CITES Bolivia</title>
+    {include file="$path_print/index.css.tpl"}
 </head>
 <body>
-  {literal}
+{literal}
     <script type="text/php"> 
     if ( isset($pdf) ) {
         $font = Font_Metrics::get_font("verdana");;
@@ -29,15 +29,8 @@
         $pdf->page_text($w / 2 - $width / 2, $y, $text, $font, $size, $color);
     }
     </script>
-    {/literal}
-    {include file="$path_print/headerfooter.tpl"}
-
-    {include file="$path_print/page1.tpl"}
-  {*
-    {include file="$path_print/page2.tpl"}
-    {include file="$path_print/page3.tpl"}
-    {include file="$path_print/page4.tpl"}
-    {include file="$path_print/page5.tpl"}
-*}
+{/literal}
+{include file="$path_print/headerfooter.tpl"}
+{include file="$path_print/page1.tpl"}
 </body>
 </html>
