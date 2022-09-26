@@ -1,7 +1,7 @@
 <br><br><br><br><br><br>
 <table  border="0.5" align="center">
     <tr>
-        <td colspan="2" class="titulo01" style="border: 0px">Nro. de trámite: {$item.itemId}/2020 </td>
+        <td colspan="2" class="titulo01" style="border: 0px">Nro. de trámite: {$item.itemId}/{$dateprint|date_format:"%Y"} </td>
     </tr>
     <tr>
         <td style="border-bottom: 0px">Fecha  y hora de ingreso de trámite: </td>
