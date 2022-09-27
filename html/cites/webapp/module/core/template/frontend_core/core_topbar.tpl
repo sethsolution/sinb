@@ -75,27 +75,18 @@
                                     <li class="m-nav__section m--hide">
                                         <span class="m-nav__section-text">Sección</span>
                                     </li>
-                                   {* <li class="m-nav__item">
-                                        <a href="/perfil" class="m-nav__link">
-                                            <i class="m-nav__link-icon fab fa fa-hotel"></i>
-                                            <span class="m-nav__link-title">
-                                                <span class="m-nav__link-wrap">
-                                                    <span class="m-nav__link-text">Oficina Virtual</span>
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </li>*}
 
                                     <li class="m-nav__item">
-                                        <a href="/perfil/usuario" class="m-nav__link">
+                                        <a href="/perfil/clave" class="m-nav__link">
                                             <i class="m-nav__link-icon fa fa-user-astronaut"></i>
                                             <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
-                                                    <span class="m-nav__link-text">Mi Perfil</span>
+                                                    <span class="m-nav__link-text">Cambiar Contraseña</span>
                                                 </span>
                                             </span>
                                         </a>
                                     </li>
+
                                     <li class="m-nav__separator m-nav__separator--fit"></li>
 
                                     <li class="m-nav__item">
