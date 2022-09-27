@@ -35,7 +35,7 @@ class Snippet extends Table
          * Configuraciones adicionales
          */
         //$extraWhere = " i.empresa_id = ".$this->empresa_id." and i.categoria_id=2 and i.cites_id='".$item_id."' ";
-        $extraWhere = " i.empresa_id = ".$this->empresa_id." and i.cites_id='".$item_id."' ";
+        $extraWhere = " i.cites_id='".$item_id."' ";
 
         $groupBy = "";
         $having = "";

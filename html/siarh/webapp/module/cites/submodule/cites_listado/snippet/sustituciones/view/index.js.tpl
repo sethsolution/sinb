@@ -30,8 +30,7 @@
                 <'row'<'col-sm-12'tr>>
                 <'row'<'col-sm-12 col-md-5'i>>`,
                 // read more: https://datatables.net/examples/basic_init/dom.html
-                //language: {"url": "language/datatable.spanish.json?id=3434"},
-                language: {"url": "/config/language/datatable.spanish.json"},
+                language: {"url": "/language/datatable.spanish.json"},
                 lengthMenu: [ 10, 25, 50],
                 pageLength: 25,
                 order: [[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
@@ -40,7 +39,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{/literal}{$path_url}/{$subcontrol}_/{$id}/lista{literal}',
+                    url: '{/literal}{$getModule}&accion={$subcontrol}_lista{literal}&item_id={/literal}{$id}{literal}',
                     type: 'POST',
                     data: {},
                 },
@@ -61,7 +60,7 @@
                         render: function(data, type, full, meta) {
                             var boton = '';
                             boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
-                            boton += '<a href="/cites/cites/'+data+'" target="_blank" class="btn btn-outline-info" title="Modificar">Ver Solicitud</a>';
+                            boton += '<a href="/index.php?module=cites&smodule=cites_listado&accion=itemUpdate&type=update&id='+data+'" target="_blank" class="btn btn-outline-info" title="Modificar">Ver Solicitud</a>';
                             boton += '<div>';
                             return boton;
                         },

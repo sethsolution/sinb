@@ -30,6 +30,7 @@ switch($accion){
      * Creación de JSON
      */
     case 'lista':
+        //$datatable_debug = true;
         $res = $subObjItem->get_item_datatable_Rows($item_id);
         foreach ($res['data'] as $itemId => $valor) {
             $res['data'][$itemId]['fecha_pago'] = date_format(date_create($valor['fecha_pago']),"d/m/Y");
