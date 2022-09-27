@@ -55,9 +55,7 @@
                             {else}<small class="opcional">OPCIONAL</small>{/if}
                         {/if}
                         </div>
-
-
-
+                        
                     </td>
                     <th>
                        <div style="text-align:justify">
@@ -80,8 +78,9 @@
                                         </span>
                                     </span>
                                 </a>
-                        {/if}
 
+
+                        {/if}
 
                         {if $row.descripcion != ""}
                             <br>
@@ -89,7 +88,8 @@
                                 {$row.descripcion}
                             </small>
                         {/if}
-                        {if $row.dateUpdate != "" }
+
+                        {if $row.dateUpdate != "" && $row.adjunto_nombre!="" }
                             <br>
                             <span style="color: #af84ff; font-size: 10px;">
                                 Fecha de Actualización: {$row.dateUpdate|date_format:"%d/%m/%Y %H:%M"}
