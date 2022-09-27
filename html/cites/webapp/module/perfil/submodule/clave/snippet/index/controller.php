@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: henrytaby
- * Date: 3/5/2018
- * Time: 15:27
- */
+
 
 switch($accion) {
     /**
@@ -22,8 +17,9 @@ switch($accion) {
         break;
 
     case 'itemupdatesql':
+        $privFace["editar"] = true;
+        //print_struc($privFace);
         $respuesta = $objItem->item_update($item,"datos_general");
         $core->print_json($respuesta);
         break;
-
 }

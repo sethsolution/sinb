@@ -45,6 +45,7 @@ class Index extends Table {
          * preprocesamos los datos
          */
         $respuesta_procesa = $this->procesa_datos($que_form,$rec,$accion);
+
         /*
          * Procesamiento de verificacion
         */

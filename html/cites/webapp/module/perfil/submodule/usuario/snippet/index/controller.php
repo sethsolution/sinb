@@ -22,6 +22,7 @@ switch($accion) {
         break;
 
     case 'itemupdatesql':
+        $privFace["editar"] = true;
         $respuesta = $objItem->item_update($item,"datos_general");
         $core->print_json($respuesta);
         break;
