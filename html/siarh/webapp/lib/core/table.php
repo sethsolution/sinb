@@ -3395,6 +3395,69 @@ class Table
         return $res;
     }
 
+    /**
+     * Procesa un archivo adjunto
+     */
+    function item_adjunto_sbm_nivel1($adjunto,$id,$item,$tabla,$accion="new",$carpeta="archivos"){
+        $res = array();
+        if(isset($adjunto["name"]) && $adjunto["name"]!="" && $adjunto["error"]==0){
+            $dir = $this->get_dir_item_archivo_sbm($id,1,$carpeta);
+            /**
+             * Borramos el archivo previamente almacenado
+             */
+            if($accion=="update"){
+                unlink($dir.$id.".".$item["adjunto_extension"]);
+            }
+            /**
+             * Sacamos la extensión del archivo
+             */
+            $res["adjunto_extension"] = $this->getExtFile($adjunto["name"]);
+            /**
+             * Realizamos la copia del archivo
+             */
+            $adjunto_local = $dir.$id.".".$res["adjunto_extension"];
+            if(copy($adjunto["tmp_name"],$adjunto_local)) $copy = 1;
+            else $copy = 0;
+
+            $campo_id="itemId";
+            $where = "";
+
+            if ($copy==1){
+                chmod($adjunto_local,0777);
+                $datos = array();
+                $datos["adjunto_nombre"]=$adjunto["name"];
+                $datos["adjunto_extension"] = $res["adjunto_extension"];
+                $datos["adjunto_tamano"]=$adjunto["size"];
+                $datos["adjunto_tipo"]=$adjunto["type"];
+
+                $res = $this->item_update_sbm($id,$datos,$tabla,"update",$campo_id,$where);
+
+                if($res["res"]==1){
+                    $res["res"] = 1;
+                    $res["msg"] = "se adjunto con exito el archivo";
+                }else{
+                    $res["res"] = 2;
+                    $res["msg"] = $res["msgdb"];
+                }
+            }else{
+                $datos = array();
+                $datos["adjunto_nombre"] = "";
+                $datos["adjunto_extension"] = "";
+                $datos["adjunto_tamano"] = "";
+                $datos["adjunto_tipo"] = "";
+
+                $res = $this->item_update_sbm($id,$datos,$tabla,"update",$campo_id,$where);
+
+                $res["res"] = 2;
+                $res["msg"] = "No se copio el archivo en el servidor.";
+            }
+        }else{
+            $res["res"] = 2;
+            $res["msg"] = "No se adjunto ningun archivo, el archivo enviado no cuenta con datos";
+        }
+        return $res;
+    }
+
     function item_adjunto_sbm_pg($adjunto,$item_id,$id,$item,$tabla,$accion="new",$item_id_name="item_id",$carpeta="archivos"){
         $res = array();
         if(isset($adjunto["name"]) && $adjunto["name"]!="" && $adjunto["error"]==0){
@@ -4243,5 +4306,388 @@ class Table
         }
         //print_struc($cols);exit();
         return $cols;
+    }
+    //birt
+    public function birt_get_report($reporte_file,$type,$nombre,$parametros_otros, $dev = false){
+        $parametro = array();
+
+        switch ($type){
+            case 'pdf':
+                $content_Type = "application/pdf";
+                $paramValue = "pdf";
+                break;
+            case 'excel':
+                $content_Type = "application/vnd.ms-excel";
+                $paramValue = "xls";
+                break;
+            case 'excel2017':
+                $content_Type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                $paramValue = "xlsx";
+                break;
+
+            default:
+                echo "<span style='color:red'>[ERROR] - Tiene que seleccionar un formato válido</span>";
+                break;
+        }
+
+    
+        global $CFG; // variable global info URL
+        // * Todas las variables para configurar en el reporte
+        if ($dev) {
+            $url=$CFG->servicio_reporte["url_reporte_dev"];
+        }else{
+            $url=$CFG->servicio_reporte["url_reporte"];
+        }
+       // $paramValue = "pdf";
+
+        // * Concatenacion para apuntar a la URL de BIRT
+        $dest = $url;
+        $dest .= urlencode( $reporte_file );
+        $dest .= "&__format=" . urlencode( $paramValue );
+        $dest .= ( $parametros_otros );
+      
+        $response = Unirest\Request::get($dest, null, null);
+    
+        $titulo = $nombre .".". $paramValue;
+    
+        if($response->code==200){
+            $content_Type = $response->headers["Content-Type"];
+            //  $nombre_archivo = date("Ymd-H_m_s")."-".$nombre.".".$extension;
+            header('Set-Cookie: fileDownload=true; path=/');
+            //header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+            header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+            header ("Cache-Control: no-cache, must-revalidate");
+            header ("Pragma: no-cache");
+            header ("Content-Transfer-Encoding: binary");
+            header ("Expires: 0");
+            header ("Content-Type:".$content_Type);
+            header ('Content-Disposition: attachment; filename="'.$titulo.'"');
+            echo $response->raw_body;
+        }else{
+            echo "<span style='color:red'>[ERROR] - Tiene que seleccionar un formato válido</span>";
+        }
+        exit;
+
+    }
+
+    public function getDatosUsuarioSigir() {     
+        $usuario = $_SESSION['userv']['itemId'];
+        $this->dbm->SetFetchMode(ADODB_FETCH_ASSOC);
+
+        $datos = [
+            'tipo_usuario' => 'Ninguno',
+            'departamentos' => '0',
+            'municipios' => '0'
+        ];
+
+        // Verificamos si es administrador del SIARH y lo igualamos a administrador del SIGIR
+        if ($_SESSION['userv']['tipoUsuario'] == 1) {
+            $tipoUsuario = 'Administrador';
+        }else{
+            $sql = 'select tipo_usuario from mmaya_sigir.tipo_usuario tu where tu.item_id = ' . $usuario . " limit 1";
+            $info = $this->dbm->Execute($sql);
+            $item = $info->GetRows();
+    
+            if (count($item) == 0 or count($item) > 1) {
+                return $datos;
+            }
+            
+            $tipoUsuario = $item[0]['tipo_usuario'];
+            $datos['tipo_usuario']  = $item[0]['tipo_usuario'];
+        }
+
+        switch ($tipoUsuario) {
+            case 'Operador GAM':
+                $sql = 'select * from mmaya_sigir.permiso_gam pg where pg.id_usuario = ' . $usuario;
+                $info = $this->dbm->getAll($sql);
+                if(count($info) > 0) {
+                    foreach ($info as $data){
+                        $arr[] += $data['id_municipio'];
+                    }
+                    $datos['municipios'] = implode(",", $arr);
+                }
+                break;
+            case 'Operador GAD':
+                /* ------------------------------ Departamentos ----------------------------- */
+                $sql = 'select * from mmaya_sigir.permiso_gad pg where pg.id_usuario = ' . $usuario;
+                $info = $this->dbm->getAll($sql);
+                if(count($info) > 0) {
+                    foreach ($info as $data){
+                        $arr[] += $data['id_departamento'];
+                    }
+                    $datos['departamentos'] = implode(",", $arr);
+                }
+                
+                /* ------------------------------- Municipios ------------------------------- */
+                $sql = 'select * from mmaya_sigir.gam_item a where a.departamento_id in (' . $datos['departamentos'] . ')';
+                $info = $this->dbm->getAll($sql);
+                if(count($info) > 0) {
+                    foreach ($info as $data){
+                        $arr[] += $data['municipio_id'];
+                    }
+                    $datos['municipios'] = implode(",", $arr);
+                }
+
+                break;
+            case 'Administrador':
+                /* ------------------------------ Departamentos ----------------------------- */
+                $sql = 'select * from mmaya_sigir.gad_item';
+                $info = $this->dbm->getAll($sql);
+                if(count($info) > 0) {
+                    foreach ($info as $data){
+                        $arr[] += $data['departamento_id'];
+                    }
+                    $datos['departamentos'] = implode(",", $arr);
+                }
+                
+                /* ------------------------------- Municipios ------------------------------- */
+                $sql = 'select * from mmaya_sigir.gam_item';
+                $info = $this->dbm->getAll($sql);
+                if(count($info) > 0) {
+                    foreach ($info as $data){
+                        $arr[] += $data['municipio_id'];
+                    }
+                    $datos['municipios'] = implode(",", $arr);
+                }
+                // $datos['departamentos'] = '';
+                // $datos['municipios'] = '';
+                break;
+        }
+
+        return $datos;       
+    }
+    function verificar_permiso_usuario($rol_Id){
+        try{
+            $sql = "select usuario.itemId from usuario where usuario.itemId=".$_SESSION["memberId"]." and usuario.rol_itemId=".$rol_Id;
+            $resultado = $this->dbm->Execute($sql);
+            $resultado = $resultado->GetRows();
+            if(count($resultado)==0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        catch(Exception $e){
+            return false;
+        }
+    }
+    function verificarTiempoResolucion($tipo){
+        try{
+            $sql = "select gestion.itemId from gestion where ";
+            switch($tipo){
+                case 1:
+                    $sql.="gestion.ini_rueda_negocios <= '".date("Y:m:d")."' and gestion.fin_rueda_negocios >= '".date("Y:m:d")."'";
+                    break;
+                case 2:
+                    $sql.="gestion.ini_caza <= '".date("Y:m:d")."' and gestion.fin_caza >= '".date("Y:m:d")."'";
+                    break;
+                case 3:
+                    $sql.="gestion.ini_movilizacion <= '".date("Y:m:d")."' and gestion.fin_movilizacion >= '".date("Y:m:d")."'";
+                    break;
+            }
+            $resultado = $this->dbm->Execute($sql);
+            $resultado = $resultado->GetRows();
+            if(count($resultado)==0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        catch(Exception $e){
+            return false;
+        }
+    }
+    function verificar_permiso_usuarios($rol_Ids){
+        if(count($rol_Ids>0)){
+            try{
+                $sql = "select usuario.itemId from vrhr_snir.core_usuario usuario
+                INNER JOIN mmaya_biodiversidad_trazabilidad.usuario_rol ur
+                on ur.usuario_itemId=usuario.itemId
+                where usuario.itemId=".$_SESSION["memberId"]." 
+                and (";
+                for($i =0;$i<count($rol_Ids)-1;$i++){
+                    $sql.=" ur.rol_itemId=".$rol_Ids[$i]." or ";
+                }            
+                $sql.=" ur.rol_itemId=".$rol_Ids[count($rol_Ids)-1].");";
+                $resultado = $this->dbm->Execute($sql);
+                $resultado = $resultado->GetRows();
+                if(count($resultado)==0){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+            catch(Exception $e){
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    function get_menu_table_lagartos($tabla){
+        return "mmaya_biodiversidad_trazabilidad.".$tabla;
+    }
+    function get_menu_principal(){
+        
+        global $db, $usuarioInfo;
+        $sql = "select c.itemId,c.nombre, c2.nombre as padre_nombre,c.padre ,c.class
+        from  ".$this->get_menu_table_lagartos("catalogo")." as c left join ".$this->get_menu_table_lagartos("catalogo")." as c2 on c2.itemId = c.padre 
+        where c.estado=1 and c.padre is not NULL order by c2.orden, c.orden";
+        $item = $db->Execute($sql);
+        
+        $item = $item->getRows();
+        //print_struc($item);
+        //echo count($item);
+        $menu = array();
+        for ($i=0;$i<count($item);$i++){
+
+            //echo "-->i:".$i."<br>";
+            $sql2 = "select 
+            sub.carpeta as submodulo
+            , mo.carpeta as modulo
+            , m.*
+            from ".$this->get_menu_table_lagartos("menu")." as m 
+            left join ".$this->get_menu_table_lagartos("submodulo")." as sub on m.submodulo_itemId = sub.itemId
+            left join ".$this->get_menu_table_lagartos("catalogo_rol")." as r on r.itemId=m.rol_itemId
+            left join ".$this->get_menu_table_lagartos("usuario_rol")." as ur on ur.rol_itemId=r.itemId
+            left join vrhr_snir.core_usuario as u on ur.usuario_itemId=u.itemId
+            left join vrhr_snir.core_modulo as mo on m.modulo_id=mo.itemId
+            WHERE m.catalogo_itemId='".$item[$i]["itemId"]."' 
+            and u.itemId='".$_SESSION["memberId"] ."'
+            and m.estado=1
+            order by m.orden
+            ";
+            $submenu = $db->Execute($sql2);
+            $submenu = $submenu->getRows();
+
+
+            //echo "------------->$i ".count($submenu)."<br>\r\n";
+
+            if(count($submenu)>0){
+                //print_struc($submenu);
+                $item[$i]["submenu"] = $submenu;
+                $menu[] = $item[$i];
+            }
+        }
+        //exit;
+        //print_struc($item);exit;
+
+
+
+        return $menu;
+
+    }
+    function get_submodulo_select($sub){
+        global $db;
+        $sql = "SELECT m.*,ca.padre,sub.carpeta
+            FROM ".$this->get_menu_table_lagartos("menu")." as m 
+            LEFT JOIN  ".$this->get_menu_table_lagartos("submodulo")." as sub on m.submodulo_itemId = sub.itemId
+            LEFT JOIN  ".$this->get_menu_table_lagartos("catalogo")." as ca on m.catalogo_itemId=ca.itemId
+            WHERE sub.carpeta='".$sub."' 
+            and m.estado=1
+            LIMIT 1
+            ";
+            $submodulo = $db->Execute($sql);
+            $submodulo= $submodulo->fields;
+
+        return $submodulo;    
+    }
+    function obtener_permiso_usuarios(){
+        global $db;
+            try{
+                $sql = "select usuario.itemId,ur.rol_itemId,usuario.* from vrhr_snir.core_usuario usuario
+                INNER JOIN mmaya_biodiversidad_trazabilidad.usuario_rol ur
+                on ur.usuario_itemId=usuario.itemId
+                where usuario.itemId='".$_SESSION["memberId"]."'";
+                
+                $permisos= $db->Execute($sql);
+                $permisos= $permisos->fields;
+                return $permisos;
+            }
+            catch(Exception $e){
+                return false;
+            }
+    }
+    function item_soft_delete_sbm($itemId,$campo_id,$tabla,$where=""){
+        global $privFace;
+
+
+        if($privFace["editar"] and $privFace["eliminar"]){
+            if($itemId!=''){
+                if($campo_id!=""){
+                    $verifica = $this->item_update_verifica_sbm($tabla,$itemId,$campo_id);
+                }else{
+                    $verifica = true;
+                }
+                if($verifica) {
+                    $sql = "UPDATE ".$tabla." SET estado=0";
+                    $sqlWhere = "  WHERE ".$campo_id."=".$itemId;
+
+                    if($where!="" && $campo_id !=""){
+                        $sql .= $sqlWhere." and (".$where.")";
+                    }elseif($where!="" && $campo_id ==""){
+                        $sql .= $where;
+                    }else{
+                        $sql .= $sqlWhere;
+                    }
+                    if($where!="") $sql .= " and (".$where.")";
+                    $resdelete = $this->dbm->Execute($sql);
+                    if($resdelete){
+                        $res["res"] = 1;
+                        $res["id"] = $itemId;
+                    }else{
+                        $res["res"] = 2;
+                        $res["msg"] = "No se logro eliminar el registro de la B.D.";
+                        $res["msgdb"] = $this->dbm->ErrorMsg();
+                    }
+
+                }else{
+                    $res["res"] = 2;
+                    $res["msg"] = "El registro con ID = '".$itemId."'' que desea actualizar no existe o fue eliminado ";
+                }
+            }else{
+                $res["res"] = 2;
+                $res["msg"] = "El id del registro que quiere eliminar esta vacio";
+            }
+        }else{
+            $res["res"] = 2;
+            $res["msg"] = "No tiene permisos para eliminar este registro";
+        }
+        return $res;
+    }
+
+    function obtener_cuenca_servicio($latitud, $longitud){
+        $fields = array(
+            'latitud' => $latitud,
+            'longitud' => $longitud
+        );
+        $fields_string = http_build_query($fields);
+        $url_api=$CFG->servicio_reporte["url_api_test"];
+        $url = "https://konga.mmaya.gob.bo:8443/test/funciones/v1/ubicacion-punto"; //token
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $headers = [
+            'Accept: application/json',
+            'Content-Type: application/x-www-form-urlencoded',
+            'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImlzcyI6Iml1ZjlYZURibjloamRWUHlYVmtIQXBhYUJLbGpnSHIwIn0.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.0tP83tai3YKEocYHowjY5tGl_K60waaNt9YAmZNowxI'
+        ];
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        if(strlen($data) > 10) {
+            $data = json_decode($data, true);
+            $cuencaId = $data['cuencaId'];
+        }else{
+            $cuencaId = 0;
+        }
+
+        return $cuencaId;
     }
 }
