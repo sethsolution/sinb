@@ -9,6 +9,15 @@
 </div>
 <!--end::Modal-->
 {include file="index.css.tpl"}
+<div class="m-portlet__body m--padding-10">
+    <div class="alert m-alert m-alert--default m-alert--icon ayuda" role="alert">
+        <div class="m-alert__icon"><i class="flaticon-notes"></i></div>
+        <div class="m-alert__text" style="text-align: justify;">
+            <strong>Ejemplo para subir archivos</strong><br>
+            El nombre del archivo debe contener: <strong>"nombre del archivo_nombre de la empresa (.pdf) o (.jpg)"</strong>
+        </div>
+    </div>
+</div>
 
 <div class="m-portlet__head">
     <div class="m-portlet__head-caption">

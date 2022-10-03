@@ -525,12 +525,12 @@
                         <span class="m-nav__link-badge">
                             <span class="m-badge m-badge--danger m-badge--wide m-badge--rounded">NOTA</span>
                         </span>
-                                <span class="m-nav__link-title">
-                        <span class="m-nav__link-wrap">
-                            <span class="m-nav__link-text">Debe continuar con el registro del depósito, en la opción <strong>"PASO 4"</strong>.</span>
-                            <i class="m-nav__link-icon flaticon-chat-1"></i>
+                        <span class="m-nav__link-title">
+                            <span class="m-nav__link-wrap">
+                                <span class="m-nav__link-text">Debe continuar con el registro del depósito, en la opción <strong>"PASO 4"</strong>.</span>
+                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                            </span>
                         </span>
-                    </span>
                     </div>
                 {/if}
 
