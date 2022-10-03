@@ -4,5 +4,6 @@ key_buffer_size = 256M
 max_allowed_packet = 64M
 default-time-zone = '-04:00'
 expire_logs_days = 7
+sql-mode=""
 [mysql]
 no-auto-rehash
