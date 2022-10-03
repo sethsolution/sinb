@@ -24,7 +24,7 @@
                     </div>
                     <div class="m-portlet__head-wrapper">
                         <div class="m-portlet__head-caption">
-                            <a href="/{$miga.modulo.carpeta}/{$miga.smodulo.carpeta}/"
+                            <a href="index.php?module={$miga.modulo.carpeta}&smodule={$miga.smodulo.carpeta}"
                                class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                 <span><i class="la la-arrow-left"></i><span>Volver</span></span>
                             </a>

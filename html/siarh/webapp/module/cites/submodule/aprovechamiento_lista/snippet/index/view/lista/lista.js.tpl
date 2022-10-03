@@ -25,8 +25,8 @@
     function item_print(idficha){
         randomnumber=Math.floor(Math.random()*11);
         url = "{/literal}{$getModule}{literal}&accion=print&rand="+randomnumber+"&idficha="+idficha;
-        window.open(url,'Impresion_ficha_fiv');      
-      
+        window.open(url,'Impresion_ficha_fiv');
+
     }
 
     function itemDeleteAction(id){

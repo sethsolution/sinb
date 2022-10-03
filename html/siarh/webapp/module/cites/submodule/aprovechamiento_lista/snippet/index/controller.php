@@ -54,7 +54,7 @@ switch($accion) {
      */
     case 'getItemList':
         //$datatable_debug = true;
-        $res = $objItem->get_item_datatable_Rows();
+        $res = $objItem->get_item_datatable_Rows($especie_id);
         $core->print_json($res);
         break;
 

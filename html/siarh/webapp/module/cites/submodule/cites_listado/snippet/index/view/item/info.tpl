@@ -15,7 +15,8 @@
         </div>
 
         <div class="cuadro-padre m--padding-5 m--margin-bottom-5" >
-            <div class=" text-center tipo-padre"><a href="/cites/cites/{$item.cites_id}" target="_blank">IR A CITES ORIGINAL</a></div>
+{*            <div class=" text-center tipo-padre"><a href="/cites/cites/{$item.cites_id}" target="_blank">IR A CITES ORIGINAL</a></div>*}
+            <div class=" text-center tipo-padre"><a href="index.php?module=cites&smodule=cites_listado&accion=itemUpdate&id={$item.cites_id}&type=update" target="_blank">IR A CITES ORIGINAL</a></div>
         </div>
     {/if}
 
