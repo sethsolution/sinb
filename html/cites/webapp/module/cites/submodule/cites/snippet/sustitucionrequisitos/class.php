@@ -142,13 +142,55 @@ class Snippet extends Table
 
     function get_item_detalle($item_id){
         // print_struc($item_id);exit();
-                $sql = "select s.*, c.*
-                 from ".$this->tabla["sustitucion"]." AS s 
+                $sql = "select s.*, c.*, st.itemId as sustitucion_tipo
+                 from ".$this->tabla["sustitucion"]." AS s
                  LEFT JOIN ".$this->tabla["cites"]." AS c ON c.itemId = s.cites_id_sustitucion
+                 LEFT JOIN ".$this->tabla["c_sustitucion_tipo"]." AS st ON st.itemId =  s.tipo_id
                  where s.itemId= '".$item_id."'  and s.empresa_id= '".$this->empresa_id."' ";
         $info = $this->dbm->Execute($sql);
         $info = $info->fields;
         return $info;
+
+//        $info = '';
+//        if($idItem!=''){
+//
+//            $sql = "SELECT
+//            ,s.*
+//            ,c.*
+//            FROM ".$this->tabla["sustitucion"]." AS s
+//            LEFT JOIN ".$this->tabla["cites"]." AS c ON c.itemId = s.cites_id_sustitucion
+//            LEFT JOIN ".$this->tabla["c_cites_tipo"]." AS ct ON ct.itemId = i.tipo_id
+//            left join ".$this->tabla["c_estado"]." AS e ON e.itemId = i.estado_id
+//            LEFT JOIN ".$this->tabla["c_pais"]." AS p1 ON p1.itemId = i.importacion_pais_id
+//            LEFT JOIN ".$this->tabla["c_pais"]." AS p2 ON p2.itemId = i.exportador_pais_id
+//            LEFT JOIN ".$this->tabla["c_tipo_documento"]." AS d ON d.itemId = i.tipo_documento_id
+//            LEFT JOIN ".$this->tabla["c_tipo_proposito"]." AS pr ON pr.itemId = i.proposito_id
+//            LEFT JOIN ".$this->tabla["sustitucion"]." AS s ON s.cites_id_sustitucion = ".$idItem."
+//            LEFT JOIN ".$this->tabla["c_sustitucion_tipo"]." AS st ON st.itemId =  s.tipo_id
+//            WHERE i.itemId =  '".$idItem."'
+//            AND i.empresa_id = '" . $this->empresa_id. "'";
+//
+//            $info = $this->dbm->Execute($sql);
+//            $info = $info->fields;
+//        }
+//
+//        if($info["sustitucion_cites"]==1){
+//            switch ($info["sustitucion_numero"]){
+//                case 1:
+//                    $monto_sus = $info["sustitucion_1"];
+//                    break;
+//                case 2:
+//                    $monto_sus = $info["sustitucion_2"];
+//                    break;
+//                case 3:
+//                    $monto_sus = $info["sustitucion_3"];
+//                    break;
+//
+//            }
+//
+//            $info["monto_sustitucion"] =$monto_sus;
+//        }
+//        return $info;
     }
 
     function get_item($id,$item_id){

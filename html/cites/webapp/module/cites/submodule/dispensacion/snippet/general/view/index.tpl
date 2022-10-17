@@ -167,7 +167,7 @@
                             <div class="input-group">
                                 <textarea class="form-control m-input mayus" id="importador_direccion"
                                           placeholder="Ingrese la dirección del importador"
-                                          name="item[importador_direccion]" cols="5"
+                                          name="item[exportador_direccion]" cols="5"
                                           required data-msg="Este campo es requerido, registre la información."
                                         {$privFace.input}>{$item.importador_direccion|escape:'html'}</textarea>
                             </div>

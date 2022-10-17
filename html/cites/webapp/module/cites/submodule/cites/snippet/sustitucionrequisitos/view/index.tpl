@@ -10,6 +10,16 @@
 <!--end::Modal-->
 {include file="index.css.tpl"}
 
+<div class="m-portlet__body m--padding-10">
+    <div class="alert m-alert m-alert--default m-alert--icon ayuda" role="alert">
+        <div class="m-alert__icon"><i class="flaticon-notes"></i></div>
+        <div class="m-alert__text" style="text-align: justify;">
+            <strong>Ejemplo para subir archivos</strong><br>
+            El nombre del archivo debe contener: <strong>"nombre del archivo_nombre de la empresa (.pdf) o (.jpg)"</strong>
+        </div>
+    </div>
+</div>
+
 <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
         <div class="m-portlet__head-title">
@@ -57,25 +67,39 @@
 
 
                     </td>
-                    <th><div style="text-align: justify">{$row.nombre_requisito|escape:"html"}
+                    <th>
+                        <div style="text-align: justify">
+                            {$row.nombre_requisito|escape:"html"}
                         </div>
-                        {if $row.dateUpdate != "" }
-                            <br>
-                            <small>
-                                Fecha de Actualización: {$row.dateUpdate|date_format:"%d/%m/%Y %H:%M"}
-                            </small>
+                        {if $row.adjunto_nombre!=""}
+                            {if ($row.estado_id == '1' or $row.estado_id == '3') and ($item.estado_id == 1 or $item.estado_id == 3)}
+                                {if $item.estado_id == 1 or $item.estado_id==3}
+                                    <a href="javascript:item_delete_{$subcontrol}('{$row.itemId}');" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" title="Borrar Archivo">
+                                        <i class="flaticon-delete-1"></i>
+                                    </a>
+                                {/if}
+                            {/if}
+                            <a href="javascript:item_descarga_{$subcontrol}('{$row.itemId}');" title="Descargar Archivo"
+                               class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon">
+                                    <span><i class="fa fa-download"></i>
+                                        <span>{$row.adjunto_nombre|escape:"html"}
+                                        </span>
+                                    </span>
+                            </a>
                         {/if}
+
                         {if $row.descripcion != ""}
                             <br>
                             <small><strong>Descripcion:</strong>
                                 {$row.descripcion}
                             </small>
                         {/if}
-                        {if $row.adjunto_nombre!=""}
+
+                        {if $row.dateUpdate != "" && $row.adjunto_nombre!="" }
                             <br>
-                            <a href="javascript:item_descarga_{$subcontrol}('{$row.itemId}');" title="Descargar">
-                                <i class="flaticon-tool-1"></i> {$row.adjunto_nombre|escape:"html"}
-                            </a>
+                            <span style="color: #af84ff; font-size: 10px;">
+                                Fecha de Actualización: {$row.dateUpdate|date_format:"%d/%m/%Y %H:%M"}
+                            </span>
                         {/if}
 
                     </th>

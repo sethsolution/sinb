@@ -29,7 +29,7 @@ switch($accion){
          * sacamos los datos de la cites
          */
         $item = $subObjItem->get_item_detalle($item_id);
-        //print_struc($item);exit;
+//        print_struc($item);exit;
         $smarty->assign("item",$item);
 
         if ($item["estado_id"]!=1 and $item["estado_id"]!=3){
@@ -41,7 +41,7 @@ switch($accion){
         /**
          * Sacamos los datos de los requisitos
          */
-        //print_struc($item);
+//        print_struc($item);
         $requisito = $subObjItem->get_requisito($item_id,$item["sustitucion_tipo"]);
         $smarty->assign("requisito", $requisito);
         //print_struc($requisito);exit();
