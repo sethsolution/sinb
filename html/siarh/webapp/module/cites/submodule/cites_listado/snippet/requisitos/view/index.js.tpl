@@ -8,7 +8,7 @@
 
         swal({
             title: 'Cargando formulario',
-            text: 'Espere unos segundos hasta que cargue el formulario por favor'+cargando_vista,
+            html: 'Espere unos segundos hasta que cargue el formulario por favor<br>'+cargando_vista,
             showConfirmButton: false,
             allowEnterKey: false,
             allowOutsideClick: false,
