@@ -43,12 +43,10 @@ switch($action) {
      * Creación de JSON
      */
     case 'list':
-
         //$datatable_debug = true;
         $res = $objItem->getItemDatatableRows();
         Core::printJson($res);
         break;
-
     case 'itemUpdate':
         /**
          * Smarty Options
