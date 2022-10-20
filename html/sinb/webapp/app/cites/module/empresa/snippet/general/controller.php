@@ -1,6 +1,6 @@
 <?PHP
-use App\Sinpreh\Module\Programa\Snippet\general\Index;
-use App\Sinpreh\Module\Programa\Snippet\general\Catalog;
+use App\Cites\Module\Programa\Snippet\general\Index;
+use App\Cites\Module\Programa\Snippet\general\Catalog;
 use Core\Core;
 
 $objItem = new Index();

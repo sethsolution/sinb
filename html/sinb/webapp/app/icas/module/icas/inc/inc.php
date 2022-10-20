@@ -11,12 +11,12 @@ use Core\Core;
 /**
  * Verificamos y/o Creamos la carpeta padre
  */
-$appVars["folderParent"] = "sinpreh";
+$appVars["folderParent"] = "icas";
 $appVars["directory"] = $_ENV['DATA_FILE'].$appVars["folderParent"]."/";
 Core::createDirectory($appVars["directory"]);
 /**
  *  Verificamos y/o Creamos la carpeta del módulo
  */
-$appVars["folderModule"] = "programa";
+$appVars["folderModule"] = "icas";
 $appVars["directory"] = $appVars["directory"].$appVars["folderModule"]."/";
 Core::createDirectory($appVars["directory"]);

@@ -1,15 +1,15 @@
-<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+<div id="kt_aside_menu" class="aside-menu my-0" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
     <!--begin::Menu Nav-->
-    <ul class="menu-nav">
+    <ul class="menu-nav  my-0 pt-0">
 
-        {*
+
         <li class="menu-item menu-item-active" aria-haspopup="true">
             <a href="/" class="menu-link">
                 <span class="menu-icon"><i class="la la-angle-double-left icon-xl "></i></span>
                 <span class="menu-text">{#sbmBtnMain#}</span>
             </a>
         </li>
-        *}
+
         <li class="menu-item menu-item-active" aria-haspopup="true">
             <a href="/{$app}" class="menu-link">
                 <span class="menu-icon "><i class="fa fa-home text-primary"></i></span>

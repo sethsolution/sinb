@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\Programa\Snippet\adjunto;
+namespace App\Cites\Module\Programa\Snippet\adjunto;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
