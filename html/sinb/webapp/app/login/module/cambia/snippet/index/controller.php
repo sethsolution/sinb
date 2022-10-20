@@ -15,7 +15,7 @@ switch($accion) {
     default:
         if($_SESSION[auth]){
             $_SESSION["exit"] = "/login";
-            $url = 'Location: /cites';
+            $url = 'Location: /';
             header($url);
             exit;
         }

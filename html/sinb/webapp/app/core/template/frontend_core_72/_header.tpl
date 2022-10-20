@@ -598,10 +598,10 @@
                     <div class="row row-paddingless">
                         <!--begin:Item-->
                         <div class="col-6">
-                            <a href="/cites" class="d-block py-10 px-5 text-center bg-hover-light border-right border-bottom">
+                            <a href="https://siarh.gob.bo/dgbap/" target="_blank" class="d-block py-10 px-5 text-center bg-hover-light border-right border-bottom">
                                 <span class=""><i class="flaticon2-start-up text-success icon-xl-2x"></i></span>
-                                <span class="d-block text-dark-75 font-weight-bold font-size-h6 mt-2 mb-1">CITES</span>
-                                <span class="d-block text-dark-50 font-size-lg">Sistema</span>
+                                <span class="d-block text-dark-75 font-weight-bold font-size-h6 mt-2 mb-1">Biodiversidad</span>
+                                <span class="d-block text-dark-50 font-size-lg">Web</span>
                             </a>
                         </div>
                         <!--end:Item-->

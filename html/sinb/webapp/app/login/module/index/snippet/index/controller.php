@@ -25,7 +25,7 @@ switch($action) {
                     $url = 'Location: /distribuidor';
                     break;
                 default:
-                    $url = 'Location: /cites';
+                    $url = 'Location: /';
                     break;
             }
 
