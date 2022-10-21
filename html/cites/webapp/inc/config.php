@@ -36,7 +36,7 @@ class configuration{
     var $dbUser         = "root";
 	var $dbPassword     = "";
     var $dbDatabase     = "cites";
-	var $prefix     = "seth_";
+	var $prefix     = "";
 	var $idle_timeout	= "60"; //Tiempo de cierre de sesion
     /******************************/
     var $emailSys       = "contacto@seth.com.bo";

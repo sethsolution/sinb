@@ -7,7 +7,8 @@ $dbServer       = "sinb_mysql";
 $dbUser         = "root";
 $dbPassword     = "root";
 $dbDatabase     = "cites_core";
-$prefix     = "seth_"; //Prefijo de base de datos a ser utilizado, si que tuviera
+//$prefix     = ""; //Prefijo de base de datos a ser utilizado, si que tuviera
+$prefix     = "";
 /* se añade el prefijo si tuviera */
 $dbDatabase     = $prefix.$dbDatabase;
 /**
