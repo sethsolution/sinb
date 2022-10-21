@@ -5,7 +5,7 @@
 /**
  * configuramos el Prefijo para la base de datos, de forma global
  */
-$CFG->prefix = "seth_";
+$CFG->prefix = "";
 /**
  * Reconfiguramos las referencias de la base de datos del core
  */

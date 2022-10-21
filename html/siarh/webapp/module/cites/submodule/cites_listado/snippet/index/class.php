@@ -557,16 +557,18 @@ class Index extends Table {
          */
         if($item["code"]==""){
             $codeSha = sha1(time());
-            $code = array(
-                "code" => $codeSha,
-                "id" =>$item_id
-            );
             $rec = array();
-            $rec["code"] = base64_encode(serialize($code));
+            $rec["code"] = $codeSha;
             $where = "itemId=".$item_id;
             $this->dbm->autoExecute($this->tabla["cites"],$rec,"UPDATE",$where);
             $item["code"] = $rec["code"];
         }
+
+        $codeQr = array(
+            "code" => $item["code"],
+            "id" =>$item_id
+        );
+        $item["codeQr"] = base64_encode(serialize($codeQr));
         /**
          * ------------------------------------------------------------------------------------------------------
          */
@@ -577,8 +579,12 @@ class Index extends Table {
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Cites Bolivia - NO OFICIAL');
         $pdf->SetTitle('Permiso / Certificado CITE');
-        $pdf->SetSubject('TCPDF Tutorial');
+        $pdf->SetSubject('CITES CERTIFICADO');
         $pdf->SetKeywords('CITES,Bolivia');
+
+
+
+
 
         // set header and footer fonts
         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -587,7 +593,8 @@ class Index extends Table {
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
         // set margins
-        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        //$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        $pdf->SetMargins(0, 0, 0);
         $pdf->SetHeaderMargin(0);
         $pdf->SetFooterMargin(0);
         // remove default footer
@@ -845,9 +852,11 @@ class Index extends Table {
             echo "<div style='text-align: center;padding: 5px; border: 1px solid #a65656;background: #fff9f9;margin-top: 25px;color:red;font-family: Arial;'><strong>[Error]</strong> Dominio no configurado</div>";
             exit;
         }
-        $urlweb = "https://".$config["dominio"]."/ingreso/registro/verifica?code=".$item["code"];
-
-        $pdf->write2DBarcode($urlweb, 'QRCODE,L', 180, 256, 20, 20, $style, 'B');
+        $urlweb = "https://".$config["dominio"]."/ingreso/verifica?code=".$item["codeQr"];
+        //echo $urlweb;exit;
+        $pdf->setCellPaddings(0,0,0,0);
+        $pdf->SetAutoPageBreak(TRUE, 0);
+        $pdf->write2DBarcode($urlweb, 'QRCODE,L', 184, 270, 20, 20, $style, 'B');
         /**
          * Creación del archivo cites
          */
@@ -865,7 +874,7 @@ class Index extends Table {
     }
 
     function getConfigDomain(){
-        $sql = "SELECT * FROM seth_cites_core.config AS c WHERE c.activo=1 LIMIT 1";
+        $sql = "SELECT * FROM cites_core.config AS c WHERE c.activo=1 LIMIT 1";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
@@ -1019,7 +1028,7 @@ class Index extends Table {
          */
         $sql = "SELECT u.usuario, u.nombre, u.apellido
                 FROM empresa AS e 
-                LEFT JOIN seth_cites_core.usuario AS u ON u.itemId = e.usuario_id
+                LEFT JOIN cites_core.usuario AS u ON u.itemId = e.usuario_id
                 WHERE e.itemId = '".$item["empresa_id"]."'";
         $info = $this->dbm->Execute($sql);
         $usr = $info->fields;
@@ -1121,7 +1130,7 @@ class Index extends Table {
          */
         $sql = "SELECT u.usuario, u.nombre, u.apellido
                 FROM empresa AS e 
-                LEFT JOIN seth_cites_core.usuario AS u ON u.itemId = e.usuario_id
+                LEFT JOIN cites_core.usuario AS u ON u.itemId = e.usuario_id
                 WHERE e.itemId = '".$item["empresa_id"]."'";
         $info = $this->dbm->Execute($sql);
         $usr = $info->fields;

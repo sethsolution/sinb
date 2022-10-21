@@ -558,7 +558,7 @@ class Index extends Table {
          */
         $sql = "SELECT u.usuario, u.nombre, u.apellido
                 FROM empresa AS e 
-                LEFT JOIN seth_cites_core.usuario AS u ON u.itemId = e.usuario_id
+                LEFT JOIN cites_core.usuario AS u ON u.itemId = e.usuario_id
                 WHERE e.itemId = '".$item["empresa_id"]."'";
         $info = $this->dbm->Execute($sql);
         $usr = $info->fields;
@@ -656,7 +656,7 @@ class Index extends Table {
          */
         $sql = "SELECT u.usuario, u.nombre, u.apellido
                 FROM empresa AS e 
-                LEFT JOIN seth_cites_core.usuario AS u ON u.itemId = e.usuario_id
+                LEFT JOIN cites_core.usuario AS u ON u.itemId = e.usuario_id
                 WHERE e.itemId = '".$item["empresa_id"]."'";
         $info = $this->dbm->Execute($sql);
         $usr = $info->fields;

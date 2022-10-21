@@ -65,6 +65,7 @@ class Snippet extends Table
          * Sacamos los datos del item para su verificación
          */
         $item = $this->get_item($itemId, $item_id);
+        
         if($item["estado_id"]==4) {
             $res["res"] = 2;
             $res["msg"] = "Este cite ya se encuentra Validado";
