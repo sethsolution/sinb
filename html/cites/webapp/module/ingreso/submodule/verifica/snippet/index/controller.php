@@ -34,6 +34,7 @@ switch($accion) {
             $smarty->assign("especie" , $especie);
             $smarty->assign("item" , $item);
 
+            print_struc($item);
             print_struc($especie);exit;
         }
 
