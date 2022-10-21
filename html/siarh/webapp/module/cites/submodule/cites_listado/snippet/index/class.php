@@ -556,16 +556,14 @@ class Index extends Table {
          * si no se encuentra generado code en la tabla, se genera
          */
         if($item["code"]==""){
-            echo "Genero code!";
             $codeSha = sha1(time());
             $code = array(
                 "code" => $codeSha,
-                "id" =>25
+                "id" =>$item_id
             );
             $rec = array();
             $rec["code"] = base64_encode(serialize($code));
             $where = "itemId=".$item_id;
-            $this->dbm->debug =true;
             $this->dbm->autoExecute($this->tabla["cites"],$rec,"UPDATE",$where);
             $item["code"] = $rec["code"];
         }
@@ -839,8 +837,17 @@ class Index extends Table {
             //'fgcolor' => array(128,0,0),
             'bgcolor' => false
         );
-        $urlweb = "https://cites.sib.soy/verifica?code=".$item["code"];
-        $pdf->write2DBarcode($urlweb, 'QRCODE,L', 170, 247, 20, 20, $style, 'N');
+        /*
+         * Generamos el url de verificación
+         */
+        $config = $this->getConfigDomain();
+        if( !isset($config["dominio"]) || $config["dominio"]==""){
+            echo "<div style='text-align: center;padding: 5px; border: 1px solid #a65656;background: #fff9f9;margin-top: 25px;color:red;font-family: Arial;'><strong>[Error]</strong> Dominio no configurado</div>";
+            exit;
+        }
+        $urlweb = "https://".$config["dominio"]."/ingreso/registro/verifica?code=".$item["code"];
+
+        $pdf->write2DBarcode($urlweb, 'QRCODE,L', 180, 256, 20, 20, $style, 'B');
         /**
          * Creación del archivo cites
          */
@@ -854,7 +861,15 @@ class Index extends Table {
     $mes = array('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre');
     $mes = $mes[(date('m', strtotime($fecha))*1)-1];
     return $num.' de '.$mes.' de '.$anno;
-}
+
+    }
+
+    function getConfigDomain(){
+        $sql = "SELECT * FROM seth_cites_core.config AS c WHERE c.activo=1 LIMIT 1";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
+    }
 
     /**
      * @param $itemId
