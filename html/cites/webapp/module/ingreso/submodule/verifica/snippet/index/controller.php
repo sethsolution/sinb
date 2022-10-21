@@ -34,7 +34,7 @@ switch($accion) {
             $smarty->assign("especie" , $especie);
             $smarty->assign("item" , $item);
 
-            //print_struc($especie);exit;
+            print_struc($especie);exit;
         }
 
         $smarty->assign("subpage", $webm["index"]);
