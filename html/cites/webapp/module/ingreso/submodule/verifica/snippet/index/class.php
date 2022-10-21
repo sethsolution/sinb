@@ -50,6 +50,7 @@ class Index extends Table {
         LEFT JOIN ".$this->tabla["c_pais"]."  AS p1 ON p1.itemId = p.pais_id
         LEFT JOIN ".$this->tabla["c_tipo_origen"]."  AS o ON o.itemId = p.origen_id
         where p.empresa_id = '" . $this->empresa_id. "' and cites_id='".$item_id."'";
+        print_struc($sql);
         //print_struc($sql);
         $info = $this->dbm->execute($sql);
         $item = $info->getRows();
