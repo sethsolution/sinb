@@ -29,14 +29,16 @@ switch($accion) {
             $cataobj["tipo_documento"] = $objCatalog->get_tipo_documento_options();
             $smarty->assign("cataobj" , $cataobj);
 
-            $dbm->debug = true;
+            //$dbm->debug = true;
             $item_id = $item["itemId"];
             $especie = $objItem->get_especie_list($item_id);
             $smarty->assign("especie" , $especie);
             $smarty->assign("item" , $item);
 
+            /*
             print_struc($item);
             print_struc($especie);exit;
+            */
         }
 
         $smarty->assign("subpage", $webm["index"]);
