@@ -26,5 +26,17 @@ class Cite extends Model
         return $this->belongsTo(Tipodocumento::class,'tipo_documento_id','itemId');
     }
 
+    public function especies(){
+        // Una CITES tiene muchas especies relacionadas
+        return $this->hasMany(Citeespecie::class,'cites_id','itemId');
+    }
+
+    public function importador_pais(){
+        return $this->belongsTo(Pais::class,'importacion_pais_id','itemId');
+    }
+    public function exportador_pais(){
+        return $this->belongsTo(Pais::class,'exportador_pais_id','itemId');
+    }
+
 
 }

@@ -28,13 +28,17 @@ class CiteResource extends JsonResource
                 'name' => $this->importador_nombre,
                 'address' => $this->importador_direccion,
                 'country_id' => $this->importacion_pais_id,
+                'country_name' => $this->importador_pais->nombre,
+                'country_sigla' => $this->importador_pais->sigla,
             ],
             'exportador' => [
                 'name' => $this->importador_nombre,
                 'address' => $this->importador_direccion,
-                'country_id' => $this->importacion_pais_id,
+                'country_id' => $this->exportador_pais_id,
+                'country_name' => $this->exportador_pais->nombre,
+                'country_sigla' => $this->exportador_pais->sigla,
             ],
-
+            'especies' => CiteEspecieResource::collection($this->especies) ,
             'condiciones_especiales' => $this->condiciones_especiales,
             'created_at' => $this->published_at,
         ];
