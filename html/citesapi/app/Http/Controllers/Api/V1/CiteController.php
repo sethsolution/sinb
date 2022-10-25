@@ -29,6 +29,8 @@ class CiteController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Json con datos de la lista de solicitudes CITES",
+     *         @OA\JsonContent()
+     *
      *     ),
      *     @OA\Response(
      *         response="401",
@@ -72,11 +74,12 @@ class CiteController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Se optiene los datos con éxito",
-     *
+     *          @OA\JsonContent()
      *     ),
      *     @OA\Response(
      *         response="404",
      *         description="No se encontraron datos",
+     *         @OA\JsonContent()
      *     ),
      *     @OA\Response(
      *         response="401",

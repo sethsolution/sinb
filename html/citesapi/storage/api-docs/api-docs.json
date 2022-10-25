@@ -131,7 +131,12 @@
                 "operationId": "v1getCitesList",
                 "responses": {
                     "200": {
-                        "description": "Json con datos de la lista de solicitudes CITES"
+                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "401": {
                         "description": "No autentificado",
@@ -180,10 +185,20 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Se optiene los datos con éxito"
+                        "description": "Se optiene los datos con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "404": {
-                        "description": "No se encontraron datos"
+                        "description": "No se encontraron datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "401": {
                         "description": "No autentificado",
