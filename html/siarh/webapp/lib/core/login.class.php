@@ -61,14 +61,20 @@ class Login
                 and u.password='" . $passMd5 . "'
                 and u.activo = 1";
         */
+        $bindVars = array($user,$passMd5);
+        $sql = "select u.* from core_usuario as u
+                where u.usuario=? 
+                and u.password=?
+                and u.activo = 1";
+        /*
         $sql = "select u.* from core_usuario as u
                 where u.usuario='".$user."' 
                 and u.password='" . $passMd5 . "'
                 and u.activo = 1";
-
+        */
         //echo $sql;
         $db->SetFetchMode(ADODB_FETCH_ASSOC);
-        $info = $db->Execute($sql);
+        $info = $db->Execute($sql,$bindVars);
         if ($info->fields["usuario"] == "") {
             $aut = 0;
         } else {
