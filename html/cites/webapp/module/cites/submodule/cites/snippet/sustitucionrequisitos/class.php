@@ -199,7 +199,7 @@ class Snippet extends Table
          * Verificamos si el requisito pertenece al tipo de empresa
          */
         $item = $this->get_item_detalle($item_id);
-        $tipo_id = $item["tipo_id"];
+        $tipo_id = $item["sustitucion_tipo"];
         $sql = "SELECT 
                     a.*
                     , cr.itemId AS tipo_requisito_id

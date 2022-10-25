@@ -69,7 +69,6 @@ switch($accion){
         $sus_detalle = $subObjItem->get_item_id($item_id);
         $item_id = $sus_detalle["itemId"];
 
-
         $item_padre = $subObjItem->get_item_detalle($item_id);
 
         $smarty->assign("item_padre",$item_padre);
@@ -80,7 +79,6 @@ switch($accion){
         }
 
         $item = $subObjItem->get_item($id2,$item_id);
-
 
         if ($item["estado_id"]!=1 and $item["estado_id"]!=3){
             $privFace["editar"]=$privFace["eliminar"]=$privFace["crear"]=0;
