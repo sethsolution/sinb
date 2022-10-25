@@ -127,7 +127,7 @@
                 {/if}
 
             {*----------------------------------------------------------------------------------*}
-                {if $item.tipo_id == 1 and $item_padre.estado_id==2}
+                {if $item_padre.estado_id==2}
                 <div class="m-form__actions m-form__actions--solid m-form__actions--left">
                     {if $item.estado_id ==1 or $item.estado_id ==3}
                         <button type="reset" class="btn btn-success" id="general_submit">
