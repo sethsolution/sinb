@@ -14,7 +14,6 @@ class CiteEspecieResource extends JsonResource
      */
     public function toArray($request)
     {
-        //return parent::toArray($request);
         return [
             'id' => $this->itemId,
             'especie' => [
@@ -23,11 +22,14 @@ class CiteEspecieResource extends JsonResource
                 'commonnames' => $this->especie->nombre_comun
             ],
             'description' => $this->descripcion,
+            'origen_id' => $this->origen_id,
+            /*
             'origen'=>[
                 'id' => $this->origen->itemId,
                 'sigla' => $this->origen->sigla,
                 'name' => $this->origen->nombre,
             ],
+            */
             'cantidad' => $this->cantidad,
             'unidad' => $this->unidad->unidad,
             'country_of_origin' => [
