@@ -21,7 +21,7 @@ class LoginController extends Controller
      *     @OA\Parameter(
      *      name="email",in="query",required=true,
      *      description="Correo electrónico, que actua como usuario",
-     *      @OA\Schema(type="string",default="jada.runte@example.org")
+     *      @OA\Schema(type="string",default="citesbolivia@gmail.com")
      *     ),
      *     @OA\Parameter(
      *      name="password",in="query",required=true,
@@ -31,7 +31,7 @@ class LoginController extends Controller
      *     @OA\Parameter(
      *      name="name",in="query",required=true,
      *      description="Nombre del dispositivo de donde se esta conectando, por ejemplo: iphone10,firefox-win10,etc.",
-     *      @OA\Schema(type="string",default="iphone-x10")
+     *      @OA\Schema(type="string",default="webapp-001")
      *     ),
      *     @OA\Response(
      *         response=200,

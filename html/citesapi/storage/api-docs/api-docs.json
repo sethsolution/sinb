@@ -1,0 +1,235 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Manejo de información mediante el uso de API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login de Usuarios y generación de token",
+                "description": "Ingreso al sistema de información mediante: email, contraseña y nombre del dispositivo. Si los datos son correctos, el sistema de devolvera un token para ser usado.",
+                "operationId": "authLogin",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico, que actua como usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "citesbolivia@gmail.com"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Contraseña proporcionada por el administrador",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "password"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nombre del dispositivo de donde se esta conectando, por ejemplo: iphone10,firefox-win10,etc.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "webapp-001"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se autentifico con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "885|4lzLzFRZwxoEVVBJYr8FggntJCWBVBUPJaOgqEXIxxx"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "entidad no procesable, Campos necesarios no enviados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "The email field is required."
+                                                    },
+                                                    "password": {
+                                                        "type": "string",
+                                                        "example": "The password field is required."
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cites/": {
+            "get": {
+                "tags": [
+                    "V1"
+                ],
+                "summary": "Lista de solicitudes CITES generadas",
+                "description": "Devuelve la lista de los datos de todas las solicitudes cites generadas en el sistema",
+                "operationId": "v1getCitesList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de solicitudes CITES"
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/cites/{citesId}": {
+            "get": {
+                "tags": [
+                    "V1"
+                ],
+                "summary": "Buscar una solicitud CITES por ID",
+                "description": "Devuelve la información de una ficha de una solicitud CITES específico",
+                "operationId": "v1getCites",
+                "parameters": [
+                    {
+                        "name": "citesId",
+                        "in": "path",
+                        "description": "ID de la solicitud CITES",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se optiene los datos con éxito"
+                    },
+                    "404": {
+                        "description": "No se encontraron datos"
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Authorization token optienes en 'login' - Auth: /api/login ",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth endpoints"
+        },
+        {
+            "name": "V1",
+            "description": "Funcionalidad para acceder a la información de solicitudes CITES"
+        }
+    ]
+}
