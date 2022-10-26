@@ -116,7 +116,7 @@
                             {/literal}{else}{literal}
                             bt_text = "Ver Datos";
                             {/literal}{/if}{literal}
-                            boton += '<a href="javascript:item_update_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-info" title="'+bt_text+'">'+bt_text+'</a>';
+                            boton += '<a href="javascript:item_update_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-success" title="'+bt_text+'">'+bt_text+'</a>';
                             boton += '<div>';
                             return boton;
                         },
