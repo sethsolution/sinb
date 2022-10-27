@@ -195,7 +195,7 @@
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "100px",
                         className: 'noExport',
                         "searchable": false,
@@ -228,7 +228,8 @@
                         //searchable: false
                     },
                     {
-                        targets: [4],
+                        targets: [0],
+                        width: "200px",
                         render: function(data, type, full, meta) {
                             var dato ="";
                             dato += "<strong>Cientifico: </strong>" + data+ "<br>";
@@ -245,13 +246,13 @@
                      * Cantidad y Unidad
                      */
                     {
-                        targets: [7],
+                        targets: [6],
                         orderable: false,
                         visible: false,
                         //searchable: false
                     },
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var dato ="";
                             dato += "<strong>"+data+ "</strong> ("+full.unidad_id+")";
@@ -259,7 +260,7 @@
                         },
                     },
                     {
-                        targets: [8],
+                        targets: [7],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -277,7 +278,7 @@
                         },
                     },
                     {
-                        targets: [9],
+                        targets: [8],
                         render: function(data, type, full, meta) {
                             console.log(full.Actions);
                             var status = {

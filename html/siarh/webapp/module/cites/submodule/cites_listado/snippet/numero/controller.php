@@ -31,7 +31,7 @@ switch($accion){
         /**
          * Sacamos los datos de la grilla
          */
-        $grill_list = $objItem->get_grilla_list_sbm("archivo");
+        $grill_list = $objItem->get_grilla_list_sbm("archivo", "right");
         $smarty->assign("grill_list", $grill_list);
         $smarty->assign("privFace",$privFace);
         $smarty->assign("subpage",$webm["sc_index"]);

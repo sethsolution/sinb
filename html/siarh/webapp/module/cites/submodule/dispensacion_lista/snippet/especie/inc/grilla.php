@@ -24,6 +24,24 @@ $grilla_tablas_adicionales = array();
 /**
  * Item de las lista que se tiene desplegar
  */
+$field_name = "especie_id";
+$field_alias = "especie";
+$field_activo = 1;
+$grilla_items[]=array(
+    "campo" => "nombre" // nombre del campo pero de la tabla que relaciona
+,   "field"=> $field_name
+,   "label"=>"7/8 Nombre Científico y Nombre Común"
+,   "as" => $field_name
+,   "tabla_alias"=> $field_alias
+,   "activo"=> $field_activo
+);
+$grilla_tablas[] = array(
+    "tabla" => $CFGm->tabla["c_especie"]
+,    "alias"=> $field_alias
+,   "campo_id"=>"itemId"
+,   "relacion_id"=>$field_name
+,   "activo"=> $field_activo
+);
 //1-------------------------------------------------------------
 $field_name = "especie_id";
 $grilla_items[]=array(
@@ -62,24 +80,7 @@ $grilla_items[]=array(
 ,   "activo"=> 1
 );
 //3-------------------------------------------------------------
-$field_name = "especie_id";
-$field_alias = "especie";
-$field_activo = 1;
-$grilla_items[]=array(
-    "campo" => "nombre" // nombre del campo pero de la tabla que relaciona
-,   "field"=> $field_name
-,   "label"=>"7/8 Nombre Científico y Nombre Común"
-,   "as" => $field_name
-,   "tabla_alias"=> $field_alias
-,   "activo"=> $field_activo
-);
-        $grilla_tablas[] = array(
-            "tabla" => $CFGm->tabla["c_especie"]
-        ,    "alias"=> $field_alias
-        ,   "campo_id"=>"itemId"
-        ,   "relacion_id"=>$field_name
-        ,   "activo"=> $field_activo
-        );
+
 //5-------------------------------------------------------------
 $field_name = "descripcion";
 $grilla_items[]=array(

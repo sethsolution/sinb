@@ -195,11 +195,11 @@
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
-                        width: "100px",
+                        targets: -1,
+                        width: "90px",
                         className: 'noExport',
-                        "searchable": false,
-                        //orderable: false,
+                        searchable: false,
+                        orderable: false,
                         render: function(data, type, full, meta) {
                             var boton = '';
 
@@ -218,7 +218,7 @@
 
 
                     {
-                        targets: [12],
+                        targets: [11],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -236,7 +236,7 @@
                         },
                     },
                     {
-                        targets: [13],
+                        targets: [12],
                         render: function(data, type, full, meta) {
                             //console.log(full.Actions);
                             var status = {
@@ -272,7 +272,8 @@
                         //searchable: false
                     },
                     {
-                        targets: [4],
+                        targets: [0],
+                        width: "120px",
                         render: function(data, type, full, meta) {
                             var dato ="";
 
@@ -291,13 +292,13 @@
                      * Apéndice y Origen
                      */
                     {
-                        targets: [7,8],
+                        targets: [6,7],
                         orderable: false,
                         visible: false,
                         //searchable: false
                     },
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var dato ="";
                             dato += data+ " / "+ full.origen_id_sigla;
@@ -308,17 +309,27 @@
                      * Cantidad y Unidad
                      */
                     {
-                        targets: [10],
+                        targets: [9],
                         orderable: false,
                         visible: false,
                         //searchable: false
                     },
                     {
-                        targets: [9],
+                        targets: [8],
                         render: function(data, type, full, meta) {
                             var dato ="";
                             dato += "<strong>"+data+ "</strong> ("+full.unidad_id+")";
                             return dato;
+                        },
+                    },
+
+                    {
+                        targets: [-2,-3],
+                        searchable: false,
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
                     

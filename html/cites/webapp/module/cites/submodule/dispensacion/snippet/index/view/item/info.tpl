@@ -86,7 +86,7 @@
         <div class="row m-row--no-padding align-items-center">
             <div class="col">
                 <h4 class="m-widget1__title ">Total a Depositar</h4>
-                <span class="m-widget1__desc">El mónto que tiene que depositar</span>
+                <span class="m-widget1__desc">El monto que tiene que depositar</span>
             </div>
             <div class="col m--align-right">
                 <span class="m-widget1__number m--font-success" id="resumen_depositar">0</span>
@@ -97,8 +97,8 @@
     <div class="m-widget1__item resumen_global">
         <div class="row m-row--no-padding align-items-center">
             <div class="col">
-                <h4 class="m-widget1__title">Deposito registrado</h4>
-                <span class="m-widget1__desc">Depositos registrados</span>
+                <h4 class="m-widget1__title">Depósito registrado</h4>
+                <span class="m-widget1__desc">Depósitos registrados</span>
             </div>
             <div class="col m--align-right">
                 <span class="m-widget1__number m--font-brand" id="resumen_depositos">0</span>

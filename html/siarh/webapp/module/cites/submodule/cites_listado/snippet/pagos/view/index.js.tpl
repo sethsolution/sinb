@@ -149,7 +149,7 @@
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "100px",
                         className: 'noExport',
                         orderable: false,
@@ -187,7 +187,7 @@
                     },
                     */
                     {
-                        targets: [5],
+                        targets: [4],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -205,7 +205,7 @@
                         },
                     },
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             //console.log(full.Actions);
                             var status = {
@@ -231,21 +231,23 @@
                         },
                     },
                     {
-                        targets: [2],
+                        targets: [1],
                         className:"text-right",
                         render: function(data,type,full,meta){
                             return '<span style="color:#27780f;" class="m--font-bold">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' </span>';
                         },
                     },
-                    /*{
-                        targets: [ 1 ],
-                        render: function(data,type,full,meta){
-                            return '<i class="' + data + ' m--font-brand icono_lista"></i>';
-                        },
-                    },*/
+                    {
+                        targets: [ 0 ],
+                        width: "100px",
+                    },
+                    {
+                        targets: [ 2 ],
+                        width: "200px",
+                    },
 
                     {
-                        targets: [4],
+                        targets: [3],
                         render: function(data,type,full,meta){
                             dato = '<a href="javascript:item_descarga_{/literal}{$subcontrol}{literal}(\''+full.Actions+'\');"  title="Descargar">'+
                                 '<i class="flaticon-tool-1"></i> '+ data +
