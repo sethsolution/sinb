@@ -21,7 +21,15 @@
                 <div class="m-portlet__head-progress">
                     <!-- here can place a progress bar-->
                 </div>
-                <div class="m-portlet__head-wrapper">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="la la-thumb-tack m--font-success"></i></span>
+                        <h3 class="m-portlet__head-text">
+                            DISPENSACIÓN
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
                     <div class="m-portlet__head-caption">
 
                         <a href="/{$miga.modulo.carpeta}/{$miga.smodulo.carpeta}/"

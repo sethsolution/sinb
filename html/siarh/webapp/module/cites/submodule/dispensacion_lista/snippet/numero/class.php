@@ -42,7 +42,7 @@ class Snippet extends Table
         /**
          * Resultado de la consulta enviada
          */
-        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having);
+        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having, "right");
         $resultado["recordsTotal"]=$resultado["recordsFiltered"];
 
         /*

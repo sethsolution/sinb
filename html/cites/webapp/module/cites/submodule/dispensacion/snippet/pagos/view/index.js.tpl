@@ -142,7 +142,7 @@
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "100px",
                         className: 'noExport',
                         orderable: false,
@@ -160,7 +160,7 @@
                             }
                             if( full.estado_id == '1'){
                                 {if $privFace.editar ==1 and $privFace.eliminar == 1}{literal}
-                                boton += '<a href="javascript:item_delete_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-danger" title="Eliminar">Eliminar</a>';
+                                boton += '<a href="javascript:item_delete_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-danger m-btn m-btn--icon" title="Eliminar"><i class="flaticon-delete-1"></i></a>';
 
                                 {/literal}{/if}{literal}
                             }
@@ -170,7 +170,7 @@
                         },
                     },
                     {
-                        targets: [5],
+                        targets: [4],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -191,7 +191,7 @@
                         },
                     },
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -209,7 +209,7 @@
                         },
                     },
                     {
-                        targets: [7],
+                        targets: [6],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -233,14 +233,14 @@
                         },
                     },
                     {
-                        targets: [3],
+                        targets: [2],
                         className:"text-right",
                         render: function(data,type,full,meta){
                             return '<span style="color:#27780f;" class="m--font-bold">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' </span>';
                         },
                     },
                     {
-                        targets: [4],
+                        targets: [3],
                         render: function(data,type,full,meta){
                             dato = '<a href="javascript:item_descarga_{/literal}{$subcontrol}{literal}(\''+full.Actions+'\');"  title="Descargar">'+
                                 '<i class="flaticon-tool-1"></i> '+ data +
