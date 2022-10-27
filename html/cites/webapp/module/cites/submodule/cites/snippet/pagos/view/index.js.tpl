@@ -142,7 +142,7 @@
                 ],
                 columnDefs: [
                     {
-                        targets: 0,
+                        targets: -1,
                         width: "100px",
                         className: 'noExport',
                         orderable: false,
@@ -154,7 +154,7 @@
                             boton += '<div class="btn-group btn-group-sm " role="group" aria-label="Default button group">';
                             {/literal}{if $item_padre.estado_id == 1 or $item_padre.estado_id == 3}{literal}
                             if( full.estado_id == '1' || full.estado_id == '3' ){
-                                   boton += '<a href="javascript:item_update_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-success" title="Modificar">{/literal}{if $privFace.editar == 1}Editar{else}Ver Datos{/if}{literal}</a>';
+                                   boton += '<a href="javascript:item_update_{/literal}{$subcontrol}{literal}(\''+data+'\');" class="btn btn-outline-info" title="Modificar">{/literal}{if $privFace.editar == 1}Editar{else}Ver Datos{/if}{literal}</a>';
                                     {/literal}
                             }
                             if( full.estado_id == '1'){
@@ -168,7 +168,7 @@
                         },
                     },
                     {
-                        targets: [5],
+                        targets: [4],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': 'SI', 'state': 'success'},
@@ -189,7 +189,7 @@
                         },
                     },
                     {
-                        targets: [6],
+                        targets: [5],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -207,7 +207,7 @@
                         },
                     },
                     {
-                        targets: [7],
+                        targets: [6],
                         render: function(data, type, full, meta) {
                             var status = {
                                 1: {'title': '', 'state': 'secondary'},
@@ -232,7 +232,7 @@
                         },
                     },
                     {
-                        targets: [2],
+                        targets: [1],
                         className:"text-right",
                         render: function(data,type,full,meta){
                             return '<span style="color:#27780f;" class="m--font-bold">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' </span>';
@@ -246,7 +246,7 @@
                     },*/
 
                     {
-                        targets: [4],
+                        targets: [3],
                         render: function(data,type,full,meta){
                             dato = '<a href="javascript:item_descarga_{/literal}{$subcontrol}{literal}(\''+full.Actions+'\');"  title="Descargar">'+
                                 '<i class="flaticon-tool-1"></i> '+ data +

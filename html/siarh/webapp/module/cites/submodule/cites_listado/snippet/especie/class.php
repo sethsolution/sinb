@@ -42,7 +42,7 @@ class Snippet extends Table
         /**
          * Resultado de la consulta enviada
          */
-        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having);
+        $resultado = $this->get_grilla_datatable_simple($db,$grilla,$table, $primaryKey, $extraWhere, $groupBy, $having, "right");
         $resultado["recordsTotal"]=$resultado["recordsFiltered"];
         foreach ($resultado['data'] as $itemId => $valor) {
             //$resultado['data'][$itemId]['fecha_pago'] = date_format(date_create($valor['fecha_pago']),"d/m/Y");
