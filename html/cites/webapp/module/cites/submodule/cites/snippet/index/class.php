@@ -154,7 +154,7 @@ class Index extends Table {
          * borramos  el dato principal
          */
         $campo_id="itemId";
-        $where =  " empresa_id = '" . $this->empresa_id;
+        $where =  " empresa_id = '" . $this->empresa_id."'";
         $res = $this->item_delete_sbm($id,$campo_id,$this->tabla["cites"], $where);
         return $res;
     }

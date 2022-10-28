@@ -148,7 +148,7 @@ class Index extends Table {
          * borramos a los hijos antes de borrar al principal
          */
         $campo_id="itemId";
-        $where =  " empresa_id = '" . $this->empresa_id;
+        $where =  " empresa_id = '" . $this->empresa_id."'";
         $res = $this->item_delete_sbm($id,$campo_id,$this->tabla["dispensacion"], $where);
         return $res;
     }
