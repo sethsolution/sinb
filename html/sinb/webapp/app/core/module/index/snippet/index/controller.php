@@ -15,8 +15,8 @@ switch($action) {
          * Forzamos a que el login se realice desde el modulo de logín
          */
         if(!$_SESSION['auth']){
-            $_SESSION["exit"] = "/web";
-            $url = 'Location: /web';
+            $_SESSION["exit"] = "/web/geovisor";
+            $url = 'Location: /web/geovisor';
             header($url);
             exit;
         }
