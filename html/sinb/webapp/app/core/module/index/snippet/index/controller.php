@@ -15,8 +15,8 @@ switch($action) {
          * Forzamos a que el login se realice desde el modulo de logín
          */
         if(!$_SESSION['auth']){
-            $_SESSION["exit"] = "/login";
-            $url = 'Location: /login';
+            $_SESSION["exit"] = "/web";
+            $url = 'Location: /web';
             header($url);
             exit;
         }
