@@ -163,9 +163,10 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 ext: 'png'
             });
             var Stadia_AlidadeSmooth =  L.tileLayer(
-                'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+                'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key={apikey}', {
                     maxZoom: 20,
-                    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+                    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>',
+                    apikey:"{/literal}{$stadiamaps_key}{literal}",
                 }).addTo(map);
 
             mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
