@@ -875,6 +875,24 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             //controlLayers._map = map;
             //var panelLayers = controlLayers.onAdd(map);
             //$('#vista_control_capas').append(panelLayers)
+
+
+
+            L.Control.Watermark=L.Control.extend({
+                onAdd:function(map){
+                    var img = L.DomUtil.create('img');
+                    img.src = '/images/logo/sinb-logo.png';
+                    img.style.width = '150px';
+                    return img;
+                },
+                onRemove:function(map){},
+            });
+            L.control.watermark = function(opts){
+                return new L.Control.Watermark(opts);
+            }
+            L.control.watermark({position:'bottomleft'}).addTo(map);
+
+
         };
 
 
@@ -1030,6 +1048,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
         var handle_components = function(){
             coreUyuni.setComponents();
+            $("#kt_subheader").addClass('d-none');
         };
 
         return {

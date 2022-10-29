@@ -4,8 +4,8 @@
     <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
-            <span class="text-muted font-weight-bold mr-2">2021-2022 ©
-                <a href="https://www.mmaya.gob.bo" target="_blank" class="text-dark-50 text-hover-primary">MMAyA</a>
+            <span class="text-muted font-weight-bold mr-2">2022-2023 ©
+                <a href="https://www.mmaya.gob.bo" target="_blank" class="text-dark-50 text-hover-primary">MMAyA / SINB</a>
                 - </span>
             <a href="http://seth.com.bo" target="_blank" class="text-dark-50 text-hover-primary">SETH Solution</a>
             <span class="text-muted font-weight-bold mr-2">| Uyuni v.{$version}</span>

@@ -5,7 +5,7 @@ use Core\Core;
 
 $objItem = new Index();
 $objCatalog = new Catalog();
-$templateModule = $frontend["baseGeo"];
+$templateModule = $frontend["baseGeo2"];
 
 switch($action) {
     default:
