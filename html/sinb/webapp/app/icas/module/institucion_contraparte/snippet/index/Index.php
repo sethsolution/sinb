@@ -6,12 +6,14 @@ class Index extends CoreResources {
     var $objTable = "institucion";
     var $folder = "institucion_contraparte";
     var $fkey_field = "tipo_id";
+    var $extraWhere = "";
     function __construct()
     {
         /**
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
+        $this->extraWhere = $this->fkey_field."='2' " ;
     }
     function getItem($idItem){
 
@@ -49,7 +51,7 @@ class Index extends CoreResources {
         /**
          * Additional configuration
          */
-        $extraWhere = $this->fkey_field."='2' " ;
+        $extraWhere = $this->extraWhere;
         $groupBy = "";
         $having = "";
         /**
@@ -78,7 +80,8 @@ class Index extends CoreResources {
      */
     function deleteData($id){
         $field_id="id";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable]);
+        $where = $this->extraWhere;
+        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable], $where);
         return $res;
     }
 

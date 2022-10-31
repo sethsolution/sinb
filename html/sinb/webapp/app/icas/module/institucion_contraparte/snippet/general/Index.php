@@ -62,10 +62,7 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new"){
-                    //$dataResult["active"] = 1;
-                }
-                if ($dataResult["tipo_id"]=="" or $dataResult["tipo_id"]==0){
-                    $dataResult["norma_id"] = 2;
+                    $dataResult["tipo_id"] = 2;
                 }
 
                 break;

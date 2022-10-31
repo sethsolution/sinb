@@ -27,6 +27,8 @@ $db_table[] = Core::getTableConfig("cites_apendice");
 $db_table[] = Core::getTableConfig("icas_area");
 $db_table[] = Core::getTableConfig("icas_estado");
 $db_table[] = Core::getTableConfig("icas_institucion_tipo");
+$db_table[] = Core::getTableConfig("icas_fuente_financiamiento");
+
 $db_table[] = Core::getTableConfig("pais");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);

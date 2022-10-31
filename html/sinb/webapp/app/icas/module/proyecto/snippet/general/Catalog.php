@@ -20,9 +20,9 @@ class Catalog extends CoreResources{
             ,"icas_estado","","nombre",""
             ,"nombre","","","");
 
-//        $this->addCatalogList($this->table["moneda"]
-//            ,"moneda","","nombre",""
-//            ,"nombre","","","");
+        $this->addCatalogList($this->table["icas_fuente_financiamiento"]
+            ,"financiamiento","","nombre",""
+            ,"id","","","");
     }
 
 }

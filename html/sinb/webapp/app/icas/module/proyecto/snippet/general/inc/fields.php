@@ -18,6 +18,14 @@ $field_item["codigo"]=array("type"=>"text");
 $field_item["area_id"]=array("type"=>"text");
 $field_item["estado_id"]=array("type"=>"text");
 
+$field_item["fuente_financiamiento_id"]=array("type"=>"text");
+$field_item["fuente_financiamiento_otro"]=array("type"=>"text");
+
+$field_item["antecedentes_justificacion"]=array("type"=>"text");
+$field_item["objetivo_general"]=array("type"=>"text");
+$field_item["objetivos_especificos"]=array("type"=>"text");
+$field_item["resultados_esperados"]=array("type"=>"text");
+
 $field_item["fecha_inicio"]=array("type"=>"date_01");
 $field_item["fecha_conclusion"]=array("type"=>"date_01");
 

@@ -39,8 +39,8 @@
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[direccion]" value="{$item.direccion|escape:"html"}"
-{*                               required*}
-{*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
                                minlength="3"
                                data-fv-string-length___message="{#field_length_direccion#}"
                         >
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{#field_telefono#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_telefono#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[telefono]" value="{$item.telefono|escape:"html"}"
@@ -64,7 +64,7 @@
                     <span class="form-text text-black-50">{#field_msg_telefono#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_fax#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_fax#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[fax]" value="{$item.fax|escape:"html"}"
@@ -78,7 +78,7 @@
                     <span class="form-text text-black-50">{#field_msg_fax#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_celular#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_celular#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[celular]" value="{$item.celular|escape:"html"}"
@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <label>{#field_email#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_email#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[email]" value="{$item.email|escape:"html"}"
@@ -107,7 +107,7 @@
                     <span class="form-text text-black-50">{#field_msg_email#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_web#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_web#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[web]" value="{$item.web|escape:"html"}"
@@ -120,8 +120,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_web#}</span>
                 </div>
-
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <label>{#field_pais_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -131,47 +130,28 @@
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.pais selected=$item.pais_id}
+                            {html_options options=$cataobj.pais  selected=$item.pais_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_pais_id#}</span>
                 </div>
-                <div class="col-lg-4">
-                    <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[departamento_id]" id="type_select_estado"
-                                data-placeholder="{#field_Holder_departamento_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.departamento selected=$item.departamento_id}
-                        </select>
-                    </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
-                </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <label>{#field_ciudad#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[ciudad]" value="{$item.ciudad|escape:"html"}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
                                minlength="3"
                                data-fv-string-length___message="{#field_length_ciudad#}"
                         >
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
-                    <span class="form-text text-primary">{#field_msg_ciudad#}</span>
+                    <span class="form-text text-black-50">{#field_msg_ciudad#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_responsable#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_responsable#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[responsable]" value="{$item.responsable|escape:"html"}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
                                minlength="3"
                                data-fv-string-length___message="{#field_length_responsable#}"
                         >
@@ -180,7 +160,7 @@
                     <span class="form-text text-black-50">{#field_msg_responsable#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_responsable_operativo#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_responsable_operativo#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[responsable_operativo]" value="{$item.responsable_operativo|escape:"html"}"

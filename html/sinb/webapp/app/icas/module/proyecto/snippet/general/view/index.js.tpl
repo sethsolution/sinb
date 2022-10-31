@@ -60,7 +60,10 @@
                 /**
                  * Copiamos los datos de summerNote a una variable
                  */
-                $('#descripcion_input').val($('#descripcion').summernote('code'));
+                $('#a_j_input').val($('#antecedentes_justificacion').summernote('code'));
+                $('#general_input').val($('#objetivo_general').summernote('code'));
+                $('#especifico_input').val($('#objetivos_especificos').summernote('code'));
+                $('#resultado_input').val($('#resultados_esperados').summernote('code'));
 
                 formv.validate().then(function(status) {
                     if(status === 'Valid'){
