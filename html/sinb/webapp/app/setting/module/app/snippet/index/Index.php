@@ -95,15 +95,13 @@ class Index extends CoreResources {
                 col.table_schema, col.table_name, col.column_name, col.data_type, col.character_maximum_length, col.is_nullable,
                 col.column_default, pgd.description
                 from pg_catalog.pg_statio_all_tables as st
-                    inner join pg_catalog.pg_description pgd on (
-                        pgd.objoid = st.relid
-                    )
-                    inner join information_schema.columns col on (
-                        pgd.objsubid   = col.ordinal_position and
-                        col.table_schema = st.schemaname and
-                        col.table_name   = st.relname
-                    )
-                where col.table_schema = '" . $schema . "' and col.table_name = '" . $table["table_name"] . "'";
+                inner join information_schema.columns col
+                on col.table_schema = st.schemaname
+                and col.table_name = st.relname
+                left join pg_catalog.pg_description pgd
+                on pgd.objoid=st.relid
+                and pgd.objsubid=col.ordinal_position
+                where  col.table_schema = '".$schema."' and st.relname = '". $table["table_name"]."'";
             $item = $this->dbm->execute($sql);
             $item = $item->GetRows();
 
@@ -111,7 +109,7 @@ class Index extends CoreResources {
             echo "<tr><td>Table Comments</td><td colspan=\"6\">" . $table["obj_description"] . "</td></tr>";
             echo "<tr><td colspan=\"7\">Columnas</td></tr>
                 <tr>
-                <th class='label-nombre'><Nombre></Nombre></th>
+                <th class='label-nombre'>Nombre</th>
                 <th class='label-tipodato'>Tipo de dato</th>
                 <th class='label-gen'>Not Null</th>
                 <th class='label-gen'>PK</th>
@@ -119,20 +117,51 @@ class Index extends CoreResources {
                 <th class='label-gen'>Default</th>
                 <th class='label-comentario'>Comentario</th>
                 </tr>";
+
+            //Obtener lista de los FKs
+            $sqlFK = "select
+                           string_agg(kcu.column_name, ', ') as fk_columns,
+                           kcu.constraint_name
+                    from information_schema.table_constraints tco
+                    join information_schema.key_column_usage kcu
+                              on tco.constraint_schema = kcu.constraint_schema
+                              and tco.constraint_name = kcu.constraint_name
+                    join information_schema.referential_constraints rco
+                              on tco.constraint_schema = rco.constraint_schema
+                              and tco.constraint_name = rco.constraint_name
+                    join information_schema.table_constraints rel_tco
+                              on rco.unique_constraint_schema = rel_tco.constraint_schema
+                              and rco.unique_constraint_name = rel_tco.constraint_name
+                    where tco.constraint_type = 'FOREIGN KEY' AND kcu.table_schema='".$schema."' AND kcu.table_name='". $table["table_name"]."'
+                    group by kcu.table_schema,
+                             kcu.table_name,
+                             rel_tco.table_name,
+                             rel_tco.table_schema,
+                             kcu.constraint_name
+                    order by kcu.table_schema,
+                             kcu.table_name";
+            $FKs = $this->dbm->execute($sqlFK);
+            $FKs = $FKs->GetRows();
+//            print_struc($FKs);exit;
+
             foreach ($item as $column) {
 //                print_struc($column["column_name"]);exit;
-                    $PK="";
+                    $PK="No";
+                    $FK="No";
                 if ($column["column_name"]==="id") {
                     $PK= "Yes";
-                } else {
-                    $PK= "No";
+                }
+                foreach ($FKs as $fk){
+                    if($fk["fk_columns"]===$column["column_name"]){
+                        $FK="Yes";
+                    }
                 }
                 echo "<tr>
                             <td>" . $column["column_name"] . "</td>
                             <td>" . $column["data_type"] . "</td>
                             <td>" . $column["is_nullable"] . "</td>
                             <td>".$PK."</td>
-                            <td></td>
+                            <td>".$FK."</td>
                             <td>" . $column["column_default"] . "</td>
                             <td>" . $column["description"] . "</td>
                         </tr>";
