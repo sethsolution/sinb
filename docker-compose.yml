@@ -1,5 +1,28 @@
 version: '3'
 services:
+    geoserver:
+        image: geonode/geoserver:${GEO_VERSION}
+        container_name: ${GEO_NAME}
+        restart: always
+        env_file:
+            - ".env"
+        links:
+            - postgresdb
+        ports:
+          - "18080:8080"
+        volumes:
+          #- /var/run/docker.sock:/var/run/docker.sock
+          - "./data/geoserver/data:/geoserver_data/data"
+          - "//var/run/docker.sock:/var/run/docker.sock"
+          - "./apps/tomcat/manager/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml"
+          - "./apps/tomcat/conf/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml"
+          - "./apps/tomcat/conf/context.xml:/usr/local/tomcat/conf/context.xml"
+        environment:
+        #  - DOCKERHOST
+        #  - GEONODE_HOST_IP
+        #  - PUBLIC_PORT=80
+        #  - DOCKER_HOST_IP
+          - DJANGO_URL=http://localhost/
     mysqldb:
         image: mysql:${MYSQL_VERSION}
         container_name: ${MYSQL_HOST}
@@ -49,7 +72,8 @@ services:
         tty: true
         environment:
             - NGINX_HOST=${NGINX_HOST}
-        command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+            - GEO_NAME=${GEO_NAME}
+        command: /bin/sh -c "envsubst '$$NGINX_HOST,$$GEO_NAME' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
         restart: always
         depends_on:
             - php
