@@ -84,7 +84,8 @@ switch($action) {
 
 
     case 'getDictionary':
-        $objItem->getDictonary($schema);
+
+        $objItem->getDictonary($_REQUEST["schema"]);
         break;
 
 }
