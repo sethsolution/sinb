@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.panel-layers/dist/leaflet-panel-layers.min.css" />
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.minimap/dist/Control.MiniMap.min.css" />
 
-
+<link rel="stylesheet" type="text/css" href="/js/geo/leaflet.wms-legend/leaflet.wmslegend.css" />
 
 {literal}
     <style>

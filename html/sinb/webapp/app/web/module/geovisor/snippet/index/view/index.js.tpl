@@ -25,6 +25,9 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 <script src="/js/geo/leaflet.minimap/dist/Control.MiniMap.min.js"></script>
 <script src="/js/geo/leaflet.control.custom/Leaflet.Control.Custom.js"></script>
 
+
+<script src="/js/geo/leaflet.wms-legend/leaflet.wmslegend.js"></script>
+
 <script src="/js/chart.js/Chart.min.js"></script>
 
 
@@ -303,6 +306,9 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 continuousWorld : true,
                 opacity: 0.8
             });
+
+            //L.wmsLegend(geoserver_sig01 + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=simb:deforestacion','test',"bottomleft");
+
             var view_bosques = L.tileLayer.wms(geoserver_sig01+'?', {
                 layers: 'view_bosques',
                 format: 'image/png',
@@ -901,32 +907,24 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             var out = [];
             if (f.properties){
                 let info = "";
-                info += "<h2 class='titulo'>Cod Proy: "+f.properties["cod_proy"]+"</h2>";
-                info += "<strong>Proyecto:</strong> <BR>"+ f.properties["nombre"]+"<strong> SISIN:</strong>"+f.properties["sisin"]+" ";
+                info += "<h2 class='titulo'>Foco de calor</h2>";
+                info += "<strong>Fecha y Hora:</strong> <BR>"+ f.properties["fecha_hora"]+" ";
                 out.push(info);
 
-                out.push("<strong>Departamento:</strong> "+ f.properties["departamento"]);
-                out.push("<strong>Municipio:</strong> "+ f.properties["municipio"]);
-                out.push("<strong>Responsable:</strong> "+ f.properties["responsable"]);
-                out.push("<strong>Observaciones:</strong> "+ f.properties["observaciones"]);
-                out.push("<strong>Fecha Inicio:</strong> "+ f.properties["fecha_inicio"]);
-                out.push("<strong>Fecha Fin Inicial:</strong> "+ f.properties["fecha_fin_inicial"]);
-                out.push("<strong>Fecha Conclusion:</strong> "+ f.properties["fecha_conclusion"]);
+                out.push("<strong>Departamento:</strong> "+ f.properties["dep"]);
+                out.push("<strong>Provincia:</strong> "+ f.properties["pro"]);
+                out.push("<strong>Municipio:</strong> "+ f.properties["mun"]);
+
 
                 info ="";
-                info +="<div class='titulo2'>Datos Financieros </div>";
-                info +="<span class=''> Ejecutado Total: "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["ejecutado_total"])+"</span><br>";
-                //info +="<span class=''>Tensión de servicio (V): "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["tension"])+"</span>";
-                //info +="<div class=''>Tipo de conexión del suministro: "+ f.properties["tipo_conexion"]+"</div>";
+                info +="<div class='titulo2'>Satélite </div>";
+                info +="<span class=''> Satélite: "+ f.properties["sat"]+"</span>";
 
-                info +="<div class='titulo2'>Avance </div>";
-                info +="<span class=''>Avance Financiero: "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["avance_financiero"])+"</span><br>";
-                info +="<span class=''>Avance Físico: "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["avance_fisico"])+"</span><br>";
-                //info +="<div class=''>Tipo de fuente de generación: "+ f.properties["tipo_fuente_generacion"]+"</div>";
+                info +="<div class='titulo2'>Otros </div>";
+                info +="<span class=''>"+ f.properties["tbos"]+"</span>";
                 out.push(info);
 
-                boton ="";
-                boton += "<a style='margin-bottom: 5px;' href=\"javascript:snippet_geovisor.editGd("+f.properties["id"]+")\"  class=\"btn btn-success btn-sm mr-3\"><span><i class=\"flaticon-edit\"></i><span>Editar Proyecto</span></span></a> ";
+
 
                 ubicacion ="";
                 ubicacion += "<div class='ubicacion_titulo'>Ubicación:</div>";
@@ -934,7 +932,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 ubicacion += "/ Longitud:"+ f.properties["location_longitude_decimal"];
                 ubicacion += "</div>";
                 out.push(ubicacion);
-                out.push(boton);
+
                 l.bindPopup(out.join("<br />"));
             }
         };
