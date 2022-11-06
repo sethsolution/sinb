@@ -3,6 +3,9 @@ namespace App\Setting\Module\App\Snippet\Index;
 use Core\CoreResources;
 class Index extends CoreResources {
     var $objTable = "app";
+    var $estiloNotNull = "";
+    var $estilopk = "";
+    var $estilofk = "";
     function __construct()
     {
         /**
@@ -23,7 +26,7 @@ class Index extends CoreResources {
         }
         .label-nombre{
           width: 200px !important;
-          background: #5f2dbb !important;
+          background: #2e027e !important;
         }
         .label-tipodato{
           width: 100px !important;
@@ -60,6 +63,15 @@ class Index extends CoreResources {
         td {
           background: #FFFFFF;
         }
+        .est_yes {
+            color: #04530e    !important; 
+            font-weight: bold;
+        }
+        .est_not {
+           color: #999999  !important; 
+        }
+        
+       
         </style>
       </head>
      <body>
@@ -82,7 +94,7 @@ class Index extends CoreResources {
         $itemTable = $itemTable->GetRows();
 
         echo "<h1>Informe de esquema para base de datos: ".$schema."</h1> ";
-        echo "<a id=\"home\">Lista de Tablas </a><br /><ul>";
+        echo "<h2><a id=\"home\">Lista de Tablas </a></h2><ul>";
         foreach ($itemTable as $row){
             echo  "<li><a href=\"#".$row["table_name"]."\">".$row["table_name"]." </a></li> ";
         }
@@ -106,8 +118,9 @@ class Index extends CoreResources {
             $item = $item->GetRows();
 
             echo "<a id=\"" . $table["table_name"] . "\"></a><table style=\"width:100%\"><caption>Tabla: " . $table["table_name"] . " </caption>";
-            echo "<tr><td>Table Comments</td><td colspan=\"6\">" . $table["obj_description"] . "</td></tr>";
-            echo "<tr><td colspan=\"7\">Columnas</td></tr>
+            echo "<tr><td><b>Comentarios de la tabla</b></td><td colspan=\"6\">" . $table["obj_description"] . "</td></tr>";
+            echo "<tr><td><b>Secuencia</b></td><td colspan=\"6\">". $item[0]["column_default"] . "</td></tr>";
+            echo "<tr><td colspan=\"7\"><b>Columnas</b></td></tr>
                 <tr>
                 <th class='label-nombre'>Nombre</th>
                 <th class='label-tipodato'>Tipo de dato</th>
@@ -115,7 +128,7 @@ class Index extends CoreResources {
                 <th class='label-gen'>PK</th>
                 <th class='label-gen'>FK</th>
                 <th class='label-gen'>Default</th>
-                <th class='label-comentario'>Comentario</th>
+                <th class='label-comentario'>Comentario <i class='la la-thumb-tack m--font-success'></i> </th>
                 </tr>";
 
             //Obtener lista de los FKs
@@ -145,25 +158,43 @@ class Index extends CoreResources {
 //            print_struc($FKs);exit;
 
             foreach ($item as $column) {
+                $estiloNotNull = "est_not";
+                $estilopk = "est_not";
+                $estilofk = "est_not";
+                $iconpk = "";
+                $iconfk = "";
+                if(strlen($column["column_default"])>10){
+                    $column["column_default"] = "";
+                }
 //                print_struc($column["column_name"]);exit;
                     $PK="No";
                     $FK="No";
+
                 if ($column["column_name"]==="id") {
                     $PK= "Yes";
+                    $estilopk = "est_yes";
+                    $iconpk = "<img src='/images/principal/pk.png' width='20' height='20'/>";
                 }
                 foreach ($FKs as $fk){
                     if($fk["fk_columns"]===$column["column_name"]){
                         $FK="Yes";
+                        $estilofk = "est_yes";
+                        $iconfk = "<img src='/images/principal/fk.png' width='20' height='20'/>";
                     }
                 }
+                if ($column["is_nullable"] ==="YES") {
+                    $estiloNotNull = "est_yes";
+                }
+
                 echo "<tr>
                             <td>" . $column["column_name"] . "</td>
                             <td>" . $column["data_type"] . "</td>
-                            <td>" . $column["is_nullable"] . "</td>
-                            <td>".$PK."</td>
-                            <td>".$FK."</td>
+                            <td class='".$estiloNotNull."'>" . ucwords(strtolower($column["is_nullable"])) . "</td>
+                            <td class='".$estilopk."'>  ".$PK."$iconpk</td>
+                            <td class='".$estilofk."'> ".$FK. " $iconfk </td>
                             <td>" . $column["column_default"] . "</td>
                             <td>" . $column["description"] . "</td>
+                            
                         </tr>";
             }
         }
