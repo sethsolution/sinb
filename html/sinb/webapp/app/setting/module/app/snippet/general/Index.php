@@ -10,7 +10,6 @@ class Index extends CoreResources
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-
     }
 
     function updateData($rec,$itemId,$action,$form="module"){

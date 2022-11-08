@@ -83,7 +83,7 @@
                 <!--begin::Entry-->
                 <div class="d-flex flex-column-fluid">
                     <!--begin::Container-->
-                    <div class="container-xxxl">
+                    <div class="container-fluid">
                         <!--begin::Dashboard-->
                         {include file="$subpage"}
                         <!--end::Dashboard-->

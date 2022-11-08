@@ -20,6 +20,7 @@ $item_tab[]=array(
 ,   "new" => 0
 );
 //-------------------------------------------------------------
+/*
 $item_tab[]=array(
     "label"=>"Generación Distribuida"
 ,   "id_name"=>"gd"
@@ -28,6 +29,8 @@ $item_tab[]=array(
 ,   "icon" => "fa fa-database"
 ,   "new" => 0
 );
+*/
+
 /*
 //-------------------------------------------------------------
 $item_tab[]=array(

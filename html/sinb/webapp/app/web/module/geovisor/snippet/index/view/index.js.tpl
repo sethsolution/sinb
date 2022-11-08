@@ -25,6 +25,13 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 <script src="/js/geo/leaflet.minimap/dist/Control.MiniMap.min.js"></script>
 <script src="/js/geo/leaflet.control.custom/Leaflet.Control.Custom.js"></script>
 
+
+<script src="/js/geo/leaflet.wms-legend/leaflet.wmslegend.js"></script>
+
+
+<script src="/js/geo/leaflet.gibs/src/GIBSMetadata.js"></script>
+<script src="/js/geo/leaflet.gibs/src/GIBSLayer.js"></script>
+
 <script src="/js/chart.js/Chart.min.js"></script>
 
 
@@ -279,6 +286,15 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 opacity: 0.5
             });
 
+            var ecorregiones_ibish = L.tileLayer.wms(geoserver_mmaya+'?', {
+                layers: 'sinb:ecorregiones_ibish',
+                format: 'image/png',
+                uppercase: true,
+                transparent: true,
+                continuousWorld : true,
+                opacity: 0.5
+            });
+
             var areas_protegidas = L.tileLayer.wms(geoserver_sig01+'?', {
                 layers: 'areas_protegidas',
                 format: 'image/png',
@@ -303,6 +319,9 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 continuousWorld : true,
                 opacity: 0.8
             });
+
+            //L.wmsLegend(geoserver_sig01 + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=simb:deforestacion','test',"bottomleft");
+
             var view_bosques = L.tileLayer.wms(geoserver_sig01+'?', {
                 layers: 'view_bosques',
                 format: 'image/png',
@@ -496,7 +515,113 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
 
 
+
+            var dia = '2022/11/01';
+
+            var nasa_01 = new L.GIBSLayer('VIIRS_CityLights_2012', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+            var nasa_02 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_TrueColor', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_03 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+            var nasa_04 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_BandsM3-I3-M11', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+
+
+            var nasa_modis_01 = new L.GIBSLayer('MODIS_Terra_Land_Surface_Temp_Day', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_modis_02 = new L.GIBSLayer('MODIS_Terra_Land_Surface_Temp_Night', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_modis_03 = new L.GIBSLayer('MODIS_Terra_Brightness_Temp_Band31_Day', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_modis_04 = new L.GIBSLayer('MODIS_Terra_Brightness_Temp_Band31_Night', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+
+
+
             var overLayers =[
+                {
+                    group: "NASA",
+                    collapsed: true,
+                    layers: [
+                        {
+                            active: false,
+                            name: "VIIRS CityLights 2012",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_01
+                        },
+                        {
+                            active: false,
+                            name: "VIIRS SNPP CorrectedReflectance TrueColor",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_02
+                        },
+                        {
+                            active: false,
+                            name: "VIIRS SNPP CorrectedReflectance Bands M11-I2-I1",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_03
+                        },
+                        {
+                            active: false,
+                            name: "VIIRS SNPP CorrectedReflectance Bands M3I3-M11",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_04
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Land Surface Temp Day",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_01
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Land Surface Temp Night",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_02
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Brightness Temp Band31 Day",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_03
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Brightness Temp Band31 Night",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_04
+                        },
+                    ]
+                },
                 {
                     group: "Administrativos",
                     collapsed: true,
@@ -512,6 +637,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                             icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                             layer: layer_municipio
                         }
+
                     ]
                 },
                 {
@@ -550,6 +676,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                         },
                     ]
                 },
+
                 {
                     group: "Bosques y Conservación",
                     collapsed: true,
@@ -582,7 +709,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 },
 
                 {
-                    group: "MNHN",
+                    group: "Biodiversidad",
                     collapsed: true,
                     layers: [
                         {
@@ -593,9 +720,14 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                         },
                         {
                             active: false,
-                            name: "Ecoregión",
+                            name: "Ecorregiones",
                             icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                             layer: mnhn_ecoregiones,
+                        },
+                        {
+                            name: "Ecorregiónes Ibish",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: ecorregiones_ibish
                         },
                         {
                             active: false,
@@ -819,7 +951,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
             map = initialiseMap();
             // Define a style
-            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial=2022-10-28&fecha_final=&apn=&apd=&apm=";
+            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial=2022-11-4&fecha_final=&apn=&apd=&apm=";
             json_layer = new L.GeoJSON.AJAX([urljson2],{
                 pointToLayer: function(point, latlng) {
                     //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);
@@ -901,32 +1033,24 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             var out = [];
             if (f.properties){
                 let info = "";
-                info += "<h2 class='titulo'>Cod Proy: "+f.properties["cod_proy"]+"</h2>";
-                info += "<strong>Proyecto:</strong> <BR>"+ f.properties["nombre"]+"<strong> SISIN:</strong>"+f.properties["sisin"]+" ";
+                info += "<h2 class='titulo'>Foco de calor</h2>";
+                info += "<strong>Fecha y Hora:</strong> <BR>"+ f.properties["fecha_hora"]+" ";
                 out.push(info);
 
-                out.push("<strong>Departamento:</strong> "+ f.properties["departamento"]);
-                out.push("<strong>Municipio:</strong> "+ f.properties["municipio"]);
-                out.push("<strong>Responsable:</strong> "+ f.properties["responsable"]);
-                out.push("<strong>Observaciones:</strong> "+ f.properties["observaciones"]);
-                out.push("<strong>Fecha Inicio:</strong> "+ f.properties["fecha_inicio"]);
-                out.push("<strong>Fecha Fin Inicial:</strong> "+ f.properties["fecha_fin_inicial"]);
-                out.push("<strong>Fecha Conclusion:</strong> "+ f.properties["fecha_conclusion"]);
+                out.push("<strong>Departamento:</strong> "+ f.properties["dep"]);
+                out.push("<strong>Provincia:</strong> "+ f.properties["pro"]);
+                out.push("<strong>Municipio:</strong> "+ f.properties["mun"]);
+
 
                 info ="";
-                info +="<div class='titulo2'>Datos Financieros </div>";
-                info +="<span class=''> Ejecutado Total: "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["ejecutado_total"])+"</span><br>";
-                //info +="<span class=''>Tensión de servicio (V): "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["tension"])+"</span>";
-                //info +="<div class=''>Tipo de conexión del suministro: "+ f.properties["tipo_conexion"]+"</div>";
+                info +="<div class='titulo2'>Satélite </div>";
+                info +="<span class=''> Satélite: "+ f.properties["sat"]+"</span>";
 
-                info +="<div class='titulo2'>Avance </div>";
-                info +="<span class=''>Avance Financiero: "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["avance_financiero"])+"</span><br>";
-                info +="<span class=''>Avance Físico: "+ new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(f.properties["avance_fisico"])+"</span><br>";
-                //info +="<div class=''>Tipo de fuente de generación: "+ f.properties["tipo_fuente_generacion"]+"</div>";
+                info +="<div class='titulo2'>Otros </div>";
+                info +="<span class=''>"+ f.properties["tbos"]+"</span>";
                 out.push(info);
 
-                boton ="";
-                boton += "<a style='margin-bottom: 5px;' href=\"javascript:snippet_geovisor.editGd("+f.properties["id"]+")\"  class=\"btn btn-success btn-sm mr-3\"><span><i class=\"flaticon-edit\"></i><span>Editar Proyecto</span></span></a> ";
+
 
                 ubicacion ="";
                 ubicacion += "<div class='ubicacion_titulo'>Ubicación:</div>";
@@ -934,7 +1058,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 ubicacion += "/ Longitud:"+ f.properties["location_longitude_decimal"];
                 ubicacion += "</div>";
                 out.push(ubicacion);
-                out.push(boton);
+
                 l.bindPopup(out.join("<br />"));
             }
         };
