@@ -951,7 +951,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
             map = initialiseMap();
             // Define a style
-            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial=2022-10-28&fecha_final=&apn=&apd=&apm=";
+            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial=2022-11-4&fecha_final=&apn=&apd=&apm=";
             json_layer = new L.GeoJSON.AJAX([urljson2],{
                 pointToLayer: function(point, latlng) {
                     //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);
