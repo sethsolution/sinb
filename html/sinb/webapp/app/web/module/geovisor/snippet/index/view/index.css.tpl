@@ -159,15 +159,15 @@
         /**
         Unidad Hidrográfica
          */
-        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(2) {
+        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(3) {
             background-color: rgba(203,241,255,.7);
         }
-        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(2) .leaflet-panel-layers-grouplabel .leaflet-panel-layers-title,
-        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(2) .leaflet-panel-layers-icon{
+        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(3) .leaflet-panel-layers-grouplabel .leaflet-panel-layers-title,
+        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(3) .leaflet-panel-layers-icon{
             color: #0c5d9b !important;
         }
-        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(2) .leaflet-panel-layers-item,
-        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(2) .leaflet-panel-layers-item:hover {
+        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(3) .leaflet-panel-layers-item,
+        .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group:nth-of-type(3) .leaflet-panel-layers-item:hover {
             background-color: rgba(255,255,255,.5);
             border: 1px solid #4e8ea6 !important;
         }

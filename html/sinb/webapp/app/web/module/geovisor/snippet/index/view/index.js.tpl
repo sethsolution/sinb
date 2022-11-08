@@ -28,6 +28,10 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
 <script src="/js/geo/leaflet.wms-legend/leaflet.wmslegend.js"></script>
 
+
+<script src="/js/geo/leaflet.gibs/src/GIBSMetadata.js"></script>
+<script src="/js/geo/leaflet.gibs/src/GIBSLayer.js"></script>
+
 <script src="/js/chart.js/Chart.min.js"></script>
 
 
@@ -282,6 +286,15 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 opacity: 0.5
             });
 
+            var ecorregiones_ibish = L.tileLayer.wms(geoserver_mmaya+'?', {
+                layers: 'sinb:ecorregiones_ibish',
+                format: 'image/png',
+                uppercase: true,
+                transparent: true,
+                continuousWorld : true,
+                opacity: 0.5
+            });
+
             var areas_protegidas = L.tileLayer.wms(geoserver_sig01+'?', {
                 layers: 'areas_protegidas',
                 format: 'image/png',
@@ -502,7 +515,113 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
 
 
+
+            var dia = '2022/11/01';
+
+            var nasa_01 = new L.GIBSLayer('VIIRS_CityLights_2012', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+            var nasa_02 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_TrueColor', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_03 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+            var nasa_04 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_BandsM3-I3-M11', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+
+
+            var nasa_modis_01 = new L.GIBSLayer('MODIS_Terra_Land_Surface_Temp_Day', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_modis_02 = new L.GIBSLayer('MODIS_Terra_Land_Surface_Temp_Night', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_modis_03 = new L.GIBSLayer('MODIS_Terra_Brightness_Temp_Band31_Day', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+            var nasa_modis_04 = new L.GIBSLayer('MODIS_Terra_Brightness_Temp_Band31_Night', {
+                date: new Date(dia),
+                transparent: true,
+                opacity: 0.8
+            });
+
+
+
+
             var overLayers =[
+                {
+                    group: "NASA",
+                    collapsed: true,
+                    layers: [
+                        {
+                            active: false,
+                            name: "VIIRS CityLights 2012",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_01
+                        },
+                        {
+                            active: false,
+                            name: "VIIRS SNPP CorrectedReflectance TrueColor",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_02
+                        },
+                        {
+                            active: false,
+                            name: "VIIRS SNPP CorrectedReflectance Bands M11-I2-I1",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_03
+                        },
+                        {
+                            active: false,
+                            name: "VIIRS SNPP CorrectedReflectance Bands M3I3-M11",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_04
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Land Surface Temp Day",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_01
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Land Surface Temp Night",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_02
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Brightness Temp Band31 Day",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_03
+                        },
+                        {
+                            active: false,
+                            name: "MODIS Terra Brightness Temp Band31 Night",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: nasa_modis_04
+                        },
+                    ]
+                },
                 {
                     group: "Administrativos",
                     collapsed: true,
@@ -518,6 +637,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                             icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                             layer: layer_municipio
                         }
+
                     ]
                 },
                 {
@@ -556,6 +676,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                         },
                     ]
                 },
+
                 {
                     group: "Bosques y Conservación",
                     collapsed: true,
@@ -588,7 +709,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 },
 
                 {
-                    group: "MNHN",
+                    group: "Biodiversidad",
                     collapsed: true,
                     layers: [
                         {
@@ -599,9 +720,14 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                         },
                         {
                             active: false,
-                            name: "Ecoregión",
+                            name: "Ecorregiones",
                             icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                             layer: mnhn_ecoregiones,
+                        },
+                        {
+                            name: "Ecorregiónes Ibish",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: ecorregiones_ibish
                         },
                         {
                             active: false,
