@@ -54,11 +54,11 @@
                     <span class="form-text text-black-50">{#field_msg_nombre#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_institucion_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_tipo_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[tipo_id]" id="type_select_estado"
-                                data-placeholder="{#field_Holder_institucion_id#}" {$privFace.input}
+                                data-placeholder="{#field_Holder_tipo_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
@@ -66,7 +66,7 @@
                             {html_options options=$cataobj.icas_institucion_tipo selected=$item.tipo_id}
                         </select>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_institucion_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_tipo_id#}</span>
                 </div>
             </div>
             <div class="form-group row">
@@ -84,7 +84,7 @@
                     <span class="form-text text-black-50">{#field_msg_direccion#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_email#} <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_email#}:</label>
                     <input type="text" class="form-control"
                            name="item[email]"
                            value="{$item.email|escape:"html"}"
@@ -99,7 +99,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-lg-4">
-                    <label>{#field_celular#} <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_celular#}:</label>
                     <input type="text" class="form-control"
                            name="item[celular]"
                            value="{$item.celular|escape:"html"}"
@@ -112,7 +112,7 @@
                     <span class="form-text text-black-50">{#field_msg_celular#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_telefono#} <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_telefono#}:</label>
                     <input type="text" class="form-control"
                            name="item[telefono]"
                            value="{$item.telefono|escape:"html"}"
@@ -125,7 +125,7 @@
                     <span class="form-text text-black-50">{#field_msg_telefono#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_fax#} <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_fax#}:</label>
                     <input type="text" class="form-control"
                            name="item[fax]"
                            value="{$item.fax|escape:"html"}"
@@ -141,7 +141,7 @@
 
             <div class="form-group row">
                 <div class="col-lg-6">
-                    <label>{#field_responsable#} <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_responsable#}:</label>
                     <input type="text" class="form-control"
                            name="item[responsable]"
                            value="{$item.responsable|escape:"html"}"

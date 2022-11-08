@@ -21,21 +21,18 @@
         <div class="card-body  pt-1 pb-0">
             <div class="form-group row">
                 <div class="col-lg-12">
-                    <label>{#field_titulo#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_titulo#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <textarea
-                                class="form-control m-input mayus"
-                                name="item[nombre]" cols="4"
-                                required
-                                required data-msg="{#glFieldRequired#}"
-                                minlength="3"
-                                data-fv-string-length___message="{#field_length_titulo#}"
-                            {$privFace.input}>{$item.nombre|escape:'html'}
-                        </textarea>
+                        <textarea rows="2" class="form-control m-input mayus"
+                                  name="item[nombre]"
+                                  required
+                                  data-fv-not-empty___message="{#glFieldRequired#}"
+                        >{$item.nombre|escape:'html'}</textarea>
                         <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
-                    <span class="form-text text-black-50">{#field_msg_titulo#}</span>
+                    <span class="form-text text-muted">{#field_msg_titulo#}</span>
                 </div>
+
                 <div class="col-lg-3">
                     <label>{#field_codigo#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
@@ -43,6 +40,8 @@
                                name="item[codigo]" value="{$item.codigo|escape:"html"}"
                                required
                                data-fv-not-empty___message="{#glFieldRequired#}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_titulo#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_key"><i class="fas fa-key"></i></span></div>
                     </div>
@@ -95,13 +94,14 @@
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[fuente_financiamiento_otro]" value="{$item.fuente_financiamiento_otro|escape:"html"}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
+{*                               required*}
+{*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas flaticon-layer"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_otro_financiamiento#}</span>
-                </div>            </div>
+                </div>
+            </div>
         </div>
         <div class="card-body pt-1 pb-0 ">
             <div class="form-group row">
