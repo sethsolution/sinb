@@ -11,33 +11,20 @@ $tabs = array();
  */
 //-------------------------------------------------------------
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tabGeneral"]
-,   "id_name"=>"general"
-,   "icon" => "fas fa-dungeon m--font-success"
-,   "new" => 1
-);
-//-------------------------------------------------------------
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_institucion"]
-,   "id_name"=>"institucion"
-,   "icon" => "fas fa-calendar-alt m--font-success"
+    "label"=> "Red"
+,   "id_name"=>"red"
+,   "icon" => "fas fa-network-wired m--font-success"
 ,   "new" => 0
 );
 //-------------------------------------------------------------
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tabUbicacion"]
-,   "id_name"=>"ubicacion"
-,   "icon" => "fas fa-map-marker m--font-success"
+    "label"=> "Actividad"
+,   "id_name"=>"actividad"
+,   "icon" => "fas fa-clipboard-check m--font-success"
 ,   "new" => 0
 );
 //-------------------------------------------------------------
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_adjunto"]
-,   "id_name"=>"adjunto"
-,   "icon" => "fas fa-paperclip m--font-success"
-,   "new" => 0
-);
-//-------------------------------------------------------------
+
 /**
  * Se añade el arreglo de tabs configurada a $tabs
  */
