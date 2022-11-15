@@ -55,7 +55,7 @@
                 language: {"url": "/language/js/datatable."+lng+".json"},
                 lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
                 pageLength: 50,
-                //order: [[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
+                order: [[ 0, "asc" ],[ 1, "asc" ],[4, "asc" ]], // Por que campo ordenara al momento de desplegar
                 InfoFiltered: false,
                 searchDelay: 500,
                 processing: true,
