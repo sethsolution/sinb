@@ -21,3 +21,15 @@
 {/literal}
 
 
+<script src="https://maps.googleapis.com/maps/api/js?key={$google_map_key}"></script>
+<script src="/js/geo/leaflet.1.7.1/leaflet.js"></script>
+<script src="/js/geo/leaflet.fullscreen/Control.FullScreen.js"></script>
+<script src="/js/geo/Leaflet.GoogleMutant.js"></script>
+
+<script src="/js/geo/leaflet.ajax/dist/leaflet.ajax.js"></script>
+<script src="/js/geo/leaflet.ajax/example/spin.js"></script>
+
+<script src="/js/geo/leaflet.groupedlayercontrol/dist/leaflet.groupedlayercontrol.min.js"></script>
+<script src="/js/geo/leaflet.wms/dist/leaflet.wms.js"></script>
+
+
