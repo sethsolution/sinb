@@ -61,6 +61,14 @@ class Index extends CoreResources
 
 
         if( $res["res"]==1){
+            /**
+             * Realizaremos los cálculos correspondientes de la fecha para los datos del convenio
+             */
+            $this->setFechasInscripcionExpiracion($item_id);
+
+            /**
+             * Guardaremos el archivo adjunto enviado desde el formulario
+             */
             $item = $this->getItem($res["id"],$item_id);
             $item_id_name = $this->fkey_field;
             $id_name = "id";
@@ -88,6 +96,36 @@ class Index extends CoreResources
         return $dataResult;
     }
 
+    private function setFechasInscripcionExpiracion($id){
+        if($id!=""){
+            /**
+             * Calculamos fechas
+             */
+            $sql = "SELECT min(fecha_inscripcion) as fecha_inscripcion, max(fecha_expiracion) as fecha_expiracion
+                    FROM ".$this->table["institucion_inscripcion"]." where institucion_id=".$id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            if(isset($item["fecha_inscripcion"]) && $item["fecha_inscripcion"]!=""){
+                $rec["fecha_inscripcion"]=$item["fecha_inscripcion"];
+            }else{
+                $rec["fecha_inscripcion"]= NULL;
+            }
+
+            if(isset($item["fecha_expiracion"]) && $item["fecha_expiracion"]!=""){
+                $rec["fecha_expiracion"]=$item["fecha_expiracion"];
+            }else{
+                $rec["fecha_expiracion"]= NULL;
+            }
+            /**
+             * Se guarda la información
+             */
+            $where = "id = ".$id;
+            $table = $this->table["institucion"];
+            $resp = $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
+    }
+
     function getItem($id,$item_id){
         $sql = "select * from ".$this->table[$this->objTable]." as p where p.id = '".$id."' and p.".$this->fkey_field." = '".$item_id."'";
         $item = $this->dbm->Execute($sql);
@@ -109,6 +147,7 @@ class Index extends CoreResources
              */
             $this->deleteAttachmentFile($id,$item_id,$item["attached_extension"],$this->folder);
         }
+        $this->setFechasInscripcionExpiracion($item_id);
         return $res;
     }
 

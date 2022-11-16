@@ -13,13 +13,17 @@ $fields = array();
  */
 $field_item = array();
 //*******Identificacion del consumidor rgula solicitante
+$field_item["numero_registro"]=array("type"=>"text");
 $field_item["nombre"]=array("type"=>"text");
 $field_item["nit"]=array("type"=>"text");
 $field_item["red_id"]=array("type"=>"text");
 $field_item["actividad_id"]=array("type"=>"text");
 $field_item["actividad"]=array("type"=>"text");
 $field_item["representante_legal"]=array("type"=>"text");
+$field_item["comentario"]=array("type"=>"text");
 $field_item["vigente"]=array("type"=>"checkbox_02");
+$field_item["fecha_inscripcion"]=array("type"=>"date_01");
+$field_item["fecha_expiracion"]=array("type"=>"date_01");
 
 $field_item["departamento"]=array("type"=>"text");
 $field_item["departamento_id"]=array("type"=>"text");

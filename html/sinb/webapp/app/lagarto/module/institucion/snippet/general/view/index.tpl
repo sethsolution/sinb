@@ -20,6 +20,40 @@
 
         <div class="card-body  pt-1 pb-0">
             <div class="form-group row">
+                <div class="col-lg-3">
+                    <label>{#field_vigente#}:</label>
+                    <div class="input-group">
+                    <span class="switch switch-icon">
+                        <label><input type="checkbox" {if $item.vigente == 1}checked="checked"{/if} name="item[vigente]" value="1" ><span></span></label>
+                    </span>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_vigente#}</span>
+                </div>
+                <div class="col-lg-3">
+                    <label>{#field_red_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[red_id]" id="type_select_estado"
+                                data-placeholder="{#field_Holder_red_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.red selected=$item.red_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_red_id#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_nro_registro#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_integer2"
+                               name="item[numero_registro]" value="{$item.numero_registro|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fa fa-info"></i></span></div>
+                    </div>
+                    <span class="form-text text-muted">{#field_msg_nro_registro#}</span>
+                </div>
                 <div class="col-lg-9">
                     <label>{#field_nombre#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
@@ -46,22 +80,19 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_nit#}</span>
                 </div>
-                <div class="col-lg-3">
-                    <label>{#field_red_id#} <span class="text-danger bold">*</span> : </label>
+                <div class="col-lg-12">
+                    <label>{#field_representante_legal#}: </label>
                     <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[red_id]" id="type_select_estado"
-                                data-placeholder="{#field_Holder_red_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        <input type="text" class="form-control"
+                               name="item[representante_legal]" value="{$item.representante_legal|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_representante_legal#}"
                         >
-                            <option></option>
-                            {html_options options=$cataobj.red selected=$item.red_id}
-                        </select>
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="la la-user"></i></span></div>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_red_id#}</span>
+                    <span class="form-text text-black-50">{#field_msg_representante_legal#}</span>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-3">
                     <label>{#field_codigo_actividad#}  : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -75,7 +106,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_codigo_actividad#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-9">
                     <label>{#field_actividad#}: </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -87,28 +118,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_actividad#}</span>
                 </div>
-                <div class="col-lg-9">
-                    <label>{#field_representante_legal#}: </label>
-                    <div class="input-group">
-                        <input type="text" class="form-control"
-                               name="item[representante_legal]" value="{$item.representante_legal|escape:"html"}"
-                               minlength="3"
-                               data-fv-string-length___message="{#field_length_representante_legal#}"
-                        >
-                        <div class="input-group-append"><span class="input-group-text field_info"><i class="la la-user"></i></span></div>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_representante_legal#}</span>
-                </div>
                 <div class="col-lg-3">
-                    <label>{#field_vigente#}:</label>
-                    <div class="input-group">
-                    <span class="switch switch-icon">
-                        <label><input type="checkbox" {if $item.vigente == 1}checked="checked"{/if} name="item[vigente]" value="1" ><span></span></label>
-                    </span>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_vigente#}</span>
-                </div>
-                <div class="col-lg-4">
                     <label>{#field_departamento_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -121,7 +131,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <label>{#field_direccion#}: </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -156,6 +166,35 @@
                         <div class="input-group-append"><span class="input-group-text field_info">@</i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_email#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_fecha_inscripcion#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general" id="fecha_expiracion"
+                               name="item[fecha_inscripcion]" value="{$item.fecha_inscripcion|date_format:'%d/%m/%Y'}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol "></i></span></div>
+                    </div>
+                    {*<span class="form-text text-black-50">{#field_msg_fecha_conclusion_enmienda#}</span>*}
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_fecha_expiracion#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general" id="fecha_expiracion"
+                               name="item[fecha_expiracion]" value="{$item.fecha_expiracion|date_format:'%d/%m/%Y'}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol "></i></span></div>
+                    </div>
+                    {*<span class="form-text text-black-50">{#field_msg_fecha_conclusion_enmienda#}</span>*}
+                </div>
+                <div class="col-lg-12 pt-3 pb-0">
+                    <label>{#field_comentario#} </label>
+                    <div class="m-input-icon m-input-icon--right">
+                        <div class="summernote" id="comentario">{$item.comentario}</div>
+                        <input class="form-control m-input" type="hidden" name="item[comentario]" id="comentario_input" {$privFace.input}>
+                    </div>
                 </div>
                 <div class="col-lg-12 pt-3 pb-0">
                     <label>{#field_comentario_observacion#} </label>

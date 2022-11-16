@@ -61,6 +61,7 @@
                  * Copiamos los datos de summerNote a una variable
                  */
                 $('#comentario_observacion_input').val($('#comentario_observaciones').summernote('code'));
+                $('#comentario_input').val($('#comentario').summernote('code'));
 
                 formv.validate().then(function(status) {
                     if(status === 'Valid'){

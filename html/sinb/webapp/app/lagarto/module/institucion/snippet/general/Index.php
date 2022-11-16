@@ -49,6 +49,13 @@ class Index extends CoreResources
         $res = $this->updateItem($itemId,$itemData ,$this->table[$this->objTable],$action,$field_id);
         $res["accion"] = $action;
 
+        if( $res["res"]==1){
+            /**
+             * Realizaremos los cálculos correspondientes de la fecha para los datos de la institucion
+             */
+            $this->setFechasInscripcionExpiracion($itemId);
+        }
+
         /**
          * Guardamos los datos de multiselección
          */
@@ -87,6 +94,36 @@ class Index extends CoreResources
                 break;
         }
         return $dataResult;
+    }
+
+    private function setFechasInscripcionExpiracion($id){
+        if($id!=""){
+            /**
+             * Calculamos fechas
+             */
+            $sql = "SELECT min(fecha_inscripcion) as fecha_inscripcion, max(fecha_expiracion) as fecha_expiracion
+                    FROM ".$this->table["institucion_inscripcion"]." where institucion_id=".$id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            if(isset($item["fecha_inscripcion"]) && $item["fecha_inscripcion"]!=""){
+                $rec["fecha_inscripcion"]=$item["fecha_inscripcion"];
+            }else{
+                $rec["fecha_inscripcion"]= NULL;
+            }
+
+            if(isset($item["fecha_expiracion"]) && $item["fecha_expiracion"]!=""){
+                $rec["fecha_expiracion"]=$item["fecha_expiracion"];
+            }else{
+                $rec["fecha_expiracion"]= NULL;
+            }
+            /**
+             * Se guarda la información
+             */
+            $where = "id = ".$id;
+            $table = $this->table["institucion"];
+            $resp = $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
     }
 
 }
