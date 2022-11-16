@@ -16,7 +16,13 @@ $item_tab[]=array(
 ,   "icon" => "fas fa-dungeon m--font-success"
 ,   "new" => 1
 );
-
+//-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tabUbicacion"]
+,   "id_name"=>"ubicacion"
+,   "icon" => "fas fa-map-marker m--font-success"
+,   "new" => 0
+);
 //-------------------------------------------------------------
 /*
 $item_tab[]=array(

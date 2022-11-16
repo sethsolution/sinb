@@ -51,6 +51,8 @@ switch($action) {
         break;
 
     case 'itemUpdate':
+        $smarty->assign("google_map_key", $_ENV["GOOLE_MAP_KEY"]);
+        $smarty->assign("stadiamaps_key", $_ENV["STADIAMAPS_KEY"]);
         /**
          * Smarty Options
          */
