@@ -8,3 +8,6 @@
 
 $action_path = APP_PATH."inc/action.path.php";
 include_once($action_path);
+
+$path_image = APP_PATH."template/images/";
+$smarty->assign("path_image",$path_image);
