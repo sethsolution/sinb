@@ -3,7 +3,7 @@
     var table_list;
     var snippet_list = function() {
         "use strict";
-        var urlsys = '{/literal}{$path_url}/{$subcontrol}_/{$id}{literal}';
+        var urlsys = '{/literal}{$path_url}/{$subcontrol}_/0{$id}{literal}';
         var initTable = function() {
             let table_list_var = $('#tabla_{/literal}{$subcontrol}{literal}');
             let export_title = "{/literal}{#dataTableExportTitle#}{literal}";
