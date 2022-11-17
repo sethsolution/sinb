@@ -10,7 +10,9 @@
 
         var btn_pdf;
         var handle_button_pdf = function(){
+            {/literal}{if $type =='update'}{literal}
             $('#btn_back').before('<a href="#" class="btn btn-success btn-sm mr-1" id="btn_pdf" rel="new"><i class="fa fa-plus"></i>PDF</a> ');
+            {/literal}{/if}{literal}
             btn_pdf = $('#btn_pdf');
             btn_pdf.click(function(e){
                 e.preventDefault();

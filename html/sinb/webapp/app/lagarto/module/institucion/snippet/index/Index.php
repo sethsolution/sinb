@@ -18,13 +18,14 @@ class Index extends CoreResources {
         $info = '';
 
         if($idItem!=''){
-            $sqlSelect = ' i.*, lr.nombre as red
+            $sqlSelect = ' i.*, lr.nombre as red, d.name as departamento
                            , concat(u1.name,\' \',u1.last_name) AS user_creater
                             , CONCAT(u2.name,\' \',u2.last_name) as user_updater';
             $sqlFrom = ' '.$this->table[$this->objTable].' i
                          LEFT JOIN '.$this->table_core["user"].' u1 on u1.id=i.user_create
                          LEFT JOIN '.$this->table_core["user"].' u2 on u2.id=i.user_update
-                         LEFT JOIN '.$this->table["lagarto_red"].' lr on lr.id=i.red_id';
+                         LEFT JOIN '.$this->table["lagarto_red"].' lr on lr.id=i.red_id
+                         LEFT JOIN geo.departamento d on d.id=i.departamento_id';
             $sqlWhere = ' i.id='.$idItem;
             $sqlGroup = ' ';
 
@@ -102,16 +103,6 @@ class Index extends CoreResources {
         $path_print = $path."/view/pdf";
         $path_print = str_replace("\\","/",$path_print); // Para windows
         $smarty->assign('path_print', $path_print);
-        /**
-         * Sacamos el path para las imágenes y colocarlo en CHROOT
-         */
-        //$path_image= dirname(__FILE__,5);
-        //$path_image= dirname(__FILE__,8);
-        //$path_image = str_replace("\\","/",$path_image);
-        //echo $path_image;exit;
-        //$path_image = $path_image."/template/images/";
-        $tmp = sys_get_temp_dir();
-        //echo $tmp;exit;
 
         /**
          * Creamos el objeto dompdf
@@ -151,6 +142,7 @@ class Index extends CoreResources {
         $item["cupo"] =  $this->getCupos($item_id);
         $item["inscripcion"] =  $this->getInscripciones($item_id);
         $item["codigo_actividad"] =  $this->getActividades($item_id);
+        $item["adjunto"] =  $this->getAdjuntos($item_id);
 //        print_struc($item);exit;
         $smarty->assign('item', $item);
 
@@ -233,6 +225,24 @@ class Index extends CoreResources {
             $itemActividad = $itemActividad->getRows();
         }
         return $itemActividad;
+    }
+    public function getAdjuntos($idItem){
+
+        $itemAdjunto = '';
+
+        if($idItem!=''){
+            $sqlSelect = 'ia.attached_name, ia.attached_extension, ia.attached_size, ia.attached_type, descripcion';
+            $sqlFrom = ' '.$this->table["institucion_archivo"].' ia';
+            $sqlWhere = ' ia.institucion_id='.$idItem;
+            $sqlGroup = ' ';
+            $sql = 'SELECT '.$sqlSelect.'
+                  FROM '.$sqlFrom.'
+                  WHERE '.$sqlWhere.'
+                  '.$sqlGroup;
+            $itemAdjunto = $this->dbm->Execute($sql);
+            $itemAdjunto = $itemAdjunto->getRows();
+        }
+        return $itemAdjunto;
     }
 
     public function cleanHtml($str){

@@ -18,17 +18,16 @@ $item_tab[]=array(
 );
 //-------------------------------------------------------------
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_ubicacion"]
-,   "id_name"=>"ubicacion"
-,   "icon" => "fas fa-map-marker m--font-success"
-,   "new" => 0
-);
-
-//-------------------------------------------------------------
-$item_tab[]=array(
     "label"=> $smarty->config_vars["tab_inscripcion"]
 ,   "id_name"=>"inscripcion"
 ,   "icon" => "fas fa-calendar-alt m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_ubicacion"]
+,   "id_name"=>"ubicacion"
+,   "icon" => "fas fa-map-marker m--font-success"
 ,   "new" => 0
 );
 //-------------------------------------------------------------
