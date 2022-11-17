@@ -26,7 +26,7 @@
         </td>
     </tr>
     <tr>
-        <td class="item-tabla-titulo">Descripción Actividad</td>
+        <td class="item-tabla-titulo">Actividad</td>
         <td>{$item.actividad}</td>
     </tr>
     <tr>
@@ -104,6 +104,23 @@
             <td align="center">{$row.cupos_autorizado|escape:"html"}</td>
             <td align="center">{$row.cupos_utilizado|escape:"html"}</td>
             <td>{$row.descripcion|escape:"html"}</td>
+        </tr>
+    {/foreach}
+</table>
+<table class="item-tabla">
+    <tr>
+        <td colspan=3" class="item-tabla-titulo txtCenter">DOCUMENTOS ADJUNTOS</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-header">Descripción</td>
+        <td class="item-tabla-header">Documento</td>
+        <td class="item-tabla-header">Tamaño</td>
+    </tr>
+    {foreach from=$item.adjunto item=row key=idx}
+        <tr>
+            <td>{$row.descripcion|escape:"html"}</td>
+            <td align="center">{$row.attached_name|escape:"html"}</td>
+            <td align="center">{$row.attached_size|escape:"html"}</td>
         </tr>
     {/foreach}
 </table>

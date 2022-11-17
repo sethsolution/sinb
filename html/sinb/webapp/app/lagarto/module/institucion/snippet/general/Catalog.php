@@ -12,16 +12,16 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
+        $where = "cod_dep <> '0' ";
+        $this->addCatalogList($this->table["departamento"]
+            ,"departamento","","name",""
+            ,"name",$where,"","");
         $this->addCatalogList($this->table["lagarto_red"]
             ,"red","","nombre",""
             ,"id","","","");
 
         $this->addCatalogList($this->table["lagarto_actividad"]
             ,"actividad","","codigo",""
-            ,"id","","","");
-
-        $this->addCatalogList($this->table["departamento"]
-            ,"departamento","","name",""
             ,"id","","","");
     }
 

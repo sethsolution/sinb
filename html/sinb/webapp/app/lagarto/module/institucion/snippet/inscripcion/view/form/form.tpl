@@ -13,6 +13,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
                                name="item[fecha_inscripcion]" value="{$item.fecha_inscripcion|date_format:'%d/%m/%Y'}"
+                               required
                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
@@ -24,6 +25,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control date_general" id="valid_until"
                                name="item[fecha_expiracion]" value="{$item.fecha_expiracion|date_format:'%d/%m/%Y'}"
+                               required
                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                         <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
@@ -55,14 +57,10 @@
                         <input type="file" class="form-control custom-file-input"
                                placeholder="{#field_holder_file#}"
                                name="input_file" id="input_file"
-                                {*accept="application/pdf,image/jpeg"*}
-                                {if $type == 'new'}required{/if}
-                               data-fv-not-empty___message="{#glFieldRequired#}"
 
                         >
                         <label class="custom-file-label file-name" id="input_file_name" for="input_file"></label>
                     </div>
-
                     <span class="form-text text-black-50">{#field_msg_file#}</span>
 
                     {if $item.attached_name != ""}
@@ -70,38 +68,9 @@
                             <strong>Archivo:</strong> <span class="m--font-success">{$item.attached_name}</span>
                         {/if}
                     {/if}
-                    </span>
-                </div>
-
-            </div>
-            </div>
-
-{*            <div class="form-group row">*}
-{*                <div class="col-lg-12">*}
-{*                    <label>{#field_file#} </label>*}
-{*                    <div class="custom-file">*}
-{*                        <input type="file" class="form-control custom-file-input"*}
-{*                               placeholder="{#field_holder_file#}"*}
-{*                               name="input_file" id="input_file"*}
-{*                               *}{*accept="application/pdf,image/jpeg"*}
-{*                                {if $type == 'new'}required{/if}*}
-{*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
-
-{*                        >*}
-{*                        <label class="custom-file-label file-name" id="input_file_name" for="input_file"></label>*}
-{*                    </div>*}
-
-{*                        <span class="form-text text-black-50">{#field_msg_file#}</span>*}
-
-{*                    {if $item.attached_name != ""}*}
-{*                        {if $type == 'update'}*}
-{*                            <strong>Archivo:</strong> <span class="m--font-success">{$item.attached_name}</span>*}
-{*                        {/if}*}
-{*                    {/if}*}
 {*                    </span>*}
-{*                </div>*}
-
-{*            </div>*}
+                </div>
+            </div>
         </div>
 
         <div class="modal-footer">
