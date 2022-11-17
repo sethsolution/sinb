@@ -34,7 +34,9 @@ switch($action){
      */
     case 'list':
         //$datatable_debug= true;
+
         $res = $objItem->getItemDatatableRows($item_id);
+//        print_r($res);
         Core::printJson($res);
         break;
     case 'get.form':

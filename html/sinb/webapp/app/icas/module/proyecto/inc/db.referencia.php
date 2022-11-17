@@ -13,6 +13,7 @@ $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
 $dbSchemaName = "icas";
 $db_table[] = Core::getTableConfig("proyecto");
+$db_table[] = Core::getTableConfig("proyecto_archivo");
 $db_table[] = Core::getTableConfig("institucion");
 $db_table[] = Core::getTableConfig("proyecto_institucion");
 
