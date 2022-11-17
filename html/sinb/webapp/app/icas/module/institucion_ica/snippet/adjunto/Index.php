@@ -3,9 +3,9 @@ namespace App\Icas\Module\Icas\Snippet\adjunto;
 use Core\CoreResources;
 class Index extends CoreResources
 {
-    var $objTable = "programa_archivo";
+    var $objTable = "proyecto_adjunto";
     var $folder = "adjunto";
-    var $fkey_field = "programa_id";
+    var $fkey_field = "proyecto_id";
 
     function __construct(){
         /**
@@ -20,6 +20,8 @@ class Index extends CoreResources
     public function getItemDatatableRows($item_id){
         global $dbSetting;
         $table = $this->table[$this->objTable];
+//        print_r($table);
+//        exit();
         $primaryKey = 'id';
         $grid = "index";
         $db=$dbSetting[0];
