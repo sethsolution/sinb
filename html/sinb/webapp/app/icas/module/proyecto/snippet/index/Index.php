@@ -145,6 +145,7 @@ class Index extends CoreResources {
         $item["objetivos_especificos"] = $this->cleanHtml($item["objetivos_especificos"]);
         $item["resultados_esperados"] = $this->cleanHtml($item["resultados_esperados"]);
         $item["instituciones"] =  $this->getInstituciones($item_id);
+        $item["archivos"] =  $this->getArchivosAdjuntos($item_id);
         //print_struc($item);exit;
         $smarty->assign('item', $item);
 
@@ -187,6 +188,24 @@ class Index extends CoreResources {
             $itemInstitucion = $itemInstitucion->getRows();
         }
         return $itemInstitucion;
+    }
+    public function getArchivosAdjuntos($idItem){
+
+        $itemArchivo = '';
+        if($idItem!=''){
+            $sqlSelect = ' pa.descripcion, pa.attached_name';
+            $sqlFrom = ' '.$this->table["proyecto_archivo"].' pa';
+            $sqlWhere = ' pa.proyecto_id='.$idItem;
+            $sqlGroup = ' ';
+
+            $sql = 'SELECT '.$sqlSelect.'
+                  FROM '.$sqlFrom.'
+                  WHERE '.$sqlWhere.'
+                  '.$sqlGroup;
+            $itemArchivo = $this->dbm->Execute($sql);
+            $itemArchivo = $itemArchivo->getRows();
+        }
+        return $itemArchivo;
     }
 
     public function cleanHtml($str){

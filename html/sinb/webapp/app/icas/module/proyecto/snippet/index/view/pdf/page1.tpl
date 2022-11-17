@@ -77,3 +77,19 @@
         </tr>
     {/foreach}
 </table>
+
+<table class="item-tabla">
+    <tr>
+        <td colspan=3" class="item-tabla-titulo txtCenter">ARCHIVOS ADJUNTOS</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-header">Descripcion</td>
+        <td class="item-tabla-header">Nombre</td>
+    </tr>
+    {foreach from=$item.archivos item=row key=idx}
+        <tr>
+            <td>{$row.descripcion|escape:"html"}</td>
+            <td>{$row.attached_name|escape:"html"}</td>
+        </tr>
+    {/foreach}
+</table>
