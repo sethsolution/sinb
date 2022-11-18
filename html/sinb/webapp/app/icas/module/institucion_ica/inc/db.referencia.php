@@ -13,6 +13,7 @@ $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
 $dbSchemaName = "icas";
 $db_table[] = Core::getTableConfig("institucion");
+$db_table[] = Core::getTableConfig("institucion_archivo");
 
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);

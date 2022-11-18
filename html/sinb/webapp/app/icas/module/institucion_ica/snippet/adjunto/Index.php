@@ -3,9 +3,9 @@ namespace App\Icas\Module\Icas\Snippet\adjunto;
 use Core\CoreResources;
 class Index extends CoreResources
 {
-    var $objTable = "proyecto_adjunto";
+    var $objTable = "institucion_archivo";
     var $folder = "adjunto";
-    var $fkey_field = "proyecto_id";
+    var $fkey_field = "institucion_id";
 
     function __construct(){
         /**
