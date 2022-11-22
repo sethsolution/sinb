@@ -11,7 +11,7 @@
 
             <div class="form-group row">
 
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <label>{#fieldGroup#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general" name="item[geoviewer_group_id]" id="geoviewer_group_id"
@@ -24,6 +24,20 @@
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#fieldGroupMsg#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#fieldGeoServerLayer#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general" name="item[geoserver_layer_id]" id="geoserver_layer_id"
+                                data-placeholder="{#fieldGeoServerLayerHolder#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.layer selected=$item.geoserver_layer_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#fieldGeoServerLayerMsg#}</span>
                 </div>
 
                 <div class="col-lg-7">

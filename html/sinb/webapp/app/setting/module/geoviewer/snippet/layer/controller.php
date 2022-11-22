@@ -70,6 +70,7 @@ switch($action){
 
         $cataobj["tipo"] = $objCatalog->get_tipo_option();
         $smarty->assign("cataobj",$cataobj);
+        print_struc($cataobj);
 
 
         //$opt_item = $objCatalog->get_item_options();

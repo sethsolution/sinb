@@ -34,7 +34,7 @@ class Catalog extends CoreResources{
     public function conf_catalog_form($item_id){
         $where = "geoviewer_id='".$item_id."' ";
         $this->addCatalogList($this->table["geoviewer_group"],"group","","","","", $where,"","");
-        //$this->addCatalogList($this->table["modulo"],"modulo","","titulo","","itemid","","");
+        $this->addCatalogList($this->table["geoserver_layer"],"layer","","","","name","","");
     }
 
     public function get_item_options(){

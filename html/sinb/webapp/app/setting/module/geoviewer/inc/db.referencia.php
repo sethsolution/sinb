@@ -30,6 +30,7 @@ $dbSchemaName = "geoviewer";
 $db_table[] = Core::getTableConfig("geoviewer");
 $db_table[] = Core::getTableConfig("geoviewer_group");
 $db_table[] = Core::getTableConfig("geoviewer_layer");
+$db_table[] = Core::getTableConfig("geoserver_layer");
 
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);

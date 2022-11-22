@@ -9,6 +9,7 @@ $fields = array();
  */
 $field_item = array();
 $field_item["geoviewer_group_id"]=array("type"=>"text");
+$field_item["geoserver_layer_id"]=array("type"=>"text");
 $field_item["name"]=array("type"=>"text");
 $field_item["description"]=array("type"=>"text");
 $field_item["class"]=array("type"=>"text");
