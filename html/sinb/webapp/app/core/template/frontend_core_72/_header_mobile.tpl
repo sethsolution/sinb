@@ -2,7 +2,7 @@
 <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
     <!--begin::Logo-->
     <a href="/">
-        <img alt="Uyuni" src="/images/logo/logo_white.png" width="160"/>
+        <img alt="Uyuni" src="/images/logo/logo_white.png?id=23" width="160"/>
     </a>
     <!--end::Logo-->
     <!--begin::Toolbar-->

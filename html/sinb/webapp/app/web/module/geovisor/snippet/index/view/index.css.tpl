@@ -1,13 +1,10 @@
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.1.7.1/leaflet.css"  />
-
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.extramarkers/dist/css/leaflet.extra-markers.min.css" />
-
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.sidebar-v2/css/leaflet-sidebar.css" />
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.fullscreen/Control.FullScreen.css" />
 <!--link rel="stylesheet" type="text/css" href="/js/geo/leaflet.groupedlayercontrol/dist/leaflet.groupedlayercontrol.min.css" /-->
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.panel-layers/dist/leaflet-panel-layers.min.css" />
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.minimap/dist/Control.MiniMap.min.css" />
-
 <link rel="stylesheet" type="text/css" href="/js/geo/leaflet.wms-legend/leaflet.wmslegend.css" />
 
 {literal}
@@ -120,7 +117,7 @@
         }
         .sinb-group .leaflet-panel-layers-base .leaflet-panel-layers-item, .sinb-group .leaflet-panel-layers-base .leaflet-panel-layers-item:hover{
             background-color: rgba(230,231,238,.5);
-            border: 0px solid #97a62e !important;
+            border: 0px solid #3a838b !important;
         }
         .sinb-group .leaflet-panel-layers-base .leaflet-panel-layers-grouplabel .leaflet-panel-layers-title,  .sinb-group .leaflet-panel-layers-base .leaflet-panel-layers-icon{
             color: #0c5d9b !important;
@@ -129,7 +126,7 @@
         Layers
          */
         .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-group {
-            background-color: rgba(123,167,28,.8);
+            background-color: rgba(62,131,139,.8);
         }
         .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-grouplabel .leaflet-panel-layers-title{
             color: #ffffff !important;
@@ -139,16 +136,16 @@
         }
 
         .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-item {
-            background-color: rgba(254,255,246,.8);
-            border: 1px solid #97a62e !important;
+            background-color: rgba(244,255,254,.8);
+            border: 1px solid #3a838b !important;
             /*color: #535563 !important;*/
         }
         .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-item:hover {
             /*
             background-color: rgba(252,255,235,.8);
              */
-            background-color: rgba(255,254,229,.8);
-            border: 1px solid #72a62e !important;
+            background-color: rgba(234,252,255,.8);
+            border: 1px solid #3a838b !important;
             /*color: #535563 !important;*/
         }
         .sinb-group .leaflet-panel-layers-overlays .leaflet-panel-layers-item, .leaflet-panel-layers-title{

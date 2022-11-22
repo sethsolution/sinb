@@ -4,7 +4,7 @@
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
         <a href="/" class="brand-logo">
-            <img alt="Uyuni" src="/images/logo/logo_white.png" width="160"/>
+            <img alt="Uyuni" src="/images/logo/logo_white.png?id=23" width="160"/>
         </a>
         <!--end::Logo-->
         <!--begin::Toggle-->
