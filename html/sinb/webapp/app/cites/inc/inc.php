@@ -15,3 +15,6 @@ if(!is_file($configure)) {
     exit;
 }
 include_once($configure);
+
+$path_image = APP_PATH."template/images/";
+$smarty->assign("path_image",$path_image);
