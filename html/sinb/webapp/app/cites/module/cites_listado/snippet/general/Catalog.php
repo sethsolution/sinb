@@ -12,13 +12,14 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
+        $where = "active=true";
         $this->addCatalogList($this->table["cites_tipo_documento"]
             ,"tipo_documento","","nombre",""
-            ,"id","","","");
+            ,"id","$where","","");
 
         $this->addCatalogList($this->table["cites_proposito"]
             ,"proposito","","nombre",""
-            ,"id","","","");
+            ,"id","$where","","");
     }
 
 }

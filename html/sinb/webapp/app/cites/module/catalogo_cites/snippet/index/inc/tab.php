@@ -24,6 +24,27 @@ $item_tab[]=array(
 ,   "new" => 0
 );
 //-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> "Apendice"
+,   "id_name"=>"apendice"
+,   "icon" => "fas fa-sort-alpha-down m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> "Unidad"
+,   "id_name"=>"Unidad"
+,   "icon" => "fas fa-sort-numeric-down m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> "Origen"
+,   "id_name"=>"origen"
+,   "icon" => "fas fa-leaf m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
 
 /**
  * Se añade el arreglo de tabs configurada a $tabs

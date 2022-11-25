@@ -32,6 +32,25 @@
 </table>
 <table class="item-tabla">
     <tr>
+        <td colspan=4" class="item-tabla-titulo txtCenter">ESPECIES CITES</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-header apendice">Apendice</td>
+        <td class="item-tabla-header">Nombre Comercial/Nombre Cientifico</td>
+        <td class="item-tabla-header">Cantidad - Unidad</td>
+        <td class="item-tabla-header">Origen</td>
+    </tr>
+    {foreach from=$item.especie item=row key=idx}
+        <tr>
+            <td align="center">{$row.nombre_apendice|escape:"html"}</td>
+            <td align="center">{$row.nombre_comercial|escape:"html"} - {$row.nombre_cientifico|escape:"html"}</td>
+            <td align="center">{$row.cantidad|escape:"html"} - {$row.nombre_unidad|escape:"html"}</td>
+            <td align="center">{$row.nombre_origen|escape:"html"}</td>
+        </tr>
+    {/foreach}
+</table>
+<table class="item-tabla">
+    <tr>
         <td colspan=3" class="item-tabla-titulo txtCenter">DOCUMENTOS ADJUNTOS</td>
     </tr>
     <tr>

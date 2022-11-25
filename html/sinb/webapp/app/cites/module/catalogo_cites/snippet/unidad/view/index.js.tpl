@@ -1,33 +1,33 @@
 {literal}
 <script>
-
     var table_list;
     var snippet_list = function() {
         "use strict";
-        var urlsys = '{/literal}{$path_url}{literal}';
+        var urlsys = '{/literal}{$path_url}/{$subcontrol}_/0{$id}{literal}';
         var initTable = function() {
-            let table_list_var = $('#index_list');
+            let table_list_var = $('#tabla_{/literal}{$subcontrol}{literal}');
             let export_title = "{/literal}{#dataTableExportTitle#}{literal}";
             let noExport = tableSetting.noExport;
-            // begin first table
             table_list = table_list_var.DataTable({
                 initComplete: function(settings, json) {
-                    $('#index_list').removeClass('d-none');
+                    table_list_var.removeClass('d-none');
                 },
                 keys: {
                     columns: noExport,
                     clipboard: false,
                 },
-                dom: tableSetting.dom,
+                //dom: tableSetting.dom,
+                dom:
+                    `<'row'<'col-sm-5 text-left'f><'col-sm-7 text-right'l>>
+			         <'row'<'col-sm-12'tr>>
+                     <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'p>>`
+                ,
                 buttons: [
-                    /*
-                    {extend:'colvis',text:lngUyuni.dataTableWatch
+                    /*{extend:'colvis',text:lngUyuni.dataTableWatch
                         ,columnText: function ( dt, idx, title ) {
                             return (idx+1)+': '+title;
                         }
-                    },
-
-                     */
+                    },*/
                     {extend:'excelHtml5'
                         ,exportOptions: {columns: noExport}
                         , title: export_title
@@ -50,12 +50,12 @@
                     }
 
                 ],
-                responsive: true,
                 colReorder: true,
+                responsive: true,
                 language: {"url": "/language/js/datatable."+lng+".json"},
                 lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
-                pageLength: 10,
-                //order: [[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
+                pageLength: 25,
+                //order: [[ 0, "asc" ],[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
                 InfoFiltered: false,
                 searchDelay: 500,
                 processing: true,
@@ -70,12 +70,6 @@
                     {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}{literal}
                 ],
-                /*
-                rowGroup: {
-                    dataSrc: ['parentname','groupname']
-                },
-
-                 */
                 columnDefs: [
                     {
                         targets: -1,
@@ -96,14 +90,32 @@
                     },
                     {
                         targets: [0],
+                        width: "300px",
                         className:"text-left",
                         render: function(data,type,full,meta){
                             return '<span style="color: #0357ae;">' + data + ' </span>';
                         },
                     },
-                    {   targets: [3, 4, 5, 7], className: "none"   },
                     {
-                        targets: [-2,-3, 6],
+                        targets: [1,2,3],
+                        className:"text-center",
+                    },
+                    {
+                        targets: [4],
+                        width: '60px',
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                'false': { 'state': 'metal'},
+                                'true': { 'state': 'success'}
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<div class="text-center"><i class="fa fa-check-double text-' + status[data].state + '"></i></div>';
+                        },
+                    },
+                    {
+                        targets: [-2,-3],
                         searchable: false,
                         className: "none",
                         render: function(data,type,full,meta){
@@ -111,16 +123,17 @@
                             return '<span class="text-primary font-size-xs">' + data+ '</span>';
                         },
                     },
-                    {targets: [0, 2, 6], searchable: false},
-                ],
-            });
-        };
 
+                ],
+
+            });
+
+        };
         /**
          * New and Update
          */
-        //var btn_update = $('#btn_update');
-        var btn_update = $('#btn_new');
+            //var btn_update = $('#btn_update');
+        var btn_update = $('#btn_form_{/literal}{$subcontrol}{literal}');
         var handle_button_update = function(){
             btn_update.click(function(e){
                 e.preventDefault();
@@ -129,7 +142,8 @@
         };
 
         var item_update = function(id,type){
-            coreUyuni.itemUpdateIndex(id,type,urlsys);
+            var subcontrol = "{/literal}{$subcontrol}{literal}";
+            coreUyuni.itemUpdateTabs(id,type,urlsys, subcontrol);
         };
         /**
          * Delete
@@ -150,28 +164,26 @@
         var handle_filtro = function () {
             coreUyuni.tableFilter();
         };
-
         return {
             //main function to initiate the module
             init: function() {
-                initTable();
                 handle_button_update();
+                initTable();
                 handle_components();
                 handle_filtro();
             },
             update: function(id,type){
-                item_update(id,type);
+                item_update(id,"update");
             },
             delete: function(id){
                 item_delete(id);
             },
         };
-
     }();
 
     jQuery(document).ready(function() {
-        $('#btn_new').removeClass('d-none');
         snippet_list.init();
     });
 </script>
+
 {/literal}

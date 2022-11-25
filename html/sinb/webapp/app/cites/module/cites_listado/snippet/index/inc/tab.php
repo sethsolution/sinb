@@ -18,6 +18,13 @@ $item_tab[]=array(
 );
 //-------------------------------------------------------------
 $item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_especie"]
+,   "id_name"=>"especie"
+,   "icon" => "fas fa-otter m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
+$item_tab[]=array(
     "label"=> $smarty->config_vars["tab_adjunto"]
 ,   "id_name"=>"adjunto"
 ,   "icon" => "fas fa-paperclip m--font-success"

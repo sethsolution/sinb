@@ -138,6 +138,7 @@ class Index extends CoreResources {
 
         $item = $this->getItem($item_id);
         $item["observacion"] = $this->cleanHtml($item["observacion"]);
+        $item["especie"] =  $this->getEspecies($item_id);
         $item["adjunto"] =  $this->getAdjuntos($item_id);
         //print_struc($item);exit;
         $smarty->assign('item', $item);
@@ -162,6 +163,30 @@ class Index extends CoreResources {
 
         $pdf->stream($nombre_archivo,$options);
         exit;
+    }
+
+    public function getEspecies($idItem){
+
+        $itemEspecie = '';
+
+        if($idItem!=''){
+            $sqlSelect = 'ce.*, ca.nombre as nombre_apendice, cu.nombre as nombre_unidad, co.nombre as nombre_origen';
+            $sqlFrom = ' '.$this->table["cites_especie"].' ce
+                         LEFT JOIN '.$this->table["cites_apendice"].' ca on ca.id=ce.apendice_id
+                         LEFT JOIN '.$this->table["cites_unidad"].' cu on cu.id=ce.unidad_id
+                         LEFT JOIN '.$this->table["cites_origen"].' co on co.id=ce.origen_id';
+            $sqlWhere = ' ce.cites_id='.$idItem;
+            $sqlGroup = ' ';
+            $sql = 'SELECT '.$sqlSelect.'
+                  FROM '.$sqlFrom.'
+                  WHERE '.$sqlWhere.'
+                  '.$sqlGroup;
+
+            //print_struc($sql);exit;
+            $itemEspecie = $this->dbm->Execute($sql);
+            $itemEspecie = $itemEspecie->getRows();
+        }
+        return $itemEspecie;
     }
 
     public function getAdjuntos($idItem){
