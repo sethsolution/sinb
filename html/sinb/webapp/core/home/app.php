@@ -6,13 +6,6 @@ $path_sbm = APP_PATH."module/".APP_MODULE."/";
 $path_sbm_inc = $path_sbm."inc/";
 $path_sbm_snippet = $path_sbm."snippet/";
 $path_sbm_snippet_index = $path_sbm_snippet."index/";
-/*
-echo $path_sbm."<----- 1<br>";
-echo $path_sbm_inc."<----- 2<br>";
-echo $path_sbm_snippet."<----- 3<br>";
-echo $path_sbm_snippet_index."<----- 4<br>";
-*/
-
 /**
  * Se encuentra en action.path.php de cada módulo
  */
@@ -132,12 +125,6 @@ if(is_file($inc_file)) include_once($inc_file);
  **/
 include($path_sbm_snippet_index."/Index.php");
 include($path_sbm_snippet_index."/Catalog.php");
-
-/*
-$objItem = new Index();
-$objCatalog = new Catalogo();
-*/
-
 /**
  * Includes de configuración de TPL
  */
@@ -158,7 +145,6 @@ if($countOpt == 2) {
         echo "no existe el archivo class:".$inc_file;exit;
     }
     include($inc_file);
-    //$subObjItem = new Snippet();
     /**
      * Classe sub Catalogo
      */
@@ -167,7 +153,6 @@ if($countOpt == 2) {
         echo "no existe el archivo class:".$inc_file;exit;
     }
     include($inc_file);
-    //$subObjCatalog = new Subcatalogo();
 }
 
 /**

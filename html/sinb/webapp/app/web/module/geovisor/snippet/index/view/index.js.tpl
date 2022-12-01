@@ -512,11 +512,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 opacity: 0.8
             });
 
-
-
-
-
-            var dia = '2022/11/01';
+            var dia = '2022/11/26';
 
             var nasa_01 = new L.GIBSLayer('VIIRS_CityLights_2012', {
                 date: new Date(dia),
@@ -563,9 +559,6 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 transparent: true,
                 opacity: 0.8
             });
-
-
-
 
             var overLayers =[
                 {

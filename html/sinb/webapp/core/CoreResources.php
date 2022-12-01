@@ -739,4 +739,98 @@ class CoreResources
         return $request;
     }
 
+
+    function getRamdomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    public function getConfigCore(){
+        global $db;
+        $sql =  "SELECT * FROM ".$this->table_core["config"]." WHERE active =TRUE LIMIT 1";
+        $info = $db->execute($sql);
+        $item = $info->fields;
+        return $item;
+
+    }
+
+    public function sendEmailSystem($to,$asunto,$base=""){
+        global $subcontrol,$path_sbm,$pathmodule,$smarty_template,$smarty,$frontend;
+        /**
+         * Configuración de template para sacar datos de los tpl para enviar el correo
+         */
+        $smarty_template = array();
+        $smarty_template[] = "./app/core/template/";
+        $smarty_template[] = $path_sbm."snippet/".$subcontrol."/view/";
+        $smarty_template[] = APP_PATH."template/frontend/";
+        $smarty->setTemplateDir($smarty_template);
+
+        if($base==""){
+            $base = $frontend["email_base"];
+        }
+        /**
+         * Sacamos los datos de configuración
+         */
+        $conf = $this->getConfigCore();
+        /**
+         * Variable dominio en la url
+         */
+
+        if($conf["ssl"]==false){
+            $dominio = "http://";
+        }else{
+            $dominio = "https://";
+        }
+        $dominio .=  $conf["domain"];
+        $smarty->assign("url_dominio",$dominio);
+        $smarty->assign("dominio",$conf["domain"]);
+
+        $cuerpo = $smarty->fetch($frontend["email_base"]);
+
+        $mail = new PHPMailer(true);
+        
+        try {
+            //Server settings
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+            $mail->isSMTP();                                            // Send using SMTP
+            $mail->Host       = $conf["smtp_server"];                    // Set the SMTP server to send through
+            $mail->SMTPAuth   = $conf["stmp_auth"];                                   // Enable SMTP authentication
+            $mail->Username   = $conf["smtp_user"];                          // SMTP username
+            $mail->Password   = $conf["smtp_password"];                                   // SMTP password
+            $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = $conf["smtp_port"];                          // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom($conf["email_from"], $conf["email_from_name"]);
+            //$mail->AddReplyTo($CFGm->phpmailer["De"], $CFGm->phpmailer["Nombre"]);
+            $mail->addAddress($to["email"], $to["name"]);     // Add a recipient
+
+            //print_struc($mail);exit;
+            // Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            //$asunto = htmlentities($asunto,ENT_QUOTES,"UTF-8");
+            //$asunto = utf8_encode($asunto);
+            $asunto = utf8_decode($asunto);
+            $mail->Subject = $asunto;
+            $mail->Body    = $cuerpo;
+            $mail->AltBody = $cuerpo;
+
+            $archivos = "./images/email/";
+            $mail->AddEmbeddedImage($archivos.'email_logo.png','mmayaLogo','email_logo.png');
+
+            $mail->send();
+            $res["res"] = 1;
+            $res["msgdb"] = "Mensaje fue enviado correctamente";
+        } catch (Exception $e) {
+            $res["res"] = 2;
+            $res["msgdb"] = "No se pudo enviar el correo electrónico {$mail->ErrorInfo}";
+        }
+        return $res;
+    }
+
 }

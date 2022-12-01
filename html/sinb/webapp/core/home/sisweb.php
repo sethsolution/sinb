@@ -28,10 +28,17 @@ define('APP_PATH',"./app/" . APP . "/");
 $appOk = 0;
 $appAuth = 0;
 /**
+ * Cargamos el inc de la app, para desarrollos muy específicos antes de realizar el login
+ */
+
+/**
+ * Cargamos las librerias de la app
+ */
+include_once(APP_PATH."inc/inc.php");
+/**
  * Sacamos los datos del subsistema que estamos accediendo
  */
 $appOk = Core::getAppOk(APP);
-
 switch ($appOk){
     case '0': include(HOME_PATH."nomodule.php"); break;
     case '2': include(HOME_PATH."noprivileges.php"); break;
@@ -42,7 +49,6 @@ if($appOk==1){
      * Cargamos las librerias de la app
      */
     include_once(APP_PATH."inc/template.php");
-    include_once(APP_PATH."inc/inc.php");
     /**
      * Variables base de Smarty
      * --------------------------------------------------------------------------------------------------------------

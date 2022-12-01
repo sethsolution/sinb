@@ -66,12 +66,15 @@ class Index extends CoreResources {
     }
 
     public function logout(){
+
         $rec = array();
         $rec["lastLogout"] = date("Y-m-d H:i:s");
         $rec["session"] = "";
-        $userU = User::find($_SESSION["userv"]["id"]);
-        $userU->update($rec);
-        $userU->save();
+        if(isset($_SESSION["userv"]["id"])){
+            $userU = User::find($_SESSION["userv"]["id"]);
+            $userU->update($rec);
+            $userU->save();
+        }
 
         $record = array();
         //$record["usuario"] = $_SESSION["userv"]["username"];
