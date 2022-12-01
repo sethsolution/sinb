@@ -3,14 +3,6 @@
     <div class="col-lg-6">
         <!--begin::Card-->
         <div class="card card-custom gutter-b">
-            {*
-            <div class="card-header ribbon ribbon-clip ribbon-right">
-                <div class="ribbon-target" style="top: 15px; height: 45px;">
-                    <span class="ribbon-inner bg-primary"></span><i class="{$row.class} text-white"></i>
-                </div>
-                <h3 class="card-title">{$row.nombre}</h3>
-            </div>
-            *}
             <div class="card-body p-2">
                 <!--begin::Top-->
                 <div class="d-flex align-items-center">

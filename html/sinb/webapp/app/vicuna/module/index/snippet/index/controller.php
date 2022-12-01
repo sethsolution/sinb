@@ -1,6 +1,6 @@
 <?PHP
-use App\Icas\Module\Index\Snippet\Index\Index;
-use App\Icas\Module\Index\Snippet\Index\Catalog;
+use App\Vicuna\Index\Index\Index;
+use App\Vicuna\Index\Index\Catalog;
 use Core\Core;
 $objItem = new Index();
 $objCatalog = new Catalog();

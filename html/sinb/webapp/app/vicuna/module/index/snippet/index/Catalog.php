@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Index\Snippet\Index;
+namespace App\Vicuna\Index\Index;
 use Core\CoreResources;
 class Catalog extends CoreResources{
     function __construct(){
