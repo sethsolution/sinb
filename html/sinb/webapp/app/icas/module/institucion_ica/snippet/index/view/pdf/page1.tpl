@@ -61,3 +61,44 @@
         </td>
     </tr>
 </table>
+
+<table class="item-tabla">
+    <tr>
+        <td colspan=4" class="item-tabla-titulo txtCenter">ACREDITACIONES</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-header">Fecha Acreditación</td>
+        <td class="item-tabla-header">Fecha Expiración</td>
+        <td class="item-tabla-header">Descripción</td>
+        <td class="item-tabla-header">Estado</td>
+    </tr>
+    {foreach from=$item.acreditacion item=row key=idx}
+        <tr>
+            <td align="center">{$row.fecha_acreditacion|date_format:'%d/%m/%Y'}</td>
+            <td align="center">{$row.fecha_expiracion|date_format:'%d/%m/%Y'}</td>
+            <td>{$row.descripcion|escape:"html"}</td>
+            <td align="center">{if $row.estado == 1}Activo {else} Inactivo{/if}</td>
+        </tr>
+    {/foreach}
+</table>
+
+<table class="item-tabla">
+    <tr>
+        <td colspan=3" class="item-tabla-titulo txtCenter">DOCUMENTOS ADJUNTOS</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-header">Descripción</td>
+        <td class="item-tabla-header">Documento</td>
+        <td class="item-tabla-header">Tamaño</td>
+    </tr>
+    {foreach from=$item.adjunto item=row key=idx}
+        <?php
+            var size =  ($row.estado / (1024*1024)).toFixed(2)
+        ?>
+        <tr>
+            <td>{$row.descripcion|escape:"html"}</td>
+            <td align="center">{$row.attached_name|escape:"html"}</td>
+            <td align="center">{$row.attached_size|escape:"html"}</td>
+        </tr>
+    {/foreach}
+</table>

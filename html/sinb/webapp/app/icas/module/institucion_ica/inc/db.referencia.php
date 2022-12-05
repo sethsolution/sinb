@@ -14,6 +14,7 @@ $db_table = array();
 $dbSchemaName = "icas";
 $db_table[] = Core::getTableConfig("institucion");
 $db_table[] = Core::getTableConfig("institucion_archivo");
+$db_table[] = Core::getTableConfig("institucion_acreditacion");
 
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);

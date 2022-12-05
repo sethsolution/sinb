@@ -20,6 +20,16 @@
 
         <div class="card-body">
             <div class="form-group row">
+{*                <div class="col-lg-12">*}
+{*                    <label>{#field_vigente#}:</label>*}
+{*                    <div class="input-group">*}
+{*                    <span class="switch switch-icon">*}
+{*                        <label><input type="checkbox" {if $item.vigente == 1}checked="checked"{/if} name="item[vigente]" value="1" ><span></span></label>*}
+{*                    </span>*}
+{*                    </div>*}
+{*                    <span class="form-text text-black-50">{#field_msg_vigente#}</span>*}
+{*                </div>*}
+
                 <div class="col-lg-6">
                     <label>{#field_nombre#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
@@ -34,6 +44,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_nombre#}</span>
                 </div>
+
                 <div class="col-lg-6">
                     <label>{#field_direccion#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
@@ -192,6 +203,28 @@
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-calendar-check"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_responsable_operativo#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_fecha_acreditacion#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general" id="fecha_acreditacion"
+                               name="item[fecha_acreditacion]" value="{$item.fecha_acreditacion|date_format:'%d/%m/%Y'}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol "></i></span></div>
+                    </div>
+                    {*<span class="form-text text-black-50">{#field_ms  g_fecha_conclusion_enmienda#}</span>*}
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_fecha_expiracion#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general" id="fecha_expiracion"
+                               name="item[fecha_expiracion]" value="{$item.fecha_expiracion|date_format:'%d/%m/%Y'}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol "></i></span></div>
+                    </div>
+                    {*<span class="form-text text-black-50">{#field_msg_fecha_conclusion_enmienda#}</span>*}
                 </div>
             </div>
         </div>

@@ -48,6 +48,13 @@ class Index extends CoreResources
         $field_id="id";
         $res = $this->updateItem($itemId,$itemData ,$this->table[$this->objTable],$action,$field_id);
         $res["accion"] = $action;
+        if( $res["res"]==1){
+            /**
+             * Realizaremos los cálculos correspondientes de la fecha para los datos de la institucion
+             */
+            $this->setFechasAcreditacionExpiracion($itemId);
+        }
+
         return $res;
     }
 
@@ -68,6 +75,36 @@ class Index extends CoreResources
                 break;
         }
         return $dataResult;
+    }
+
+    private function setFechasAcreditacionExpiracion($id){
+        if($id!=""){
+            /**
+             * Calculamos fechas
+             */
+            $sql = "SELECT min(fecha_acreditacion) as fecha_acreditacion, max(fecha_expiracion) as fecha_expiracion
+                    FROM ".$this->table["institucion_acreditacion"]." where institucion_id=".$id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            if(isset($item["fecha_acreditacion"]) && $item["fecha_acreditacion"]!=""){
+                $rec["fecha_acreditacion"]=$item["fecha_acreditacion"];
+            }else{
+                $rec["fecha_acreditacion"]= NULL;
+            }
+
+            if(isset($item["fecha_expiracion"]) && $item["fecha_expiracion"]!=""){
+                $rec["fecha_expiracion"]=$item["fecha_expiracion"];
+            }else{
+                $rec["fecha_expiracion"]= NULL;
+            }
+            /**
+             * Se guarda la información
+             */
+            $where = "id = ".$id;
+            $table = $this->table["institucion"];
+            $resp = $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
     }
 
 }

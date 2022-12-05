@@ -148,6 +148,8 @@ class Index extends CoreResources {
         //$item["comentario"] = $this->cleanHtml($item["comentario"]);
         //$item["comentario_observaciones"] = $this->cleanHtml($item["comentario_observaciones"]);
         //$item["cupo"] =  $this->getInstitucionTipo($item["tipo_id"]);
+        $item["acreditacion"] =  $this->getAcreditaciones($item_id);
+        $item["adjunto"] =  $this->getAdjuntos($item_id);
         //print_struc($item);exit;
         $smarty->assign('item', $item);
 
@@ -171,6 +173,46 @@ class Index extends CoreResources {
 
         $pdf->stream($nombre_archivo,$options);
         exit;
+    }
+
+    public function getAcreditaciones($idItem){
+
+        $itemAcreditacion = '';
+
+        if($idItem!=''){
+            $sqlSelect = ' i.fecha_acreditacion, i.fecha_expiracion, i.descripcion, i.estado';
+            $sqlFrom = ' '.$this->table["institucion_acreditacion"].' i';
+            $sqlWhere = ' i.institucion_id='.$idItem;
+            $sqlGroup = ' ';
+
+            $sql = 'SELECT '.$sqlSelect.'
+                  FROM '.$sqlFrom.'
+                  WHERE '.$sqlWhere.'
+                  '.$sqlGroup;
+
+            $itemAcreditacion = $this->dbm->Execute($sql);
+            $itemAcreditacion = $itemAcreditacion->getRows();
+        }
+        return $itemAcreditacion;
+    }
+
+    public function getAdjuntos($idItem){
+
+        $itemAdjunto = '';
+
+        if($idItem!=''){
+            $sqlSelect = 'ia.attached_name, ia.attached_extension, ia.attached_size, ia.attached_type, descripcion';
+            $sqlFrom = ' '.$this->table["institucion_archivo"].' ia';
+            $sqlWhere = ' ia.institucion_id='.$idItem;
+            $sqlGroup = ' ';
+            $sql = 'SELECT '.$sqlSelect.'
+                  FROM '.$sqlFrom.'
+                  WHERE '.$sqlWhere.'
+                  '.$sqlGroup;
+            $itemAdjunto = $this->dbm->Execute($sql);
+            $itemAdjunto = $itemAdjunto->getRows();
+        }
+        return $itemAdjunto;
     }
 
     public function cleanHtml($str){

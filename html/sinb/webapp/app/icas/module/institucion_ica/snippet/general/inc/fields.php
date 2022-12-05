@@ -12,6 +12,7 @@ $fields = array();
  * Configuraciòn de los grupos de campos a utilizar
  */
 $field_item = array();
+$field_item["vigente"]=array("type"=>"checkbox_02");
 $field_item["nombre"]=array("type"=>"text");
 $field_item["tipo_id"]=array("type"=>"text");
 $field_item["direccion"]=array("type"=>"text");
@@ -25,6 +26,8 @@ $field_item["departamento_id"]=array("type"=>"text");
 $field_item["ciudad"]=array("type"=>"text");
 $field_item["responsable"]=array("type"=>"text");
 $field_item["responsable_operativo"]=array("type"=>"text");
+$field_item["fecha_acreditacion"]=array("type"=>"date_01");
+$field_item["fecha_expiracion"]=array("type"=>"date_01");
 //$field_item["active"]=array("type"=>"checkbox_02");
 
 

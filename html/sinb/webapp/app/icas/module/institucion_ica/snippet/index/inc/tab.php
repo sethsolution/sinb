@@ -24,14 +24,12 @@ $item_tab[]=array(
 ,   "new" => 0
 );
 //-------------------------------------------------------------
-/*
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_enmienda"]
-,   "id_name"=>"enmienda"
+    "label"=> $smarty->config_vars["tab_acreditacion"]
+,   "id_name"=>"acreditacion"
 ,   "icon" => "fas fa-calendar-alt m--font-success"
 ,   "new" => 0
 );
-*/
 //-------------------------------------------------------------
 $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_adjunto"]
