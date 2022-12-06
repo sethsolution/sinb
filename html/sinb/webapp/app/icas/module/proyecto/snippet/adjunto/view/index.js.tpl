@@ -89,7 +89,7 @@
                     },
 
                     {
-                        targets: [0],
+                        targets: [1],
                         render: function(data,type,full,meta){
                             return '<span class="text-primary">' + data+ '</span>';
                         },
@@ -117,12 +117,12 @@
                      */
 
                     {
-                        targets: [2],
+                        targets: [3],
                         className:"text-right",
                     },
 
                     {
-                        targets: [1],
+                        targets: [2],
                         render: function(data,type,full,meta){
                             var download = "";
                             if(data) {
@@ -135,7 +135,7 @@
                     },
 
                     {
-                        targets: [2],
+                        targets: [3],
                         render: function(data,type,full,meta){
                             //return '<span style="color: #7708bd;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(data) + ' </span>';
                             var size_file = "";

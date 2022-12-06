@@ -9,6 +9,19 @@
             </div>
 
             <div class="form-group row">
+                <div class="col-lg-6">
+                    <label>{#field_gestion#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_integer2"
+                               name="item[gestion]" value="{$item.gestion|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="far fa-calendar"></i></span></div>
+                    </div>
+                    <span class="form-text text-muted">{#field_msg_gestion#}</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
 
                 <div class="col-lg-12">
                     <label>{#field_descripcion#} <span class="text-danger bold">*</span> :</label>

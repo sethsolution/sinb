@@ -8,6 +8,7 @@ $fields = array();
  */
 $field_item = array();
 $field_item["descripcion"]=array("type"=>"text");
+$field_item["gestion"]=array("type"=>"text");
 //$field_item["active"]=array("type"=>"checkbox_02");
 $group = "index";
 $fields[$group]= $field_item;

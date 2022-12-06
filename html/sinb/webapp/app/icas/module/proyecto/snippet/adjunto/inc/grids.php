@@ -12,7 +12,7 @@ $grid_table_join = array();
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
-
+$grid_item[]=array("field" => "gestion","label"=> $smarty->config_vars["table_gestion"]);
 $grid_item[]=array("field" => "descripcion","label"=> $smarty->config_vars["table_descripcion"]);
 
 $grid_item[]=array("field"=> "attached_name","label"=> $smarty->config_vars["table_attached_name"]);
