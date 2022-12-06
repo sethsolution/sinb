@@ -29,11 +29,11 @@
 
                      */
                     {extend:'excelHtml5'
-                        ,exportOptions: {columns: noExport}
+                        ,exportOptions: {columns: [0, 1, 2, 3, 4, 5]}
                         , title: export_title
                     },
                     {extend:'pdfHtml5'
-                        ,exportOptions: {columns: noExport}
+                        ,exportOptions: {columns: [0, 1, 2, 3, 4, 5]}
                         , title: export_title
                         , download: 'open'
 
