@@ -48,11 +48,11 @@
                     <span class="form-text text-black-50">{#field_msg_codigo#}</span>
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-lg-5">
                     <label>{#field_area_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[area_id]" id="type_select_estado"
+                                name="item[area_id]" id="area_id"
                                 data-placeholder="{#field_Holder_area_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
@@ -62,6 +62,21 @@
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_area_id#}</span>
+                </div>
+                <div class="col-lg-4">
+                    <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[departamento_id]" id="departamento_id"
+                                data-placeholder="{#field_Holder_departamento_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.departamento selected=$item.departamento_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
                 </div>
             </div>
         </div>

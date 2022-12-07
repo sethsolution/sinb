@@ -23,6 +23,10 @@ class Catalog extends CoreResources{
         $this->addCatalogList($this->table["icas_fuente_financiamiento"]
             ,"financiamiento","","nombre",""
             ,"id","","","");
+        $where = "cod_dep<>'0'";
+        $this->addCatalogList($this->table["departamento"]
+            ,"departamento","","name",""
+            ,"name",$where,"","");
     }
 
 }

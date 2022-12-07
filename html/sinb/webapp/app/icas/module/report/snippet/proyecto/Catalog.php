@@ -12,36 +12,23 @@ class Catalog extends CoreResources{
 
     public function confCatalog($item){
 
-        $this->addCatalogList($this->table["tipo"]
-            ,"tipo","","nombre",""
+        $this->addCatalogList($this->table["icas_area"]
+            ,"icas_area","","nombre",""
             ,"nombre","","","");
-        $this->addCatalogList($this->table["estado"]
-            ,"estado","","nombre",""
+        $this->addCatalogList($this->table["icas_estado"]
+            ,"icas_estado","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["icas_fuente_financiamiento"]
+            ,"icas_fuente_financiamiento","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["icas_institucion_tipo"]
+            ,"icas_institucion_tipo","","nombre",""
             ,"nombre","","","");
 
         $where = "cod_dep<>'0'";
         $this->addCatalogList($this->table["departamento"]
             ,"departamento","","name",""
             ,"name",$where,"","");
-
-
-        $this->addCatalogList($this->table["tipo_proyecto"]
-            ,"tipo_proyecto","","nombre",""
-            ,"nombre","","","");
-        /*
-
-
-
-
-
-
-        $where = $item["tipo_id"] != ""?" tipo_id = ".$item["tipo_id"]:"";
-        $this->addCatalogList($this->table["convenio"]
-            ,"convenio","","numero_convenio_txt",""
-            ,"numero_convenio",$where,"","");
-
-        */
-
     }
 
     function getConvenioOptions($id){
@@ -57,7 +44,9 @@ class Catalog extends CoreResources{
     }
 
     function getMunicipioOptions($id){
-        $id =  implode(',',$id);
+//        print_struc($id);exit();
+        $id =  implode(",", (array) $id);
+//        $id = "";
         /**
          * sacamos los convenio segun el programa
          */

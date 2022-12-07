@@ -184,7 +184,7 @@
             labels: [
                 {/literal}
                 {foreach from=$res.tipo item=row key=idx}
-                {if $idx != 0},{/if}"{$row.tipo}"
+                {if $idx != 0},{/if}"{$row.area}"
                 {/foreach}
                 {literal}
             ],
@@ -195,7 +195,7 @@
                 {
                     label: '{$row.nombre}',
                     data: [
-                        {foreach from=$row.estado item=dato key=idx2}
+                        {foreach from=$row.area item=dato key=idx2}
                         {if $idx2 != 0},{/if}'{$dato.total}'
                         {/foreach}
                     ],

@@ -17,6 +17,7 @@ $field_item["nombre"]=array("type"=>"text");
 $field_item["codigo"]=array("type"=>"text");
 $field_item["area_id"]=array("type"=>"text");
 $field_item["estado_id"]=array("type"=>"text");
+$field_item["departamento_id"]=array("type"=>"text");
 
 $field_item["fuente_financiamiento_id"]=array("type"=>"text");
 $field_item["fuente_financiamiento_otro"]=array("type"=>"text");
