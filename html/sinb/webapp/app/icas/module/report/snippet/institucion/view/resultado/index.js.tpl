@@ -88,7 +88,7 @@
                     {
                         targets: 2,
                         orderData: [0,2],
-                        width: "150px",
+                        width: "100px",
                     },
                 ],
             });
@@ -183,8 +183,8 @@
         data: {
             labels: [
                 {/literal}
-                {foreach from=$res.tipo item=row key=idx}
-                {if $idx != 0},{/if}"{$row.tipo}"
+                {foreach from=$res.proyectos item=row key=idx}
+                {if $idx != 0},{/if}"{$row.proyecto}"
                 {/foreach}
                 {literal}
             ],
@@ -195,7 +195,7 @@
                 {
                     label: '{$row.nombre}',
                     data: [
-                        {foreach from=$row.estado item=dato key=idx2}
+                        {foreach from=$row.tipo item=dato key=idx2}
                         {if $idx2 != 0},{/if}'{$dato.total}'
                         {/foreach}
                     ],
@@ -292,7 +292,7 @@
             labels: [
                 {/literal}
                 {foreach from=$res.departamento item=row key=idx}
-                {if $idx != 0},{/if}"{$row.departamento}: {$row.total|number_format:2:',':'.'}"
+                {if $idx != 0},{/if}"{$row.departamento}: {$row.total}"
                 {/foreach}{literal}
             ],
             datasets: [{

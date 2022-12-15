@@ -1,6 +1,6 @@
 <?PHP
-use App\Icas\Module\Report\Snippet\Familia\Index;
-use App\Icas\Module\Report\Snippet\Familia\Catalog;
+use App\Icas\Module\Report\Snippet\Institucion\Index;
+use App\Icas\Module\Report\Snippet\Institucion\Catalog;
 use Core\Core;
 
 $objItem = new Index();
@@ -43,14 +43,18 @@ switch($action){
     case 'consult':
 
         \Core\Core::setLenguage("general");
-        $res = $objItem->consulta($item);
+
+        //$datatable_debug= true;
+        $res = $objItem->consulta($_REQUEST["item"]);
 
         $smarty->assign("res", $res);
         $smarty->assign("subpage",$webm["sc_resultado"]);
         break;
 
     case 'get.municipio':
-        $item = $objCatalog->getMunicipioOptions($id);
+        //$datatable_debug= true;
+        //print_struc($_REQUEST["id"]);
+        $item = $objCatalog->getMunicipioOptions($_REQUEST["id"]);
         Core::printJson($item);
         break;
 

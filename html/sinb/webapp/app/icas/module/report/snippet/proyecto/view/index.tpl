@@ -15,8 +15,25 @@
 
         <div class="card-body  pt-1 pb-0 programa" >
             <div class="form-group row  pt-0 pb-0 mb-0">
+
                 <div class="col-lg-6">
-                    <label>{#field_area_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_departamento_id#} : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[departamento_id][]" id="departamento_id"
+                                data-placeholder="{#field_holder_departamento_id#}"
+                                multiple
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.departamento selected=$item.departamento_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_departamento_id#}</span>
+                </div>
+
+                <div class="col-lg-6">
+                    <label>{#field_area_id#} : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[area_id][]" id="type_select_tipo"
@@ -48,9 +65,8 @@
                     <span class="form-text text-black-50">{#field_GroupMsg_estado_id#}</span>
                 </div>
 
-
-                <div class="col-lg-5">
-                    <label>{#field_fuente_financiamiento_id#} <span class="text-danger bold">*</span> : </label>
+                <div class="col-lg-6">
+                    <label>{#field_fuente_financiamiento_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[fuente_financiamiento_id][]" id="fuente_financiamiento_id"
@@ -59,7 +75,7 @@
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.icas_fuente_financiamiento selected=$item.departamento_id}
+                            {html_options options=$cataobj.financiamiento selected=$item.fuente_financiamiento_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_fuente_financiamiento_id#}</span>
@@ -75,6 +91,9 @@
                 </button>
             {/if}
 
+            <button type="button" class="btn btn-success mr-2" id="print_window">
+                <i class="fas fa-magic"></i> Imprimir
+            </button>
         </div>
 
     </form>

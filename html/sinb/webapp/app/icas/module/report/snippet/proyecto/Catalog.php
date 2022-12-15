@@ -15,12 +15,15 @@ class Catalog extends CoreResources{
         $this->addCatalogList($this->table["icas_area"]
             ,"icas_area","","nombre",""
             ,"nombre","","","");
+
         $this->addCatalogList($this->table["icas_estado"]
             ,"icas_estado","","nombre",""
             ,"nombre","","","");
+
         $this->addCatalogList($this->table["icas_fuente_financiamiento"]
-            ,"icas_fuente_financiamiento","","nombre",""
+            ,"financiamiento","","nombre",""
             ,"nombre","","","");
+
         $this->addCatalogList($this->table["icas_institucion_tipo"]
             ,"icas_institucion_tipo","","nombre",""
             ,"nombre","","","");

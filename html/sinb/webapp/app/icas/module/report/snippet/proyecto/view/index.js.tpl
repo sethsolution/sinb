@@ -196,6 +196,14 @@
             }
         };
 
+        var btn_print = $('#print_window');
+        var handle_btn_print = function() {
+            btn_print.click(function(e) {
+                e.preventDefault();
+                window.print()
+            });
+        };
+
         return {
             init: function() {
                 handle_form_submit();
@@ -205,6 +213,7 @@
                 handle_font_select();
                 handle_option_convenio();
                 handle_option_departamento();
+                handle_btn_print();
             }
         };
     }();

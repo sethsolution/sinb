@@ -8,18 +8,25 @@
         </div>
     </div>
 </div>
+
 {include file="resultado/resumen01.tpl"}
 
+<div class="m-widget1__item">
+    <div class="row m-row--no-padding">
+        <div class="col-md-6 col-lg-12 text-left" >
+            <h4 class="titulo_esta">Área temática</h4>
+            <canvas id="chart_area" width="auto" height="50" ></canvas>
+        </div>
+    </div>
+</div>
 
 {if $res.total >0}
-
-
 
 <table class="table {*table-separate table-striped*}  table-bordered table-hover table-head-custom table-checkable  table-sm  "
        id="tabla_{$subcontrol}" >
     <thead>
     <tr class="thead-dark thead-color">
-        <th >Tipo</th>
+        <th >Fuente de financiamiento</th>
         <th >Estado</th>
         <th >Total</th>
     </tr>
@@ -27,7 +34,7 @@
     <tbody>
     {foreach from=$res.resultado item=row key=idx}
         <tr>
-            <td>{$row.area}</td>
+            <td>{$row.financiamiento}</td>
             <td>{$row.estado}</td>
             <td style="text-align: right;color:#066d12;">{$row.total|string_format:'%.0f'}</td>
         </tr>
@@ -46,48 +53,46 @@
     </div>
 </div>
 
-<table class="table {*table-separate table-striped*}  table-bordered table-hover table-head-custom table-checkable  table-sm"
-       id="tabla_tipo_{$subcontrol}" >
-    <thead>
-    <tr class="thead-dark thead-color">
-        <th>Area de proyecto</th>
-        {foreach from=$res.years item=row key=idx}
-        <th>{$row}</th>
-        {/foreach}
-        <th>S/R</th>
-        <th>Total</th>
-    </tr>
-    </thead>
-    <tbody>
-    {foreach from=$res.tipoProyecto.tipo item=row key=idx}
-        <tr>
-            <td>{$row.tipo_proyecto}</td>
-            {foreach from=$res.tipoProyecto.years item=rowt key=idxt}
-                <td>
-                {foreach from=$rowt.tipo item=dato key=idx2}
-                    {if $row.tipo_proyecto_id==$dato.id}
-                        {$dato.total}{/if}
-                {/foreach}
-                </td>
-            {/foreach}
-            <td>{$row.total}</td>
-        </tr>
-    {/foreach}
-    </tbody>
-    <tfoot></tfoot>
-</table>
-
-
-
-
     <div class="m-widget1__item">
         <div class="row m-row--no-padding">
             <div class="col-md-6 col-lg-12 text-left" >
-                <h4 class="titulo_esta">Por Area de Proyecto</h4>
-                <canvas id="chart_tipoproyecto" width="auto" height="80" ></canvas>
+                <h4 class="titulo_esta">Lista de Proyectos</h4>
             </div>
         </div>
     </div>
+
+    <table class="table  {*table-separate table-striped*}  table-bordered table-hover table-head-custom table-checkable table-sm"
+           id="tabla_proyecto_resumen" >
+        <thead>
+        <tr class="thead-dark thead-color">
+            <th>Nombre del Proyecto</th>
+            <th>Código</th>
+            <th>Área temática</th>
+            <th>Departamento</th>
+            <th>Estado</th>
+            <th>Fuente de financiamiento</th>
+            <th>Fuente de financiamiento otro</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de conclusión</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach from=$res.proyectos item=pro key=idxp}
+            <tr>
+                <td>{$pro.nombre}</td>
+                <td>{$pro.codigo}</td>
+                <td>{$pro.area}</td>
+                <td>{$pro.departamento}</td>
+                <td>{$pro.estado}</td>
+                <td>{$pro.financiamiento}</td>
+                <td>{$pro.fuente_financiamiento_otro}</td>
+                <td>{$pro.fecha_inicio}</td>
+                <td>{$pro.fecha_conclusion}</td>
+            </tr>
+        {/foreach}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
 
 {/if}
 
