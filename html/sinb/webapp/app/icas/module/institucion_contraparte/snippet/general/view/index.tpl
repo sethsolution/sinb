@@ -120,7 +120,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_web#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_pais_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -135,7 +135,22 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_pais_id#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
+                    <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[departamento_id]" id="type_select_estado"
+                                data-placeholder="{#field_Holder_departamento_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.departamento selected=$item.departamento_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
+                </div>
+                <div class="col-lg-4">
                     <label>{#field_ciudad#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"

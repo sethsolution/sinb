@@ -116,18 +116,18 @@
 
             $('#departamento_id').on('change',function(){
                 var id = $('#departamento_id').val();
-                console.log(id);
+                // console.log(id);
                 municipio_search(id);
             });
 
         };
 
         var municipio_search = function(id){
-            console.log("ID que llega: "+id);
+            // console.log("ID que llega: "+id);
             municipio_opt.find("option").remove();
             if(id!="") {
                 $.post(urlmodule+"/get.municipio"
-                    , {id: id}
+                    , {"id": id}
                     , function (res, textStatus, jqXHR) {
                         let selOption = $('<option></option>');
                         municipio_opt.append(selOption.attr("value", "").text("{/literal}{#field_holder_municipio_id#}{literal}"));

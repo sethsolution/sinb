@@ -14,10 +14,10 @@ class Index extends CoreResources
     }
 
     function getEstadoTotal($estado_id,$tipo_id){
-        $sql = "select p.estado_id, count(*) as total
-                from proyecto as p
-                where p.tipo_id = ".$tipo_id." and p.estado_id=".$estado_id."
-                GROUP BY p.estado_id";
+        $sql = "select p.area_id, count(*) as total
+                from icas.proyecto as p
+                where p.area_id = ".$tipo_id." and p.area_id=".$estado_id."
+                GROUP BY p.area_id";
         $dato = $this->dbm->Execute($sql);
         $dato = $dato->fields;
 
@@ -31,52 +31,30 @@ class Index extends CoreResources
             $filtro =  implode(',',$item["estado_id"]);
             $where = " where p.estado_id in (".$filtro.") ";
         }
-        if(isset($item["tipo_id"])  and is_array($item["tipo_id"])){
-            $filtro =  implode(',',$item["tipo_id"]);
+        if(isset($item["area_id"])  and is_array($item["area_id"])){
+            $filtro =  implode(',',$item["area_id"]);
             if($where == ""){
                 $where .= " where ";
             }else{
                 $where .= " and ";
             }
-            $where .= "p.tipo_id in (".$filtro.")  ";
+            $where .= "p.area_id in (".$filtro.")  ";
         }
 
-        if(isset($item["departamento_id"])  and is_array($item["departamento_id"])){
-            $filtro =  implode(',',$item["departamento_id"]);
+        if(isset($item["fuente_financiamiento_id"])  and is_array($item["fuente_financiamiento_id"])){
+            $filtro =  implode(',',$item["fuente_financiamiento_id"]);
             if($where == ""){
                 $where .= " where ";
             }else{
                 $where .= " and ";
             }
-            $where .= "p.departamento_id in (".$filtro.")  ";
+            $where .= "p.fuente_financiamiento_id in (".$filtro.")  ";
         }
-
-        if(isset($item["municipio_id"])  and is_array($item["municipio_id"])){
-            $filtro =  implode(',',$item["municipio_id"]);
-            if($where == ""){
-                $where .= " where ";
-            }else{
-                $where .= " and ";
-            }
-            $where .= "p.municipio_id in (".$filtro.")  ";
-        }
-
-        if(isset($item["tipo_proyecto_id"])  and is_array($item["tipo_proyecto_id"])){
-            $filtro =  implode(',',$item["tipo_proyecto_id"]);
-            if($where == ""){
-                $where .= " where ";
-            }else{
-                $where .= " and ";
-            }
-            $where .= "p.tipo_proyecto_id in (".$filtro.")  ";
-        }
-
-
 
         $res["where"] = $where;
         $res["join"] = "";
 
-        //print_struc($res);
+//        print_struc($res);
         return $res;
     }
 
@@ -123,46 +101,49 @@ class Index extends CoreResources
         /**
          * Sacamos el rango de años
          */
-        $years = $this->getYears($filtro);
-        $res["years"] = $years;
-        //print_struc($years);
+//        $years = $this->getYears($filtro);
+//        $res["years"] = $years;
+//        print_struc($years);
         /**
-         * Sacamos primer totalizado por tipo de proyecto (inversion, preinversion, sin clasificar)
+         * Sacamos primer totalizado por area de proyecto (Botánica, Zoologia, Genática, etc)
          */
-        $sql = "select ct.id ,ct.nombre as tipo,re.total
+        $sql = "select ct.id ,ct.nombre as area,re.total
                 from
                 (
-                select p.tipo_id ,count(*) as total
-                from proyecto as p 
+                select p.area_id ,count(*) as total
+                from icas.proyecto as p 
                 ".$where."
-                GROUP BY p.tipo_id
+                GROUP BY p.area_id
                 ) as re
-                left join catalogo.tipo as ct on ct.id= re.tipo_id
+                left join catalogo.icas_area as ct on ct.id= re.area_id
                 order by ct.nombre
                 ";
+//        $this->dbm->debug = true;
         $tipo = $this->dbm->Execute($sql);
         $tipo = $tipo->getRows();
         $res["tipo"] = $tipo;
+//        print_struc($res["tipo"]);
         /**
          * Sacamos todos los estado utilizados en esta consulta
          */
         $sql = "select ce.id, ce.nombre as estado ,t.*
                     from(
                     select p.estado_id, count(*) as total
-                    from proyecto as p
+                    from icas.proyecto as p
                     ".$where."
                     GROUP BY p.estado_id
                     ) as t
-                    left join catalogo.estado as ce on ce.id = t.estado_id
+                    left join catalogo.icas_estado as ce on ce.id = t.estado_id
                 ";
         $estados = $this->dbm->Execute($sql);
         $estados = $estados->getRows();
+//        print_struc($estados);
 
         /**
          * Datos tipos proyecto
          */
-        $tipoProyecto = $this->getProyectoTipo($filtro,$years,$tipo,$estados);
-        $res["tipoProyecto"] = $tipoProyecto;
+//        $tipoProyecto = $this->getProyectoTipo($filtro,$years,$tipo,$estados);
+//        $res["tipoProyecto"] = $tipoProyecto;
         /**
          * Datos del departamento
          */
@@ -179,13 +160,14 @@ class Index extends CoreResources
             $dato[$cont]["nombre"] = $row["estado"];
             foreach ($tipo as $es){
                 $totalItem = $this->getEstadoTotal($row["id"],$es["id"]);
-                $dato[$cont]["estado"][] = array("nombre"=>$es["tipo"],"total"=>$totalItem);
+                $dato[$cont]["area"][] = array("nombre"=>$es["area"],"total"=>$totalItem);
             }
 
             $cont++;
         }
 
         $res["dato"] = $dato;
+//        print_struc($res["dato"]);
 
         /**
          * Total de todos los proyectos
@@ -198,24 +180,25 @@ class Index extends CoreResources
         /**
          * Sacamos los datos para la tabla
          */
-        $sql = "select re.tipo_id, ct.nombre as tipo, ce.nombre as estado, re.total
+        $sql = "select re.area_id, ct.nombre as area, ce.nombre as estado, re.total
                 from
                 (
-                select p.tipo_id, p.estado_id, count(*) as total
-                from proyecto as p
+                select p.area_id, p.estado_id, count(*) as total
+                from icas.proyecto as p
                 ".$where."
-                GROUP BY p.tipo_id,p.estado_id
+                GROUP BY p.area_id,p.estado_id
                 )
                 as re
-                left join catalogo.tipo as ct on ct.id= re.tipo_id
-                left join catalogo.estado as ce on ce.id = re.estado_id
+                left join catalogo.icas_area as ct on ct.id= re.area_id
+                left join catalogo.icas_estado as ce on ce.id = re.estado_id
                  order by ct.nombre, ce.nombre
                 ";
+//        $this->dbm->debug = true;
         $resultado = $this->dbm->Execute($sql);
         $resultado = $resultado->getRows();
         $res["resultado"] = $resultado;
 
-        //print_struc($res);
+//        print_struc($res);
         return $res;
     }
 
@@ -233,7 +216,7 @@ class Index extends CoreResources
         $where .= " and p.tipo_proyecto_id ".$id;
 
         $sql = "select count(*) as total
-                from proyecto as p
+                from icas.proyecto as p
                 ".$where." ";
 
         $dato = $this->dbm->Execute($sql);
@@ -263,7 +246,7 @@ class Index extends CoreResources
             (
             SELECT  
             p.departamento_id, count(*) as total
-            FROM proyecto as p
+            FROM icas.proyecto as p
             ".$where."
             group by p.departamento_id
             ) as dep

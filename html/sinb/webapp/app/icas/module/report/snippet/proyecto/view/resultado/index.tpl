@@ -27,7 +27,7 @@
     <tbody>
     {foreach from=$res.resultado item=row key=idx}
         <tr>
-            <td>{$row.tipo}</td>
+            <td>{$row.area}</td>
             <td>{$row.estado}</td>
             <td style="text-align: right;color:#066d12;">{$row.total|string_format:'%.0f'}</td>
         </tr>
@@ -50,7 +50,7 @@
        id="tabla_tipo_{$subcontrol}" >
     <thead>
     <tr class="thead-dark thead-color">
-        <th>Tipo de proyecto</th>
+        <th>Area de proyecto</th>
         {foreach from=$res.years item=row key=idx}
         <th>{$row}</th>
         {/foreach}
@@ -83,7 +83,7 @@
     <div class="m-widget1__item">
         <div class="row m-row--no-padding">
             <div class="col-md-6 col-lg-12 text-left" >
-                <h4 class="titulo_esta">Por Tipo de Proyecto</h4>
+                <h4 class="titulo_esta">Por Area de Proyecto</h4>
                 <canvas id="chart_tipoproyecto" width="auto" height="80" ></canvas>
             </div>
         </div>

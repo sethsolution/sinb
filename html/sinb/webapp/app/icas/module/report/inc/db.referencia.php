@@ -11,54 +11,26 @@ $appVars["table"]  = array();
 
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
-$dbSchemaName = "public";
-$db_table[] = Core::getTableConfig("convenio");
-
+$dbSchemaName = "icas";
+$db_table[] = Core::getTableConfig("institucion");
+$db_table[] = Core::getTableConfig("institucion_archivo");
 $db_table[] = Core::getTableConfig("proyecto");
-$db_table[] = Core::getTableConfig("proyecto_puebloindigena");
-$db_table[] = Core::getTableConfig("proyecto_ejecutor");
 $db_table[] = Core::getTableConfig("proyecto_archivo");
-$db_table[] = Core::getTableConfig("proyecto_financiador");
-$db_table[] = Core::getTableConfig("proyecto_actividad");
-$db_table[] = Core::getTableConfig("proyecto_ampliacion");
-$db_table[] = Core::getTableConfig("proyecto_ubicacion");
-$db_table[] = Core::getTableConfig("proyecto_transferencia");
-$db_table[] = Core::getTableConfig("proyecto_programa_convenio");
-
-
-$db_table[] = Core::getTableConfig("programa");
-$db_table[] = Core::getTableConfig("programa_convenio");
-$db_table[] = Core::getTableConfig("programa_sector");
-$db_table[] = Core::getTableConfig("organismo_financiador");
-
+$db_table[] = Core::getTableConfig("proyecto_institucion");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
 
 $db_table = array();
 $dbSchemaName = "catalogo";
-$db_table[] = Core::getTableConfig("ampliacion_tipo");
-$db_table[] = Core::getTableConfig("contraparte_responsable");
-$db_table[] = Core::getTableConfig("convenio_vigencia");
-$db_table[] = Core::getTableConfig("dificultad");
-$db_table[] = Core::getTableConfig("ejecutor");
-$db_table[] = Core::getTableConfig("estado");
-
-$db_table[] = Core::getTableConfig("organismo_financiador_tipo");
-$db_table[] = Core::getTableConfig("organismo_financiador");
-
-$db_table[] = Core::getTableConfig("sector");
-$db_table[] = Core::getTableConfig("tipo_proyecto");
-$db_table[] = Core::getTableConfig("tipo");
-$db_table[] = Core::getTableConfig("puebloindigena");
-
-$db_table[] = Core::getTableConfig("actividad_tipo");
-$db_table[] = Core::getTableConfig("actividad_unidad");
-$db_table[] = Core::getTableConfig("actividad_estado");
-
-
+$db_table[] = Core::getTableConfig("icas_area");
+$db_table[] = Core::getTableConfig("icas_estado");
+$db_table[] = Core::getTableConfig("icas_fuente_financiamiento");
+$db_table[] = Core::getTableConfig("icas_institucion_tipo");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
+
+
 
 $db_table = array();
 $dbSchemaName = "geo";

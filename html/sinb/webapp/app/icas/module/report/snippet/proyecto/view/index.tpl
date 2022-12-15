@@ -13,29 +13,26 @@
           action="{$path_url}/{$subcontrol}_/{if $type=="update"}{$id}/{/if}consult/"
           id="general_form">
 
-
-
-
         <div class="card-body  pt-1 pb-0 programa" >
             <div class="form-group row  pt-0 pb-0 mb-0">
-                <div class="col-lg-5">
-                    <label>{#field_tipo_id#} <span class="text-danger bold">*</span> : </label>
+                <div class="col-lg-6">
+                    <label>{#field_area_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[tipo_id][]" id="type_select_tipo"
-                                data-placeholder="{#field_holder_tipo_id#}"
+                                name="item[area_id][]" id="type_select_tipo"
+                                data-placeholder="{#field_holder_area_id#}"
                                 multiple
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             {*<option value="0">Todos</option>*}
                             <option></option>
-                            {html_options options=$cataobj.tipo selected=$item.tipo_id}
+                            {html_options options=$cataobj.icas_area selected=$item.area_id}
                         </select>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_norma_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_area_id#}</span>
                 </div>
 
-                <div class="col-lg-7">
+                <div class="col-lg-6">
                     <label>{#field_estado_id#} : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -45,7 +42,7 @@
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.estado selected=$item.estado_id}
+                            {html_options options=$cataobj.icas_estado selected=$item.estado_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_estado_id#}</span>
@@ -53,52 +50,19 @@
 
 
                 <div class="col-lg-5">
-                    <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_fuente_financiamiento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[departamento_id][]" id="departamento_id"
-                                data-placeholder="{#field_holder_departamento_id#}"
+                                name="item[fuente_financiamiento_id][]" id="fuente_financiamiento_id"
+                                data-placeholder="{#field_holder_fuente_financiamiento_id#}"
                                 multiple
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.departamento selected=$item.departamento_id}
+                            {html_options options=$cataobj.icas_fuente_financiamiento selected=$item.departamento_id}
                         </select>
                     </div>
-                    <span class="form-text text-black-50">{#field_msg_departamento_id#}</span>
-                </div>
-
-                <div class="col-lg-7">
-                    <label>{#field_municipio_id#} <span class="text-danger bold">*</span> : </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[municipio_id][]" id="municipio_id"
-                                data-placeholder="{#field_holder_municipio_id#}"
-                                multiple
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.municipio selected=$item.municipio_id}
-                        </select>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_municipio_id#}</span>
-                </div>
-
-
-                <div class="col-lg-12">
-                    <label>{#field_tipo_proyecto_id#} <span class="text-danger bold">*</span> : </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[tipo_proyecto_id][]" id="tipo_proyecto_id"
-                                data-placeholder="{#field_holder_tipo_proyecto_id#}"
-                                multiple
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.tipo_proyecto selected=$item.tipo_proyecto_idd}
-                        </select>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_tipo_proyecto_id#}</span>
+                    <span class="form-text text-black-50">{#field_msg_fuente_financiamiento_id#}</span>
                 </div>
 
             </div>
