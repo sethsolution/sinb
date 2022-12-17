@@ -11,20 +11,20 @@ $tabs = array();
  */
 //-------------------------------------------------------------
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_proyecto"]
-,   "id_name"=>"proyecto"
-,   "icon" => "fas fa-file-alt m--font-success"
+    "label"=> $smarty->config_vars["tab_institucion"]
+,   "id_name"=>"institucion"
+,   "icon" => "fas fa-landmark m--font-success"
 ,   "new" => 1
 );
 //-------------------------------------------------------------
-
+/**
 $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_institucion"]
 ,   "id_name"=>"institucion"
 ,   "icon" => "fas fa-landmark m--font-success"
 ,   "new" => 1
 );
-/**
+
 $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_familia"]
 ,   "id_name"=>"familia"

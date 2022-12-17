@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Report\Snippet\Proyecto;
+namespace App\Lagarto\Module\Report\Snippet\Institucion;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
@@ -12,20 +12,8 @@ class Catalog extends CoreResources{
 
     public function confCatalog($item){
 
-        $this->addCatalogList($this->table["icas_area"]
-            ,"icas_area","","nombre",""
-            ,"nombre","","","");
-
-        $this->addCatalogList($this->table["icas_estado"]
-            ,"icas_estado","","nombre",""
-            ,"nombre","","","");
-
-        $this->addCatalogList($this->table["icas_fuente_financiamiento"]
-            ,"financiamiento","","nombre",""
-            ,"nombre","","","");
-
-        $this->addCatalogList($this->table["icas_institucion_tipo"]
-            ,"icas_institucion_tipo","","nombre",""
+        $this->addCatalogList($this->table["lagarto_red"]
+            ,"red","","nombre",""
             ,"nombre","","","");
 
         $where = "cod_dep<>'0'";

@@ -271,57 +271,7 @@
     {/literal}
     {if $res.total >0}
     {literal}
-    //console.log(bgcolorRgb);
-    var ctx_monto_dos = document.getElementById("chart_cantidad").getContext('2d');
-    var chart_monto_dos = new Chart(ctx_monto_dos, {
-        type: 'bar',
-        data: {
-            labels: [
-                {/literal}
-                {foreach from=$res.financiamiento item=row key=idx}
-                {if $idx != 0},{/if}"{$row.financiamiento}"
-                {/foreach}
-                {literal}
-            ],
-            datasets: [
-                {/literal}
-                {foreach from=$res.dato item=row key=idx}
-                {if $idx != 0},{/if}
-                {
-                    label: '{$row.nombre}',
-                    data: [
-                        {foreach from=$row.financiamiento item=dato key=idx2}
-                        {if $idx2 != 0},{/if}'{$dato.total}'
-                        {/foreach}
-                    ],
-                    backgroundColor: bgcolorRgb[{$idx}+2],
-                    borderWidth: 1
-                }
-                {/foreach}
-                {literal}
-            ]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    boxWidth: 20,
-                    fontSize: 11,
-                    padding: 7
-                }
-            },
-            scales: {
-                x: {
-                    stacked: true,
-                },
-                y: {
-                    stacked: true
-                }
-            }
-        }
-    });
+    //console.log(bgcolorRgb);*}
 
 
     var ctx = document.getElementById("chart_departamento").getContext('2d');
@@ -339,41 +289,6 @@
                 data: [
                     {/literal}
                     {foreach from=$res.departamento item=row key=idx}
-                    {if $idx != 0},{/if}{$row.total}
-                    {/foreach}{literal}
-                ],
-                backgroundColor: bgcolorHtml,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            legend: {
-                display: true,
-                position: 'left',
-                labels: {
-                    boxWidth: 20,
-                    fontSize: 12,
-                    padding: 7
-                }
-            }
-        }
-    });
-
-    var ctx = document.getElementById("chart_area").getContext('2d');
-    var chart_cantidad = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: [
-                {/literal}
-                {foreach from=$res.areaTematica item=row key=idx}
-                {if $idx != 0},{/if}"{$row.area}: {$row.total}"
-                {/foreach}{literal}
-            ],
-            datasets: [{
-                label: '# of Votes',
-                data: [
-                    {/literal}
-                    {foreach from=$res.areaTematica item=row key=idx}
                     {if $idx != 0},{/if}{$row.total}
                     {/foreach}{literal}
                 ],

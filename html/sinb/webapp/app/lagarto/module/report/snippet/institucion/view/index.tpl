@@ -33,54 +33,21 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <label>{#field_area_id#} : </label>
+                    <label>{#field_red_id#} : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[area_id][]" id="type_select_tipo"
-                                data-placeholder="{#field_holder_area_id#}"
+                                name="item[red_id][]" id="type_select_tipo"
+                                data-placeholder="{#field_holder_red_id#}"
                                 multiple
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             {*<option value="0">Todos</option>*}
                             <option></option>
-                            {html_options options=$cataobj.icas_area selected=$item.area_id}
+                            {html_options options=$cataobj.red selected=$item.red_id}
                         </select>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_area_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_red_id#}</span>
                 </div>
-
-                <div class="col-lg-6">
-                    <label>{#field_estado_id#} : </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[estado_id][]" id="estado_id"
-                                data-placeholder="{#field_Holder_estado_id#}"
-                                multiple
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.icas_estado selected=$item.estado_id}
-                        </select>
-                    </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_estado_id#}</span>
-                </div>
-
-                <div class="col-lg-6">
-                    <label>{#field_fuente_financiamiento_id#}: </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[fuente_financiamiento_id][]" id="fuente_financiamiento_id"
-                                data-placeholder="{#field_holder_fuente_financiamiento_id#}"
-                                multiple
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.financiamiento selected=$item.fuente_financiamiento_id}
-                        </select>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_fuente_financiamiento_id#}</span>
-                </div>
-
             </div>
         </div>
 
