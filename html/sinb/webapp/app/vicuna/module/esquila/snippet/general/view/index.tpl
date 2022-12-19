@@ -41,30 +41,37 @@
                     <span class="form-text text-muted">{#field_msg_anio#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_departameto_id#}: </label>
+                    <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[departamento_id]" id="type_select_estado"
-                                data-placeholder="{#field_Holder_departameto_id#}" {$privFace.input}
+                                name="item[departamento_id]" id="departamento_id"
+                                data-placeholder="{#field_Holder_departamento_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
                             {html_options options=$cataobj.departamento selected=$item.departamento_id}
                         </select>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_departameto_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
                 </div>
+
                 <div class="col-lg-6">
-                    <label>{#field_provincia_id#}: </label>
+                    <label>{#field_municipio_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[provincia_id]" id="type_select_estado"
-                                data-placeholder="{#field_Holder_provincia_id#}" {$privFace.input}
+                                name="item[municipio_id]" id="municipio_id"
+                                data-placeholder="{#field_Holder_municipio_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.departamento selected=$item.provincia_id}
+{*                            {if $type=="update"}*}
+                                {html_options options=$cataobj.municipio selected=$item.municipio_id}
+{*                            {/if}*}
                         </select>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_provincia_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_municipio_id#}</span>
                 </div>
                 <div class="col-lg-6">
                     <label>{#field_arcmv#}: </label>

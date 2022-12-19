@@ -7,7 +7,8 @@
          */
         var form = $('#general_form');
         var btn_submit = $('#general_submit');
-
+        var municipio_opt = $("#municipio_id");
+        let urlmodule = "{/literal}{$path_url}/{$subcontrol}_ {literal}";
         var formv;
         /**
          * Antes de enviar el formulario se ejecuta la siguiente funcion
@@ -116,6 +117,35 @@
             }
         };
 
+        var handle_option_municipio = function(){
+            $('#departamento_id').on('change',function(){
+                var id = $('#departamento_id').val();
+                municipio_search(id);
+            });
+        };
+
+        var municipio_search = function(id){
+            municipio_opt.find("option").remove();
+            if(id!="") {
+                $.post(urlmodule+"/get.municipio"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        let selOption = $('<option></option>');
+                        municipio_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_municipio_id#}{literal}"));
+                        let municipio_list = []
+                        for (var row in res) {
+                            municipio_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].name));
+                            municipio_list[res[row].id] = res[row];
+                        }
+                        municipio_opt.trigger('chosen:updated');
+                    }
+                    , 'json');
+                municipio_opt.prop('disabled', false);
+            }else{
+                //handle_options_init();
+            }
+        };
+
         return {
             init: function() {
                 handle_form_submit();
@@ -123,6 +153,7 @@
                 handle_components();
                 handle_type_select();
                 handle_font_select();
+                handle_option_municipio();
             }
         };
     }();

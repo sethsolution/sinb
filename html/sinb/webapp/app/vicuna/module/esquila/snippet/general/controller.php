@@ -37,7 +37,7 @@ switch($action){
          * Catalog
          */
 
-        $objCatalog->confCatalog();
+        $objCatalog->confCatalog($item);
         $cataobj= $objCatalog->getCatalogList();
 //        print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
@@ -50,5 +50,8 @@ switch($action){
         Core::printJson($respuesta);
         break;
 
-
+    case 'get.municipio':
+        $item = $objCatalog->getMunicipioOptions($id);
+        Core::printJson($item);
+        break;
 }
