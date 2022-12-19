@@ -8,7 +8,7 @@
         var form = $('#general_form');
         var btn_submit = $('#general_submit');
         var municipio_opt = $("#municipio_id");
-        let urlmodule = "{/literal}{$path_url}/{$subcontrol}_ {literal}";
+        let urlmodule = "{/literal}{$path_url}/{$subcontrol}_{literal}";
         var formv;
         /**
          * Antes de enviar el formulario se ejecuta la siguiente funcion
@@ -22,9 +22,7 @@
             btn_submit.removeClass('spinner spinner-white spinner-right').attr('disabled', false);
             let url = "{/literal}{$path_url}{literal}";
             coreUyuni.generalShowResponse(res,url);
-
         };
-
         /**
          * Opciones para generar el objeto del formulario
          */
@@ -33,7 +31,6 @@
             , success:  showResponse
             , data: {type:'{/literal}{$type}{literal}'}
         };
-
         /**
          * Se da las propiedades de ajaxform al formulario
          */
@@ -126,6 +123,8 @@
 
         var municipio_search = function(id){
             municipio_opt.find("option").remove();
+            // disabled el selectbox
+            municipio_opt.prop('disabled', true);
             if(id!="") {
                 $.post(urlmodule+"/get.municipio"
                     , {id: id}
@@ -138,9 +137,9 @@
                             municipio_list[res[row].id] = res[row];
                         }
                         municipio_opt.trigger('chosen:updated');
+                        municipio_opt.prop('disabled', false);
                     }
                     , 'json');
-                municipio_opt.prop('disabled', false);
             }else{
                 //handle_options_init();
             }

@@ -51,7 +51,15 @@ switch($action){
         break;
 
     case 'get.municipio':
-        $item = $objCatalog->getMunicipioOptions($id);
+
+        /*
+        echo "ID en Request: ".$_REQUEST["id"]."<br>";
+        print_struc($_REQUEST);
+        echo "ID: ".$id."<br>";
+        exit;
+        */
+        $item = $objCatalog->getMunicipioOptions($_REQUEST["id"]);
+        //$item = $objCatalog->getMunicipioOptions($id);
         Core::printJson($item);
         break;
 }

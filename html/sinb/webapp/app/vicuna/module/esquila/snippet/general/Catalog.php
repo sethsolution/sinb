@@ -30,7 +30,7 @@ class Catalog extends CoreResources{
             $sql = "select id,sec_prov,provincia,name,zona,id_ut,capital,cod_ut,ine_dpto,ine_prov,ine_mun from ".$this->table["municipio"]." as m where m.departamento_id = '".$id."'";
             $item = $this->dbm->Execute($sql);
             $item = $item->GetRows();
-            echo "entre al if";
+            //echo "entre al if";
         }
         return $item;
     }
