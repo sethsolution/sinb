@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Geovisor\Snippet\gd;
+namespace App\Simb\Module\Geovisor\Snippet\gd;
 use Core\CoreResources;
 class Index extends CoreResources
 {
