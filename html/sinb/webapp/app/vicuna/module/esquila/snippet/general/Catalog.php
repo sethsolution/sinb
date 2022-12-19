@@ -17,6 +17,12 @@ class Catalog extends CoreResources{
             ,"departamento","","name",""
             ,"name",$where,"","");
         $where = $item["departamento_id"] != ""?" departamento_id = ".$item["departamento_id"]:"";
+
+
+        $where = "";
+        if($item["id"]!=""){
+           $where = "departamento_id=".$item["departamento_id"];
+        }
         $this->addCatalogList($this->table["municipio"]
             ,"municipio","","name",""
             ,"name",$where,"","");
