@@ -1,6 +1,5 @@
 composer.lock
 vendor
-datafile
 webapp/.idea
 webapp/.well-known
 webapp/.vscode
