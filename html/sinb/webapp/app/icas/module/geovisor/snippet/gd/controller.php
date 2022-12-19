@@ -1,6 +1,6 @@
 <?PHP
-use App\Sinpreh\Module\Geovisor\Snippet\gd\Index;
-use App\Sinpreh\Module\Geovisor\Snippet\gd\Catalog;
+use App\Icas\Module\Geovisor\Snippet\gd\Index;
+use App\Icas\Module\Geovisor\Snippet\gd\Catalog;
 use Core\Core;
 
 $objItem = new Index();

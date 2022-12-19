@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\Geovisor\Snippet\gd;
+namespace App\Icas\Module\Geovisor\Snippet\gd;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
