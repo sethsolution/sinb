@@ -39,9 +39,9 @@ class Index extends CoreResources
         return $info;
     }
     function updateData($rec,$itemId,$action){
-        //print_struc($rec);exit;
+//        print_struc($rec);exit;
         $form="module";
-        $itemData  = $this->processData($form,$rec,$action);
+        $itemData  = $this->processData($form,$rec,$action, $itemId);
         /**
          * Save processed data
          */
@@ -49,13 +49,13 @@ class Index extends CoreResources
         $res = $this->updateItem($itemId,$itemData ,$this->table[$this->objTable],$action,$field_id);
         $res["accion"] = $action;
         if( $res["res"]==1){
-
+            $this->setProvincia($itemData["municipio_id"], $itemId);
         }
 
         return $res;
     }
 
-    function processData($form,$rec,$action="new"){
+    function processData($form,$rec,$action="new", $itemId){
         $dataResult = array();
         switch($form){
             case 'module':
@@ -66,42 +66,43 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new"){
-//                    $dataResult["tipo_id"] = 1;
                 }
 
                 break;
         }
+        $dataResult["provincia"] = $this->getItemProvincia($rec["municipio_id"])["provincia"];
+        $dataResult["departamento"] = $this->getItemProvincia($rec["municipio_id"])["departamen"];
+        $dataResult["municipio"] = $this->getItemProvincia($rec["municipio_id"])["name"];
         return $dataResult;
     }
 
-    private function setFechasAcreditacionExpiracion($id){
-        if($id!=""){
+    private function setProvincia($provincia_id, $itemId){
+        if($provincia_id!=""){
             /**
-             * Calculamos fechas
+             * Llenar datos de provincia
              */
-            $sql = "SELECT min(fecha_acreditacion) as fecha_acreditacion, max(fecha_expiracion) as fecha_expiracion
-                    FROM ".$this->table["institucion_acreditacion"]." where institucion_id=".$id;
+            $sql = "SELECT * 
+                    FROM geo.municipio where id=".$provincia_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
-            if(isset($item["fecha_acreditacion"]) && $item["fecha_acreditacion"]!=""){
-                $rec["fecha_acreditacion"]=$item["fecha_acreditacion"];
-            }else{
-                $rec["fecha_acreditacion"]= NULL;
-            }
-
-            if(isset($item["fecha_expiracion"]) && $item["fecha_expiracion"]!=""){
-                $rec["fecha_expiracion"]=$item["fecha_expiracion"];
-            }else{
-                $rec["fecha_expiracion"]= NULL;
-            }
+                $rec["provincia"]=$item["provincia"];
+                $rec["departamento"]=$item["departamen"];
+                $rec["municipio"]=$item["name"];
             /**
              * Se guarda la información
              */
-            $where = "id = ".$id;
-            $table = $this->table["institucion"];
-            $resp = $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+            $where = "id = ".$itemId;
+            $table = $this->table["esquila"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
+    }
+
+    function getItemProvincia($id){
+        $sql = "select * from geo.municipio where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
     }
 
 }
