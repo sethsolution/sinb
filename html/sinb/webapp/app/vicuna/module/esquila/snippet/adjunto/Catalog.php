@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Institucion\Snippet\adjunto;
+namespace App\Vicuna\Module\Esquila\Snippet\adjunto;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 

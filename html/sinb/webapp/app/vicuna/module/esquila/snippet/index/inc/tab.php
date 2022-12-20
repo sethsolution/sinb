@@ -23,21 +23,13 @@ $item_tab[]=array(
 ,   "icon" => "fas fa-database m--font-success"
 ,   "new" => 0
 );
-
 //-------------------------------------------------------------
-//$item_tab[]=array(
-//    "label"=> $smarty->config_vars["tab_ubicacion"]
-//,   "id_name"=>"ubicacion"
-//,   "icon" => "fas fa-map-marker m--font-success"
-//,   "new" => 0
-//);
-//-------------------------------------------------------------
-//$item_tab[]=array(
-//    "label"=> $smarty->config_vars["tab_adjunto"]
-//,   "id_name"=>"adjunto"
-//,   "icon" => "fas fa-paperclip m--font-success"
-//,   "new" => 0
-//);
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_adjunto"]
+,   "id_name"=>"adjunto"
+,   "icon" => "fas fa-paperclip m--font-success"
+,   "new" => 0
+);
 //-------------------------------------------------------------
 /**
  * Se añade el arreglo de tabs configurada a $tabs

@@ -1,11 +1,11 @@
 <?PHP
-namespace App\Lagarto\Module\Institucion\Snippet\adjunto;
+namespace App\Vicuna\Module\Esquila\Snippet\adjunto;
 use Core\CoreResources;
 class Index extends CoreResources
 {
-    var $objTable = "institucion_archivo";
+    var $objTable = "esquila_archivo";
     var $folder = "adjunto";
-    var $fkey_field = "institucion_id";
+    var $fkey_field = "esquila_id";
 
     function __construct(){
         /**

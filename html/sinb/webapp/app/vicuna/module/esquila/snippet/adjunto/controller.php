@@ -1,6 +1,6 @@
 <?PHP
-use App\Lagarto\Module\Institucion\Snippet\adjunto\Index;
-use App\Lagarto\Module\Institucion\Snippet\adjunto\Catalog;
+use App\Vicuna\Module\Esquila\Snippet\adjunto\Index;
+use App\Vicuna\Module\Esquila\Snippet\adjunto\Catalog;
 use Core\Core;
 
 $objItem = new Index();

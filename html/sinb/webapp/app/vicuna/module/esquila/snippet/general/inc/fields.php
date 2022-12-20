@@ -16,7 +16,7 @@ $field_item = array();
 $field_item["nacional_id"]=array("type"=>"text");
 $field_item["anio"]=array("type"=>"text");
 $field_item["departamento_id"]=array("type"=>"text");
-$field_item["provincia_id"]=array("type"=>"text");
+$field_item["municipio_id"]=array("type"=>"text");
 $field_item["arcmv"]=array("type"=>"text");
 $field_item["cmv"]=array("type"=>"text");
 
