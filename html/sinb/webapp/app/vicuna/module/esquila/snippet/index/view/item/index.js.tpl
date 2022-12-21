@@ -10,7 +10,7 @@
         /**
          * PDF
          */
-        /*var btn_pdf;
+        var btn_pdf;
         var handle_button_pdf = function(){
             {/literal}{if $type =='update'}{literal}
             $('#btn_back').before('<a href="#" class="btn btn-success btn-sm mr-1" id="btn_pdf" rel="new"><i class="fa fa-plus"></i>PDF</a> ');
@@ -21,12 +21,12 @@
                 var url = urlsys+"/pdf";
                 window.open(url, '_blank');
             });
-        };*/
+        };
 
         return {
             init: function() {
                 handler_tab_build();
-               // handle_button_pdf();
+               handle_button_pdf();
             }
         };
     }();

@@ -123,11 +123,6 @@ class Index extends CoreResources {
          */
 
         $item = $this->getItem($item_id);
-        $item["comentario"] = $this->cleanHtml($item["comentario"]);
-        $item["comentario_observaciones"] = $this->cleanHtml($item["comentario_observaciones"]);
-        $item["cupo"] =  $this->getCupos($item_id);
-        $item["inscripcion"] =  $this->getInscripciones($item_id);
-        $item["codigo_actividad"] =  $this->getActividades($item_id);
         $item["adjunto"] =  $this->getAdjuntos($item_id);
 //        print_struc($item);exit;
         $smarty->assign('item', $item);
@@ -153,78 +148,20 @@ class Index extends CoreResources {
         $pdf->stream($nombre_archivo,$options);
         exit;
     }
-    public function getCupos($idItem){
-
-        $itemCupo = '';
-        if($idItem!=''){
-            $sqlSelect = ' c.gestion_id, c.cupos_autorizado, c.cupos_utilizado, c.descripcion';
-            $sqlFrom = ' '.$this->table["institucion_cupo"].' c';
-            $sqlWhere = ' c.institucion_id='.$idItem;
-            $sqlGroup = ' ';
-
-            $sql = 'SELECT '.$sqlSelect.'
-                  FROM '.$sqlFrom.'
-                  WHERE '.$sqlWhere.'
-                  '.$sqlGroup;
-            $itemCupo = $this->dbm->Execute($sql);
-            $itemCupo = $itemCupo->getRows();
-        }
-        return $itemCupo;
-    }
-
-    public function getInscripciones($idItem){
-
-        $itemInscripcion = '';
-
-        if($idItem!=''){
-            $sqlSelect = ' i.fecha_inscripcion, i.fecha_expiracion, i.descripcion';
-            $sqlFrom = ' '.$this->table["institucion_inscripcion"].' i';
-            $sqlWhere = ' i.institucion_id='.$idItem;
-            $sqlGroup = ' ';
-
-            $sql = 'SELECT '.$sqlSelect.'
-                  FROM '.$sqlFrom.'
-                  WHERE '.$sqlWhere.'
-                  '.$sqlGroup;
-
-            $itemInscripcion = $this->dbm->Execute($sql);
-            $itemInscripcion = $itemInscripcion->getRows();
-        }
-        return $itemInscripcion;
-    }
-
-    public function getActividades($idItem){
-
-        $itemActividad = '';
-
-        if($idItem!=''){
-            $sqlSelect = 'la.codigo';
-            $sqlFrom = ' '.$this->table["institucion_actividad"].' ia
-            LEFT JOIN catalogo.lagarto_actividad la on la.id=ia.actividad_id';
-            $sqlWhere = ' ia.institucion_id='.$idItem;
-            $sqlGroup = ' ';
-            $sql = 'SELECT '.$sqlSelect.'
-                  FROM '.$sqlFrom.'
-                  WHERE '.$sqlWhere.'
-                  '.$sqlGroup;
-            $itemActividad = $this->dbm->Execute($sql);
-            $itemActividad = $itemActividad->getRows();
-        }
-        return $itemActividad;
-    }
     public function getAdjuntos($idItem){
 
         $itemAdjunto = '';
 
         if($idItem!=''){
-            $sqlSelect = 'ia.attached_name, ia.attached_extension, ia.attached_size, ia.attached_type, descripcion';
-            $sqlFrom = ' '.$this->table["institucion_archivo"].' ia';
-            $sqlWhere = ' ia.institucion_id='.$idItem;
+            $sqlSelect = 'ea.attached_name, ea.attached_extension, ea.attached_size, ea.attached_type, ea.descripcion';
+            $sqlFrom = ' '.$this->table["esquila_archivo"].' ea';
+            $sqlWhere = ' ea.esquila_id='.$idItem;
             $sqlGroup = ' ';
             $sql = 'SELECT '.$sqlSelect.'
                   FROM '.$sqlFrom.'
                   WHERE '.$sqlWhere.'
                   '.$sqlGroup;
+//            print_struc($sql);exit;
             $itemAdjunto = $this->dbm->Execute($sql);
             $itemAdjunto = $itemAdjunto->getRows();
         }

@@ -87,7 +87,7 @@
             color: #575656;
             font-size: 9px;
         }
-        .sinpreh{
+        .vicuna{
             font-size: 9px;
             /*color:#0a6c99;*/
             font-weight: bold;

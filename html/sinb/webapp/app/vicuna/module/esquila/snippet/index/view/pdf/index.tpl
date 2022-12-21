@@ -2,7 +2,7 @@
 <html xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>LAGARTO Bolivia</title>
+    <title>VICUÑA Bolivia</title>
 
     {include file="$path_print/index.css.tpl"}
 </head>
