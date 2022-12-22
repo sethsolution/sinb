@@ -116,7 +116,7 @@
                 <div class="col-lg-4">
                     <label>{#fieldPhone#} :</label>
                     <div class="input-group">
-                        <input type="text" class="form-control number_integer"
+                        <input type="text" class="form-control number_integer2"
                                name="item[phone]" value="{$item.phone|escape:"html"}"
                                minlength="3"
                                data-fv-string-length___message="{#fieldPhoneLength#}"
@@ -129,7 +129,7 @@
                 <div class="col-lg-4">
                     <label>{#fieldMobile#}:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control number_integer"
+                        <input type="text" class="form-control number_integer2"
                                name="item[mobile]" value="{$item.mobile|escape:"html"}"
                                minlength="3"
                                data-fv-string-length___message="{#fieldMobileLength#}"
