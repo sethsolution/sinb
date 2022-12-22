@@ -9,6 +9,8 @@ $path_sbm_snippet_index = $path_sbm_snippet."index/";
 /**
  * Se encuentra en action.path.php de cada módulo
  */
+$path_gestion = isset($path_gestion)?$path_gestion:false;
+
 if (!isset($path_gestion) and !$path_gestion){
     if(!isset($accion)){
         /**
