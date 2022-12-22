@@ -110,8 +110,8 @@
         };
 
         var municipio_search = function(id){
-            // console.log("ID que llega: "+id);
             municipio_opt.find("option").remove();
+            municipio_opt.prop('disabled', true);
             if(id!="") {
                 $.post(urlmodule+"/get.municipio"
                     , {"id": id}
@@ -124,9 +124,9 @@
                             //convenio_programa_list[res[row].id] = res[row];
                         }
                         municipio_opt.trigger('chosen:updated');
+                        municipio_opt.prop('disabled', false);
                     }
                     , 'json');
-                municipio_opt.prop('disabled', false);
             }else{
                 //handle_options_init();
             }

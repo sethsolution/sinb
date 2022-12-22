@@ -43,7 +43,7 @@
                 <div class="col-lg-4">
                     <label>{#field_tasa_captura#}:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control number_integer2"
+                        <input type="text" class="form-control number_decimal"
                                name="item[tasa_captura]" value="{$item.tasa_captura|escape:"html"}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-percent"></i></span></div>
@@ -64,7 +64,7 @@
                 <div class="col-lg-4">
                     <label>{#field_tasa_esquila#}:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control number_integer2"
+                        <input type="text" class="form-control number_decimal"
                                name="item[tasa_esquila]" value="{$item.tasa_esquila|escape:"html"}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-percent"></i></span></div>
