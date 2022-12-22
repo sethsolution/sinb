@@ -23,4 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('v1/cites',CiteV1::class)
-    ->only(['index','show']);
+    ->only(['index','show'])->middleware('auth:sanctum');
+
+//Login
+Route::post('login',[App\Http\Controllers\Api\LoginController::class,'login']);
