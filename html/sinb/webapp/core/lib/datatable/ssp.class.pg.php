@@ -290,7 +290,7 @@ class SSP {
          */
         $db = null;
         return array(
-            "draw"            => intval( $request['draw'] ),
+            "draw"            => intval( (isset($request['draw'])?$request['draw']:"") ),
             "recordsTotal"    => intval( $recordsTotal ),
             "recordsFiltered" => intval( $recordsFiltered ),
             "data"            => SSP::data_output( $columns, $data, $joinQuery )

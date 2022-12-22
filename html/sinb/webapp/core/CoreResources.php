@@ -46,14 +46,14 @@ class CoreResources
         /**
          * Mapeo de tablas
          */
-        $this->table = $appVars["table"];
+        $this->table = isset($appVars["table"])?$appVars["table"]:array();
         $this->table_core = $tableCore;
         /**
          * Datos del usuario en session
          */
-        $this->userv = $_SESSION["userv"];
-        $this->userId = $_SESSION["userv"]["id"];
-        $this->usuario_id = $_SESSION["userv"]["id"];
+        $this->userv = $_SESSION["userv"]??array();
+        $this->userId = $_SESSION["userv"]["id"]??0;
+        $this->usuario_id = $_SESSION["userv"]["id"]??0;
         //$this->empresa_id = $_SESSION["empresa"]["itemId"];
         /**
          * Permisos de usuarios tanto para base de datos como interfaz
@@ -64,7 +64,7 @@ class CoreResources
         /**
          * Configuramos y creamos las carpetas necesarias del módulo
          */
-        $this->directory = $appVars["directory"];
+        $this->directory = isset($appVars["directory"])?$appVars["directory"]:array();
         /**
          * configuración de la grilla
          */
@@ -268,7 +268,7 @@ class CoreResources
             require("./core/lib/datatable/ssp.seth.class.php");
         }
 
-        if(!is_array($_REQUEST['columns'])) $_REQUEST['columns'] = array();
+        if(!isset($_REQUEST['columns']) || !is_array($_REQUEST['columns'])) $_REQUEST['columns'] = array();
 
         $resultado = SSP::simple( $_REQUEST, $sql_details, $table, $primaryKey, $col, $joinQuery, $extraWhere, $groupBy, $having );
         return $resultado;
@@ -282,6 +282,7 @@ class CoreResources
         for($i=0 ; $i<count($campos);$i++){
             $field = $campos[$i]["field"];
             $col_extra = $campos[$i];
+            $campos[$i]["table_as"] = isset($campos[$i]["table_as"])?trim($campos[$i]["table_as"]):"";
             if(trim($campos[$i]["table_as"])==""){
                 $col_extra["db"] = 'i.'.$field.'';
             }else{
@@ -293,7 +294,7 @@ class CoreResources
                 $col_extra["dt"] = $campos[$i]["field"];
             }
 
-            if($campos[$i]["as"]==""){
+            if( isset($campos[$i]["as"]) && $campos[$i]["as"]==""){
                 unset($col_extra["as"]);
             }
             $col[]= $col_extra;
@@ -831,6 +832,38 @@ class CoreResources
             $res["msgdb"] = "No se pudo enviar el correo electrónico {$mail->ErrorInfo}";
         }
         return $res;
+    }
+
+    /**
+     * Tiempo que transcurre entre dos fechas
+     *
+     * @param $fecha
+     * @param string $fechaActual
+     * @return array
+     */
+    public function getTimeElapsed($fecha,$fechaActual = ""){
+        if ($fechaActual=="")  $fechaActual = date("Y-m-d H:i");
+        $datetime1 = date_create($fecha);
+        $datetime2 = date_create($fechaActual);
+        $contador = date_diff($datetime1, $datetime2);
+        $minutos = ($contador->format('%a') *24*60 ) + ($contador->h * 60) + $contador->i;
+        $contador->minutos = $minutos;
+
+        $res = array();
+        $res["days"] = (int)$contador->format('%a');
+        $res["hours"] = $contador->h;
+        $res["minutes"] = $contador->i;
+        $res["total_minutes"] = $minutos;
+        return $res;
+    }
+
+    public function addMinutesToDate($fecha,$minutes,$format="Y-m-d H:i:s"){
+        $mod_date = strtotime($fecha."+ ".$minutes." minute");
+        return date($format,$mod_date);
+    }
+    public function addDaysToDate($fecha,$dias,$format="Y-m-d H:i:s"){
+        $mod_date = strtotime($fecha."+ ".$dias." days");
+        return date($format,$mod_date);
     }
 
 }
