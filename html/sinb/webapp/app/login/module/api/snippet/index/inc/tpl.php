@@ -1,4 +1,4 @@
-<?
+<?PHP
 /**
  * configuración de los temas
  */
