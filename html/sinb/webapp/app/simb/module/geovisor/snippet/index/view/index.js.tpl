@@ -45,6 +45,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
     var json_layer;
     var recargar;
+    var fechaver,fechavernasa;
 
 
 
@@ -203,7 +204,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                     { name: "OpenStreetMap", layer: osmLayer},
                     { name: "OpenTopoMap", layer: OpenTopoMap},
                     { name: "Google Hybrid", layer: googleHybrid}
-                    ]
+                ]
             }];
             return baseLayers;
         };
@@ -512,7 +513,8 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 opacity: 0.8
             });
 
-            var dia = '2022/11/26';
+            //var dia = '2022/11/26';
+            var dia = fechaver;
 
             var nasa_01 = new L.GIBSLayer('VIIRS_CityLights_2012', {
                 date: new Date(dia),
@@ -888,7 +890,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
         };
 
 
-         var initialiseMap = function(){
+        var initialiseMap = function(){
             var mapOptions = {
                 center: map_default_center//punto
                 , zoom: map_default_zoom
@@ -900,40 +902,46 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             return m;
         };
 
-         var getIconStyle = function(cate,fuente){
-             if(cate === null){
-                 cate = 0;
-             }
-             var icons1 = [
-                 { markerColor: '#a5a5a5'}, //nada *
-                 { markerColor: 'purple'}, //CERRADO *
-                 { markerColor: 'violet'}, //PARALIZADO *
-                 { markerColor: '#ff00f0'}, //DEBITO *
-                 { markerColor: 'green'}, //CONCLUIDO *
-                 { markerColor: '#bf0101'}, //CANCELADO *
-                 { markerColor: 'cyan'}, //EJECUCION *
-                 { markerColor: 'yellow'}, //PROGRAMADO *
-             ];
-             var icons2 = [
-                 { icon: 'fa-compress',shape: 'circle'}, //nada *
-                 { icon: 'fa-lock',shape: 'circle'}, //CERRADO
-                 { icon: 'fa-hand-paper',shape: 'circle'}, //PARALIZADO *
-                 { icon: 'fa-fan',shape: 'square'}, //DEBITO
-                 { icon: 'fa-check',shape: 'star'}, //CONCLUIDO *
-                 { icon: 'fa-times-circle',shape: 'circle'}, //CANCELADO *
-                 { icon: 'fa-thumbs-up',shape: 'star'}, //EJECUCION *
-                 { icon: 'fa-clock',shape: 'penta'}, //PROGRAMADO *
-             ];
-             let resp = L.ExtraMarkers.icon({
-                 //icon: icons2[fuente].icon,
-                 icon: icons2[cate].icon,
-                 markerColor: icons1[cate].markerColor,
-                 shape: icons2[cate].shape,
-                 svg:true,
-                 prefix: 'fa'
-             });
-             return resp;
-         };
+        var getIconStyle = function(cate,fuente){
+            if(cate === null){
+                cate = 0;
+            }
+            var icons1 = [
+                { markerColor: '#a5a5a5'}, //nada *
+                { markerColor: 'purple'}, //CERRADO *
+                { markerColor: 'violet'}, //PARALIZADO *
+                { markerColor: '#ff00f0'}, //DEBITO *
+                { markerColor: 'green'}, //CONCLUIDO *
+                { markerColor: '#bf0101'}, //CANCELADO *
+                { markerColor: 'cyan'}, //EJECUCION *
+                { markerColor: 'yellow'}, //PROGRAMADO *
+            ];
+            var icons2 = [
+                { icon: 'fa-compress',shape: 'circle'}, //nada *
+                { icon: 'fa-lock',shape: 'circle'}, //CERRADO
+                { icon: 'fa-hand-paper',shape: 'circle'}, //PARALIZADO *
+                { icon: 'fa-fan',shape: 'square'}, //DEBITO
+                { icon: 'fa-check',shape: 'star'}, //CONCLUIDO *
+                { icon: 'fa-times-circle',shape: 'circle'}, //CANCELADO *
+                { icon: 'fa-thumbs-up',shape: 'star'}, //EJECUCION *
+                { icon: 'fa-clock',shape: 'penta'}, //PROGRAMADO *
+            ];
+            let resp = L.ExtraMarkers.icon({
+                //icon: icons2[fuente].icon,
+                icon: icons2[cate].icon,
+                markerColor: icons1[cate].markerColor,
+                shape: icons2[cate].shape,
+                svg:true,
+                prefix: 'fa'
+            });
+            return resp;
+        };
+
+
+        var sumarDias = function(fecha, dias){
+            fecha.setDate(fecha.getDate() + dias);
+            return fecha;
+        }
 
         var createMap = function(){
             var mapDiv = $('#map');
@@ -941,11 +949,20 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             $('#kt_content').addClass("p-0");
 
 
+            fechaver = new Date();
+            // si la hora es menor a las 9 de la mañana, se resta 1 dia.
+            if(fechaver.getHours()<=9){
+                fechaver = sumarDias(fechaver,-1);
+            }
+            fechaver = fechaver.toISOString().slice(0, 10);
+            fechavernasa = fechaver.replace('-', '/');
+
+            console.log(fechaver);
+            console.log(fechavernasa);
+            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaver+"&fecha_final=&apn=&apd=&apm=";
 
             map = initialiseMap();
-            // Define a style
-            var fechaActual = new Date().toISOString().slice(0, 10);
-            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaActual+"&fecha_final=&apn=&apd=&apm=";
+
             json_layer = new L.GeoJSON.AJAX([urljson2],{
                 pointToLayer: function(point, latlng) {
                     //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);
