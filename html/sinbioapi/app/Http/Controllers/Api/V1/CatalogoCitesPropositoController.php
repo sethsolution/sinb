@@ -50,8 +50,19 @@ class CatalogoCitesPropositoController extends Controller
      * @param  \App\Models\CatalogoCitesProposito  $catalogoCitesProposito
      * @return \Illuminate\Http\Response
      */
-    public function show(CatalogoCitesProposito $catalogoCitesProposito)
+    //public function show(CatalogoCitesProposito $catalogoCitesProposito)
+    public function show($id)
     {
-        return new CatalogoCitesPropositoResource($catalogoCitesProposito);
+        $proposito = CatalogoCitesProposito::find($id);
+
+        if (is_null($proposito)) {
+            $response = [
+                'success' => false,
+                'message' => 'Proposito not found.',
+            ];
+            return response()->json($response, '404');
+        }
+
+        return new CatalogoCitesPropositoResource($proposito);
     }
 }

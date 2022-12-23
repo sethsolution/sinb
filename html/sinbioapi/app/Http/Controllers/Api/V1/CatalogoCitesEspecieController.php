@@ -54,9 +54,18 @@ class CatalogoCitesEspecieController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(CatalogoCitesEspecie $catalogoCiteEspecie)
+    public function show($id)
     {
-        return new CatalogoCitesEspecieResource($catalogoCiteEspecie);
+        //return new CatalogoCitesEspecieResource($catalogoCiteEspecie);
+        $especie = CatalogoCitesEspecie::find($id);
+        if (is_null($especie)) {
+            $response = [
+                'success' => false,
+                'message' => 'Proposito not found.',
+            ];
+            return response()->json($response, '404');
+        }
+        return new CatalogoCitesEspecieResource($especie);
     }
 
 }
