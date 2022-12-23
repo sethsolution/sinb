@@ -24,20 +24,6 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_institucion_id#}</span>
                 </div>
-
-{*                <div class="col-lg-12">*}
-{*                    <label>{#field_descripcion#} <span class="text-danger bold">*</span> :</label>*}
-{*                    <input type="text" class="form-control"*}
-{*                           name="item[descripcion]"*}
-{*                           value="{$item.descripcion|escape:"html"}"*}
-{*                           placeholder=""*}
-{*                           required*}
-{*                           data-fv-not-empty___message="{#glFieldRequired#}"*}
-{*                           minlength="3"*}
-{*                           data-fv-string-length___message="{#field_length_descripcion#}"*}
-{*                    >*}
-{*                    <span class="form-text text-black-50">{#field_msg_descripcion#}</span>*}
-{*                </div>*}
             </div>
             <div class="form-group row">
                 <div class="col-lg-8">
@@ -89,8 +75,6 @@
                            name="item[email]"
                            value="{$item.email|escape:"html"}"
                            placeholder=""
-                           required
-                           data-fv-not-empty___message="{#glFieldRequired#}"
                            minlength="3"
                            data-fv-string-length___message="{#field_length_email#}"
                     >
@@ -104,8 +88,6 @@
                            name="item[celular]"
                            value="{$item.celular|escape:"html"}"
                            placeholder=""
-                           required
-                           data-fv-not-empty___message="{#glFieldRequired#}"
                            minlength="3"
                            data-fv-string-length___message="{#field_length_celular#}"
                     >
@@ -117,8 +99,6 @@
                            name="item[telefono]"
                            value="{$item.telefono|escape:"html"}"
                            placeholder=""
-                           required
-                           data-fv-not-empty___message="{#glFieldRequired#}"
                            minlength="3"
                            data-fv-string-length___message="{#field_length_telefono#}"
                     >
@@ -130,8 +110,6 @@
                            name="item[fax]"
                            value="{$item.fax|escape:"html"}"
                            placeholder=""
-                           required
-                           data-fv-not-empty___message="{#glFieldRequired#}"
                            minlength="3"
                            data-fv-string-length___message="{#field_length_fax#}"
                     >
@@ -141,7 +119,7 @@
 
             <div class="form-group row">
                 <div class="col-lg-6">
-                    <label>{#field_responsable#}:</label>
+                    <label>{#field_responsable#}<span class="text-danger bold">*</span> :</label>
                     <input type="text" class="form-control"
                            name="item[responsable]"
                            value="{$item.responsable|escape:"html"}"
