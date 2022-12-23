@@ -1,4 +1,4 @@
-<?
+<?PHP
 /**
  * Configuramos todas los grupos de campos, para creación y verificación de formulaios
  */
