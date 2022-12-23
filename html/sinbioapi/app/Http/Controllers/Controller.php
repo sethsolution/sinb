@@ -34,8 +34,8 @@ use Illuminate\Routing\Controller as BaseController;
  *     description="Autentificación",
  * )
  * @OA\Tag(
- *     name="V1",
- *     description="Funcionalidad para acceder a la información de SINBIO",
+ *     name="CITES",
+ *     description="Consulta toda información recopilada sobre Módulo CITES",
  * )
  */
 class Controller extends BaseController

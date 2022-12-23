@@ -9,7 +9,7 @@
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "version": "0.1"
+        "version": "1.0.0"
     },
     "paths": {
         "/api/login": {
@@ -128,13 +128,95 @@
                 }
             }
         },
+        "/api/v1/list_species_amazon/": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Lista todas las especies CITES amazónicas utilizadas",
+                "description": "Lista todas las especies CITES amazónicas utilizadas",
+                "operationId": "v1getCitesEspecieList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/list_purpose/": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Lista de Propositos CITES",
+                "description": "Devuelve la lista de los datos de solicitudes cites",
+                "operationId": "v1getPropositoList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/cites/": {
             "get": {
                 "tags": [
-                    "V1"
+                    "CITES"
                 ],
-                "summary": "Lista de solicitudes CITES generadas",
-                "description": "Devuelve la lista de los datos de todas las solicitudes cites generadas en el sistema",
+                "summary": "Lista de solicitudes CITES",
+                "description": "Devuelve la lista de los datos de solicitudes cites",
                 "operationId": "v1getCitesList",
                 "responses": {
                     "200": {
@@ -172,7 +254,7 @@
         "/api/v1/cites/{citesId}": {
             "get": {
                 "tags": [
-                    "V1"
+                    "CITES"
                 ],
                 "summary": "Buscar una solicitud CITES por ID",
                 "description": "Devuelve la información de una ficha de una solicitud CITES específico",
@@ -250,8 +332,8 @@
             "description": "Autentificación"
         },
         {
-            "name": "V1",
-            "description": "Funcionalidad para acceder a la información de SINBIO"
+            "name": "CITES",
+            "description": "Consulta toda información recopilada sobre Módulo CITES"
         }
     ]
 }

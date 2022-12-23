@@ -45,6 +45,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
     var json_layer;
     var recargar;
+    var fechaver,fechavernasa;
 
 
 
@@ -512,7 +513,8 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 opacity: 0.8
             });
 
-            var dia = '2022/11/26';
+            //var dia = '2022/11/26';
+            var dia = fechaver;
 
             var nasa_01 = new L.GIBSLayer('VIIRS_CityLights_2012', {
                 date: new Date(dia),
@@ -935,17 +937,32 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
              return resp;
          };
 
+
+        var sumarDias = function(fecha, dias){
+            fecha.setDate(fecha.getDate() + dias);
+            return fecha;
+        }
+
         var createMap = function(){
             var mapDiv = $('#map');
             mapDiv.parent().addClass("p-0");
             $('#kt_content').addClass("p-0");
 
 
+            fechaver = new Date();
+            // si la hora es menor a las 9 de la mañana, se resta 1 dia.
+            if(fechaver.getHours()<=9){
+                fechaver = sumarDias(fechaver,-1);
+            }
+            fechaver = fechaver.toISOString().slice(0, 10);
+            fechavernasa = fechaver.replace('-', '/');
+
+            console.log(fechaver);
+            console.log(fechavernasa);
+            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaver+"&fecha_final=&apn=&apd=&apm=";
 
             map = initialiseMap();
-            // Define a style
-            var fechaActual = new Date().toISOString().slice(0, 10);
-            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaActual+"&fecha_final=&apn=&apd=&apm=";
+
             json_layer = new L.GeoJSON.AJAX([urljson2],{
                 pointToLayer: function(point, latlng) {
                     //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);

@@ -21,7 +21,7 @@ class CiteController extends Controller
      *     summary="Lista de solicitudes CITES",
      *     description="Devuelve la lista de los datos de solicitudes cites",
      *     operationId="v1getCitesList",
-     *     tags={"V1"},
+     *     tags={"CITES"},
      *     security={{"bearerAuth":{}}},
 
      *     @OA\Response(
@@ -57,7 +57,7 @@ class CiteController extends Controller
      *     summary="Buscar una solicitud CITES por ID",
      *     description="Devuelve la información de una ficha de una solicitud CITES específico",
      *     operationId="v1getCites",
-     *     tags={"V1"},
+     *     tags={"CITES"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *      name="citesId",in="path",required=true,
