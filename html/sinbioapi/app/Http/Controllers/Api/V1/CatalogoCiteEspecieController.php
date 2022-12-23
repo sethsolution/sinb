@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cite;
+use App\Models\CatalogoCiteEspecie;
 use Illuminate\Http\Request;
 
-use App\Http\Resources\V1\CiteResource;
+use App\Http\Resources\V1\CatalogoCiteEspecieResource;
 
-class CiteController extends Controller
+class CatalogoCiteEspecieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,10 @@ class CiteController extends Controller
      */
     /**
      * @OA\Get(
-     *     path="/api/v1/cites/",
-     *     summary="Lista de solicitudes CITES",
-     *     description="Devuelve la lista de los datos de solicitudes cites",
-     *     operationId="v1getCitesList",
+     *     path="/api/v1/list_species_amazon/",
+     *     summary="Lista todas las especies CITES amazónicas utilizadas",
+     *     description="Lista todas las especies CITES amazónicas utilizadas",
+     *     operationId="v1getCitesEspecieList",
      *     tags={"CITES"},
      *     security={{"bearerAuth":{}}},
 
@@ -42,21 +42,23 @@ class CiteController extends Controller
      */
     public function index()
     {
-        return CiteResource::collection(Cite::all());
+        return CatalogoCiteEspecieResource::collection(CatalogoCiteEspecie::where('tipo','=','1')->get());
     }
+
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cite  $cite
+     * @param  \App\Models\CatalogoCiteEspecie  $catalogoCiteEspecie
      * @return \Illuminate\Http\Response
      */
     /**
      * @OA\Get(
-     *     path="/api/v1/cites/{citesId}",
-     *     summary="Buscar una solicitud CITES por ID",
-     *     description="Devuelve la información de una ficha de una solicitud CITES específico",
-     *     operationId="v1getCites",
+     *     path="/api/v1/list_species_amazon/{specieId}",
+     *     summary="Buscar una especie CITES por ID",
+     *     description="Devuelve la información de una especie CITES específico",
+     *     operationId="v1getCitesEspecie",
      *     tags={"CITES"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
@@ -86,10 +88,9 @@ class CiteController extends Controller
      * )
      *
      */
-    public function show(Cite $cite)
+    public function show(CatalogoCiteEspecie $catalogoCiteEspecie)
     {
-        //
-        return new CiteResource($cite);
+        return new CatalogoCiteEspecieResource($catalogoCiteEspecie);
     }
 
 }

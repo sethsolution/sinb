@@ -23,7 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('v1/cites',CiteV1::class)
-    ->only(['index','show'])->middleware('auth:sanctum');
+    ->only(['index','show'])
+    ->middleware('auth:sanctum');
+
+Route::apiResource('v1/list_species_amazon',App\Http\Controllers\Api\V1\CatalogoCiteEspecieController::class)
+    ->only(['index','show'])
+    ->middleware('auth:sanctum');
 
 //Login
 Route::post('login',[App\Http\Controllers\Api\LoginController::class,'login']);

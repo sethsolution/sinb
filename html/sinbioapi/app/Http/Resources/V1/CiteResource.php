@@ -37,6 +37,7 @@ class CiteResource extends JsonResource
                 'id' => $this->tipoDocumento->id ?? null,
                 'name' => $this->tipoDocumento->nombre ?? null,
             ],
+            'especie' => $this->especie,
         ];
     }
 }

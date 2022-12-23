@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CiteEstado extends Model
+class CatalogoCiteTipoDocumento extends Model
 {
     use HasFactory;
-    protected $table = 'catalogo.cites_estado';
+    protected $table = 'catalogo.cites_tipo_documento';
 }

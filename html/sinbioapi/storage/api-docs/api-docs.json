@@ -128,10 +128,113 @@
                 }
             }
         },
+        "/api/v1/list_species_amazon/": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Lista todas las especies CITES amazónicas utilizadas",
+                "description": "Lista todas las especies CITES amazónicas utilizadas",
+                "operationId": "v1getCitesEspecieList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/list_species_amazon/{specieId}": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Buscar una especie CITES por ID",
+                "description": "Devuelve la información de una especie CITES específico",
+                "operationId": "v1getCitesEspecie",
+                "parameters": [
+                    {
+                        "name": "citesId",
+                        "in": "path",
+                        "description": "ID de la solicitud CITES",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se optiene los datos con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/cites/": {
             "get": {
                 "tags": [
-                    "V1"
+                    "CITES"
                 ],
                 "summary": "Lista de solicitudes CITES",
                 "description": "Devuelve la lista de los datos de solicitudes cites",
@@ -172,7 +275,7 @@
         "/api/v1/cites/{citesId}": {
             "get": {
                 "tags": [
-                    "V1"
+                    "CITES"
                 ],
                 "summary": "Buscar una solicitud CITES por ID",
                 "description": "Devuelve la información de una ficha de una solicitud CITES específico",
@@ -250,8 +353,8 @@
             "description": "Autentificación"
         },
         {
-            "name": "V1",
-            "description": "Funcionalidad para acceder a la información de SINBIO"
+            "name": "CITES",
+            "description": "Consulta toda información recopilada sobre Módulo CITES"
         }
     ]
 }
