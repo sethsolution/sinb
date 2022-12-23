@@ -9,7 +9,7 @@
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "version": "0.1"
+        "version": "1.0.0"
     },
     "paths": {
         "/api/login": {
@@ -133,8 +133,8 @@
                 "tags": [
                     "V1"
                 ],
-                "summary": "Lista de solicitudes CITES generadas",
-                "description": "Devuelve la lista de los datos de todas las solicitudes cites generadas en el sistema",
+                "summary": "Lista de solicitudes CITES",
+                "description": "Devuelve la lista de los datos de solicitudes cites",
                 "operationId": "v1getCitesList",
                 "responses": {
                     "200": {

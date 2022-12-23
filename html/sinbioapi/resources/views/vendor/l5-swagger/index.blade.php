@@ -24,6 +24,16 @@
       margin:0;
       background: #fafafa;
     }
+    .topbar-wrapper img {
+    content: url(/images/sinbio-logo.png);
+    }
+
+    .swagger-ui .topbar .download-url-wrapper .download-url-button {
+        background-color: rgba(62,131,139,.8) !important;
+    }
+    .swagger-ui .topbar .download-url-wrapper input[type=text] {
+        border-color: rgba(62,131,139,.8) !important;
+    }
     </style>
 </head>
 
