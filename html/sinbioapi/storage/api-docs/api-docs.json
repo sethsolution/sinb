@@ -169,38 +169,17 @@
                 ]
             }
         },
-        "/api/v1/list_species_amazon/{specieId}": {
+        "/api/v1/list_purpose/": {
             "get": {
                 "tags": [
                     "CITES"
                 ],
-                "summary": "Buscar una especie CITES por ID",
-                "description": "Devuelve la información de una especie CITES específico",
-                "operationId": "v1getCitesEspecie",
-                "parameters": [
-                    {
-                        "name": "citesId",
-                        "in": "path",
-                        "description": "ID de la solicitud CITES",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64",
-                            "default": "1"
-                        }
-                    }
-                ],
+                "summary": "Lista de Propositos CITES",
+                "description": "Devuelve la lista de los datos de solicitudes cites",
+                "operationId": "v1getPropositoList",
                 "responses": {
                     "200": {
-                        "description": "Se optiene los datos con éxito",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "No se encontraron datos",
+                        "description": "Json con datos de la lista de solicitudes CITES",
                         "content": {
                             "application/json": {
                                 "schema": {}

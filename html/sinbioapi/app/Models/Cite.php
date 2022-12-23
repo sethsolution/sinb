@@ -11,11 +11,13 @@ class Cite extends Model
     protected $table = 'cites.cites';
 
     public function estado(){
-        return $this->belongsTo(CatalogoCiteEstado::class,'estado_id','id');
+        return $this->belongsTo(CatalogoCitesEstado::class,'estado_id','id');
     }
+
     public function proposito(){
-        return $this->belongsTo(CatalogoCiteProposito::class,'proposito_id','id');
+        return $this->belongsTo(CatalogoCitesProposito::class,'proposito_id','id');
     }
+
     public function tipoDocumento(){
         return $this->belongsTo(CatalogoCiteTipoDocumento::class,'tipo_documento_id','id');
     }

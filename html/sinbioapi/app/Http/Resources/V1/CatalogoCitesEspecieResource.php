@@ -4,7 +4,7 @@ namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CatalogoCiteEspecieResource extends JsonResource
+class CatalogoCitesEspecieResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,7 +19,7 @@ class CatalogoCiteEspecieResource extends JsonResource
             'scientificname' => $this->nombre,
             'commonnames' => $this->nombre_comun,
             'description' => $this->descripcion,
-            'type' => $this->tipo,
+            //'type' => $this->tipo,
         ];
     }
 }

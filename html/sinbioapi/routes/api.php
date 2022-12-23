@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\V1\CiteController as CiteV1;
+use App\Http\Controllers\Api\V1\CatalogoCitesPropositoController as PropositoV1;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,7 +27,15 @@ Route::apiResource('v1/cites',CiteV1::class)
     ->only(['index','show'])
     ->middleware('auth:sanctum');
 
-Route::apiResource('v1/list_species_amazon',App\Http\Controllers\Api\V1\CatalogoCiteEspecieController::class)
+Route::apiResource('v1/list_species_amazon',App\Http\Controllers\Api\V1\CatalogoCitesEspecieController::class)
+    ->only(['index','show'])
+    ->middleware('auth:sanctum');
+/*
+Route::apiResource('v1/purposes',App\Http\Controllers\Api\V1\CatalogoCitePropositoController::class)
+    ->only(['index','show'])
+    ->middleware('auth:sanctum');
+*/
+Route::apiResource('v1/list_purpose',PropositoV1::class)
     ->only(['index','show'])
     ->middleware('auth:sanctum');
 
