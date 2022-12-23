@@ -18,8 +18,8 @@ class CiteController extends Controller
     /**
      * @OA\Get(
      *     path="/api/v1/cites/",
-     *     summary="Lista de solicitudes CITES generadas",
-     *     description="Devuelve la lista de los datos de todas las solicitudes cites generadas en el sistema",
+     *     summary="Lista de solicitudes CITES",
+     *     description="Devuelve la lista de los datos de solicitudes cites",
      *     operationId="v1getCitesList",
      *     tags={"V1"},
      *     security={{"bearerAuth":{}}},
@@ -37,7 +37,6 @@ class CiteController extends Controller
      *              @OA\Property(property="message", type="string", example="Unauthenticated"),
      *         )
      *     )
-     *
      * )
      *
      */

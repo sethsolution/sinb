@@ -10,7 +10,14 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *  title="Manejo de información mediante el uso de API"
- *  , version="0.1"
+ *  , version="1.0.0"
+ *  , @OA\Contact(
+ *          email="admin@seth.com.bo"
+ *      )
+ *  ,@OA\License(
+ *          name="Apache 2.0",
+ *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *      )
  * )
  * @OA\Schemes(format="http")
  * @OA\SecurityScheme(
@@ -24,11 +31,11 @@ use Illuminate\Routing\Controller as BaseController;
  * ),
  * @OA\Tag(
  *     name="Auth",
- *     description="Auth endpoints",
+ *     description="Autentificación",
  * )
  * @OA\Tag(
  *     name="V1",
- *     description="Funcionalidad para acceder a la información del museo",
+ *     description="Funcionalidad para acceder a la información de SINBIO",
  * )
  */
 class Controller extends BaseController
