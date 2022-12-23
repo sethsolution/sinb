@@ -13,7 +13,7 @@ $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
 $dbSchemaName = "cites";
 $db_table[] = Core::getTableConfig("cites");
-$db_table[] = Core::getTableConfig("cites_especie");
+//$db_table[] = Core::getTableConfig("cites_especie");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
@@ -23,6 +23,7 @@ $dbSchemaName = "catalogo";
 $db_table[] = Core::getTableConfig("cites_proposito");
 $db_table[] = Core::getTableConfig("cites_tipo_documento");
 $db_table[] = Core::getTableConfig("cites_estado");
+$db_table[] = Core::getTableConfig("cites_especie");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 
