@@ -24,7 +24,19 @@ class CiteResource extends JsonResource
             'destinatario' => $this->destinatario,
             'proposito_id' => $this->proposito_id,
             'fecha_valido' => $this->fecha_valido,
-            'estado_id' => $this->estado_id
+            'estado' => [
+                'id' => $this->estado->id ?? null,
+                'name' => $this->estado->nombre ?? null,
+            ],
+            'proposito' => [
+                'id' => $this->proposito->id ?? null,
+                'name' => $this->proposito->nombre ?? null,
+                'sigla' => $this->proposito->sigla ?? null,
+            ],
+            'tipo_documento' => [
+                'id' => $this->tipoDocumento->id ?? null,
+                'name' => $this->tipoDocumento->nombre ?? null,
+            ],
         ];
     }
 }
