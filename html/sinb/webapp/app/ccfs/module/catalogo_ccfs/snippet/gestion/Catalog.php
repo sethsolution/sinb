@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Catalogo\Snippet\Area;
+namespace App\Ccfs\Module\Catalogo_ccfs\Snippet\Gestion;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{

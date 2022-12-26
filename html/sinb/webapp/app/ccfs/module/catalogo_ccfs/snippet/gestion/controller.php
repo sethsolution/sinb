@@ -1,6 +1,6 @@
 <?PHP
-use App\Icas\Module\Catalogo\Snippet\Area\Index;
-use App\Icas\Module\Catalogo\Snippet\Area\Catalog;
+use App\Ccfs\Module\Catalogo_ccfs\Snippet\Gestion\Index;
+use App\Ccfs\Module\Catalogo_ccfs\Snippet\Gestion\Catalog;
 use Core\Core;
 
 $objItem = new Index();
@@ -32,6 +32,7 @@ switch($action){
         break;
 
     case 'list':
+//        $datatable_debug= true;
         $res = $objItem->getItemDatatableRows();
         Core::printJson($res);
         break;

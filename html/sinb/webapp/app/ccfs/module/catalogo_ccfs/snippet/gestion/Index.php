@@ -1,11 +1,11 @@
 <?PHP
-namespace App\Icas\Module\Catalogo\Snippet\Area;
+namespace App\Ccfs\Module\Catalogo_ccfs\Snippet\Gestion;
 use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "icas_area";
-    var $folder = "area";
+    var $objTable = "ccfs.gestion";
+    var $folder = "gestion";
     function __construct()
     {
         /**
@@ -15,14 +15,14 @@ class Index extends CoreResources
 
     }
     function getItem($id,$item_id){
-        $sql = "select * from ".$this->table[$this->objTable]." as p where p.id = '".$id."'";
+        $sql = "select * from ".$this->objTable." as p where p.id = '".$id."'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
     }
     public function getItemDatatableRows(){
         global $dbSetting;
-        $table = $this->table[$this->objTable];
+        $table = $this->objTable;
         $primaryKey = '"id"';
         $grid = "index";
         $db=$dbSetting[0];
@@ -46,7 +46,7 @@ class Index extends CoreResources
     }
     function updateData($rec,$itemId,$form,$action,$item_id, $input_file){
         //print_struc($_FILES);
-        $tabla = $this->table[$this->objTable];
+        $tabla = $this->objTable;
         $itemData  = $this->processData($form,$rec,$action,$item_id);
         //print_r($rec);exit();
         /**
@@ -88,7 +88,7 @@ class Index extends CoreResources
     }
     function deleteData($id,$item_id){
         $field_id="id";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable]);
+        $res = $this->deleteItem($id,$field_id,$this->objTable);
         return $res;
     }
 

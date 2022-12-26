@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Catalogo\Snippet\Index;
+namespace App\Ccfs\Module\Catalogo_ccfs\Snippet\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
@@ -16,5 +16,12 @@ class Catalog extends CoreResources{
         $dato["1"] = $smarty->config_vars["glOptActive"];
         $dato["0"] = $smarty->config_vars["glOptInactive"];
         return $dato;
+    }
+
+    public function confCatalog(){
+//        $this->addCatalogList($this->table["catalogo_tipo_correspondencia"]
+//            ,"catalogo_tipo_correspondencia","","nombre",""
+//            ,"nombre","","","");
+
     }
 }

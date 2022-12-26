@@ -1,6 +1,6 @@
 <?PHP
-use App\Icas\Module\Catalogo\Snippet\Index\Index;
-use App\Icas\Module\Catalogo\Snippet\Index\Catalog;
+use App\Ccfs\Module\Catalogo_ccfs\Snippet\Index\Index;
+use App\Ccfs\Module\Catalogo_ccfs\Snippet\Index\Catalog;
 use Core\Core;
 
 
@@ -24,7 +24,7 @@ switch($action) {
         $menu_tab = $objItem->getTabItem($type,"index");
         //print_r($menu_tab);
         $smarty->assign("menu_tab", $menu_tab);
-        $smarty->assign("menu_tab_active", "area");
+        $smarty->assign("menu_tab_active", "categoria");
 
         /**
          * Template for index and js

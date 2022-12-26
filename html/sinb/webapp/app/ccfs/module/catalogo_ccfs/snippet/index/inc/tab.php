@@ -11,13 +11,19 @@ $tabs = array();
  */
 //-------------------------------------------------------------
 $item_tab[]=array(
-    "label"=> "Area Temática"
-,   "id_name"=>"area"
-,   "icon" => "fas fa-clipboard-check m--font-success"
+    "label"=> "Categoria"
+,   "id_name"=>"categoria"
+,   "icon" => "fas fa-boxes m--font-success"
 ,   "new" => 0
 );
 //-------------------------------------------------------------
-
+$item_tab[]=array(
+    "label"=> "Gestion"
+,   "id_name"=>"gestion"
+,   "icon" => "fas fa-calendar m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
 /**
  * Se añade el arreglo de tabs configurada a $tabs
  */

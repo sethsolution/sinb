@@ -90,7 +90,11 @@
                     },
                     {
                         targets: [0],
-                        width: "400px",
+                        width: "300px",
+                        className:"text-left",
+                        render: function(data,type,full,meta){
+                            return '<span style="color: #0357ae;">' + data + ' </span>';
+                        },
                     },
                     {
                         targets: [2],
