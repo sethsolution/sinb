@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Ccfs\Module\Ccfs_listado\Snippet\adjunto;
+namespace App\Ccfs\Module\Ccfs_listado\Snippet\requisito;
 use Core\CoreResources;
 class Index extends CoreResources
 {
@@ -95,17 +95,31 @@ class Index extends CoreResources
     function deleteData($id,$item_id){
         $item = $this->getItem($id,$item_id);
         /**
-         * Delete the record from the database
+         * borramos el archivo primero
          */
+        $this->deleteAttachmentFile($id,$item_id,$item["attached_extension"],$this->folder);
+        /**
+         * Delete the record from the database
+         * se borrará solamente los datos registrados
+         */
+
         $field_id="id";
-        $where = $this->fkey_field."='".$item_id."'";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable],$where);
-        if($res["res"]==1){
-            /**
-             * borramos el archivo primero
-             */
-            $this->deleteAttachmentFile($id,$item_id,$item["attached_extension"],$this->folder);
-        }
+        $where = $this->fkey_field."='".$item_id."' and id='".$id."'";
+
+        $rec = array();
+        $rec["descripcion"] =null;
+        $rec["attached_name"] =null;
+        $rec["attached_extension"] =null;
+        $rec["attached_size"] =null;
+        $rec["attached_type"] =null;
+        $rec["fecha_entrega"] =null;
+
+        $dato["updated_at"] = date("Y-m-d H:i:s");
+        $dato["user_update"] = $this->userId;
+        $res["resp"]=$this->dbm->AutoExecute($this->table[$this->objTable],$rec,"UPDATE",$where);
+
+        $res["res"] = 1;
+
         return $res;
     }
 

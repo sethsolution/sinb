@@ -80,9 +80,11 @@
                             var boton = '<div class="btn-group btn-group-sm " role="group" aria-label="Accion">';
                             var lbEdit = {/literal}{if $privFace.edit == 1}lngUyuni.btnEdit{else}lngUyuni.btnViewData{/if}{literal};
                             boton += '<a href="javascript:snippet_list.update(\''+data+'\');" class="btn btn-success btn-sm" title="'+lbEdit+'">'+lbEdit+'</a>';
+                            if(full["attached_name"]!=null){
                             {/literal}{if $privFace.edit ==1 and $privFace.delete == 1}{literal}
                             boton += '<a href="javascript:snippet_list.delete(\''+data+'\');" class="btn btn-icon btn-light-danger btn-sm" title="'+lngUyuni.btnDelete+'"><i class="flaticon-delete-1"></i></a>';
                             {/literal}{/if}{literal}
+                            }
                             boton += '<div>';
                             return boton;
                         },

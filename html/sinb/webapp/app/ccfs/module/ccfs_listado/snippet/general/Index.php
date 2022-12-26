@@ -48,6 +48,9 @@ class Index extends CoreResources
         $field_id="id";
         $res = $this->updateItem($itemId,$itemData ,$this->table[$this->objTable],$action,$field_id);
         $res["accion"] = $action;
+        if( $res["res"]==1){
+            $this->setProvincia($itemData["municipio_id"], $itemId);
+        }
         return $res;
     }
 
@@ -62,14 +65,41 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new"){
-                    //$dataResult["active"] = 1;
                 }
-//                if ($dataResult["norma_id"]=="" or $dataResult["norma_id"]==0){
-//                    $dataResult["norma_id"] = NULL;
-//                }
                 break;
         }
+        $dataResult["provincia"] = $this->getItemProvincia($rec["municipio_id"])["provincia"];
+        $dataResult["departamento"] = $this->getItemProvincia($rec["municipio_id"])["departamen"];
+        $dataResult["municipio"] = $this->getItemProvincia($rec["municipio_id"])["name"];
         return $dataResult;
+    }
+
+    private function setProvincia($provincia_id, $itemId){
+        if($provincia_id!=""){
+            /**
+             * Llenar datos de provincia
+             */
+            $sql = "SELECT * 
+                    FROM geo.municipio where id=".$provincia_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["provincia"]=$item["provincia"];
+            $rec["departamento"]=$item["departamen"];
+            $rec["municipio"]=$item["name"];
+            /**
+             * Se guarda la información
+             */
+            $where = "id = ".$itemId;
+            $table = $this->table["ccfs"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
+    }
+    function getItemProvincia($id){
+        $sql = "select * from geo.municipio where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
     }
 
 }

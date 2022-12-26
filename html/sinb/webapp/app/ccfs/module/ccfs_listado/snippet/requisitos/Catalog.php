@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Ccfs\Module\Ccfs_listado\Snippet\adjunto;
+namespace App\Ccfs\Module\Ccfs_listado\Snippet\requisito;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 

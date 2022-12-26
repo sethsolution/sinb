@@ -1,8 +1,10 @@
 <?PHP
-use App\Ccfs\Module\Ccfs_listado\Snippet\adjunto\Index;
-use App\Ccfs\Module\Ccfs_listado\Snippet\adjunto\Catalog;
+use App\Ccfs\Module\Ccfs_listado\Snippet\requisito\Index;
+use App\Ccfs\Module\Ccfs_listado\Snippet\requisito\Catalog;
 use Core\Core;
+use App\Ccfs\Module\Ccfs_listado\Snippet\Index\Index as indexPrincipal;
 
+$objItemIndex = new indexPrincipal();
 $objItem = new Index();
 $objCatalog = new Catalog();
 /**
@@ -15,6 +17,11 @@ switch($action){
      * Página por defecto (index)
      */
     default:
+        $item = $objItemIndex->getItem($id);
+        $smarty->assign("item",$item);
+
+        $res = $objItemIndex->setRequirement($id);
+        //print_struc($res);
         /**
          * Language settings, section
          */

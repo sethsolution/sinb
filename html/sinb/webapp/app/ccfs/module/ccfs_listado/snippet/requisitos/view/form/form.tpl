@@ -9,22 +9,7 @@
             </div>
 
             <div class="form-group row">
-                <div class="col-lg-6">
-                    <label>{#field_requisito_id#} <span class="text-danger bold">*</span> : </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[requisito_id]" id="requisito_id"
-                                data-placeholder="{#field_Holder_requisito_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.ccfs_requisito selected=$item.requisito_id}
-                        </select>
-                    </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_requisito_id#}</span>
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-9">
                     <label>{#field_descripcion#} <span class="text-danger bold">*</span> :</label>
                     <input type="text" class="form-control"
                            name="item[descripcion]"

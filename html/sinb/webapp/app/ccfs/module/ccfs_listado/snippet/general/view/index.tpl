@@ -20,7 +20,7 @@
 
         <div class="card-body  pt-1 pb-0">
             <div class="form-group row">
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <label>{#field_nombre#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -34,7 +34,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_nombre#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_codigo#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -48,7 +48,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_codigo#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_categoria_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -63,21 +63,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_categoria_id#}</span>
                 </div>
-                <div class="col-lg-6">
-                    <label>{#field_condicion#} <span class="text-danger bold">*</span> : </label>
-                    <div class="input-group">
-                        <input type="text" class="form-control"
-                               name="item[condicion]" value="{$item.condicion|escape:"html"}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
-                               minlength="3"
-                               data-fv-string-length___message="{#field_length_condicion#}"
-                        >
-                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-question"></i></span></div>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_condicion#}</span>
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -92,7 +78,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_municipio_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -109,7 +95,21 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_municipio_id#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
+                    <label>{#field_condicion#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[condicion]" value="{$item.condicion|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_condicion#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-question"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_condicion#}</span>
+                </div>
+                <div class="col-lg-4">
                     <label>{#field_licencia_funcionamiento#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -123,7 +123,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_licencia_funcionamiento#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_formato#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control"

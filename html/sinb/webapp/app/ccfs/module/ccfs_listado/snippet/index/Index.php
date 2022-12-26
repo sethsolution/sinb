@@ -240,5 +240,49 @@ class Index extends CoreResources {
         //$str = strip_tags($str);
         return $str;
     }
+    /**
+     * Generar archivos de requisitos
+     */
+    function setRequirement($id){
+        //$item = $this->getItem($id);
+        $res = array();
+        $res["requisito"] = $this->getRequirement($id);
+        return $res;
+    }
+    function getRequirementList($id){
+        $sql = "SELECT
+                ccr.id AS req_id,
+                ccr.nombre AS req_nombre,
+                ccr.active AS req_active,
+                cr.*
+                FROM ".$this->table["ca.ccfs_requisito"]." AS ccr
+                left join ".$this->table["ccfs_requisito"]." as cr on cr.requisito_id=ccr.id and cr.ccfs_id='".$id."'
+                WHERE ccr.active = TRUE
+                ORDER BY ccr.nombre ASC";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->getRows();
+        return $item;
+    }
+    function getRequirement($id){
+        $item = $this->getRequirementList($id);
+        $creo = 0;
+        foreach ($item as $row){
+            if($row["id"]==""){
+                $rec = array();
+                $rec["created_at"] = $rec["updated_at"] =  date("Y-m-d H:i:s");
+                $rec["user_create"] = $rec["user_update"] = $this->userId;
+                $rec["requisito_id"] = $row["req_id"];
+                $rec["descripcion"] = $row["req_nombre"];
+                $rec["ccfs_id"] = $id;
+                $this->dbm->autoExecute($this->table["ccfs_requisito"],$rec);
+                $creo = 1;
+            }
+        }
+
+        if($creo){
+            $item = $this->getRequirementList($id);
+        }
+        return $item;
+    }
 
 }
