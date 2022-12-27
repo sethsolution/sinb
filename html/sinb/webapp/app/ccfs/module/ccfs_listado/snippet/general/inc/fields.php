@@ -23,6 +23,7 @@ $field_item["formato"]=array("type"=>"text");
 $field_item["fecha_emision"]=array("type"=>"date_01");
 $field_item["fecha_conclusion"]=array("type"=>"date_01");
 $field_item["superficie"]=array("type"=>"text");
+$field_item["responsable"]=array("type"=>"text");
 
 $fields["module"]= $field_item;
 unset($field_item);

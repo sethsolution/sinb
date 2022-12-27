@@ -140,6 +140,7 @@ class Index extends CoreResources {
         $item["observacion"] = $this->cleanHtml($item["observacion"]);
         $item["requisitos"] =  $this->getRequisitos($item_id);
         $item["adjunto"] =  $this->getAdjuntos($item_id);
+        $item["informe"] =  $this->getInforme($item_id);
         //print_struc($item);exit;
         $smarty->assign('item', $item);
 
@@ -204,6 +205,28 @@ class Index extends CoreResources {
             $itemAdjunto = $itemAdjunto->getRows();
         }
         return $itemAdjunto;
+    }
+
+    public function getInforme($idItem){
+
+        $itemEspecie = '';
+
+        if($idItem!=''){
+            $sqlSelect = 'ci.*, cet.nombre AS nombre_especie_tipo';
+            $sqlFrom = ' '.$this->table["ccfs_informe"].' ci
+                         LEFT JOIN '.$this->table["ccfs_especie_tipo"].' cet on cet.id=ci.especie_tipo_id';
+            $sqlWhere = ' ci.ccfs_id='.$idItem;
+            $sqlGroup = ' ';
+            $sql = 'SELECT '.$sqlSelect.'
+                  FROM '.$sqlFrom.'
+                  WHERE '.$sqlWhere.'
+                  '.$sqlGroup.' ORDER BY ci.gestion_id, cet.id ';
+
+//            print_struc($sql);exit;
+            $itemEspecie = $this->dbm->Execute($sql);
+            $itemEspecie = $itemEspecie->getRows();
+        }
+        return $itemEspecie;
     }
 
     public function cleanHtml($str){

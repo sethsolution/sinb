@@ -9,8 +9,8 @@
             <td class="header-resumen" style="width:15%;">
                 <table>
                     <tr>
-                        <td class="tabla-titulo-top">N° de cites</td>
-                        <td>{$item.numero_cites}</td>
+{*                        <td class="tabla-titulo-top">N° de cites</td>*}
+{*                        <td>{$item.numero_cites}</td>*}
                     </tr>
                 </table>
 

@@ -14,12 +14,24 @@
         <td>{$item.nombre_categoria}</td>
     </tr>
     <tr>
+        <td class="item-tabla-titulo">Responsable</td>
+        <td>{$item.responsable}</td>
+    </tr>
+    <tr>
         <td class="item-tabla-titulo">Condicion</td>
         <td>{$item.condicion}</td>
     </tr>
     <tr>
         <td class="item-tabla-titulo">Departamento</td>
-        <td>{$item.nombre_departamento}</td>
+        <td>{$item.departamento}</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-titulo">Provincia</td>
+        <td>{$item.provincia}</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-titulo">Municipio</td>
+        <td>{$item.municipio}</td>
     </tr>
     <tr>
         <td class="item-tabla-titulo">Licencia de funcionamiento</td>
@@ -50,7 +62,7 @@
 </table>
 <table class="item-tabla">
     <tr>
-        <td colspan=3" class="item-tabla-titulo txtCenter">REQUISITOS</td>
+        <td colspan="3" class="item-tabla-titulo txtCenter">REQUISITOS</td>
     </tr>
     <tr>
         <td class="item-tabla-header">Nombre</td>
@@ -67,7 +79,7 @@
 </table>
 <table class="item-tabla">
     <tr>
-        <td colspan=3" class="item-tabla-titulo txtCenter">DOCUMENTOS ADJUNTOS</td>
+        <td colspan="3" class="item-tabla-titulo txtCenter">DOCUMENTOS ADJUNTOS</td>
     </tr>
     <tr>
         <td class="item-tabla-header">Descripción</td>
@@ -79,6 +91,25 @@
             <td>{$row.descripcion|escape:"html"}</td>
             <td align="center">{$row.attached_name|escape:"html"}</td>
             <td align="center">{$row.attached_size|escape:"html"}</td>
+        </tr>
+    {/foreach}
+</table>
+<table class="item-tabla">
+    <tr>
+        <td colspan="4" class="item-tabla-titulo txtCenter">INFORMES</td>
+    </tr>
+    <tr>
+        <td class="item-tabla-header">GESTION</td>
+        <td class="item-tabla-header">TIPO ESPECIE</td>
+        <td class="item-tabla-header">ESPECIE</td>
+        <td class="item-tabla-header">TOTAL ALBERGADOS</td>
+    </tr>
+    {foreach from=$item.informe item=row key=idx}
+        <tr>
+            <td align="center">{$row.gestion_id|escape:"html"}</td>
+            <td align="center">{$row.nombre_especie_tipo|escape:"html"}</td>
+            <td align="center">{$row.especie|escape:"html"}</td>
+            <td align="center">{$row.total_albergados|escape:"html"}</td>
         </tr>
     {/foreach}
 </table>

@@ -95,7 +95,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_municipio_id#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label>{#field_condicion#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -109,7 +109,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_condicion#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label>{#field_licencia_funcionamiento#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -123,7 +123,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_licencia_funcionamiento#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label>{#field_formato#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -137,33 +137,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_formato#}</span>
                 </div>
-                <div class="col-lg-4">
-                    <label>{#field_fecha_emision#}<span class="text-danger bold">*</span> :</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control date_general"
-                               name="item[fecha_emision]" id="fecha_emision"
-                               value="{$item.fecha_emision|date_format:'%d/%m/%Y'}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_fecha_emision#}</span>
-                </div>
-                <div class="col-lg-4">
-                    <label>{#field_fecha_conclusion#}<span class="text-danger bold">*</span> :</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control date_general"
-                               name="item[fecha_conclusion]" id="fecha_conclusion"
-                               value="{$item.fecha_conclusion|date_format:'%d/%m/%Y'}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
-                    </div>
-                    <span class="form-text text-black-50">{#field_msg_fecha_conclusion#}</span>
-                </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label>{#field_superficie#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <input type="text" class="form-control number_integer"
@@ -176,6 +150,46 @@
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-mountain"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_superficie#}</span>
+                </div>
+                <div class="col-lg-8">
+                    <label>{#field_responsable#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[responsable]" value="{$item.responsable|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_responsable#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-user"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_responsable#}</span>
+                </div>
+                <div class="col-lg-2">
+                    <label>{#field_fecha_emision#}<span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general"
+                               name="item[fecha_emision]" id="fecha_emision"
+                               value="{$item.fecha_emision|date_format:'%d/%m/%Y'}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_fecha_emision#}</span>
+                </div>
+                <div class="col-lg-2">
+                    <label>{#field_fecha_conclusion#}<span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control date_general"
+                               name="item[fecha_conclusion]" id="fecha_conclusion"
+                               value="{$item.fecha_conclusion|date_format:'%d/%m/%Y'}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text calendar"><i class="flaticon-event-calendar-symbol"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_fecha_conclusion#}</span>
                 </div>
             </div>
         </div>
