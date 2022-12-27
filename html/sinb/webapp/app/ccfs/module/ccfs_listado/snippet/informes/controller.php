@@ -1,6 +1,6 @@
 <?PHP
-use App\Cites\Module\Cites_listado\Snippet\Especie\Index;
-use App\Cites\Module\Cites_listado\Snippet\Especie\Catalog;
+use App\Ccfs\Module\Ccfs_listado\Snippet\Informes\Index;
+use App\Ccfs\Module\Ccfs_listado\Snippet\Informes\Catalog;
 use Core\Core;
 
 $objItem = new Index();

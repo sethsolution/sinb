@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Cites\Module\Cites_listado\Snippet\Especie;
+namespace App\Ccfs\Module\Ccfs_listado\Snippet\Informes;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
@@ -14,14 +14,11 @@ class Catalog extends CoreResources{
      */
     public function conf_catalog_form(){
         $where = "active=true";
-        $this->addCatalogList($this->table["cites_apendice"]
-            ,"apendice","","nombre",""
-            ,"id","$where","","");
-        $this->addCatalogList($this->table["cites_unidad"]
-            ,"unidad","","nombre",""
-            ,"id","$where","","");
-        $this->addCatalogList($this->table["cites_origen"]
-            ,"origen","","nombre",""
+        $this->addCatalogList($this->table["gestion"]
+            ,"gestion","","id",""
+            ,"id","","","");
+        $this->addCatalogList($this->table["ccfs_especie_tipo"]
+            ,"especie_tipo","","nombre",""
             ,"id","$where","","");
     }
     public function get_activo_option(){

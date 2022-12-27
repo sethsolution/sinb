@@ -1,11 +1,11 @@
 <?PHP
-namespace App\Cites\Module\Cites_listado\Snippet\Especie;
+namespace App\Ccfs\Module\Ccfs_listado\Snippet\Informes;
 use Core\CoreResources;
 class Index extends CoreResources
 {
-    var $objTable = "cites_especie";
-    var $folder = "especie";
-    var $fkey_field = "cites_id";
+    var $objTable = "ccfs_informe";
+    var $folder = "informes";
+    var $fkey_field = "ccfs_id";
 
     function __construct(){
         /**

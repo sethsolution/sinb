@@ -14,7 +14,9 @@ $db_table = array();
 $dbSchemaName = "ccfs";
 $db_table[] = Core::getTableConfig("ccfs");
 $db_table[] = Core::getTableConfig("ccfs_archivo");
+$db_table[] = Core::getTableConfig("ccfs_informe");
 $db_table[] = Core::getTableConfig("ccfs_requisito");
+$db_table[] = Core::getTableConfig("gestion");
 
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
@@ -24,6 +26,7 @@ unset($db_prefix);
 $db_table = array();
 $dbSchemaName = "catalogo";
 $db_table[] = Core::getTableConfig("ccfs_categoria");
+$db_table[] = Core::getTableConfig("ccfs_especie_tipo");
 $db_table[] = Core::getTableConfig("ccfs_requisito","","ca.ccfs_requisito");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);

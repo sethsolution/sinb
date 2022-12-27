@@ -38,6 +38,13 @@ $item_tab[]=array(
 ,   "new" => 0
 );
 //-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_informes"]
+,   "id_name"=>"informes"
+,   "icon" => "fas fa-atlas m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
 /**
  * Se añade el arreglo de tabs configurada a $tabs
  */
