@@ -1,6 +1,6 @@
 <?PHP
-use App\Icas\Module\Geovisor\Snippet\Reporte\Index;
-use App\Icas\Module\Geovisor\Snippet\Reporte\Catalog;
+use App\Icas\Geovisor\Reporte\Index;
+use App\Icas\Geovisor\Reporte\Catalog;
 use Core\Core;
 
 $objItem = new Index();

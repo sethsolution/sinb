@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Icas\Snippet\general;
+namespace App\Icas\Icas\General;
 use Core\CoreResources;
 
 class Index extends CoreResources

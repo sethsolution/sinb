@@ -1,6 +1,6 @@
 <?PHP
-use App\Icas\Module\Catalogo\Snippet\Area\Index;
-use App\Icas\Module\Catalogo\Snippet\Area\Catalog;
+use App\Icas\Catalogo\Area\Index;
+use App\Icas\Catalogo\Area\Catalog;
 use Core\Core;
 
 $objItem = new Index();

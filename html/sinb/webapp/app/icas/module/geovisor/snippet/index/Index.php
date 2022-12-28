@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Geovisor\Snippet\Index;
+namespace App\Icas\Geovisor\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {

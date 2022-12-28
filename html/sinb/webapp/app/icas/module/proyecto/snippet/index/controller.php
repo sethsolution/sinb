@@ -1,6 +1,6 @@
 <?PHP
-use App\Icas\Module\Proyecto\Snippet\Index\Index;
-use App\Icas\Module\Proyecto\Snippet\Index\Catalog;
+use App\Icas\Proyecto\Index\Index;
+use App\Icas\Proyecto\Index\Catalog;
 use Core\Core;
 
 

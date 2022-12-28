@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Proyecto\Snippet\Index;
+namespace App\Icas\Proyecto\Index;
 use Core\CoreResources;
 use Dompdf\Dompdf;
 use Dompdf\Options;

@@ -1,8 +1,8 @@
 <?PHP
-use App\Icas\Module\Institucion_contraparte\Snippet\Ubicacion\Index;
-use App\Icas\Module\Institucion_contraparte\Snippet\Ubicacion\Catalog;
+use App\Icas\InstitucionContraparte\Ubicacion\Index;
+use App\Icas\InstitucionContraparte\Ubicacion\Catalog;
 use Core\Core;
-use App\Icas\Module\Institucion_contraparte\Snippet\index\Index as indexParent;
+use App\Icas\InstitucionContraparte\index\Index as indexParent;
 $objItem = new Index();
 $objCatalog = new Catalog();
 $objItemParent = new indexParent();

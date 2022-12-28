@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Proyecto\Snippet\general;
+namespace App\Icas\Proyecto\general;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
