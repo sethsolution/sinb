@@ -1,0 +1,20 @@
+<div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">Listado de cultivos</h3>
+        </div>
+    </div>
+    <div class="m-portlet__head-tools">
+        <ul class="m-portlet__nav">
+            <li class="m-portlet__nav-item">
+                {if $privFace.crear == 1}
+                <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--bolder " id="btn_update" rel="new">
+					<span><i class="fa fa-plus"></i><span>&nbsp;Nuevo registro</span></span>
+                </a>
+                {/if}
+            </li>
+            <li class="m-portlet__nav-item"></li>
+            {*{include file="$modulo_frontend_titulo_ayuda"}*}
+        </ul>
+    </div>
+</div>

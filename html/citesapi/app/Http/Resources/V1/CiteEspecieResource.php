@@ -23,13 +23,13 @@ class CiteEspecieResource extends JsonResource
             ],
             'description' => $this->descripcion,
             'origen_id' => $this->origen_id,
-            /*
+
             'origen'=>[
                 'id' => $this->origen->itemId,
                 'sigla' => $this->origen->sigla,
                 'name' => $this->origen->nombre,
             ],
-            */
+
             'cantidad' => $this->cantidad,
             'unidad' => $this->unidad->unidad,
             'country_of_origin' => [

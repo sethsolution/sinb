@@ -62,7 +62,7 @@ class Index extends Table {
                 /**
                  * Para debugs
                  */
-                $res["res"] = 1;
+                //$res["res"] = 1;
                 /**
                  * Fin Debugs
                  */

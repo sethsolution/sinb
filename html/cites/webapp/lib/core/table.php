@@ -2504,7 +2504,7 @@ class Table
         $smarty_template[] = $pathmodule."template/frontend/";
         $smarty->setTemplateDir($smarty_template);
 
-        if($base=""){
+        if($base==""){
             $base = $frontend["email_base"];
         }
 

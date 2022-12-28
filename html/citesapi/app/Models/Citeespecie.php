@@ -24,6 +24,15 @@ class Citeespecie extends Model
         return $this->belongsTo(Pais::class,'pais_id','itemId');
     }
 
+    public function getOrigen()
+    {
+        if ( ! $this->getAttribute('origen_id')) {
+            return null;
+        }
+
+        return $this->getAttribute('origen');
+    }
+
     public function origen(){
         return $this->belongsTo(Origen::class,'origen_id','itemId');
     }
