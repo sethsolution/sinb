@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Simb\Module\Geovisor\Snippet\Index;
+namespace App\Simb\Geovisor\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {

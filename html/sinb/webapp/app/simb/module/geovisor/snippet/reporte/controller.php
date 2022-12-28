@@ -1,6 +1,6 @@
 <?PHP
-use App\Simb\Module\Geovisor\Snippet\Reporte\Index;
-use App\Simb\Module\Geovisor\Snippet\Reporte\Catalog;
+use App\Simb\Geovisor\Reporte\Index;
+use App\Simb\Geovisor\Reporte\Catalog;
 use Core\Core;
 
 $objItem = new Index();

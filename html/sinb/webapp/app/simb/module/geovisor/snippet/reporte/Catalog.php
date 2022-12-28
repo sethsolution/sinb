@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Simb\Module\Geovisor\Snippet\Reporte;
+namespace App\Simb\Geovisor\Reporte;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
