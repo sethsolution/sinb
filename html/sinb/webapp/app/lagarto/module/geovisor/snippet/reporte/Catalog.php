@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Geovisor\Snippet\Reporte;
+namespace App\Lagarto\Geovisor\Reporte;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 

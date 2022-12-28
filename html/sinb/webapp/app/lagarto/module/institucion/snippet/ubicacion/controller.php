@@ -1,8 +1,8 @@
 <?PHP
-use App\Lagarto\Module\Institucion\Snippet\Ubicacion\Index;
-use App\Lagarto\Module\Institucion\Snippet\Ubicacion\Catalog;
+use App\Lagarto\Institucion\Ubicacion\Index;
+use App\Lagarto\Institucion\Ubicacion\Catalog;
 use Core\Core;
-use App\Lagarto\Module\Institucion\Snippet\index\Index as indexParent;
+use App\Lagarto\Institucion\index\Index as indexParent;
 $objItem = new Index();
 $objCatalog = new Catalog();
 $objItemParent = new indexParent();

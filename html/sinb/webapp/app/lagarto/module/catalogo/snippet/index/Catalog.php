@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Catalogo\Snippet\Index;
+namespace App\Lagarto\Catalogo\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{

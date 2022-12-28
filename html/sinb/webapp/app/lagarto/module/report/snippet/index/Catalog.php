@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Icas\Module\Report\Snippet\Index;
+namespace App\Lagarto\Report\Index;
 use Core\CoreResources;
 class Catalog extends CoreResources{
     function __construct(){

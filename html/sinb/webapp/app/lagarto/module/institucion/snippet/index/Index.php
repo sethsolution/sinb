@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Institucion\Snippet\Index;
+namespace App\Lagarto\Institucion\Index;
 use Core\CoreResources;
 use Dompdf\Dompdf;
 use Dompdf\Options;

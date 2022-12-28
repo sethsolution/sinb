@@ -1,6 +1,6 @@
 <?PHP
-use App\Lagarto\Module\Geovisor\Snippet\Reporte\Index;
-use App\Lagarto\Module\Geovisor\Snippet\Reporte\Catalog;
+use App\Lagarto\Geovisor\Reporte\Index;
+use App\Lagarto\Geovisor\Reporte\Catalog;
 use Core\Core;
 
 $objItem = new Index();

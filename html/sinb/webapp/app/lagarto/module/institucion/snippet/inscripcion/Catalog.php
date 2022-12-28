@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Institucion\Snippet\inscripcion;
+namespace App\Lagarto\Institucion\Inscripcion;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 

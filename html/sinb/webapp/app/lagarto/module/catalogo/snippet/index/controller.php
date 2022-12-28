@@ -1,6 +1,6 @@
 <?PHP
-use App\Lagarto\Module\Catalogo\Snippet\Index\Index;
-use App\Lagarto\Module\Catalogo\Snippet\Index\Catalog;
+use App\Lagarto\Catalogo\Index\Index;
+use App\Lagarto\Catalogo\Index\Catalog;
 use Core\Core;
 
 

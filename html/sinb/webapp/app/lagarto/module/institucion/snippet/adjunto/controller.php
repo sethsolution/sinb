@@ -1,6 +1,6 @@
 <?PHP
-use App\Lagarto\Module\Institucion\Snippet\adjunto\Index;
-use App\Lagarto\Module\Institucion\Snippet\adjunto\Catalog;
+use App\Lagarto\Institucion\Adjunto\Index;
+use App\Lagarto\Institucion\Adjunto\Catalog;
 use Core\Core;
 
 $objItem = new Index();

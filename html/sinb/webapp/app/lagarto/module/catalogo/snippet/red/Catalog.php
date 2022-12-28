@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Catalogo\Snippet\Red;
+namespace App\Lagarto\Catalogo\Red;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{

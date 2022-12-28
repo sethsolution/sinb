@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Module\Institucion\Snippet\Inscripcion;
+namespace App\Lagarto\Institucion\Inscripcion;
 use Core\CoreResources;
 class Index extends CoreResources
 {
