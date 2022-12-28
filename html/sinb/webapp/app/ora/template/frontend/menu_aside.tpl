@@ -1,6 +1,6 @@
-<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+<div id="kt_aside_menu" class="aside-menu my-0" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
     <!--begin::Menu Nav-->
-    <ul class="menu-nav my-0 pt-0">
+    <ul class="menu-nav  my-0 pt-0">
 
 
         <li class="menu-item menu-item-active" aria-haspopup="true">
