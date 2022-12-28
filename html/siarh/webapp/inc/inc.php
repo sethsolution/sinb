@@ -8,6 +8,18 @@ require_once("./inc/db.credencial.php");
 require_once("./inc/config.php");
 session_name($CFG->session_name);
 session_start();
+
+$cookie_options = array(
+    'expires' => time() + 60*60*24*30,
+    'path' => '/',
+   // 'domain' => '.example.com', // leading dot for compatibility or use subdomain
+    'secure' => true, // or false
+    'httponly' => false, // or false
+    'samesite' => 'None' // None || Lax || Strict
+);
+
+setcookie('cors-cookie', $CFG->session_name, $cookie_options);
+
 $_SESSION["start"] = time(); 
 /* Si existe el ingreso de la variable action se crea */
 if(isset($_REQUEST["action"])){

@@ -1,8 +1,9 @@
 <?PHP
-namespace App\Mnhn\Index\Index;
+namespace App\Icas\Web\Index;
 use Core\CoreResources;
-class Index extends CoreResources {
 
+class Index extends CoreResources {
+    var $objTable = "proyecto";
     function __construct()
     {
         /**
@@ -10,4 +11,5 @@ class Index extends CoreResources {
          */
         $this->appInit();
     }
+
 }
