@@ -7,6 +7,7 @@ require_once './../vendor/autoload.php';
 require_once("./inc/db.credencial.php");
 require_once("./inc/config.php");
 session_name($CFG->session_name);
+session_start();
 
 $cookie_options = array(
     'expires' => time() + 60*60*24*30,
@@ -19,7 +20,6 @@ $cookie_options = array(
 
 setcookie('cors-cookie', $CFG->session_name, $cookie_options);
 
-session_start();
 $_SESSION["start"] = time(); 
 /* Si existe el ingreso de la variable action se crea */
 if(isset($_REQUEST["action"])){
