@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Vicuna\Module\Esquila\Snippet\adjunto;
+namespace App\Vicuna\Esquila\Adjunto;
 use Core\CoreResources;
 class Index extends CoreResources
 {

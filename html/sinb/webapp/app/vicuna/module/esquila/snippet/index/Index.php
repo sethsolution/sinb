@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Vicuna\Module\Esquila\Snippet\Index;
+namespace App\Vicuna\Esquila\Index;
 use Core\CoreResources;
 use Dompdf\Dompdf;
 use Dompdf\Options;

@@ -1,6 +1,6 @@
 <?PHP
-use App\Vicuna\Module\Esquila\Snippet\general\Index;
-use App\Vicuna\Module\Esquila\Snippet\general\Catalog;
+use App\Vicuna\Esquila\General\Index;
+use App\Vicuna\Esquila\General\Catalog;
 use Core\Core;
 
 $objItem = new Index();

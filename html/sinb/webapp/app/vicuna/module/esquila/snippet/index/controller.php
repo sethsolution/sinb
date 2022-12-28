@@ -1,6 +1,6 @@
 <?PHP
-use App\Vicuna\Module\Esquila\Snippet\Index\Index;
-use App\Vicuna\Module\Esquila\Snippet\Index\Catalog;
+use App\Vicuna\Esquila\Index\Index;
+use App\Vicuna\Esquila\Index\Catalog;
 use Core\Core;
 
 
@@ -79,11 +79,7 @@ switch($action) {
          * GetItem
          */
         if ($type == "update") {
-            print_struc($id);
-            $dbm->debug = true;
             $item = $objItem->getItem($id);
-            print_struc($item);
-            exit;
             $smarty->assign("item", $item);
         }
         /**

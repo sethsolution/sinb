@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Vicuna\Module\Esquila\Snippet\Index;
+namespace App\Vicuna\Esquila\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
