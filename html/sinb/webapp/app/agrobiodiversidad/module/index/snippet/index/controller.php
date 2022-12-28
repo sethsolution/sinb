@@ -1,6 +1,6 @@
 <?PHP
-use App\Mnhn\Index\Index\Index;
-use App\Mnhn\Index\Index\Catalog;
+use App\Agrobiodiversidad\Index\Index\Index;
+use App\Agrobiodiversidad\Index\Index\Catalog;
 use Core\Core;
 $objItem = new Index();
 $objCatalog = new Catalog();

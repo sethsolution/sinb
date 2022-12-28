@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Mnhn\Index\Index;
+namespace App\Agrobiodiversidad\Index\Index;
 use Core\CoreResources;
 class Index extends CoreResources {
 
