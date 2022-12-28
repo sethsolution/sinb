@@ -330,6 +330,7 @@ class Index extends CoreResources
     public function getMonths($filtro){
         $where = $filtro["where"];
         $join = $filtro["join"];
+        $mesesESP = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $sql = "select re.mes as mes
                 from
                 (
@@ -344,7 +345,8 @@ class Index extends CoreResources
         $meses = $meses->getRows();
         foreach ($meses as  $key=> $row) {
             $dato[$key]["mes"] = $row["mes"];
-            $dato[$key]["nombre"] = date("F", mktime(null, null, null, $row["mes"], 1));
+            //$dato[$key]["nombre"] = date("F", mktime(null, null, null, $row["mes"], 1));
+            $dato[$key]["nombre"] = $mesesESP[$row["mes"]-1];
         }
 //        print_struc($dato);
         return $dato;
