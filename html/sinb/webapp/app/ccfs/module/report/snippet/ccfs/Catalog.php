@@ -12,20 +12,8 @@ class Catalog extends CoreResources{
 
     public function confCatalog($item){
 
-        $this->addCatalogList($this->table["icas_area"]
-            ,"icas_area","","nombre",""
-            ,"nombre","","","");
-
-        $this->addCatalogList($this->table["icas_estado"]
-            ,"icas_estado","","nombre",""
-            ,"nombre","","","");
-
-        $this->addCatalogList($this->table["icas_fuente_financiamiento"]
-            ,"financiamiento","","nombre",""
-            ,"nombre","","","");
-
-        $this->addCatalogList($this->table["icas_institucion_tipo"]
-            ,"icas_institucion_tipo","","nombre",""
+        $this->addCatalogList($this->table["ccfs_categoria"]
+            ,"categoria","","nombre",""
             ,"nombre","","","");
 
         $where = "cod_dep<>'0'";

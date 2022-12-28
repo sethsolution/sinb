@@ -35,32 +35,27 @@ class Index extends CoreResources
             }else{
                 $where .= " and ";
             }
-            $where .= "p.departamento_id in (".$filtro.")  ";
+            $where .= "c.departamento_id in (".$filtro.")  ";
         }
 
-        if(isset($item["estado_id"])  and is_array($item["estado_id"])){
-            $filtro =  implode(',',$item["estado_id"]);
-            $where = " where p.estado_id in (".$filtro.") ";
-        }
-
-        if(isset($item["area_id"])  and is_array($item["area_id"])){
-            $filtro =  implode(',',$item["area_id"]);
+        if(isset($item["municipio_id"])  and is_array($item["municipio_id"])){
+            $filtro =  implode(',',$item["municipio_id"]);
             if($where == ""){
                 $where .= " where ";
             }else{
                 $where .= " and ";
             }
-            $where .= "p.area_id in (".$filtro.")  ";
+            $where .= "c.municipio_id in (".$filtro.")  ";
         }
 
-        if(isset($item["fuente_financiamiento_id"])  and is_array($item["fuente_financiamiento_id"])){
-            $filtro =  implode(',',$item["fuente_financiamiento_id"]);
+        if(isset($item["categoria_id"])  and is_array($item["categoria_id"])){
+            $filtro =  implode(',',$item["categoria_id"]);
             if($where == ""){
                 $where .= " where ";
             }else{
                 $where .= " and ";
             }
-            $where .= "p.fuente_financiamiento_id in (".$filtro.")  ";
+            $where .= "c.categoria_id in (".$filtro.")  ";
         }
 
         $res["where"] = $where;
@@ -80,35 +75,36 @@ class Index extends CoreResources
         /**
          * Sacamos primer totalizado por fuente de financiamiento (IDH, propia y otros)
          */
-        $sql = "select ff.id , ff.nombre as financiamiento, re.total
+        $sql = "select cc.id , cc.nombre as categoria, re.total
                 from
                 (
-                select p.fuente_financiamiento_id ,count(*) as total
-                from icas.proyecto as p 
+                select c.categoria_id ,count(*) as total
+                from ccfs.ccfs as c 
                 ".$where."
-                GROUP BY p.fuente_financiamiento_id
+                GROUP BY c.categoria_id
                 ) as re
-                left join catalogo.icas_fuente_financiamiento as ff on ff.id= re.fuente_financiamiento_id
-                order by ff.nombre
+                left join catalogo.ccfs_categoria as cc on cc.id= re.categoria_id
+                order by cc.nombre
                 ";
-        $financiamiento = $this->dbm->Execute($sql);
-        $financiamiento = $financiamiento->getRows();
-        $res["financiamiento"] = $financiamiento;
+        $categoria = $this->dbm->Execute($sql);
+        $categoria = $categoria->getRows();
+        $res["categoria"] = $categoria;
+//        print_struc($res);
 
-        /**
-         * Sacamos todos los estado utilizados en esta consulta
-         */
-        $sql = "select ce.id, ce.nombre as estado ,t.*
-                    from(
-                    select p.estado_id, count(*) as total
-                    from icas.proyecto as p
-                    ".$where."
-                    GROUP BY p.estado_id
-                    ) as t
-                    left join catalogo.icas_estado as ce on ce.id = t.estado_id
-                ";
-        $estados = $this->dbm->Execute($sql);
-        $estados = $estados->getRows();;
+//        /**
+//         * Sacamos todos los estado utilizados en esta consulta
+//         */
+//        $sql = "select ce.id, ce.nombre as estado ,t.*
+//                    from(
+//                    select p.estado_id, count(*) as total
+//                    from icas.proyecto as p
+//                    ".$where."
+//                    GROUP BY p.estado_id
+//                    ) as t
+//                    left join catalogo.icas_estado as ce on ce.id = t.estado_id
+//                ";
+//        $estados = $this->dbm->Execute($sql);
+//        $estados = $estados->getRows();;
 
 
         /**
@@ -116,54 +112,49 @@ class Index extends CoreResources
          */
         $departamento = $this->getDepartamento($filtro);
         $res["departamento"] = $departamento;
-
-        /**
-         * Datos tipos proyecto
-         */
-        $areaTematica = $this->getAreaTematica($filtro);
-        $res["areaTematica"] = $areaTematica;
+//        print_struc($res["departamento"]);
 
         /**
          * recorremos los tipos y sacamos todos los estados encontrados
          */
-        $dato = array();
-        $cont = 0;
-        foreach ($estados as $row){
-            $dato[$cont]["id"] = $row["id"];
-            $dato[$cont]["nombre"] = $row["estado"];
-            foreach ($financiamiento as $es){
-                $totalItem = $this->getEstadoTotal($row["id"],$es["id"]);
-                $dato[$cont]["financiamiento"][] = array("nombre"=>$es["financiamiento"],"total"=>$totalItem);
-            }
-
-            $cont++;
-        }
-
-        $res["dato"] = $dato;
+//        $dato = array();
+//        $cont = 0;
+//        foreach ($estados as $row){
+//            $dato[$cont]["id"] = $row["id"];
+//            $dato[$cont]["nombre"] = $row["estado"];
+//            foreach ($financiamiento as $es){
+//                $totalItem = $this->getEstadoTotal($row["id"],$es["id"]);
+//                $dato[$cont]["financiamiento"][] = array("nombre"=>$es["financiamiento"],"total"=>$totalItem);
+//            }
+//
+//            $cont++;
+//        }
+//
+//        $res["dato"] = $dato;
 
         /**
          * Total de todos los proyectos
          */
         $total = 0;
-        foreach ($financiamiento as $row){
+        foreach ($categoria as $row){
             $total = $total + (int)$row["total"];
         }
         $res["total"] = $total;
         /**
          * Sacamos los datos para la tabla
          */
-        $sql = "select re.fuente_financiamiento_id, ff.nombre as financiamiento, ce.nombre as estado, re.total
+        $sql = "select re.departamento_id, d.name as departamento, m.name as municipio, re.total
                 from
                 (
-                select p.fuente_financiamiento_id, p.estado_id, count(*) as total
-                from icas.proyecto as p
+                select c.departamento_id, c.municipio_id, count(*) as total
+                from ccfs.ccfs as c
                 ".$where."
-                GROUP BY p.fuente_financiamiento_id,p.estado_id
+                GROUP BY c.departamento_id,c.municipio_id
                 )
                 as re
-                left join catalogo.icas_fuente_financiamiento as ff on ff.id= re.fuente_financiamiento_id
-                left join catalogo.icas_estado as ce on ce.id = re.estado_id
-                 order by ff.nombre, ce.nombre
+                left join geo.departamento as d on d.id= re.departamento_id
+                left join geo.municipio as m on m.id = re.municipio_id
+                 order by d.name, m.name
                 ";
         $resultado = $this->dbm->Execute($sql);
         $resultado = $resultado->getRows();
@@ -172,26 +163,25 @@ class Index extends CoreResources
         /**
          * Sacamos la lista de proyectos
          */
-        $sql = " SELECT p.id
-, p.nombre
-, p.codigo
-, a.nombre as area
-, d.name as departamento
-, e.nombre as estado
-, ff.nombre as financiamiento
-, p.fuente_financiamiento_otro
-, to_char(p.fecha_inicio, 'DD/MM/YYYY') as fecha_inicio
-, to_char(p.fecha_conclusion, 'DD/MM/YYYY') as fecha_conclusion
-    FROM icas.proyecto p
-        LEFT JOIN catalogo.icas_area a ON a.id = p.area_id
-        LEFT JOIN catalogo.icas_estado e ON e.id = p.estado_id
-        LEFT JOIN geo.departamento d ON d.id = p.departamento_id
-        LEFT JOIN catalogo.icas_fuente_financiamiento ff ON ff.id = p.fuente_financiamiento_id
+        $sql = " SELECT c.id
+, c.nombre
+, c.codigo
+, cc.nombre as categoria
+, c.condicion
+, c.departamento
+, c.provincia
+, c.municipio
+, c.licencia_funcionamiento
+, c.formato
+, c.responsable
+    FROM ccfs.ccfs c
+        LEFT JOIN catalogo.ccfs_categoria cc ON cc.id = c.categoria_id
         ".$where."
         ";
         $resultado = $this->dbm->Execute($sql);
         $resultado = $resultado->getRows();
-        $res["proyectos"] = $resultado;
+        $res["ccfs"] = $resultado;
+//        print_struc($res);
 
         return $res;
     }
@@ -216,10 +206,10 @@ class Index extends CoreResources
             from
             (
             SELECT  
-            p.departamento_id, count(*) as total
-            FROM icas.proyecto as p
+            c.departamento_id, count(*) as total
+            FROM ccfs.ccfs as c
             ".$where."
-            group by p.departamento_id
+            group by c.departamento_id
             ) as dep
             left join geo.departamento as d on d.id = dep.departamento_id
             order by d.name";

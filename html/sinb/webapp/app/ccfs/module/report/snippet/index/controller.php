@@ -30,7 +30,7 @@ switch($action) {
          */
         $menu_tab = $objItem->getTabItem($type,"index");
         $smarty->assign("menu_tab", $menu_tab);
-        $smarty->assign("menu_tab_active", "proyecto");
+        $smarty->assign("menu_tab_active", "ccfs");
         /**
          * Template for index and js
          */

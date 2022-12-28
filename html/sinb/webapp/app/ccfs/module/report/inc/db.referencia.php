@@ -11,22 +11,17 @@ $appVars["table"]  = array();
 
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
-$dbSchemaName = "icas";
-$db_table[] = Core::getTableConfig("institucion");
-$db_table[] = Core::getTableConfig("institucion_archivo");
-$db_table[] = Core::getTableConfig("proyecto");
-$db_table[] = Core::getTableConfig("proyecto_archivo");
-$db_table[] = Core::getTableConfig("proyecto_institucion");
+    $dbSchemaName = "ccfs";
+$db_table[] = Core::getTableConfig("ccfs");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
 
 $db_table = array();
 $dbSchemaName = "catalogo";
-$db_table[] = Core::getTableConfig("icas_area");
-$db_table[] = Core::getTableConfig("icas_estado");
-$db_table[] = Core::getTableConfig("icas_fuente_financiamiento");
-$db_table[] = Core::getTableConfig("icas_institucion_tipo");
+$db_table[] = Core::getTableConfig("ccfs_categoria");
+$db_table[] = Core::getTableConfig("ccfs_especie_tipo");
+$db_table[] = Core::getTableConfig("ccfs_requisito");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 

@@ -123,8 +123,8 @@
         };
 
         var municipio_search = function(id){
-            // console.log("ID que llega: "+id);
             municipio_opt.find("option").remove();
+            municipio_opt.prop('disabled', true);
             if(id!="") {
                 $.post(urlmodule+"/get.municipio"
                     , {"id": id}
@@ -137,38 +137,13 @@
                             //convenio_programa_list[res[row].id] = res[row];
                         }
                         municipio_opt.trigger('chosen:updated');
+                        municipio_opt.prop('disabled', false);
                     }
                     , 'json');
-                municipio_opt.prop('disabled', false);
             }else{
                 //handle_options_init();
             }
         };
-
-
-
-        var convenio_search = function(id){
-            convenio_opt.find("option").remove();
-            if(id!="") {
-                $.post(urlmodule+"/get.convenio"
-                    , {id: id}
-                    , function (res, textStatus, jqXHR) {
-                        let selOption = $('<option></option>');
-                        convenio_opt.append(selOption.attr("value", "").text("{/literal}{#field_holder_convenio_id#}{literal}"));
-                        let convenio_list = []
-                        for (var row in res) {
-                            convenio_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].numero_convenio_txt));
-                            convenio_list[res[row].id] = res[row];
-                        }
-                        convenio_opt.trigger('chosen:updated');
-                    }
-                    , 'json');
-                convenio_opt.prop('disabled', false);
-            }else{
-                //handle_options_init();
-            }
-        };
-
 
 
         var mini_div= $('#mini_div');
@@ -196,6 +171,14 @@
             }
         };
 
+        var btn_print = $('#print_window');
+        var handle_btn_print = function() {
+            btn_print.click(function(e) {
+                e.preventDefault();
+                window.print()
+            });
+        };
+
         return {
             init: function() {
                 handle_form_submit();
@@ -205,6 +188,7 @@
                 handle_font_select();
                 handle_option_convenio();
                 handle_option_departamento();
+                handle_btn_print();
             }
         };
     }();

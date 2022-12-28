@@ -1,5 +1,99 @@
 {literal}
 <script>
+
+    //var table_list;
+    var snippet_datatable_proyecto = function () {
+        "use strict";
+        var urlsys = '{/literal}{$path_url}{literal}';
+        var initTable = function() {
+
+            let table_list_var = $('#tabla_proyecto_resumen');
+
+            let export_title = "{/literal}{#dataTableExportTitle#}{literal}";
+            let noExport = tableSetting.noExport;
+            table_list = table_list_var.DataTable({
+
+                initComplete: function(settings, json) {
+                    $('#tabla_proyecto').removeClass('d-none');
+                    console.log("entro para borrar el d-none ------------");
+                },
+
+                keys: {
+                    columns: noExport,
+                    clipboard: false,
+                },
+
+                dom: tableSetting.dom,
+                buttons: [
+                    /*
+                    {extend:'colvis',text:lngUyuni.dataTableWatch
+                        ,columnText: function ( dt, idx, title ) {
+                            return (idx+1)+': '+title;
+                        }
+                    },
+                     */
+                    {extend:'excelHtml5'
+                        ,exportOptions: {columns: noExport}
+                        , title: export_title
+                    },
+                    {extend:'pdfHtml5'
+                        ,exportOptions: {columns: noExport}
+                        , title: export_title
+                        , download: 'open'
+                        , orientation: 'landscape'
+                        , pageSize: 'LETTER'
+                        ,customize: function(doc) {
+                            doc.styles.tableHeader.fontSize = 7;
+                            doc.defaultStyle.fontSize = 7;
+                            doc.pageMargins= [ 20, 20];
+                        }
+                    },
+                    {extend:'print'
+                        ,exportOptions: {columns: noExport}
+                        ,text: lngUyuni.dataTablePrint
+                    }
+
+                ],
+                //responsive: true,
+                //colReorder: true,
+                language: {"url": "/language/js/datatable."+lng+".json"},
+                lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
+                pageLength: 25,
+                order: [[ 0, "asc" ]], // Por que campo ordenara al momento de desplegar
+                InfoFiltered:     false,
+                searchDelay: 500,
+                //processing: true,
+                scrollX: true,
+                autoWidth: false,
+                columnDefs: [
+                    {
+                        targets: [0],
+                        searchable: true,
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "0";}
+                            return '<div class="text-primary text-left">' + data+ ' </div>';
+                        },
+                    },
+                    {
+                        targets: [7,8],
+                        searchable: false,
+                    },
+                ],
+            });
+
+        };
+
+        return {
+            //main function to initiate the module
+            init: function() {
+                initTable();
+            },
+
+        };
+
+    }();
+
+
     var table_list;
 
     var snippet_datatable_list = function () {
@@ -107,6 +201,7 @@
 
     jQuery(document).ready(function() {
         snippet_datatable_list.init();
+        snippet_datatable_proyecto.init();
     });
 
 
@@ -177,14 +272,15 @@
     {if $res.total >0}
     {literal}
     //console.log(bgcolorRgb);
+    /**
     var ctx_monto_dos = document.getElementById("chart_cantidad").getContext('2d');
     var chart_monto_dos = new Chart(ctx_monto_dos, {
         type: 'bar',
         data: {
             labels: [
                 {/literal}
-                {foreach from=$res.proyectos item=row key=idx}
-                {if $idx != 0},{/if}"{$row.proyecto}"
+                {foreach from=$res.financiamiento item=row key=idx}
+                {if $idx != 0},{/if}"{$row.financiamiento}"
                 {/foreach}
                 {literal}
             ],
@@ -195,7 +291,7 @@
                 {
                     label: '{$row.nombre}',
                     data: [
-                        {foreach from=$row.tipo item=dato key=idx2}
+                        {foreach from=$row.financiamiento item=dato key=idx2}
                         {if $idx2 != 0},{/if}'{$dato.total}'
                         {/foreach}
                     ],
@@ -226,63 +322,7 @@
                 }
             }
         }
-    });
-
-
-    /**
-     * Tipo proyecto
-     */
-
-    var ctx_monto_dos = document.getElementById("chart_tipoproyecto").getContext('2d');
-    var chart_monto_dos = new Chart(ctx_monto_dos, {
-        type: 'bar',
-        data: {
-            labels: [
-                {/literal}
-                {foreach from=$res.tipoProyecto.tipo item=row key=idx}
-                {if $idx != 0},{/if}"{$row.tipo_proyecto}"
-                {/foreach}
-                {literal}
-            ],
-            datasets: [
-                {/literal}
-                {foreach from=$res.tipoProyecto.years item=row key=idx}
-                {if $idx != 0},{/if}
-                {
-                    label: '{$row.year}',
-                    data: [
-                        {foreach from=$row.tipo item=dato key=idx2}
-                        {if $idx2 != 0},{/if}'{$dato.total}'
-                        {/foreach}
-                    ],
-                    backgroundColor: bgcolorRgb[{$idx}+2],
-                    borderWidth: 1
-                }
-                {/foreach}
-                {literal}
-            ]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    boxWidth: 20,
-                    fontSize: 11,
-                    padding: 7
-                }
-            },
-            scales: {
-                x: {
-                    stacked: true,
-                },
-                y: {
-                    stacked: true
-                }
-            }
-        }
-    });
+    });*/
 
 
     var ctx = document.getElementById("chart_departamento").getContext('2d');

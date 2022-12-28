@@ -11,33 +11,11 @@ $tabs = array();
  */
 //-------------------------------------------------------------
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_proyecto"]
-,   "id_name"=>"proyecto"
+    "label"=> $smarty->config_vars["tab_ccfs"]
+,   "id_name"=>"ccfs"
 ,   "icon" => "fas fa-file-alt m--font-success"
 ,   "new" => 1
 );
-//-------------------------------------------------------------
-
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_institucion"]
-,   "id_name"=>"institucion"
-,   "icon" => "fas fa-landmark m--font-success"
-,   "new" => 1
-);
-/**
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_familia"]
-,   "id_name"=>"familia"
-,   "icon" => "fas fa-file-alt m--font-success"
-,   "new" => 1
-);
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_aporte"]
-,   "id_name"=>"aporte"
-,   "icon" => "fas fa-file-alt m--font-success"
-,   "new" => 1
-);*/
-
 //-------------------------------------------------------------
 /**
  * Se añade el arreglo de tabs configurada a $tabs

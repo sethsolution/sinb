@@ -12,7 +12,7 @@ use Core\Core;
 /**
  * Verificamos y/o Creamos la carpeta padre
  */
-$appVars["folderParent"] = "icas";
+$appVars["folderParent"] = "ccfs";
 $appVars["directory"] = $_ENV['DATA_FILE'].$appVars["folderParent"]."/";
 Core::createDirectory($appVars["directory"]);
 /**
