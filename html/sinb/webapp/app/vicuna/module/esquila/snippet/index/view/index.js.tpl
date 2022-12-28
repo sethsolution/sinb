@@ -101,22 +101,12 @@
                             return '<span style="color: #0357ae;">' + data + ' </span>';
                         },
                     },
-                    // {
-                    //     targets: [7],
-                    //     searchable: false,
-                    //     render: function(data, type, full, meta) {
-                    //         var status = {
-                    //             'false': { 'state': 'metal'},
-                    //             'true': { 'state': 'success'}
-                    //         };
-                    //         if (typeof status[data] === 'undefined') {
-                    //             return data;
-                    //         }
-                    //         return '<div class="text-center"><i class="fa fa-check-double text-' + status[data].state + '"></i></div>';
-                    //     },
-                    // },
                     {
-                        targets: [-2,-3],
+                        targets: [0,1,7,9,10],
+                        searchable: false,
+                    },
+                    {
+                        targets: [-2,-3,-4],
                         searchable: false,
                         className: "none",
                         render: function(data,type,full,meta){

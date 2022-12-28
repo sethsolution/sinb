@@ -22,9 +22,9 @@ $grid_item[]=array("field" => "arcmv","label"=> $smarty->config_vars["table_arcm
 $grid_item[]=array("field" => "cmv","label"=> $smarty->config_vars["table_cmv"]);
 $grid_item[]=array("field" => "numero_acta","label"=> $smarty->config_vars["table_numero_acta"]);
 $grid_item[]=array("field" => "sitio_captura","label"=> $smarty->config_vars["table_sitio_captura"]);
-$grid_item[]=array("field" => "fecha_captura","label"=> $smarty->config_vars["table_fecha_captura"]);
 $grid_item[]=array("field" => "numero_vicuna_sitio_captura","label"=> $smarty->config_vars["table_numero_sitio_captura"]);
 $grid_item[]=array("field" => "numero_vicuna_capturadas","label"=> $smarty->config_vars["table_numero_captura"]);
+$grid_item[]=array("field" => "fecha_captura","label"=> $smarty->config_vars["table_fecha_captura"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
