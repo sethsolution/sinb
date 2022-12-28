@@ -79,7 +79,11 @@ switch($action) {
          * GetItem
          */
         if ($type == "update") {
+            print_struc($id);
+            $dbm->debug = true;
             $item = $objItem->getItem($id);
+            print_struc($item);
+            exit;
             $smarty->assign("item", $item);
         }
         /**
