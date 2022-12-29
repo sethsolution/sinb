@@ -44,7 +44,7 @@
                 <div class="col-lg-6">
                     <label>{#fieldPass#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="password" class="form-control"
                                name="item[password]"
                                placeholder=""
                                {if $type == 'new'}
@@ -62,7 +62,7 @@
                         <span class="form-text text-muted">{#fieldPassUpdateMsg#}</span>
                     {/if}
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <label>{#fieldName#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -78,7 +78,7 @@
                 </div>
 
 
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <label>{#fieldLastName#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -94,7 +94,21 @@
                     </div>
                     <span class="form-text text-muted">{#fieldLastNameMsg#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
+                    <label>{#fieldEmail#} :</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control"
+                               name="item[email]"
+                               value="{$item.email|escape:"html"}"
+                               placeholder=""
+{*                               required*}
+                        >
+                        <div class="input-group-append"><span class="input-group-text">@</span></div>
+                    </div>
+                    <span class="form-text text-muted">{#fieldEmailMsg#}</span>
+                </div>
+
+                <div class="col-lg-6">
                     <label>{#fieldType#} <span class="text-danger bold">*</span>: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -106,9 +120,6 @@
                             <option></option>
                             {html_options options=$cataobj.type selected=$item.type}
                         </select>
-
-
-
                     </div>
                     <span class="form-text text-muted">{#field_GroupMsg_type#}</span>
                 </div>

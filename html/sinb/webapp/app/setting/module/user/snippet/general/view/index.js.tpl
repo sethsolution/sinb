@@ -42,6 +42,15 @@
             formv = FormValidation.formValidation(
                 document.getElementById('general_form'),
                 {
+                    fields: {
+                        "item[email]": {
+                        validators: {
+                         emailAddress: {
+                          message: 'Ingrese un correo electrónico válido'
+                         }
+                        }
+                       },
+                    },
                     plugins: {
                         declarative: new FormValidation.plugins.Declarative({html5Input: true,}),
                         trigger: new FormValidation.plugins.Trigger(),

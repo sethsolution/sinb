@@ -15,6 +15,7 @@ $field_item = array();
 $field_item["active"]=array("type"=>"checkbox_02");
 $field_item["name"]=array("type"=>"text");
 $field_item["last_name"]=array("type"=>"text");
+$field_item["email"]=array("type"=>"text");
 $field_item["mobile"]=array("type"=>"text");
 $field_item["phone"]=array("type"=>"text");
 $field_item["username"]=array("type"=>"text");
