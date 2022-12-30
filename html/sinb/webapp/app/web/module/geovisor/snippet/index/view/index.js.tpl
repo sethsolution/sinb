@@ -957,14 +957,16 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             fechaver = fechaver.toISOString().slice(0, 10);
             fechavernasa = fechaver.replace('-', '/');
 
-            console.log(fechaver);
-            console.log(fechavernasa);
+            // console.log(fechaver);
+            // console.log(fechavernasa);
             var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaver+"&fecha_final=&apn=&apd=&apm=";
 
             map = initialiseMap();
-
+            var total=0;
             json_layer = new L.GeoJSON.AJAX([urljson2],{
                 pointToLayer: function(point, latlng) {
+                    total  = total+1;
+                    $("#total").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(total)+" ");
                     //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);
                     /*
                     let ic = getIconStyle(point.properties["estado_id"],2);
@@ -1130,6 +1132,8 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             get_filtros_var();
             snippet_tab_item.reset_estado();
             urljson_filter = urljson + filtro_var;
+            //console.log(filtro_var);
+            //var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaver+"&fecha_final=&apn=&apd=&apm=";
             json_layer.refresh(urljson_filter);
             /**
              * Para la capa de departamentos

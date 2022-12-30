@@ -114,7 +114,7 @@
             ],
             datasets: [
                 {
-                    label: 'cerrado',
+                    label: 'Cuero',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
@@ -125,7 +125,7 @@
                     borderWidth: 1
                 },
                 {
-                    label: 'paralizado',
+                    label: 'Carne',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
@@ -137,7 +137,7 @@
                 }
                 ,
                 {
-                    label: 'debito',
+                    label: 'Cuerno',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
@@ -149,7 +149,7 @@
                 }
                 ,
                 {
-                    label: 'none',
+                    label: 'Ninguno',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}

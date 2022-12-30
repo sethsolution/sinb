@@ -15,10 +15,10 @@ switch($action){
      * Página por defecto (index)
      */
     default:
-        echo "en proceso..";exit;
-        $data = $objItem->getData($filter);
+//        echo "en proceso..";exit;
+//        $data = $objItem->getData($filter);
         //print_struc($data);exit;
-        $smarty->assign("data",$data);
+//        $smarty->assign("data",$data);
         /**
          * Language settings, section
          */

@@ -63,26 +63,43 @@
         'rgba(235, 152, 78, 1)',
         'rgba(82, 190, 128, 1)'
     ];
+    let departamentos = [
+        {"id": "1", "dep": "Cochabamba", "total": 0},
+        {"id": "2", "dep": "Beni", "total": 0},
+        {"id": "3", "dep": "La Paz", "total": 0},
+        {"id": "4", "dep": "Potosí", "total": 0},
+        {"id": "5", "dep": "Pando", "total": 0},
+        {"id": "6", "dep": "Oruro", "total": 0},
+        {"id": "7", "dep": "Tarija", "total": 0},
+        {"id": "8", "dep": "Santa Cruz", "total": 0},
+        {"id": "9", "dep": "Chuquisaca", "total": 0},
+    ]
 
+    var fechaActual = new Date().toISOString().slice(0, 10);
+
+
+    var getData = function(){
+        var donut = document.getElementById("chart_cantidad");
+        var url = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaActual+"&fecha_final=&apn=&apd=&apm=";
+        $("#chart_cantidad").load(function(){
+            $.get(url, function(data, status){
+                departamentos.map(function (dep){
+                    if (data.properties.dep == dep.dep){
+                        dep.total=dep.total+1
+                    }
+                })
+            });
+        });
+    };
 
     var ctx = document.getElementById("chart_cantidad").getContext('2d');
     var chart_cantidad = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: [
-                {/literal}
-                {foreach from=$data item=row key=idx}
-                {if $idx != 0},{/if}"{$row.departamento}: {$row.total}"
-                {/foreach}{literal}
-            ],
+            labels: departamentos.map(function (dep){return dep.dep}),
             datasets: [{
                 label: '# of Votes',
-                data: [
-                    {/literal}
-                    {foreach from=$data item=row key=idx}
-                    {if $idx != 0},{/if}{$row.total}
-                    {/foreach}{literal}
-                ],
+                data: departamentos.map(function (dep){return dep.total}),
                 backgroundColor: bgcolorHtml,
                 borderWidth: 1
             }]
@@ -106,108 +123,13 @@
     var chart_monto_dos = new Chart(ctx_monto_dos, {
         type: 'horizontalBar',
         data: {
-            labels: [
-                {/literal}
-                {foreach from=$data item=row key=idx}
-                {if $idx != 0},{/if}"{$row.departamento}"
-                {/foreach}{literal}
-            ],
-            datasets: [
-                {
-                    label: 'cerrado',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.cerrado }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#440444',
-                    borderWidth: 1
-                },
-                {
-                    label: 'paralizado',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.paralizado }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#90278d',
-                    borderWidth: 1
-                }
-                ,
-                {
-                    label: 'debito',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.debito }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#ff00f0',
-                    borderWidth: 1
-                }
-                ,
-                {
-                    label: 'concluido',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.concluido }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#006838',
-                    borderWidth: 1
-                }
-                ,
-                {
-                    label: 'cancelado',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.cancelado }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#bf0101',
-                    borderWidth: 1
-                }
-                ,
-                {
-                    label: 'ejecucion',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.ejecucion }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#32a9dd',
-                    borderWidth: 1
-                }
-                ,
-                {
-                    label: 'programado',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.programado }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#f5bb39',
-                    borderWidth: 1
-                }
-                ,
-                {
-                    label: 'none',
-                    data: [
-                        {/literal}
-                        {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.none }
-                        {/foreach}{literal}
-                    ],
-                    backgroundColor: '#a5a5a5',
-                    borderWidth: 1
-                }
-            ]
+            labels: departamentos.map(function (dep){return dep.dep}),
+            datasets: [{
+                label: '# of Votes',
+                data: departamentos.map(function (dep){return dep.total}),
+                backgroundColor: bgcolorHtml,
+                borderWidth: 1
+            }]
         },
         options: {
             legend: {
