@@ -1,6 +1,6 @@
 <?PHP
-use App\Sinpreh\Module\Geovisor\Snippet\Reporte\Index;
-use App\Sinpreh\Module\Geovisor\Snippet\Reporte\Catalog;
+use App\Web\Module\Geovisor\Snippet\Reporte\Index;
+use App\Web\Module\Geovisor\Snippet\Reporte\Catalog;
 use Core\Core;
 
 $objItem = new Index();
@@ -15,10 +15,10 @@ switch($action){
      * Página por defecto (index)
      */
     default:
-        echo "en proceso..";exit;
-        $data = $objItem->getData($filter);
+        //echo "en proceso..";exit;
+//        $data = $objItem->getData($filter);
         //print_struc($data);exit;
-        $smarty->assign("data",$data);
+//        $smarty->assign("data",$data);
         /**
          * Language settings, section
          */

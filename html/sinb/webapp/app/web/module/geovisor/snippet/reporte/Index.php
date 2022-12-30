@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sinpreh\Module\Geovisor\Snippet\Reporte;
+namespace App\Web\Module\Geovisor\Snippet\Reporte;
 use Core\CoreResources;
 class Index extends CoreResources
 {
