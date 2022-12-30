@@ -36,9 +36,8 @@ $grid_item[]=array( "field" => "name", "label"=> $smarty->config_vars["table_mun
 
 
 
-$grid_item[]=array("field" => "comunidad","label"=> $smarty->config_vars["table_comunidad"]);
-$grid_item[]=array("field" => "distrito","label"=> $smarty->config_vars["table_distrito"]);
-$grid_item[]=array("field" => "participacion","label"=> $smarty->config_vars["table_participacion"]);
+$grid_item[]=array("field" => "localidad","label"=> $smarty->config_vars["table_localidad"]);
+$grid_item[]=array("field" => "area_aproximada","label"=> $smarty->config_vars["table_area_aproximada"]);
 
 $grid_item[]=array("field" => "main","label"=> $smarty->config_vars["table_main"]);
 

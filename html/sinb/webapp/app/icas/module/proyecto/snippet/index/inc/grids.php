@@ -23,12 +23,6 @@ $grid_table[] = array(
 ,   "relationship_id"=>"estado_id" //Campo de relación en la tabla principal
 );
 
-//$grid_table[] = array(
-//    "table" => $appVars["table"] ["catalogo_financiador"] // Nombre de la tabla con la que hara la relación
-//,    "alias"=> "f" //Alias de la tabla para el join
-//,   "field_id"=>"id" //Id de la tabla que hara la relación
-//,   "relationship_id"=>"financiador_id" //Campo de relación en la tabla principal
-//);
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
@@ -42,14 +36,9 @@ $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_a
 $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_estado"]
 , "table_as"=> "e", "as" => "estado_id");
 
-$grid_item[]=array("field"=> "fecha_inicio", "label"=> $smarty->config_vars["table_fecha_inicio"]);
+$grid_item[]=array("field"=> "departamento", "label"=> $smarty->config_vars["table_departamento"]);
 $grid_item[]=array("field"=> "fecha_conclusion", "label"=> $smarty->config_vars["table_fecha_conclusion"]);
-
-//$grid_item[]=array("field"=> "fecha_aprobacion", "label"=> $smarty->config_vars["table_fecha_aprobacion"]);
-//$grid_item[]=array("field"=> "responsable_aprobacion", "label"=> $smarty->config_vars["table_responsable_aprobacion"]);
-
-$grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
-$grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
+$grid_item[]=array("field"=> "fecha_inicio", "label"=> $smarty->config_vars["table_fecha_inicio"]);
 $group = "item";
 $grid[$group]= $grid_item;
 $grid_table_join[$group]= $grid_table;

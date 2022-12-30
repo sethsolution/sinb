@@ -144,7 +144,7 @@
                             <option></option>
                             {html_options options=$cataobj.pais selected=$item.pais_id}
                         </select>
-                    </div>  
+                    </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_pais_id#}</span>
                 </div>
                 <div class="col-lg-4">

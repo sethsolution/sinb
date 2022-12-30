@@ -16,6 +16,7 @@ $db_table[] = Core::getTableConfig("proyecto");
 $db_table[] = Core::getTableConfig("proyecto_archivo");
 $db_table[] = Core::getTableConfig("institucion");
 $db_table[] = Core::getTableConfig("proyecto_institucion");
+$db_table[] = Core::getTableConfig("proyecto_ubicacion");
 
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);

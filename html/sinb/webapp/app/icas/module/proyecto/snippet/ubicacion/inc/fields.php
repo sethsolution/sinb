@@ -11,10 +11,8 @@ $field_item = array();
 $field_item["departamento_id"]=array("type"=>"text");
 $field_item["municipio_id"]=array("type"=>"text");
 $field_item["provincia"]=array("type"=>"text");
-$field_item["distrito"]=array("type"=>"text");
-$field_item["comunidad"]=array("type"=>"text");
-$field_item["participacion"]=array("type"=>"text");
-
+$field_item["localidad"]=array("type"=>"text");
+$field_item["area_aproximada"]=array("type"=>"text");
 //$field_item["active"]=array("type"=>"checkbox_02");
 $group = "index";
 $fields[$group]= $field_item;

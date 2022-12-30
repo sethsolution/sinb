@@ -1,39 +1,38 @@
 {literal}
 <script>
-
     var table_list;
     var snippet_list = function() {
         "use strict";
-        var urlsys = '{/literal}{$path_url}{literal}';
+        var urlsys = '{/literal}{$path_url}/{$subcontrol}_/{$id}{literal}';
         var initTable = function() {
-            let table_list_var = $('#index_list');
+            let table_list_var = $('#tabla_{/literal}{$subcontrol}{literal}');
             let export_title = "{/literal}{#dataTableExportTitle#}{literal}";
             let noExport = tableSetting.noExport;
-            // begin first table
             table_list = table_list_var.DataTable({
                 initComplete: function(settings, json) {
-                    $('#index_list').removeClass('d-none');
+                    table_list_var.removeClass('d-none');
                 },
                 keys: {
                     columns: noExport,
                     clipboard: false,
                 },
-                dom: tableSetting.dom,
+                //dom: tableSetting.dom,
+                dom:
+                    `<'row'<'col-sm-12 col-md-12 dataTables_pager'lp>>
+                <'row'<'col-sm-12'tr>>
+                <'row'<'col-sm-12 col-md-5'i>>`,
                 buttons: [
-                    /*
                     {extend:'colvis',text:lngUyuni.dataTableWatch
                         ,columnText: function ( dt, idx, title ) {
                             return (idx+1)+': '+title;
                         }
                     },
-
-                     */
                     {extend:'excelHtml5'
-                        ,exportOptions: {columns: [0, 1, 2, 3, 4, 5]}
+                        ,exportOptions: {columns: noExport}
                         , title: export_title
                     },
                     {extend:'pdfHtml5'
-                        ,exportOptions: {columns: [0, 1, 2, 3, 4, 5]}
+                        ,exportOptions: {columns: noExport}
                         , title: export_title
                         , download: 'open'
 
@@ -50,12 +49,12 @@
                     }
 
                 ],
-                responsive: true,
                 colReorder: true,
+                responsive: true,
                 language: {"url": "/language/js/datatable."+lng+".json"},
                 lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
-                pageLength: 10,
-                //order: [[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
+                pageLength: 25,
+                order: [[ 0, "asc" ],[ 2, "asc" ]], // Por que campo ordenara al momento de desplegar
                 InfoFiltered: false,
                 searchDelay: 500,
                 processing: true,
@@ -70,12 +69,6 @@
                     {if $idx != 0},{/if}{literal}{data: '{/literal}{if $row.as}{$row.as}{else}{$row.field}{/if}{literal}'{/literal}{if $row.responsive}, responsivePriority: -1{/if}{literal}}{/literal}
                     {/foreach}{literal}
                 ],
-                /*
-                rowGroup: {
-                    dataSrc: ['parentname','groupname']
-                },
-
-                 */
                 columnDefs: [
                     {
                         targets: -1,
@@ -94,31 +87,63 @@
                             return boton;
                         },
                     },
+
                     {
-                        targets: [0,1],
-                        className:"text-left",
+                        targets: [0],
+                        orderData: [ 0, 2 ],
                         render: function(data,type,full,meta){
-                            return '<span style="color: #0357ae;">' + data + ' </span>';
+                            return '<span class="text-primary">' + data+ '</span>';
                         },
                     },
                     {
-                        targets: [5],
-                        searchable: false,
+                        targets: [1],
+                        orderData: [ 0,2,1],
                     },
                     {
-                        targets: [-2],
-                        searchable: false,
-                        className: "none",
+                        targets: [5],
+                        orderable: false,
+                        width: '60px',
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                'false': { 'state': 'metal'},
+                                'true': { 'state': 'info'}
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+
+                            let boton = '<div class="text-center"><a href="javascript:snippet_list.principal(\''+full.actions+'\');" class="btn btn-icon  btn-sm" title="Cambiar principal">'+
+                                '<i class="fa fa-check-double text-' + status[data].state + '"></i>'+
+                                '</a></div>';
+                            return boton;
+                        },
                     },
+                    {
+                        targets: [-2,-3],
+                        className: "none",
+                        render: function(data,type,full,meta){
+                            if (data == null){ data = "";}
+                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        },
+                    },
+
+
                 ],
             });
+
         };
+        /**
+         * Download File
+         */
+        function download(id){
+            var url = urlsys+"/"+id+"/download";
+            window.open(url, '_blank');
+        }
 
         /**
          * New and Update
          */
-        //var btn_update = $('#btn_update');
-        var btn_update = $('#btn_new');
+        var btn_update = $('#btn_form_{/literal}{$subcontrol}{literal}');
         var handle_button_update = function(){
             btn_update.click(function(e){
                 e.preventDefault();
@@ -127,7 +152,8 @@
         };
 
         var item_update = function(id,type){
-            coreUyuni.itemUpdateIndex(id,type,urlsys);
+            var subcontrol = "{/literal}{$subcontrol}{literal}";
+            coreUyuni.itemUpdateTabs(id,type,urlsys,subcontrol);
         };
         /**
          * Delete
@@ -148,28 +174,48 @@
         var handle_filtro = function () {
             coreUyuni.tableFilter();
         };
+        /**
+         * principal
+         */
+
+        var principal = function (id){
+            if(id!="") {
+                var url = urlsys+"/"+id+"/set.main";
+                $.post(url
+                    , {item_id:{/literal}{$item_id}{literal} }
+                    , function (res, textStatus, jqXHR) {
+                        table_list.ajax.reload();
+                    }
+                    , 'json');
+            }
+        }
 
         return {
             //main function to initiate the module
             init: function() {
-                initTable();
                 handle_button_update();
+                initTable();
                 handle_components();
                 handle_filtro();
             },
             update: function(id,type){
-                item_update(id,type);
+                item_update(id,"update");
             },
             delete: function(id){
                 item_delete(id);
             },
+            download: function (id) {
+                download(id);
+            },
+            principal: function (id){
+                principal(id);
+            }
         };
-
     }();
 
     jQuery(document).ready(function() {
-        $('#btn_new').removeClass('d-none');
         snippet_list.init();
     });
 </script>
+
 {/literal}

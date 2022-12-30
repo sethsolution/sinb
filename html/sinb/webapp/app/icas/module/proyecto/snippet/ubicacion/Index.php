@@ -145,7 +145,7 @@ class Index extends CoreResources
         if($main){
             $where = " pu.main = TRUE and";
         }
-        $sql = "select * from proyecto_ubicacion as pu where ".$where." pu.proyecto_id = ".$id;
+        $sql = "select * from icas.proyecto_ubicacion as pu where ".$where." pu.proyecto_id = ".$id;
         $item = $this->dbm->Execute($sql);
         $item = $item->GetRows();
         return $item;
@@ -223,10 +223,10 @@ class Index extends CoreResources
 
     public function setMain($id,$item_id){
         if($id>0 and $item_id>0){
-            $sql = "update proyecto_ubicacion as pu set main=FALSE where pu.proyecto_id =".$item_id;
+            $sql = "update icas.proyecto_ubicacion as pu set main=FALSE where pu.proyecto_id =".$item_id;
             $this->dbm->execute($sql);
 
-            $sql = "update proyecto_ubicacion as pu set main=TRUE where pu.id = ".$id;
+            $sql = "update icas.proyecto_ubicacion as pu set main=TRUE where pu.id = ".$id;
             $this->dbm->execute($sql);
 
             $this->setUbicacion($item_id);
