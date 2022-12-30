@@ -26,16 +26,18 @@ $grid_table_join = array();
  */
 
 $grid_item[]=array("field" => "nombre","label"=> $smarty->config_vars["table_nombre"]);
-$grid_item[]=array("field" => "direccion","label"=> $smarty->config_vars["table_direccion"]);
+$grid_item[]=array("field" => "departamento","label"=> $smarty->config_vars["table_departamento"]);
 $grid_item[]=array("field" => "telefono","label"=> $smarty->config_vars["table_telefono"]);
-$grid_item[]=array("field" => "fax","label"=> $smarty->config_vars["table_fax"]);
 $grid_item[]=array("field" => "celular","label"=> $smarty->config_vars["table_celular"]);
 $grid_item[]=array("field" => "email","label"=> $smarty->config_vars["table_email"]);
 $grid_item[]=array("field" => "responsable","label"=> $smarty->config_vars["table_responsable"]);
 $grid_item[]=array("field" => "responsable_operativo","label"=> $smarty->config_vars["table_responsable_operativo"]);
+$grid_item[]=array("field" => "fecha_expiracion","label"=> $smarty->config_vars["table_fecha_expiracion"]);
+$grid_item[]=array("field" => "fecha_acreditacion","label"=> $smarty->config_vars["table_fecha_acreditacion"]);
+$grid_item[]=array("field" => "direccion","label"=> $smarty->config_vars["table_direccion"]);
 
-$grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
-$grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
+//$grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
+//$grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
 
 $group = "item";
 $grid[$group]= $grid_item;

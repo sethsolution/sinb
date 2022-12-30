@@ -110,13 +110,13 @@
                         searchable: false,
                     },
                     {
-                        targets: [-2,-3],
+                        targets: [-2, -3],
                         searchable: false,
                         className: "none",
-                        render: function(data,type,full,meta){
-                            if (data == null){ data = "";}
-                            return '<span class="text-primary font-size-xs">' + data+ '</span>';
-                        },
+                        // render: function(data,type,full,meta){
+                        //     if (data == null){ data = "";}
+                        //     return '<span class="text-primary font-size-xs">' + data+ '</span>';
+                        // },
                     },
 
                 ],

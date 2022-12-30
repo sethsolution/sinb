@@ -144,14 +144,14 @@
                             <option></option>
                             {html_options options=$cataobj.pais selected=$item.pais_id}
                         </select>
-                    </div>
+                    </div>  
                     <span class="form-text text-black-50">{#field_GroupMsg_pais_id#}</span>
                 </div>
                 <div class="col-lg-4">
                     <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[departamento_id]" id="type_select_estado"
+                                name="item[departamento_id]" id="departamento_id"
                                 data-placeholder="{#field_Holder_departamento_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"

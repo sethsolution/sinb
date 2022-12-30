@@ -52,6 +52,7 @@ class Index extends CoreResources
             /**
              * Realizaremos los cálculos correspondientes de la fecha para los datos de la institucion
              */
+            $this->setDepartamento($itemData["departamento_id"], $itemId);
             $this->setFechasAcreditacionExpiracion($itemId);
         }
 
@@ -74,7 +75,28 @@ class Index extends CoreResources
                 
                 break;
         }
+        $dataResult["departamento"] = $this->getItemDepartamento($rec["departamento_id"])["name"];
         return $dataResult;
+    }
+
+    private function setDepartamento($departamento_id, $itemId){
+        if($departamento_id!=""){
+            /**
+             * Llenar datos de provincia
+             */
+            $sql = "SELECT * 
+                    FROM geo.departamento where id=".$departamento_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["departamento"]=$item["name"];
+            /**
+             * Se guarda la información
+             */
+            $where = "id = ".$itemId;
+            $table = $this->table["institucion"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
     }
 
     private function setFechasAcreditacionExpiracion($id){
@@ -105,6 +127,13 @@ class Index extends CoreResources
             $table = $this->table["institucion"];
             $resp = $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
+    }
+
+    function getItemDepartamento($id){
+        $sql = "select * from geo.departamento where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
     }
 
 }

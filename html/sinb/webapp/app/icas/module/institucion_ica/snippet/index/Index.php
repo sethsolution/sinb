@@ -22,15 +22,12 @@ class Index extends CoreResources {
         $info = '';
 
         if($idItem!=''){
-            $sqlSelect = ' i.*, iit.nombre as tipo, p.nombre as pais, d.name as nombre_departamento
+            $sqlSelect = ' i.*
                            , concat(u1.name,\' \',u1.last_name) AS user_creater
                             , CONCAT(u2.name,\' \',u2.last_name) as user_updater';
             $sqlFrom = ' '.$this->table[$this->objTable].' i
                          LEFT JOIN '.$this->table_core["user"].' u1 on u1.id=i.user_create
-                         LEFT JOIN '.$this->table_core["user"].' u2 on u2.id=i.user_update
-                         LEFT JOIN '.$this->table["icas_institucion_tipo"].' iit on iit.id=i.tipo_id
-                         LEFT JOIN '.$this->table["pais"].' p on p.id=i.pais_id
-                         LEFT JOIN '.$this->table["departamento"].' d on d.id=i.departamento_id';
+                         LEFT JOIN '.$this->table_core["user"].' u2 on u2.id=i.user_update';
             $sqlWhere = ' i.id='.$idItem;
             $sqlGroup = ' ';
 
@@ -64,8 +61,8 @@ class Index extends CoreResources {
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
         foreach ($result['data'] as $itemId => $valor) {
-            if(isset($result['data'][$itemId]['fecha_inicio'])) $result['data'][$itemId]['fecha_inicio'] = $this->changeDataFormat($result['data'][$itemId]['fecha_inicio'],"d/m/Y");
-            if(isset($result['data'][$itemId]['fecha_conclusion'])) $result['data'][$itemId]['fecha_conclusion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_conclusion'],"d/m/Y");
+            if(isset($result['data'][$itemId]['fecha_acreditacion'])) $result['data'][$itemId]['fecha_acreditacion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_acreditacion'],"d/m/Y");
+            if(isset($result['data'][$itemId]['fecha_expiracion'])) $result['data'][$itemId]['fecha_expiracion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_expiracion'],"d/m/Y");
 
 
             $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
@@ -145,9 +142,6 @@ class Index extends CoreResources {
          */
 
         $item = $this->getItem($item_id);
-        //$item["comentario"] = $this->cleanHtml($item["comentario"]);
-        //$item["comentario_observaciones"] = $this->cleanHtml($item["comentario_observaciones"]);
-        //$item["cupo"] =  $this->getInstitucionTipo($item["tipo_id"]);
         $item["acreditacion"] =  $this->getAcreditaciones($item_id);
         $item["adjunto"] =  $this->getAdjuntos($item_id);
         //print_struc($item);exit;
@@ -249,5 +243,4 @@ class Index extends CoreResources {
         //$str = strip_tags($str);
         return $str;
     }
-
 }

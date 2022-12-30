@@ -15,13 +15,11 @@ class Catalog extends CoreResources{
         $this->addCatalogList($this->table["pais"]
             ,"pais","","nombre",""
             ,"nombre","","","");
-//
-//        $this->addCatalogList($this->table["programa_estado"]
-//            ,"programa_estado","","nombre",""
-//            ,"nombre","","","");
+
+        $where = "cod_dep <> '0' ";
         $this->addCatalogList($this->table["departamento"]
             ,"departamento","","name",""
-            ,"name","","","");
+            ,"name",$where,"","");
     }
 
 }
