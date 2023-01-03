@@ -34,12 +34,10 @@
                 </div>
 
                 <div class="col-lg-3">
-                    <label>{#field_codigo#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_codigo#} :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[codigo]" value="{$item.codigo|escape:"html"}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                         <div class="input-group-append"><span class="input-group-text field_key"><i class="fas fa-key"></i></span></div>
                     </div>

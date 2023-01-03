@@ -27,7 +27,7 @@ $grid_table[] = array(
  * Configuración de los campos que mostraremos en la grilla
  */
 
-$grid_item[]=array("field"=> "codigo", "label"=> $smarty->config_vars["table_codigo"]);
+$grid_item[]=array("field"=> "id", "label"=> $smarty->config_vars["table_codigo"]);
 $grid_item[]=array("field" => "nombre","label"=> $smarty->config_vars["table_titulo"]);
 
 $grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_area"]
