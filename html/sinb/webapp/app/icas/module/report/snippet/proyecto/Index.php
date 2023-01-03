@@ -15,7 +15,8 @@ class Index extends CoreResources
 
     function getEstadoTotal($estado_id,$financiamiento_id){
         $sql = "select p.estado_id, count(*) as total
-                from icas.proyecto as p
+                FROM icas.proyecto_institucion as pi
+                left join icas.proyecto as p on p.id = pi.proyecto_id
                 where p.fuente_financiamiento_id = ".$financiamiento_id." and p.estado_id=".$estado_id."
                 GROUP BY p.estado_id";
         $dato = $this->dbm->Execute($sql);
@@ -63,6 +64,16 @@ class Index extends CoreResources
             $where .= "p.fuente_financiamiento_id in (".$filtro.")  ";
         }
 
+        if(isset($item["institucion_id"])  and is_array($item["institucion_id"])){
+            $filtro =  implode(',',$item["institucion_id"]);
+            if($where == ""){
+                $where .= " where ";
+            }else{
+                $where .= " and ";
+            }
+            $where .= "pi.institucion_id in (".$filtro.")  ";
+        }
+
         $res["where"] = $where;
         $res["join"] = "";
 
@@ -84,7 +95,8 @@ class Index extends CoreResources
                 from
                 (
                 select p.fuente_financiamiento_id ,count(*) as total
-                from icas.proyecto as p 
+                FROM icas.proyecto_institucion as pi
+                left join icas.proyecto as p on p.id = pi.proyecto_id 
                 ".$where."
                 GROUP BY p.fuente_financiamiento_id
                 ) as re
@@ -101,7 +113,8 @@ class Index extends CoreResources
         $sql = "select ce.id, ce.nombre as estado ,t.*
                     from(
                     select p.estado_id, count(*) as total
-                    from icas.proyecto as p
+                    FROM icas.proyecto_institucion as pi
+                    left join icas.proyecto as p on p.id = pi.proyecto_id
                     ".$where."
                     GROUP BY p.estado_id
                     ) as t
@@ -118,10 +131,19 @@ class Index extends CoreResources
         $res["departamento"] = $departamento;
 
         /**
-         * Datos tipos proyecto
+         * Datos area tematica del proyecto
          */
         $areaTematica = $this->getAreaTematica($filtro);
         $res["areaTematica"] = $areaTematica;
+
+        /**
+         * Datos cantidad de proyectos por ICA
+         */
+        $icas = $this->getICAS($filtro);
+        $res["icas"] = $icas;
+//        print_struc($res["icas"]);
+        $icasProyecto = $this->getICASProyecto($filtro);
+        $res["icasProyecto"] = $icasProyecto;
 
         /**
          * recorremos los tipos y sacamos todos los estados encontrados
@@ -156,7 +178,8 @@ class Index extends CoreResources
                 from
                 (
                 select p.fuente_financiamiento_id, p.estado_id, count(*) as total
-                from icas.proyecto as p
+                FROM icas.proyecto_institucion as pi
+                left join icas.proyecto as p on p.id = pi.proyecto_id
                 ".$where."
                 GROUP BY p.fuente_financiamiento_id,p.estado_id
                 )
@@ -182,7 +205,8 @@ class Index extends CoreResources
 , p.fuente_financiamiento_otro
 , to_char(p.fecha_inicio, 'DD/MM/YYYY') as fecha_inicio
 , to_char(p.fecha_conclusion, 'DD/MM/YYYY') as fecha_conclusion
-    FROM icas.proyecto p
+    FROM icas.proyecto_institucion as pi
+        left join icas.proyecto as p on p.id = pi.proyecto_id
         LEFT JOIN catalogo.icas_area a ON a.id = p.area_id
         LEFT JOIN catalogo.icas_estado e ON e.id = p.estado_id
         LEFT JOIN geo.departamento d ON d.id = p.departamento_id
@@ -217,7 +241,8 @@ class Index extends CoreResources
             (
             SELECT  
             p.departamento_id, count(*) as total
-            FROM icas.proyecto as p
+            FROM icas.proyecto_institucion as pi
+            left join icas.proyecto as p on p.id = pi.proyecto_id
             ".$where."
             group by p.departamento_id
             ) as dep
@@ -249,7 +274,8 @@ class Index extends CoreResources
             (
             SELECT  
             p.area_id, count(*) as total
-            FROM icas.proyecto as p
+            FROM icas.proyecto_institucion as pi
+            left join icas.proyecto as p on p.id = pi.proyecto_id
             ".$where."
             group by p.area_id
             ) as dep
@@ -260,5 +286,73 @@ class Index extends CoreResources
         $data = $data->getRows();
         return $data;
     }
+    public function getICAS($filtro){
+        $where = $filtro["where"];
+        $join = $filtro["join"];
+        /**
+         * Sacamos los datos del departamento y sus totales
+         */
+        $sql = "select 
+                CASE
+                    WHEN i.nombre is null THEN 'SIN REGISTRO'
+                    ELSE i.nombre
+                END as ica
+            ,
+                CASE
+                    WHEN dep.institucion_id is null THEN '0'
+                    ELSE dep.institucion_id
+                END as institucion_id
+            , dep.total
+            from
+            (
+            SELECT  
+            pi.institucion_id, count(*) as total
+            FROM icas.proyecto_institucion as pi
+            left join icas.proyecto as p on p.id = pi.proyecto_id
+            ".$where."
+            group by pi.institucion_id
+            ) as dep
+            left join icas.institucion as i on i.id = dep.institucion_id
+            order by i.nombre
+                ";
+        $data = $this->dbm->Execute($sql);
+        $data = $data->getRows();
+        return $data;
+    }
+
+    public function getICASProyecto($filtro){
+        $where = $filtro["where"];
+        $join = $filtro["join"];
+        /**
+         * Sacamos los datos del departamento y sus totales
+         */
+        $sql = "select 
+                CASE
+                    WHEN i.nombre is null THEN 'SIN REGISTRO'
+                    ELSE i.nombre
+                END as ica
+            ,
+                CASE
+                    WHEN dep.institucion_id is null THEN '0'
+                    ELSE dep.institucion_id
+                END as institucion_id
+            , dep.nombre as proyecto, dep.total
+            from
+            (
+            SELECT  
+            pi.institucion_id, p.nombre, count(*) as total
+            FROM icas.proyecto_institucion as pi
+            left join icas.proyecto as p on p.id = pi.proyecto_id
+            ".$where."
+            group by pi.institucion_id, p.nombre
+            ) as dep
+            left join icas.institucion as i on i.id = dep.institucion_id
+            order by i.nombre
+                ";
+        $data = $this->dbm->Execute($sql);
+        $data = $data->getRows();
+        return $data;
+    }
+
 
 }

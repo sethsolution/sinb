@@ -81,6 +81,21 @@
                     <span class="form-text text-black-50">{#field_msg_fuente_financiamiento_id#}</span>
                 </div>
 
+                <div class="col-lg-6">
+                    <label>{#field_institucion_id#}: </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[institucion_id][]" id="institucion_id"
+                                data-placeholder="{#field_holder_institucion_id#}"
+                                multiple
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.institucion selected=$item.institucion_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_institucion_id#}</span>
+                </div>
             </div>
         </div>
 

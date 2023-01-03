@@ -32,6 +32,11 @@ class Catalog extends CoreResources{
         $this->addCatalogList($this->table["departamento"]
             ,"departamento","","name",""
             ,"name",$where,"","");
+
+        $where = "tipo_id='1'";
+        $this->addCatalogList($this->table["institucion"]
+            ,"institucion","","nombre",""
+            ,"nombre",$where,"","");
     }
 
     function getConvenioOptions($id){

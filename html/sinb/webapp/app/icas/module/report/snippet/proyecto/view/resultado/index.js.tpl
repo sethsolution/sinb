@@ -93,6 +93,191 @@
 
     }();
 
+    var table_list_ica;
+
+    var snippet_datatable_list_ica = function () {
+
+        $.fn.dataTable.Api.register('column().title()', function() {
+            return $(this.header()).text().trim();
+        });
+
+        var initTable1 = function() {
+            // begin first table
+            let table_list_var = $('#tabla_ica_{/literal}{$subcontrol}{literal}');
+            let export_title = "Proyectos por ICAs";
+            let noExport = tableSetting.noExport;
+            table_list_ica = table_list_var.DataTable({
+                initComplete: function(settings, json) {
+                    table_list_var.removeClass('d-none');
+                },
+
+                keys: {
+                    columns: noExport,
+                    clipboard: false,
+                },
+
+                colReorder: true,
+                //== Pagination settings
+                dom:
+                    "<'row'<'col-sm-12 col-md-12 dataTables_pager'lp>>" +
+                    `<'row'<'col-sm-5 text-left'f><'col-sm-7 text-right'B>>
+			         <'row'<'col-sm-12'tr>>
+                     <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+                buttons: [
+                    {extend:'colvis',text:lngUyuni.dataTableWatch
+                        ,columnText: function ( dt, idx, title ) {
+                            return (idx+1)+': '+title;
+                        }
+                    },
+                    {extend:'excelHtml5'
+                        ,exportOptions: {columns: noExport}
+                        , title: export_title
+                    },
+                    {extend:'pdfHtml5'
+                        ,exportOptions: {columns: noExport}
+                        , title: export_title
+                        , download: 'open'
+
+                        , pageSize: 'LETTER'
+                        ,customize: function(doc) {
+                            doc.styles.tableHeader.fontSize = 7;
+                            doc.defaultStyle.fontSize = 7;
+                            doc.pageMargins= [ 20, 20];
+                        }
+                    },
+                    {extend:'print'
+                        ,exportOptions: {columns: noExport}
+                        ,text: lngUyuni.dataTablePrint
+                    }
+
+                ],
+                responsive: false,
+                language: {"url": "/language/js/datatable."+lng+".json"},
+                lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
+                pageLength: -1,
+                order: [[ 0, "asc" ],[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
+                InfoFiltered:     false,
+                searchDelay: 500,
+                processing: true,
+                scrollX: true,
+
+                rowGroup: {
+                    dataSrc: [0]
+                },
+
+                columnDefs: [
+                    {
+                        targets: 0,
+                        visible:false,
+                    },
+                    {
+                        targets: 1,
+                        orderData: [0,1],
+                    },
+                ],
+            });
+
+        };
+
+        return {
+            //main function to initiate the module
+            init: function() {
+                initTable1();
+            },
+
+        };
+
+    }();
+
+    var table_list_total_ica;
+
+    var snippet_datatable_list_total_ica = function () {
+
+        $.fn.dataTable.Api.register('column().title()', function() {
+            return $(this.header()).text().trim();
+        });
+
+        var initTable2 = function() {
+            // begin first table
+            let table_list_var = $('#tabla_ica_total_{/literal}{$subcontrol}{literal}');
+            let export_title = "Proyectos por ICAs";
+            let noExport = tableSetting.noExport;
+            table_list_total_ica = table_list_var.DataTable({
+                initComplete: function(settings, json) {
+                    table_list_var.removeClass('d-none');
+                },
+
+                keys: {
+                    columns: noExport,
+                    clipboard: false,
+                },
+
+                colReorder: true,
+                //== Pagination settings
+                dom:
+                    "<'row'<'col-sm-12 col-md-12 dataTables_pager'lp>>" +
+                    `<'row'<'col-sm-5 text-left'f><'col-sm-7 text-right'B>>
+			         <'row'<'col-sm-12'tr>>
+                     <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+                buttons: [
+                    {extend:'colvis',text:lngUyuni.dataTableWatch
+                        ,columnText: function ( dt, idx, title ) {
+                            return (idx+1)+': '+title;
+                        }
+                    },
+                    {extend:'excelHtml5'
+                        ,exportOptions: {columns: noExport}
+                        , title: export_title
+                    },
+                    {extend:'pdfHtml5'
+                        ,exportOptions: {columns: noExport}
+                        , title: export_title
+                        , download: 'open'
+
+                        , pageSize: 'LETTER'
+                        ,customize: function(doc) {
+                            doc.styles.tableHeader.fontSize = 7;
+                            doc.defaultStyle.fontSize = 7;
+                            doc.pageMargins= [ 20, 20];
+                        }
+                    },
+                    {extend:'print'
+                        ,exportOptions: {columns: noExport}
+                        ,text: lngUyuni.dataTablePrint
+                    }
+
+                ],
+                responsive: false,
+                language: {"url": "/language/js/datatable."+lng+".json"},
+                lengthMenu: [[10, 25, 50,-1], [10, 25, 50, lngUyuni.dataTableAll]],
+                pageLength: -1,
+                order: [[ 0, "asc" ],[ 1, "asc" ]], // Por que campo ordenara al momento de desplegar
+                InfoFiltered:     false,
+                searchDelay: 500,
+                processing: true,
+                scrollX: true,
+
+                columnDefs: [
+                    {
+                        targets: 0,
+                    },
+                    {
+                        targets: 1,
+                    },
+                ],
+            });
+
+        };
+
+        return {
+            //main function to initiate the module
+            init: function() {
+                initTable2();
+            },
+
+        };
+
+    }();
 
     var table_list;
 
@@ -102,14 +287,10 @@
             return $(this.header()).text().trim();
         });
 
-
-        var exporta_titulo = "CITES - REPORTE ANUAL BOLIVIA";
-        var exporta_columnas = [':visible :not(.noExport)' ];
-
-        var initTable1 = function() {
+        var initTable3 = function() {
             // begin first table
             let table_list_var = $('#tabla_{/literal}{$subcontrol}{literal}');
-            let export_title = "{/literal}{#dataTableExportTitle#}{literal}";
+            let export_title = "Total proyectos por ICAs";
             let noExport = tableSetting.noExport;
             table_list = table_list_var.DataTable({
                 initComplete: function(settings, json) {
@@ -192,7 +373,7 @@
         return {
             //main function to initiate the module
             init: function() {
-                initTable1();
+                initTable3();
             },
 
         };
@@ -202,6 +383,8 @@
     jQuery(document).ready(function() {
         snippet_datatable_list.init();
         snippet_datatable_proyecto.init();
+        snippet_datatable_list_ica.init();
+        snippet_datatable_list_total_ica.init();
     });
 
 
@@ -374,6 +557,41 @@
                 data: [
                     {/literal}
                     {foreach from=$res.areaTematica item=row key=idx}
+                    {if $idx != 0},{/if}{$row.total}
+                    {/foreach}{literal}
+                ],
+                backgroundColor: bgcolorHtml,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: true,
+                position: 'left',
+                labels: {
+                    boxWidth: 20,
+                    fontSize: 12,
+                    padding: 7
+                }
+            }
+        }
+    });
+
+    var ctx = document.getElementById("chart_icas").getContext('2d');
+    var chart_cantidad = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                {/literal}
+                {foreach from=$res.icas item=row key=idx}
+                {if $idx != 0},{/if}"{$row.ica}: {$row.total}"
+                {/foreach}{literal}
+            ],
+            datasets: [{
+                label: '# of Votes',
+                data: [
+                    {/literal}
+                    {foreach from=$res.icas item=row key=idx}
                     {if $idx != 0},{/if}{$row.total}
                     {/foreach}{literal}
                 ],
