@@ -12,9 +12,10 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
+        $where="active='1'";
         $this->addCatalogList($this->table["icas_area"]
             ,"icas_area","","nombre",""
-            ,"id","","","");
+            ,"id",$where,"","");
 
         $this->addCatalogList($this->table["icas_estado"]
             ,"icas_estado","","nombre",""
@@ -23,6 +24,7 @@ class Catalog extends CoreResources{
         $this->addCatalogList($this->table["icas_fuente_financiamiento"]
             ,"financiamiento","","nombre",""
             ,"id","","","");
+
         $where = "cod_dep<>'0'";
         $this->addCatalogList($this->table["departamento"]
             ,"departamento","","name",""
