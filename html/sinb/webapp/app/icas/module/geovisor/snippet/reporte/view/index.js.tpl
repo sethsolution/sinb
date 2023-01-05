@@ -114,22 +114,22 @@
             ],
             datasets: [
                 {
-                    label: 'cerrado',
+                    label: 'aprobada',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.cerrado }
+                        {if $idx != 0},{/if}{$row.aprobada }
                         {/foreach}{literal}
                     ],
                     backgroundColor: '#440444',
                     borderWidth: 1
                 },
                 {
-                    label: 'paralizado',
+                    label: 'aclaracion',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.paralizado }
+                        {if $idx != 0},{/if}{$row.aclaracion }
                         {/foreach}{literal}
                     ],
                     backgroundColor: '#90278d',
@@ -137,11 +137,11 @@
                 }
                 ,
                 {
-                    label: 'debito',
+                    label: 'rechazada',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.debito }
+                        {if $idx != 0},{/if}{$row.rechazada }
                         {/foreach}{literal}
                     ],
                     backgroundColor: '#ff00f0',
@@ -149,11 +149,11 @@
                 }
                 ,
                 {
-                    label: 'concluido',
+                    label: 'paralizada',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.concluido }
+                        {if $idx != 0},{/if}{$row.paralizada }
                         {/foreach}{literal}
                     ],
                     backgroundColor: '#006838',
@@ -161,11 +161,11 @@
                 }
                 ,
                 {
-                    label: 'cancelado',
+                    label: 'recibido',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.cancelado }
+                        {if $idx != 0},{/if}{$row.recibido }
                         {/foreach}{literal}
                     ],
                     backgroundColor: '#bf0101',
@@ -173,11 +173,11 @@
                 }
                 ,
                 {
-                    label: 'ejecucion',
+                    label: 'observado',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.ejecucion }
+                        {if $idx != 0},{/if}{$row.observado }
                         {/foreach}{literal}
                     ],
                     backgroundColor: '#32a9dd',
@@ -185,11 +185,11 @@
                 }
                 ,
                 {
-                    label: 'programado',
+                    label: 'no autorizado',
                     data: [
                         {/literal}
                         {foreach from=$data item=row key=idx}
-                        {if $idx != 0},{/if}{$row.programado }
+                        {if $idx != 0},{/if}{$row.no_autorizado }
                         {/foreach}{literal}
                     ],
                     backgroundColor: '#f5bb39',

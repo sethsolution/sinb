@@ -49,13 +49,13 @@ class Index extends CoreResources
         $sql = "select d.name as departamento,g.*
                 from(
                 select p.departamento_id, count(p.departamento_id) as total
-                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=1) as cerrado
-                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=2) as paralizado
-                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=3) as debito
-                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=4) as concluido
-                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=5) as cancelado
-                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=6) as ejecucion
-                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=7) as programado
+                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=1) as aprobada
+                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=2) as aclaracion
+                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=3) as rechazada
+                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=4) as paralizada
+                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=5) as recibido
+                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=6) as observado
+                , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=7) as no_autorizado
                 , (select count(*) from ".$this->table[$this->objTable]." as p2 ".$wheregd." p2.departamento_id = p.departamento_id and p2.estado_id=null) as none
                 from ".$this->table[$this->objTable]." as p ";
 
@@ -72,15 +72,10 @@ class Index extends CoreResources
         $sql .=" group by p.departamento_id) as g
                 left join geo.departamento as d on d.id=g.departamento_id ";
 
+        //print_struc($sql);exit();
         $info = $this->dbm->Execute($sql);
         $info = $info->getRows();
-
-/*
-        foreach ($info as $clave => $row){
-            $info[$clave]["fuente"] = $this->getFuenteGeneracion($row["departamento_id"],$item);
-        }
-/*/
-
+        //print_struc($info);exit();
         return $info;
     }
 
