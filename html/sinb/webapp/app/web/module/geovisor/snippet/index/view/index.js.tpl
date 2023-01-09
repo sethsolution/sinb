@@ -693,7 +693,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                     collapsed: true,
                     layers: [
                         {
-                            active: false,
+                            active: true,
                             name: "Focos de calor SIMB",
                             icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                             layer: focos_calor_simb
