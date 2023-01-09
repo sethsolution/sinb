@@ -4,12 +4,10 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 <script src="https://maps.googleapis.com/maps/api/js?key={$google_map_key}"></script>
 <script src="/js/geo/leaflet.1.7.1/leaflet.js"></script>
 
-
 <script src="/js/geo/leaflet.spin/example/spin/dist/spin.min.js"></script>
 <script src="/js/geo/leaflet.spin/leaflet.spin.min.js"></script>
 
 <script src="/js/geo/leaflet.sidebar-v2/js/leaflet-sidebar.js"></script>
-
 
 <script src="/js/geo/leaflet.extramarkers/dist/js/leaflet.extra-markers.js">
 
@@ -25,9 +23,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 <script src="/js/geo/leaflet.minimap/dist/Control.MiniMap.min.js"></script>
 <script src="/js/geo/leaflet.control.custom/Leaflet.Control.Custom.js"></script>
 
-
 <script src="/js/geo/leaflet.wms-legend/leaflet.wmslegend.js"></script>
-
 
 <script src="/js/geo/leaflet.gibs/src/GIBSMetadata.js"></script>
 <script src="/js/geo/leaflet.gibs/src/GIBSLayer.js"></script>
@@ -42,7 +38,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
     var filtro_estado,filtro_gd_tipo_fuente_generacion;
     var urlsys = '{/literal}{$path_url}{literal}';
     var urljson = urlsys+'/get.point';
-
+    var focos_calor_simb;
     var json_layer;
     var recargar;
     var fechaver,fechavernasa;
@@ -562,6 +558,26 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 opacity: 0.8
             });
 
+            var  urljson_focos_calor_simb = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaver+"&fecha_final=&apn=&apd=&apm=";
+            let total = 0;
+            focos_calor_simb = new L.GeoJSON.AJAX([urljson_focos_calor_simb],{
+                pointToLayer: function(point, latlng) {
+                    total  = total+1;
+                    $("#total").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(total)+" ");
+                    return new L.CircleMarker(latlng, {
+                        radius: 5,
+                        fillOpacity: 0.50,
+                        fillColor: "#ffae00",
+                        color: "#8b4500",
+                        weight: 1,
+                        //color: 'orange'
+                    });
+                },
+                onEachFeature:popUp
+
+            });
+
+
             var overLayers =[
                 {
                     group: "NASA",
@@ -668,6 +684,19 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                             name: "UH Nivel1",
                             icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                             layer: uh_nivel1
+                        },
+                    ]
+                },
+
+                {
+                    group: "Focos de calor",
+                    collapsed: true,
+                    layers: [
+                        {
+                            active: false,
+                            name: "Focos de calor SIMB",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: focos_calor_simb
                         },
                     ]
                 },
@@ -959,21 +988,15 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
             // console.log(fechaver);
             // console.log(fechavernasa);
-            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaver+"&fecha_final=&apn=&apd=&apm=";
+            //var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial="+fechaver+"&fecha_final=&apn=&apd=&apm=";
 
             map = initialiseMap();
+            /*
             var total=0;
             json_layer = new L.GeoJSON.AJAX([urljson2],{
                 pointToLayer: function(point, latlng) {
                     total  = total+1;
                     $("#total").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(total)+" ");
-                    //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);
-                    /*
-                    let ic = getIconStyle(point.properties["estado_id"],2);
-                    return L.marker(latlng, {icon: ic});
-
-                     */
-                    //return L.marker(latlng);
                     return new L.CircleMarker(latlng, {
                         radius: 5,
                         fillOpacity: 0.50,
@@ -986,6 +1009,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 onEachFeature:popUp
 
             }).addTo(map);
+*/
 
             /**
              * Mini Mapa
