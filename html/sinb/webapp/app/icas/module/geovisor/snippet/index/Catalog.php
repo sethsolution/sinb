@@ -18,7 +18,7 @@ class Catalog extends CoreResources{
 
         $this->addCatalogList($this->table["icas_estado"]
             ,"estado","","nombre",""
-            ,"nombre","","","");
+            ,"id","","","");
 
 
     }

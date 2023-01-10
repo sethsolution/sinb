@@ -906,23 +906,23 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
              }
              var icons1 = [
                  { markerColor: '#a5a5a5'}, //nada *
-                 { markerColor: 'purple'}, //CERRADO *
-                 { markerColor: 'violet'}, //PARALIZADO *
-                 { markerColor: '#ff00f0'}, //DEBITO *
-                 { markerColor: 'green'}, //CONCLUIDO *
-                 { markerColor: '#bf0101'}, //CANCELADO *
-                 { markerColor: 'cyan'}, //EJECUCION *
-                 { markerColor: 'yellow'}, //PROGRAMADO *
+                 { markerColor: 'purple'}, //APROBADA *
+                 { markerColor: 'violet'}, //ACLARACION DE AMPLIACION *
+                 { markerColor: '#ff00f0'}, //RECHAZADA *
+                 { markerColor: 'green'}, //PARALIZADA *
+                 { markerColor: '#bf0101'}, //RECIBIDO *
+                 { markerColor: 'cyan'}, //OBSERVADO *
+                 { markerColor: 'yellow'}, //NO AUTORIZADA *
              ];
              var icons2 = [
                  { icon: 'fa-compress',shape: 'circle'}, //nada *
-                 { icon: 'fa-lock',shape: 'circle'}, //CERRADO
-                 { icon: 'fa-hand-paper',shape: 'circle'}, //PARALIZADO *
-                 { icon: 'fa-fan',shape: 'square'}, //DEBITO
-                 { icon: 'fa-check',shape: 'star'}, //CONCLUIDO *
-                 { icon: 'fa-times-circle',shape: 'circle'}, //CANCELADO *
-                 { icon: 'fa-thumbs-up',shape: 'star'}, //EJECUCION *
-                 { icon: 'fa-clock',shape: 'penta'}, //PROGRAMADO *
+                 { icon: 'fa-check',shape: 'circle'}, //APROBADA
+                 { icon: 'fa-hand-paper',shape: 'circle'}, //ACLARACION DE AMPLIACION *
+                 { icon: 'fa-fan',shape: 'circle'}, //RECHAZADA
+                 { icon: 'fa-times-circle',shape: 'circle'}, //PARALIZADA *
+                 { icon: 'fa-thumbs-up',shape: 'circle'}, //RECIBIDO *
+                 { icon: 'fa-lock',shape: 'circle'}, //OBSERVADO *
+                 { icon: 'fa-clock',shape: 'circle'}, //NO AUTORIZADA *
              ];
              let resp = L.ExtraMarkers.icon({
                  //icon: icons2[fuente].icon,
@@ -947,21 +947,22 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial=2022-11-4&fecha_final=&apn=&apd=&apm=";
             json_layer = new L.GeoJSON.AJAX([urljson],{
                 pointToLayer: function(point, latlng) {
+                    //console.log(point);
                     //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);
-                    /*
+
                     let ic = getIconStyle(point.properties["estado_id"],2);
                     return L.marker(latlng, {icon: ic});
 
-                     */
+
                     //return L.marker(latlng);
-                    return new L.CircleMarker(latlng, {
+                    /*return new L.CircleMarker(latlng, {
                         radius: 5,
                         fillOpacity: 0.50,
                         fillColor: "#ffae00",
                         color: "#8b4500",
                         weight: 1,
                         //color: 'orange'
-                    });
+                    });*/
                 },
                 onEachFeature:popUp
 
@@ -1124,14 +1125,14 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 },
                 function(res){
                     $("#total").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.total)+" ");
-                    $("#total_programado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.programado)+" ");
-                    $("#total_cerrado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.cerrado)+" ");
-                    $("#total_cancelado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.cancelado)+" ");
+                    $("#total_aprobada").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.aprobada)+" ");
+                    $("#total_aclaración").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.aclaracion)+" ");
+                    $("#total_rechazada").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.rechazada)+" ");
 
-                    $("#total_paralizado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.paralizado)+" ");
-                    $("#total_concluido").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.concluido)+" ");
-                    $("#total_ejecucion").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.ejecucion)+" ");
-                    $("#total_debito").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.debito)+" ");
+                    $("#total_paralizado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.paralizada)+" ");
+                    $("#total_recibido").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.recibido)+" ");
+                    $("#total_observado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.observado)+" ");
+                    $("#total_no_autorizado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.no_autorizado)+" ");
                     $("#total_none").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.none)+" ");
                 },"json");
         };
@@ -1166,7 +1167,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
                 handle_components();
                 handle_filtro();
-                //handle_summary();
+                handle_summary();
             },
             resumen:function() {
                 //resumen();

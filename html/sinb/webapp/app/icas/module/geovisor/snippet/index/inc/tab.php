@@ -20,6 +20,15 @@ $item_tab[]=array(
 ,   "new" => 0
 );
 //-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=>"ICAS"
+,   "id_name"=>"icas"
+,   "sub_control"=>"icas"
+,   "active"=>"0"
+,   "icon" => "fas fa-globe"
+,   "new" => 0
+);
+//-------------------------------------------------------------
 /*
 $item_tab[]=array(
     "label"=>"Generación Distribuida"

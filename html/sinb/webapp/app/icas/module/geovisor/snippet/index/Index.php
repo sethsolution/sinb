@@ -219,25 +219,25 @@ class Index extends CoreResources {
             $total = $total + $row["total"];
             switch ($row["estado_id"]){
                 case 1:
-                    $res["cerrado"] = round($row["total"],0);
+                    $res["aprobada"] = round($row["total"],0);
                     break;
                 case 2:
-                    $res["paralizado"] = round($row["total"],0);
+                    $res["aclaracion"] = round($row["total"],0);
                     break;
                 case 3:
-                    $res["debito"] = round($row["total"],0);
+                    $res["rechazada"] = round($row["total"],0);
                     break;
                 case 4:
-                    $res["concluido"] = round($row["total"],0);
+                    $res["paralizada"] = round($row["total"],0);
                     break;
                 case 5:
-                    $res["cancelado"] = round($row["total"],0);
+                    $res["recibido"] = round($row["total"],0);
                     break;
                 case 6:
-                    $res["ejecucion"] = round($row["total"],0);
+                    $res["observado"] = round($row["total"],0);
                     break;
                 case 7:
-                    $res["programado"] = round($row["total"],0);
+                    $res["no_autorizado"] = round($row["total"],0);
                     break;
                 default:
                     $res["none"] = round($row["total"],0);
@@ -245,13 +245,13 @@ class Index extends CoreResources {
             }
         }
 
-        if(!isset($res["cerrado"])) $res["cerrado"]=0;
-        if(!isset($res["paralizado"])) $res["paralizado"]=0;
-        if(!isset($res["debito"])) $res["debito"]=0;
-        if(!isset($res["concluido"])) $res["concluido"]=0;
-        if(!isset($res["cancelado"])) $res["cancelado"]=0;
-        if(!isset($res["ejecucion"])) $res["ejecucion"]=0;
-        if(!isset($res["programado"])) $res["programado"]=0;
+        if(!isset($res["aprobada"])) $res["aprobada"]=0;
+        if(!isset($res["aclaracion"])) $res["aclaracion"]=0;
+        if(!isset($res["rechazada"])) $res["rechazada"]=0;
+        if(!isset($res["paralizada"])) $res["paralizada"]=0;
+        if(!isset($res["recibido"])) $res["recibido"]=0;
+        if(!isset($res["observado"])) $res["observado"]=0;
+        if(!isset($res["no_autorizado"])) $res["no_autorizado"]=0;
         if(!isset($res["none"])) $res["none"]=0;
 
         $res["total"] = round($total,0);

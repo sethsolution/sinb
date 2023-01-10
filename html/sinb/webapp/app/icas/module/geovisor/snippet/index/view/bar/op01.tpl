@@ -91,8 +91,8 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div>
-                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_programado"></div>
-                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Programado</div>
+                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_aprobada"></div>
+                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Aprobada</div>
                                 </div>
                                 <!--end::Title-->
                             </div>
@@ -121,8 +121,8 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div>
-                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_cerrado"></div>
-                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Cerrado</div>
+                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_aclaración"></div>
+                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Aclaración de ampliación</div>
                                 </div>
                                 <!--end::Title-->
                             </div>
@@ -151,8 +151,8 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div>
-                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_cancelado"></div>
-                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Cancelado</div>
+                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_rechazada"></div>
+                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Rechazada</div>
                                 </div>
                                 <!--end::Title-->
                             </div>
@@ -181,8 +181,8 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div>
-                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_paralizado"></div>
-                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Paralizado</div>
+                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_paralizada"></div>
+                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Paralizada</div>
                                 </div>
                                 <!--end::Title-->
                             </div>
@@ -211,8 +211,8 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div>
-                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_concluido"></div>
-                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Concluido</div>
+                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_recibido"></div>
+                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Recibido</div>
                                 </div>
                                 <!--end::Title-->
                             </div>
@@ -241,8 +241,8 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div>
-                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_ejecucion"></div>
-                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Ejecución</div>
+                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_observado"></div>
+                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Observado</div>
                                 </div>
                                 <!--end::Title-->
                             </div>
@@ -271,8 +271,8 @@
                                 <!--end::Symbol-->
                                 <!--begin::Title-->
                                 <div>
-                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_debito"></div>
-                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">Débito</div>
+                                    <div class="font-size-h4 text-dark-75 font-weight-bolder" id="total_no_autorizado"></div>
+                                    <div class="font-size-sm text-dark-65  font-weight-bold mt-1">No autorizada</div>
                                 </div>
                                 <!--end::Title-->
                             </div>

@@ -11,19 +11,10 @@ $appVars["table"]  = array();
 
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
-$dbSchemaName = "public";
-$db_table[] = Core::getTableConfig("programa");
-$db_table[] = Core::getTableConfig("programa_convenio");
-$db_table[] = Core::getTableConfig("programa_sector");
-$appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
-unset($db_table);
-unset($db_prefix);
-
-$db_prefix = ""; //prefijo de la base de datos
-$db_table = array();
 $dbSchemaName = "icas";
 $db_table[] = Core::getTableConfig("proyecto");
 $db_table[] = Core::getTableConfig("institucion");
+$db_table[] = Core::getTableConfig("proyecto_institucion");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
@@ -31,11 +22,11 @@ unset($db_prefix);
 
 $db_table = array();
 $dbSchemaName = "catalogo";
-$db_table[] = Core::getTableConfig("contraparte_responsable");
-$db_table[] = Core::getTableConfig("convenio_vigencia");
-$db_table[] = Core::getTableConfig("dificultad");
-$db_table[] = Core::getTableConfig("ejecutor");
+$db_table[] = Core::getTableConfig("icas_institucion_tipo");
+$db_table[] = Core::getTableConfig("icas_fuente_financiamiento");
 $db_table[] = Core::getTableConfig("icas_estado");
+$db_table[] = Core::getTableConfig("icas_area");
+$db_table[] = Core::getTableConfig("ejecutor");
 $db_table[] = Core::getTableConfig("organismo_financiador_tipo");
 $db_table[] = Core::getTableConfig("sector");
 $db_table[] = Core::getTableConfig("tipo_proyecto");
