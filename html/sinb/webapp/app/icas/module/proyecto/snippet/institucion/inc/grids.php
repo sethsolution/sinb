@@ -9,11 +9,21 @@ $grid_table_join = array();
 /**
  * Configuración de tablas relacionales, (JOIN)
  */
+$grid_table[] = array(
+    "table" => $appVars["table"] ["icas_institucion_tipo"] // Nombre de la tabla con la que hara la relación
+,    "alias"=> "t" //Alias de la tabla para el join
+,   "field_id"=>"id" //Id de la tabla que hara la relación
+,   "relationship_id"=>"tipo_id" //Campo de relación en la tabla principal
+);
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
 
 $grid_item[]=array("field" => "nombre","label"=> $smarty->config_vars["table_nombre"]);
+
+$grid_item[]=array( "field" => "nombre", "label"=> $smarty->config_vars["table_tipo"]
+, "table_as"=> "t", "as" => "icas_institucion_tipo");
+
 $grid_item[]=array("field" => "direccion","label"=> $smarty->config_vars["table_direccion"]);
 $grid_item[]=array("field" => "telefono","label"=> $smarty->config_vars["table_telefono"]);
 $grid_item[]=array("field" => "fax","label"=> $smarty->config_vars["table_fax"]);

@@ -72,6 +72,16 @@ switch($action){
         Core::printJson($respuesta);
         break;
 
+    case 'get.institucion':
+        $item = $objCatalog->getInstitucionOptions($id);
+        Core::printJson($item);
+        break;
+
+    case 'get.item':
+        $item = $objCatalog->getInstitucion($id);
+        Core::printJson($item);
+        break;
+
     case 'delete':
         $res = $objItem->deleteData($id2,$item_id);
         Core::printJson($res);

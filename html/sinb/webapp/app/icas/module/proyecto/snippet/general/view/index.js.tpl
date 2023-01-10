@@ -118,6 +118,8 @@
             }
         };
 
+
+
         return {
             init: function() {
                 handle_form_submit();

@@ -95,58 +95,20 @@
                         },
                     },
 
-                    /*
-                    {
-                        targets: [0],
-                        searchable: false,
-                    },
-                    {
-                        targets: [2],
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #7708bd;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(data) + ' </span>';
-                        },
-                    },
-
                     {
                         targets: [1],
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #27780f;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 2 }).format(data) + ' </span>';
+                        width: '100px',
+                        render: function(data, type, full, meta) {
+                            var status = {
+                                'Contraparte': {'title': 'Contraparte', 'color': '#C474EFBF'},
+                                'ICA': {'title': 'ICA', 'color': '#32a9dd'},
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<div class="text-right"><span class="label label-lg font-weight-bold text-white label-inline" style="background:'+status[data].color +';">' + status[data].title + '</span></div>';
                         },
                     },
-
-                     */
-
-                    // {
-                    //     targets: [2],
-                    //     className:"text-right",
-                    // },
-
-                    // {
-                    //     targets: [1],
-                    //     render: function(data,type,full,meta){
-                    //         var download = "";
-                    //         if(data) {
-                    //             download = ' <a href="javascript:snippet_list.download(\''+full.actions+'\');"  ' +
-                    //                 'class="btn btn-icon btn-circle btn-s btn-light-success">' +
-                    //                 '<i class="fas fa-cloud-download-alt"></i></a> <span class="font-size-s">' + data+'</span>';
-                    //         }
-                    //         return download;
-                    //     },
-                    // },
-
-                    // {
-                    //     targets: [2],
-                    //     render: function(data,type,full,meta){
-                    //         //return '<span style="color: #7708bd;">' + new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(data) + ' </span>';
-                    //         var size_file = "";
-                    //         if(data) {
-                    //             var size = parseInt(data);
-                    //             size =  (size / (1024*1024)).toFixed(2);
-                    //             size_file = '<span style="color: #517e03;" class="font-size-xs">' + size+' Mb.</span>';
-                    //         }
-                    //         return size_file;
-                    //     },
-                    // },
 
                     {
                         targets: [-2,-3],

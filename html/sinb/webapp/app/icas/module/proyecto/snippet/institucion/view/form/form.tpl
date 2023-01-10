@@ -9,11 +9,26 @@
             </div>
 
             <div class="form-group row">
-                <div class="col-lg-12">
+                <div class="col-lg-3">
+                    <label>{#field_tipo_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[tipo_id]" id="tipo_id"
+                                data-placeholder="{#field_Holder_tipo_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.icas_institucion_tipo selected=$item.tipo_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_tipo_id#}</span>
+                </div>
+                <div class="col-lg-9">
                     <label>{#field_institucion_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[institucion_id]" id="type_select_estado"
+                                name="item[institucion_id]" id="institucion_id"
                                 data-placeholder="{#field_Holder_institucion_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
@@ -26,10 +41,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-lg-8">
+                <div class="col-lg-12" id="nombre_s">
                     <label>{#field_nombre#} <span class="text-danger bold">*</span> :</label>
                     <input type="text" class="form-control"
                            name="item[nombre]"
+                           id="nombre"
                            value="{$item.nombre|escape:"html"}"
                            placeholder=""
                            required
@@ -39,27 +55,13 @@
                     >
                     <span class="form-text text-black-50">{#field_msg_nombre#}</span>
                 </div>
-                <div class="col-lg-4">
-                    <label>{#field_tipo_id#} <span class="text-danger bold">*</span> : </label>
-                    <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
-                                name="item[tipo_id]" id="type_select_estado"
-                                data-placeholder="{#field_Holder_tipo_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
-                        >
-                            <option></option>
-                            {html_options options=$cataobj.icas_institucion_tipo selected=$item.tipo_id}
-                        </select>
-                    </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_tipo_id#}</span>
-                </div>
             </div>
             <div class="form-group row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" id="direccion_s">
                     <label>{#field_direccion#} <span class="text-danger bold">*</span> :</label>
                     <input type="text" class="form-control"
                            name="item[direccion]"
+                           id="direccion"
                            value="{$item.direccion|escape:"html"}"
                            placeholder=""
                            required
@@ -69,10 +71,11 @@
                     >
                     <span class="form-text text-black-50">{#field_msg_direccion#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" id="email_s">
                     <label>{#field_email#}:</label>
                     <input type="text" class="form-control"
                            name="item[email]"
+                           id="email"
                            value="{$item.email|escape:"html"}"
                            placeholder=""
                            minlength="3"
@@ -82,10 +85,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="celular_s">
                     <label>{#field_celular#}:</label>
                     <input type="text" class="form-control"
                            name="item[celular]"
+                           id="celular"
                            value="{$item.celular|escape:"html"}"
                            placeholder=""
                            minlength="3"
@@ -93,10 +97,11 @@
                     >
                     <span class="form-text text-black-50">{#field_msg_celular#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="telefono_s">
                     <label>{#field_telefono#}:</label>
                     <input type="text" class="form-control"
                            name="item[telefono]"
+                           id="telefono"
                            value="{$item.telefono|escape:"html"}"
                            placeholder=""
                            minlength="3"
@@ -104,10 +109,11 @@
                     >
                     <span class="form-text text-black-50">{#field_msg_telefono#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="fax_s">
                     <label>{#field_fax#}:</label>
                     <input type="text" class="form-control"
                            name="item[fax]"
+                           id="fax"
                            value="{$item.fax|escape:"html"}"
                            placeholder=""
                            minlength="3"
@@ -118,10 +124,11 @@
             </div>
 
             <div class="form-group row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" id="responsable_s">
                     <label>{#field_responsable#}<span class="text-danger bold">*</span> :</label>
                     <input type="text" class="form-control"
                            name="item[responsable]"
+                           id="responsable"
                            value="{$item.responsable|escape:"html"}"
                            placeholder=""
                            required
@@ -145,33 +152,6 @@
                     <span class="form-text text-black-50">{#field_msg_responsable_operativo#}</span>
                 </div>
             </div>
-
-{*            <div class="form-group row">*}
-{*                <div class="col-lg-12">*}
-{*                    <label>{#field_file#} </label>*}
-{*                    <div class="custom-file">*}
-{*                        <input type="file" class="form-control custom-file-input"*}
-{*                               placeholder="{#field_holder_file#}"*}
-{*                               name="input_file" id="input_file"*}
-{*                               *}{*accept="application/pdf,image/jpeg"*}
-{*                                {if $type == 'new'}required{/if}*}
-{*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
-
-{*                        >*}
-{*                        <label class="custom-file-label file-name" id="input_file_name" for="input_file"></label>*}
-{*                    </div>*}
-
-{*                        <span class="form-text text-black-50">{#field_msg_file#}</span>*}
-
-{*                    {if $item.attached_name != ""}*}
-{*                        {if $type == 'update'}*}
-{*                            <strong>Archivo:</strong> <span class="m--font-success">{$item.attached_name}</span>*}
-{*                        {/if}*}
-{*                    {/if}*}
-{*                    </span>*}
-{*                </div>*}
-
-{*            </div>*}
         </div>
 
         <div class="modal-footer">

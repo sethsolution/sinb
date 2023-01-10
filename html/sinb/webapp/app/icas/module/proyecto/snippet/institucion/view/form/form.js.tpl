@@ -7,6 +7,9 @@
         let btn_close = $('#form_close_{/literal}{$subcontrol}{literal}');
         let pmodal = $("#form_modal_{/literal}{$subcontrol}{literal}");
         var formv;
+
+        var institucion_opt = $("#institucion_id");
+        let urlmodule = "{/literal}{$path_url}/{$subcontrol}_{literal}";
         /**
          * Antes de enviar el formulario se ejecuta la siguiente funcion
          */
@@ -76,6 +79,85 @@
             });
         };
 
+        var handle_option_institucion = function(){
+            $('#tipo_id').on('change',function(){
+                var id = $('#tipo_id').val();
+                institucion_search(id);
+            });
+        };
+        var institucion_search = function(id){
+            institucion_opt.find("option").remove();
+            institucion_opt.prop('disabled', true);
+            if(id!="") {
+                $.post(urlmodule+"/get.institucion"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        let selOption = $('<option></option>');
+                        institucion_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_institucion_id#}{literal}"));
+                        let institucion_list = []
+                        for (var row in res) {
+                            institucion_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                            institucion_list[res[row].id] = res[row];
+                        }
+                        institucion_opt.trigger('chosen:updated');
+                        institucion_opt.prop('disabled', false);
+                    }
+                    , 'json');
+            }else{
+                //handle_options_init();
+            }
+        };
+
+        var handle_select_institucion = function(){
+            $('#institucion_id').on('change',function(){
+                var id = $('#institucion_id').val();
+                $('#nombre_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#nombre').prop('disabled', true);
+                $('#direccion_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#direccion').prop('disabled', true);
+                $('#email_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#email').prop('disabled', true);
+                $('#celular_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#celular').prop('disabled', true);
+                $('#telefono_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#telefono').prop('disabled', true);
+                $('#fax_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#fax').prop('disabled', true);
+                $('#responsable_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#responsable').prop('disabled', true);
+                if(id!="") {
+                    $.post(urlmodule+"/get.item"
+                        , {id: id}
+                        , function (res, textStatus, jqXHR) {
+                            for (var row in res) {
+                                $('#nombre').val(res[row].nombre);
+                                $('#direccion').val(res[row].direccion);
+                                $('#email').val(res[row].email);
+                                $('#celular').val(res[row].celular);
+                                $('#telefono').val(res[row].telefono);
+                                $('#fax').val(res[row].fax);
+                                $('#responsable').val(res[row].responsable);
+                            }
+                            $('#nombre_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#nombre').prop('disabled', false);
+                            $('#direccion_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#direccion').prop('disabled', false);
+                            $('#email_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#email').prop('disabled', false);
+                            $('#celular_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#celular').prop('disabled', false);
+                            $('#telefono_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#telefono').prop('disabled', false);
+                            $('#fax_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#fax').prop('disabled', false);
+                            $('#responsable_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#responsable').prop('disabled', false);
+                        }
+                        , 'json');
+                }
+            });
+        };
+
         //== Public Functions
         return {
             // public functions
@@ -83,6 +165,8 @@
                 handle_form_submit();
                 handle_btn_submit();
                 handle_components();
+                handle_option_institucion();
+                handle_select_institucion();
             }
         };
     }();
