@@ -90,6 +90,9 @@ $field_item["venta_fibra_predescerdada"]=array("type"=>"text");
 $field_item["venta_fibra_vellon"]=array("type"=>"text");
 $field_item["venta_fibra_braga"]=array("type"=>"text");
 $field_item["venta_fibra_total"]=array("type"=>"text");
+$field_item["precio_venta_fibra_predescerdada"]=array("type"=>"text");
+$field_item["precio_venta_fibra_vellon"]=array("type"=>"text");
+$field_item["precio_venta_fibra_braga"]=array("type"=>"text");
 
 $fields["module"]= $field_item;
 unset($field_item);

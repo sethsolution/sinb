@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Vicuna\Module\Report\Snippet\Parasito;
+namespace App\Vicuna\Module\Report\Snippet\fibra;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
@@ -48,4 +48,20 @@ class Catalog extends CoreResources{
         return $item;
     }
 
+    function getYearOptions(){
+        /**
+         * sacamos los anios
+         */
+        $sql = "Select anio as año 
+                    FROM vicuna.esquila as e
+                    GROUP BY e.anio
+                    ";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->GetRows();
+        $dato = array();
+        foreach ($item as $row){
+            $dato[$row["año"]] = $row["año"];
+        }
+        return $dato;
+    }
 }

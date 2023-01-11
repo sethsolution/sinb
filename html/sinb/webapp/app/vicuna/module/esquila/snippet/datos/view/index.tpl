@@ -600,6 +600,36 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_venta_fibra_total#}</span>
                 </div>
+                <div class="col-lg-3">
+                    <label>{#field_precio_venta_fibra_predescerdada#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_integer2"
+                               name="item[precio_venta_fibra_predescerdada]" value="{$item.precio_venta_fibra_predescerdada|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-money-bill-alt"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_precio_venta_fibra_predescerdada#}</span>
+                </div>
+                <div class="col-lg-3">
+                    <label>{#field_precio_venta_fibra_vellon#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_integer2"
+                               name="item[precio_venta_fibra_vellon]" value="{$item.precio_venta_fibra_vellon|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-money-bill-alt"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_precio_venta_fibra_vellon#}</span>
+                </div>
+                <div class="col-lg-3">
+                    <label>{#field_precio_venta_fibra_braga#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_integer2"
+                               name="item[precio_venta_fibra_braga]" value="{$item.precio_venta_fibra_braga|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-money-bill-alt"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_precio_venta_fibra_braga#}</span>
+                </div>
             </div>
         </div>
         <div class="card-footer">

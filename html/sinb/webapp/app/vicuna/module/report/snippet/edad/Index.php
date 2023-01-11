@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Vicuna\Module\Report\Snippet\Vicunas;
+namespace App\Vicuna\Module\Report\Snippet\Edad;
 use Core\CoreResources;
 class Index extends CoreResources
 {

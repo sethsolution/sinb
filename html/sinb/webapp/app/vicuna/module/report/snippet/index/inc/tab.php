@@ -45,7 +45,13 @@ $item_tab[]=array(
 ,   "icon" => "fab fa-hubspot m--font-success"
 ,   "new" => 1
 );
-
+//-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_fibra"]
+,   "id_name"=>"fibra"
+,   "icon" => "fas fa-poll m--font-success"
+,   "new" => 1
+);
 //-------------------------------------------------------------
 /**
  * Se añade el arreglo de tabs configurada a $tabs

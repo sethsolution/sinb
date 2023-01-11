@@ -1,6 +1,6 @@
 <?PHP
-use App\Vicuna\Module\Report\Snippet\Condicion\Index;
-use App\Vicuna\Module\Report\Snippet\Condicion\Catalog;
+use App\Vicuna\Module\Report\Snippet\Fibra\Index;
+use App\Vicuna\Module\Report\Snippet\Fibra\Catalog;
 use Core\Core;
 
 $objItem = new Index();
@@ -34,6 +34,7 @@ switch($action){
 
         $objCatalog->confCatalog($item);
         $cataobj= $objCatalog->getCatalogList();
+        $cataobj["years"] = $objCatalog->getYearOptions();
         //print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
 

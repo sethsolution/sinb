@@ -1,6 +1,6 @@
 <?PHP
-use App\Vicuna\Module\Report\Snippet\Vicunas\Index;
-use App\Vicuna\Module\Report\Snippet\Vicunas\Catalog;
+use App\Vicuna\Module\Report\Snippet\Edad\Index;
+use App\Vicuna\Module\Report\Snippet\Edad\Catalog;
 use Core\Core;
 
 $objItem = new Index();
