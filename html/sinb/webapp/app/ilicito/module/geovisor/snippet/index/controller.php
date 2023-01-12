@@ -1,6 +1,6 @@
 <?PHP
-use App\Lagarto\Geovisor\Index\Index;
-use App\Lagarto\Geovisor\Index\Catalog;
+use App\Ilicito\Geovisor\Index\Index;
+use App\Ilicito\Geovisor\Index\Catalog;
 use Core\Core;
 
 $objItem = new Index();

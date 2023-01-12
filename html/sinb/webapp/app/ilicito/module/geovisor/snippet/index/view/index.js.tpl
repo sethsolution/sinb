@@ -4,16 +4,14 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 <script src="https://maps.googleapis.com/maps/api/js?key={$google_map_key}"></script>
 <script src="/js/geo/leaflet.1.7.1/leaflet.js"></script>
 
-
 <script src="/js/geo/leaflet.spin/example/spin/dist/spin.min.js"></script>
 <script src="/js/geo/leaflet.spin/leaflet.spin.min.js"></script>
 
 <script src="/js/geo/leaflet.sidebar-v2/js/leaflet-sidebar.js"></script>
 
-
 <script src="/js/geo/leaflet.extramarkers/dist/js/leaflet.extra-markers.js">
 
-<script src="/js/geo/leaflet.fullscreen/Control.FullScreen.js"></script>
+    <script src="/js/geo/leaflet.fullscreen/Control.FullScreen.js"></script>
 <script src="/js/geo/Leaflet.GoogleMutant.js"></script>
 
 <script src="/js/geo/leaflet.ajax/dist/leaflet.ajax.js"></script>
@@ -25,9 +23,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 <script src="/js/geo/leaflet.minimap/dist/Control.MiniMap.min.js"></script>
 <script src="/js/geo/leaflet.control.custom/Leaflet.Control.Custom.js"></script>
 
-
 <script src="/js/geo/leaflet.wms-legend/leaflet.wmslegend.js"></script>
-
 
 <script src="/js/geo/leaflet.gibs/src/GIBSMetadata.js"></script>
 <script src="/js/geo/leaflet.gibs/src/GIBSLayer.js"></script>
@@ -944,9 +940,9 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
             map = initialiseMap();
             // Define a style
-            var  urljson2 = "https://simb.siarh.gob.bo/simb/heatjson/geojson_heat_sources?departaments=0&provincia=&municipio=&satelite=&fecha_inicial=2022-11-4&fecha_final=&apn=&apd=&apm=";
             json_layer = new L.GeoJSON.AJAX([urljson],{
                 pointToLayer: function(point, latlng) {
+                    // console.log(point);
                     //let ic = getIconStyle(point.properties["gd_categoria_id"],point.properties["gd_tipo_fuente_generacion_id"]);
                     /*
                     let ic = getIconStyle(point.properties["estado_id"],2);
@@ -1027,12 +1023,15 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             var out = [];
             if (f.properties){
                 let info = "";
-                info += "<h2 class='titulo' style='text-align: center'>Instituciones</h2>";
+                info += "<h2 class='titulo' style='text-align: center'>Ilicitos</h2>";
+                info += "<strong>Especie : </strong> "+ f.properties["nombre_comun"]+" <br />";
                 info += "<strong>Fecha : </strong> "+ f.properties["fecha"]+" ";
                 out.push(info);
 
-                out.push("<strong>Titulo : </strong> "+ f.properties["nombre"]);
-                out.push("<strong>Representante legal : </strong> "+ f.properties["representante_legal"]);
+                out.push("<strong>Procedencia : </strong> "+ f.properties["procedencia"]);
+                out.push("<strong>Destino : </strong> "+ f.properties["destino"]);
+                out.push("<strong>Cantidad : </strong> "+ f.properties["cantidad"]);
+                out.push("<strong>clase : </strong> "+ f.properties["clase"]);
 
                 ubicacion ="";
                 ubicacion += "<div class='ubicacion_titulo'>Ubicación:</div>";
@@ -1119,20 +1118,42 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
             $.get( urlsys+'/get.summary',
                 {
                     'item[departamento]': filtro_departamento
-                    ,'item[filtro_estado]': filtro_estado
-                    ,'item[filtro_gd_tipo_fuente_generacion]': filtro_gd_tipo_fuente_generacion
                 },
                 function(res){
-                    $("#total").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.total)+" ");
-                    $("#total_programado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.programado)+" ");
-                    $("#total_cerrado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.cerrado)+" ");
-                    $("#total_cancelado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.cancelado)+" ");
+                    //console.log(res);
+                    document.getElementById("box_totales").innerHTML = "";
+                    res.map(function (row){
+                        var randomColor = "#"+Math.floor(Math.random()*16777215).toString(16);
+                        $( "#box_totales" ).append(
+                            '<div class="col-6">'+
+                                '<div class="d-flex align-items-center mr-2">'+
+                                    '<div  class="symbol symbol-45 symbol-info mr-4 flex-shrink-0" >'+
+                                        '<div class="symbol-label" style="background: '+randomColor+'!important;">'+
+                                            '<span class="svg-icon svg-icon-lg svg-icon-white">'+
+                                                '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">'+
+                                                    '<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">'+
+                                                        '<rect x="0" y="0" width="24" height="24"></rect>'+
+                                                        '<rect fill="#000000" opacity="0.3" x="13" y="4" width="3" height="16" rx="1.5"></rect>'+
+                                                        '<rect fill="#000000" x="8" y="9" width="3" height="11" rx="1.5"></rect>'+
+                                                        '<rect fill="#000000" x="18" y="11" width="3" height="9" rx="1.5"></rect>'+
+                                                        '<rect fill="#000000" x="3" y="13" width="3" height="7" rx="1.5"></rect>'+
+                                                    '</g>'+
+                                                '</svg>'+
+                                            '</span>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div>'+
+                                        '<div class="font-size-h4 text-dark-75 font-weight-bolder">'+row.total+'</div>'+
+                                        '<div class="font-size-sm text-dark-65 font-weight-bold mt-1">'+row.nombre+'</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'
+                        );
+                        delete randomColor;
+                    })
 
-                    $("#total_paralizado").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.paralizado)+" ");
-                    $("#total_concluido").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.concluido)+" ");
-                    $("#total_ejecucion").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.ejecucion)+" ");
-                    $("#total_debito").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.debito)+" ");
-                    $("#total_none").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.none)+" ");
+
+                    //$("#total").html(new Intl.NumberFormat('en-US',{ minimumFractionDigits: 0 }).format(res.total)+" ");
                 },"json");
         };
         /**
@@ -1166,7 +1187,7 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
                 handle_components();
                 handle_filtro();
-                //handle_summary();
+                handle_summary();
             },
             resumen:function() {
                 //resumen();

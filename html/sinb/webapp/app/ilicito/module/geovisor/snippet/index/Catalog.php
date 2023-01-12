@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Lagarto\Geovisor\Index;
+namespace App\Ilicito\Geovisor\Index;
 use Core\CoreResources;
 class Catalog extends CoreResources{
     function __construct(){
@@ -16,9 +16,6 @@ class Catalog extends CoreResources{
             ,"name",$where,"","");
         //$where = "cod_dep!='0' ";
 
-        $this->addCatalogList($this->table["lagarto_red"]
-            ,"estado","","nombre",""
-            ,"nombre","","","");
 
 
     }

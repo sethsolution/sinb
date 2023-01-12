@@ -1,9 +1,9 @@
 <?PHP
-namespace App\Lagarto\Geovisor\Index;
+namespace App\Ilicito\Geovisor\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
-    var $objTable = "institucion";
+    var $objTable = "ilicito";
     function __construct()
     {
         /**
@@ -71,16 +71,7 @@ class Index extends CoreResources {
     function get_filtro_where($item){
         $where = "";
         if( isset($item["departamento"]) and trim($item["departamento"])!="" ){
-            $where = " where p.departamento_id in (".$item["departamento"].")  ";
-        }
-
-        if( isset($item["filtro_estado"]) and trim($item["filtro_estado"])!="" ){
-            if($where == ""){
-                $where .= " where ";
-            }else{
-                $where .= " and ";
-            }
-            $where .= " p.red_id in (".$item["filtro_estado"].")  ";
+            $where = " p.departamento_id in (".$item["departamento"].")  ";
         }
 
         return $where;
@@ -90,34 +81,20 @@ class Index extends CoreResources {
 
         //$this->dbm->debug = true;
         $sql = "select 
-                tc.nombre as tipo_conexion
-                ,c.nombre as categoria_nombre
-                ,fg.nombre  as tipo_fuente_generacion
-                ,g.* from ".$this->table["gd"]." as g 
-                left join ".$this->table["gd_tipo_conexion"]." as tc on tc.id=g.gd_tipo_conexion_id
-                left join ".$this->table["gd_categoria"]." as c on c.id=g.gd_categoria_id
-                left join ".$this->table["gd_tipo_fuente_generacion"]." as fg on fg.id=g.gd_tipo_fuente_generacion_id
-        ";
-        $sql = "select 
-                p.* from ".$this->table["institucion"]." as p       
+                p.* from ".$this->table["ilicito"]." as p       
         ";
 
         $where = $this->get_filtro_where($filter);
 
         if($where != ""){
-            $sql .= " ".$where." and";
+            $sql .= " where ".$where." and";
         }else{
             $sql .= " where ";
         }
         $sql .= "  ((location_longitude_decimal is not null and  location_latitude_decimal is not null) or (location_longitude_decimal <> 0 and  location_latitude_decimal <> 0) )";
         //$sql .= " limit 5";
 
-        /*
-        print_struc($filter);
-        print_struc($where);
-        print_struc($sql);
-        exit;
-        */
+//        print_struc($sql);exit;
         $info = $this->dbm->Execute($sql);
         $dato = $info->getRows();
 
@@ -133,19 +110,7 @@ class Index extends CoreResources {
             unset($row["user_create"]);
             unset($row["user_update"]);
 
-            unset($row["comentario"]);
-            unset($row["vigente"]);
-            unset($row["direccion"]);
-            unset($row["telefono"]);
-            unset($row["fax"]);
-            unset($row["celular"]);
-            unset($row["web"]);
-            unset($row["email"]);
-            unset($row["documento_respaldo_inscripcion"]);
-            unset($row["resolucion_administrativa_aprovechamiento"]);
-            unset($row["cupos_autorizado"]);
-            unset($row["cupos_autorizado"]);
-            unset($row["comentario_observaciones"]);
+//            unset($row["comentario"]);
 
             unset($row["location_latitude"]);
             unset($row["location_longitude"]);
@@ -183,21 +148,22 @@ class Index extends CoreResources {
         //$this->dbm->debug = true;
         //print_struc($this->table);
         $sql = "select 
-                p.red_id, count(*) as total
-                from ".$this->table["institucion"]." as p
+                dep.name, count(p.departamento_id) as total
+                from (SELECT id, name from ".$this->table["departamento"]." WHERE cod_dep!='0') as dep
+                LEFT JOIN ".$this->table["ilicito"]." as p on p.departamento_id=dep.id
                 ";
         $where = $this->get_filtro_where($item);
         //$sql .= $where;
 
         if($where != ""){
-            $sql .= " ".$where." and";
+            $sql .= " AND ".$where." and";
         }else{
-            $sql .= " where ";
+            $sql .= " AND ";
         }
 
-        $sql .= "  ((location_longitude_decimal is not null and  location_latitude_decimal is not null) or (location_longitude_decimal <> 0 and  location_latitude_decimal <> 0) )";
+        $sql .= "  ((p.location_longitude_decimal is not null and  p.location_latitude_decimal is not null) or (p.location_longitude_decimal <> 0 and  p.location_latitude_decimal <> 0) )";
 
-        $sql .= " group by p.red_id";
+        $sql .= " group by dep.name order by total desc";
 
 /*
         print_struc($item);
@@ -209,48 +175,16 @@ class Index extends CoreResources {
         $info = $info->getRows();
 
 
-        $res = array();
+        $res = [];
+//        $res = array();
         $total = 0;
         foreach ($info as $row){
             $total = $total + $row["total"];
-            switch ($row["estado_id"]){
-                case 1:
-                    $res["cerrado"] = round($row["total"],0);
-                    break;
-                case 2:
-                    $res["paralizado"] = round($row["total"],0);
-                    break;
-                case 3:
-                    $res["debito"] = round($row["total"],0);
-                    break;
-                case 4:
-                    $res["concluido"] = round($row["total"],0);
-                    break;
-                case 5:
-                    $res["cancelado"] = round($row["total"],0);
-                    break;
-                case 6:
-                    $res["ejecucion"] = round($row["total"],0);
-                    break;
-                case 7:
-                    $res["programado"] = round($row["total"],0);
-                    break;
-                default:
-                    $res["none"] = round($row["total"],0);
-                    break;
-            }
+//            $res[$row["name"]] = round($row["total"],0);
+            $res[] = array( "nombre" => $row["name"], "total" => $row["total"] );
         }
-
-        if(!isset($res["cerrado"])) $res["cerrado"]=0;
-        if(!isset($res["paralizado"])) $res["paralizado"]=0;
-        if(!isset($res["debito"])) $res["debito"]=0;
-        if(!isset($res["concluido"])) $res["concluido"]=0;
-        if(!isset($res["cancelado"])) $res["cancelado"]=0;
-        if(!isset($res["ejecucion"])) $res["ejecucion"]=0;
-        if(!isset($res["programado"])) $res["programado"]=0;
-        if(!isset($res["none"])) $res["none"]=0;
-
-        $res["total"] = round($total,0);
+        $res[] = array( "nombre" => "TOTAL", "total" => round($total,0) );
+//        $res["TOTAL"] = round($total,0);
         return $res;
     }
 }

@@ -11,7 +11,7 @@ use Core\Core;
 /**
  * Verificamos y/o Creamos la carpeta padre
  */
-$appVars["folderParent"] = "lagarto";
+$appVars["folderParent"] = "ilicito";
 $appVars["directory"] = $_ENV['DATA_FILE'].$appVars["folderParent"]."/";
 Core::createDirectory($appVars["directory"]);
 /**

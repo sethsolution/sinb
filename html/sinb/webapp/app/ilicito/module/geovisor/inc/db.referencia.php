@@ -11,17 +11,25 @@ $appVars["table"]  = array();
 
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
-$dbSchemaName = "lagarto";
-$db_table[] = Core::getTableConfig("institucion");
+$dbSchemaName = "ilicito";
+$db_table[] = Core::getTableConfig("ilicito");
+$db_table[] = Core::getTableConfig("ilicito_especie");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
 
+$db_table = array();
+$dbSchemaName = "ccfs";
+$db_table[] = Core::getTableConfig("ccfs");
+$appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
+unset($db_table);
 
 $db_table = array();
 $dbSchemaName = "catalogo";
-$db_table[] = Core::getTableConfig("lagarto_red");
-
+$db_table[] = Core::getTableConfig("ilicito_categoria");
+$db_table[] = Core::getTableConfig("ilicito_estado_salud");
+$db_table[] = Core::getTableConfig("ilicito_procedencia");
+$db_table[] = Core::getTableConfig("cites_especie");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 
